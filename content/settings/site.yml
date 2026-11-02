@@ -53,4 +53,8 @@ event_paint_enabled: true
 interior_paint_enabled: true
 brush_accent_enabled: true
 brush_accent_color: "#7bb099"
+nav_rule_type: solid
+nav_rule_color: "#E85395"
+nav_rule_end: "#E85395"
+nav_rule_width: 7
 shop_url: https://www.pinktriangleportraits.com/
