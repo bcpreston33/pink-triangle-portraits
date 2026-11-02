@@ -141,7 +141,7 @@ newest=sorted(portraits,key=lambda p:p['_date'],reverse=True)
 featured=next((p for p in newest if p.get('featured')),newest[0] if newest else None)
 def portrait_card(p):
     name=escape(str(p.get('name','Untitled')))
-    return f'<a class="portrait-card" href="{artwork_link(p)}"><span class="portrait-image">{img(p.get("image"),name)}</span><span class="portrait-name">{name}<span aria-hidden="true"> ↗</span></span></a>'
+    return f'<a class="portrait-card" href="{artwork_link(p)}"><span class="portrait-image">{img(p.get("image"),name)}<span class="portrait-hover-name" aria-hidden="true">{name}</span></span><span class="portrait-name">{name}<span aria-hidden="true"> ↗</span></span></a>'
 
 cards=''.join(portrait_card(p) for p in portraits)
 hero_cards=''.join(img(p.get('image'),p.get('name','')) for p in newest[:6])
