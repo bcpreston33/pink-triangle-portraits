@@ -20,18 +20,14 @@ content:
   - name: years
     label: Life dates
     type: string
-  - name: summary
-    label: Introduction
-    type: text
   - name: artworks
     label: Paintings (add one or more below)
     type: object
     list: true
     fields:
     - name: title
-      label: Artwork title
+      label: Artwork title (optional)
       type: string
-      required: true
     - name: image
       label: Artwork image
       type: image
@@ -61,9 +57,6 @@ content:
       label: Gallery position (lower numbers first)
       type: number
       default: 100
-    - name: summary
-      label: Short introduction
-      type: text
   - name: body
     label: Biography
     type: rich-text
