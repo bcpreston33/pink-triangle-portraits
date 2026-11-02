@@ -105,3 +105,25 @@ footer{font-family:var(--footer-font),sans-serif;font-size:var(--footer-size);co
 .portrait-bio .artwork-separator{color:var(--pink);font-weight:800;margin:0 13px}
 .portrait-bio .accent-rule{margin:22px 0 30px;height:var(--divider-height);background:var(--divider-rule)}
 @media(max-width:700px){.person-detail{gap:28px}.person-artworks .research-callout{margin-top:26px}.portrait-bio{grid-row:1}.person-artworks{grid-row:2}}
+
+/* V3.8: biography-only quotation callouts. Use Blockquote in Pages CMS rich-text editor. */
+.portrait-bio .rich blockquote{
+  font-family:var(--bio-quote-font),Georgia,serif;
+  font-size:var(--bio-quote-size);
+  font-weight:var(--bio-quote-weight);
+  font-style:var(--bio-quote-style);
+  color:var(--bio-quote-color);
+  background:var(--bio-quote-bg);
+  border:0;
+  border-left:var(--bio-quote-rule-width) solid var(--bio-quote-rule);
+  border-image:none;
+  padding:var(--bio-quote-padding);
+  margin:var(--bio-quote-spacing) 0;
+  line-height:1.5;
+  overflow-wrap:anywhere;
+}
+.portrait-bio .rich blockquote p{font:inherit;color:inherit;line-height:inherit;margin:0 0 .65em}
+.portrait-bio .rich blockquote p:last-child{margin-bottom:0}
+.portrait-bio .rich strong{font-weight:700}
+.portrait-bio .rich em{font-style:italic}
+@media(max-width:700px){.portrait-bio .rich blockquote{font-size:min(var(--bio-quote-size),20px);padding:min(var(--bio-quote-padding),18px)}}

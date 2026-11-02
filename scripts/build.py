@@ -112,6 +112,16 @@ def page(title,active,content,desc=''):
       'label-font':setting('label_font',setting('heading_font','Barlow Condensed')),
       'art-font':setting('art_font',setting('heading_font','Barlow Condensed')),
       'research-font':setting('research_font',setting('body_font','DM Sans')),
+      'bio-quote-font':setting('biography_quote_font',setting('body_font','DM Sans')),
+      'bio-quote-size':str(setting('biography_quote_size',22))+'px',
+      'bio-quote-weight':str(setting('biography_quote_weight','500')),
+      'bio-quote-style':setting('biography_quote_style','italic'),
+      'bio-quote-color':setting('biography_quote_color','#082d3b'),
+      'bio-quote-bg':setting('biography_quote_background','#fff0f7'),
+      'bio-quote-rule':setting('biography_quote_rule_color','#ed398b'),
+      'bio-quote-rule-width':str(setting('biography_quote_rule_width',5))+'px',
+      'bio-quote-padding':str(setting('biography_quote_padding',22))+'px',
+      'bio-quote-spacing':str(setting('biography_quote_spacing',28))+'px',
       'footer-font':setting('footer_font',setting('body_font','DM Sans')),
       'display-size':str(setting('display_size',112))+'px',
       'display-mobile-size':str(setting('display_mobile_size',62))+'px',
@@ -143,7 +153,7 @@ def page(title,active,content,desc=''):
       'gallery-hover-text':setting('gallery_hover_text','#ffffff')
     }
     fonts=['Barlow Condensed','DM Sans','Caveat','Anton','Archivo Black','Oswald','Bebas Neue','Manrope','Montserrat','Outfit','Work Sans','Libre Baskerville','Playfair Display','Cormorant Garamond','Merriweather','Inter','Source Sans 3','Lato','Nunito Sans','Roboto','Poppins','Roboto Slab','Lora','Space Grotesk','Barlow','Archivo']
-    selected={str(setting(k,default)) for k,default in [('nav_font','Barlow Condensed'),('heading_font','Barlow Condensed'),('body_font','DM Sans'),('display_font','Barlow Condensed'),('section_font','Barlow Condensed'),('label_font','Barlow Condensed'),('art_font','Barlow Condensed'),('research_font','DM Sans'),('footer_font','DM Sans')]}
+    selected={str(setting(k,default)) for k,default in [('nav_font','Barlow Condensed'),('heading_font','Barlow Condensed'),('body_font','DM Sans'),('display_font','Barlow Condensed'),('section_font','Barlow Condensed'),('label_font','Barlow Condensed'),('art_font','Barlow Condensed'),('research_font','DM Sans'),('biography_quote_font','DM Sans'),('footer_font','DM Sans')]}
     families='&'.join('family='+quote(f)+':wght@400;500;600;700;800;900' for f in fonts if f in selected)
     font_link=f'<link rel="stylesheet" href="https://fonts.googleapis.com/css2?{families}&display=swap">' if families else ''
     styles=''.join(cssvar(k,v) for k,v in variables.items())
