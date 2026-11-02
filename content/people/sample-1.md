@@ -13,6 +13,16 @@ artworks:
     featured: false
     display_order: 10
     summary: short intro?
+  - title: older test
+    image: /assets/uploads/Pink-Triangle-Logo-sm.png
+    year: asdfa
+    medium: asdfasd
+    dimensions: asdfasd
+    date: 2026-11-02
+    published: true
+    featured: false
+    display_order: 100
+    summary: asdfasdfasdfasdf
 sources: further reading?
 special_thanks: thaaaaaanks!
 ---
