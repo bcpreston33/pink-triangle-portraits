@@ -40,3 +40,14 @@ Do **not** replace Bry's existing site or the live Pink Triangle Portraits site.
 - Set the actual domain only after testing.
 
 This starter intentionally does not invent historical biographies, event dates, shop URLs, or a contact form recipient.
+
+
+## Version 2 — Design controls and multiple artworks
+
+Pages CMS now has **People and biographies**, **Artwork and gallery order**, and **Site design and navigation**. Each artwork references the filename slug of its person (e.g. `sample-1`), so multiple gallery artworks can link to one biography. Gallery order uses numeric `display_order` values; lower values appear first. Featured portrait uses the newest flagged artwork, otherwise newest published artwork. The homepage hero uses six newest artworks until `hero_banner` is uploaded in Site design.
+
+**IMPORTANT:** This release changes content storage from `content/portraits` to `content/people` and `content/artwork`. Upload the full replacement files, including deletions of the old portrait sample files, to avoid duplicate entries. Do not upload ZIP itself. For reliable migration, use GitHub's web editor or a Git client; GitHub browser uploads alone do not remove old files.
+
+**Housekeeping reminder:** Add the hidden `.gitignore` to GitHub later (the file is included in this ZIP).
+
+CMS controls are settings fields, not a drag-and-drop designer. Editing settings commits to GitHub and triggers a Cloudflare build. To add a callout inside rich-text, use a blockquote.
