@@ -292,6 +292,56 @@ content:
   - name: art_color
     label: Artwork information color (hex)
     type: string
+  - name: biography_quote_font
+    label: Biography quote callout | Font family
+    type: select
+    options:
+      values: *id001
+    description: Applies to blockquotes inside biographies only.
+  - name: biography_quote_size
+    label: Biography quote | Font size (px)
+    type: number
+    description: Try 22. Adjusts down automatically on small screens.
+  - name: biography_quote_weight
+    label: Biography quote | Font weight
+    type: select
+    options:
+      values:
+      - value: '400'
+        label: Regular
+      - value: '500'
+        label: Medium
+      - value: '600'
+        label: Semibold
+      - value: '700'
+        label: Bold
+  - name: biography_quote_style
+    label: Biography quote | Text style
+    type: select
+    options:
+      values:
+      - value: normal
+        label: Normal
+      - value: italic
+        label: Italic
+  - name: biography_quote_color
+    label: Biography quote | Text color (hex)
+    type: string
+  - name: biography_quote_background
+    label: Biography quote | Background color (hex)
+    type: string
+  - name: biography_quote_rule_color
+    label: Biography quote | Left rule color (hex)
+    type: string
+  - name: biography_quote_rule_width
+    label: Biography quote | Left rule thickness (px)
+    type: number
+  - name: biography_quote_padding
+    label: Biography quote | Inside padding (px)
+    type: number
+  - name: biography_quote_spacing
+    label: Biography quote | Space above and below (px)
+    type: number
   - name: research_font
     label: Research callout font
     type: select
