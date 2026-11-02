@@ -225,6 +225,15 @@ content:
   - name: gallery_background
     label: Gallery Background
     type: string
+  - name: gallery_hover_color
+    label: Gallery Hover Overlay Color (hex, e.g. #a81864)
+    type: string
+  - name: gallery_hover_opacity
+    label: Gallery Hover Opacity (0 to 100)
+    type: number
+  - name: gallery_hover_text
+    label: Gallery Hover Name Color (hex, e.g. #ffffff)
+    type: string
   - name: gallery_sort
     label: Gallery Sort
     type: select
