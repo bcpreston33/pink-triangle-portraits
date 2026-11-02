@@ -247,25 +247,26 @@ for i,person_slug in enumerate(person_slugs):
     lead=artworks[0]
     artwork_data=[]
     for a in artworks:
-        parts=[str(a.get(k)).strip() for k in ['year','medium','dimensions'] if str(a.get(k) or '').strip()]
-        artwork_data.append({'image':str(a.get('image') or ''),'title':str(a.get('title') or '').strip(),'details':'<span class="artwork-separator"> | </span>'.join(escape(part) for part in parts),'alt':str(a.get('title') or name)})
+        parts=[str(a.get(k) or '').strip() for k in ['medium','dimensions'] if str(a.get(k) or '').strip()]
+        artwork_data.append({'image':str(a.get('image') or ''),'details':'<span class="artwork-separator" aria-hidden="true">|</span>'.join(escape(part) for part in parts),'alt':name})
     first=artwork_data[0]
     thumbs=''
     if len(artwork_data)>1:
-        buttons=''.join(f'<button type="button" class="artwork-thumb{" is-selected" if j==0 else ""}" aria-label="View artwork {j+1}: {attr(a["alt"])}" aria-pressed="{str(j==0).lower()}" data-image="{attr(a["image"])}" data-title="{attr(a["title"])}" data-details="{attr(a["details"])}" data-alt="{attr(a["alt"])}">{img(a["image"],a["alt"])}</button>' for j,a in enumerate(artwork_data))
-        thumbs=f'<div class="artwork-thumbnails" role="group" aria-label="Choose a portrait of {attr(name)}">{buttons}</div>'
-    main_art=f'<div class="person-artworks"><figure class="person-artwork"><div class="main-artwork-image">{img(first["image"],first["alt"],"selected-artwork-image")}</div>{thumbs}</figure></div>'
-    artwork_meta=f'<div class="portrait-artwork-meta" aria-live="polite"><div class="selected-artwork-title"{"" if first["title"] else " hidden"}>{escape(first["title"])}</div><div class="selected-artwork-details"{"" if first["details"] else " hidden"}>{first["details"]}</div></div>'
+        buttons=''.join(f'<button type="button" class="artwork-thumb{" is-selected" if j==0 else ""}" aria-label="View painting {j+1} of {attr(name)}" aria-pressed="{str(j==0).lower()}" data-image="{attr(a["image"])}" data-details="{attr(a["details"])}" data-alt="{attr(a["alt"])}">{img(a["image"],a["alt"])}</button>' for j,a in enumerate(artwork_data))
+        thumbs=f'<div class="artwork-thumbnails" role="group" aria-label="Choose a painting of {attr(name)}">{buttons}</div>'
+    main_art=f'<figure class="person-artwork"><div class="main-artwork-image">{img(first["image"],first["alt"],"selected-artwork-image")}</div>{thumbs}</figure>'
+    artwork_meta=f'<div class="portrait-artwork-meta" aria-live="polite"><div class="selected-artwork-details"{"" if first["details"] else " hidden"}>{first["details"]}</div></div>'
     bio=render_md(person.get('body'))
     sources=render_md(person.get('sources'))
     thanks=render_md(person.get('special_thanks'))
     research=''
     if sources or thanks:
-        research='<section class="container research-callout" aria-label="Further reading and acknowledgments"><div class="research-callout-inner">'
+        research='<section class="research-callout" aria-label="Further reading and acknowledgments"><div class="research-callout-inner">'
         if sources: research+=f'<div class="research-part"><h2>Further Reading &amp; Sources</h2><div class="rich">{sources}</div></div>'
         if thanks: research+=f'<div class="research-part"><h2>Special Thanks</h2><div class="rich">{thanks}</div></div>'
         research+='</div></section>'
-    content=f'''<div class="container portrait-breadcrumb"><a href="/portraits/">← All portraits</a></div><section class="container person-detail">{main_art}<article class="portrait-bio"><h1>{escape(name)}</h1><p class="years">{escape(str(person.get('years','')))}</p><div class="accent-rule"></div>{artwork_meta}<div class="accent-rule"></div><div class="rich">{bio}</div></article></section>{research}<nav class="container prev-next"><a href="/people/{prev['_slug']}/">← {escape(str(prev.get('name','Previous')))}</a><a href="/portraits/">All portraits ▦</a><a href="/people/{nxt['_slug']}/">{escape(str(nxt.get('name','Next')))} →</a></nav>'''
+    left=f'<div class="person-artworks">{main_art}{research}</div>'
+    content=f'''<div class="container portrait-breadcrumb"><a href="/portraits/">← All portraits</a></div><section class="container person-detail">{left}<article class="portrait-bio"><h1>{escape(name)}</h1><p class="years">{escape(str(person.get('years','')))}</p>{artwork_meta}<div class="accent-rule"></div><div class="rich">{bio}</div></article></section><nav class="container prev-next"><a href="/people/{prev['_slug']}/">← {escape(str(prev.get('name','Previous')))}</a><a href="/portraits/">All portraits ▦</a><a href="/people/{nxt['_slug']}/">{escape(str(nxt.get('name','Next')))} →</a></nav>'''
     write('people/'+person_slug,page(name,'The Portraits',content,desc=person.get('summary','')))
 # old portrait routes redirect to shared person page
 for p in portraits:

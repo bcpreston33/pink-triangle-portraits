@@ -9,11 +9,9 @@ const copy=document.querySelector('.copy-link');if(copy){copy.addEventListener('
 document.querySelectorAll('.artwork-thumbnails').forEach(group=>{
   const section=group.closest('.person-detail');if(!section)return;
   const main=section.querySelector('.selected-artwork-image');
-  const title=section.querySelector('.selected-artwork-title');
   const details=section.querySelector('.selected-artwork-details');
   group.querySelectorAll('.artwork-thumb').forEach(button=>button.addEventListener('click',()=>{
-    main.src=button.dataset.image;main.alt=button.dataset.alt||button.dataset.title;
-    title.textContent=button.dataset.title||'';title.hidden=!button.dataset.title;
+    main.src=button.dataset.image;main.alt=button.dataset.alt||'Portrait';
     details.innerHTML=button.dataset.details||'';details.hidden=!button.dataset.details;
     group.querySelectorAll('.artwork-thumb').forEach(b=>{const selected=b===button;b.classList.toggle('is-selected',selected);b.setAttribute('aria-pressed',String(selected));});
   }));

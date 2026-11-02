@@ -90,3 +90,18 @@ footer{font-family:var(--footer-font),sans-serif;font-size:var(--footer-size);co
 .research-callout{margin-top:0}
 
 .artwork-separator{color:var(--pink);font-weight:800;padding:0 4px}
+
+/* V3.7: simplified portrait details and left-column research placement */
+.person-detail{align-items:start;padding-bottom:55px}
+.person-artworks{display:flex;flex-direction:column;gap:0;align-self:start;min-width:0}
+.person-artwork{margin:0}
+.person-artworks .research-callout{width:100%;max-width:none;margin:36px 0 0}
+.person-artworks .research-callout-inner{width:100%;max-width:none;background:var(--research-bg);padding:18px 22px;border-left:6px solid var(--pink)}
+.person-artworks .research-part h2{font-size:var(--research-heading-size);line-height:1.12;margin:0 0 8px}
+.person-artworks .research-part+.research-part{margin-top:17px;padding-top:16px}
+.portrait-bio .years{margin:0 0 8px}
+.portrait-bio .portrait-artwork-meta{padding:0;margin:0}
+.portrait-bio .portrait-artwork-meta .selected-artwork-details{font-family:var(--body-font),sans-serif;font-size:var(--art-details-size);line-height:1.5}
+.portrait-bio .artwork-separator{color:var(--pink);font-weight:800;margin:0 13px}
+.portrait-bio .accent-rule{margin:22px 0 30px;height:var(--divider-height);background:var(--divider-rule)}
+@media(max-width:700px){.person-detail{gap:28px}.person-artworks .research-callout{margin-top:26px}.portrait-bio{grid-row:1}.person-artworks{grid-row:2}}
