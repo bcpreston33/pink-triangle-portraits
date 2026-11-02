@@ -29,6 +29,9 @@ content:
   - name: body
     label: Biography
     type: rich-text
+  - name: special_thanks
+    label: Special thanks and acknowledgments
+    type: rich-text
 - name: artwork
   label: Artwork and gallery order
   type: collection
