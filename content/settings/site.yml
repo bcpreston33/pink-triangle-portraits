@@ -1,47 +1,46 @@
-logo: ''
+logo: /assets/uploads/Pink-Triangle-Logo-sm.png
 logo_width: 190
 navigation:
-- label: Home
-  url: /
-- label: The Project
-  url: /the-project/
-- label: The History
-  url: /the-history/
-- label: The Portraits
-  url: /portraits/
-- label: Exhibitions
-  url: /exhibitions/
-- label: Shop
-  url: /shop/
-- label: Contact
-  url: /contact/
-nav_background: '#062c3b'
-nav_text_color: '#ffffff'
+  - label: Home
+    url: /
+  - label: The Project
+    url: /the-project/
+  - label: The History
+    url: /the-history/
+  - label: The Portraits
+    url: /portraits/
+  - label: Exhibitions
+    url: /exhibitions/
+  - label: Shop
+    url: /shop/
+  - label: Contact
+    url: /contact/
+nav_background: "#123F50"
+nav_text_color: "#ffffff"
 nav_font: Barlow Condensed
 nav_font_size: 17
 nav_gap: 22
 heading_font: Barlow Condensed
 body_font: DM Sans
-accent_color: '#ed398b'
-text_color: '#082d3b'
-page_background: '#fffdfb'
-button_color: '#ed398b'
-button_text_color: '#071f2c'
+accent_color: "#ed398b"
+text_color: "#082d3b"
+page_background: "#fffdfb"
+button_color: "#ed398b"
+button_text_color: "#071f2c"
 content_width: 1280
 section_spacing: 75
-hero_banner: ''
 hero_height: 500
-intro_background: '#fffdfb'
-event_background: '#062c3b'
-gallery_background: '#fffdfb'
+intro_background: "#fffdfb"
+event_background: "#062c3b"
+gallery_background: "#fffdfb"
 gallery_sort: custom
 callout_rule_type: solid
-callout_rule_color: '#ed398b'
-callout_rule_end: '#ff842d'
+callout_rule_color: "#ed398b"
+callout_rule_end: "#ff842d"
 callout_rule_width: 7
 callout_gap: 20
 divider_rule_type: gradient
-divider_rule_color: '#ed398b'
-divider_rule_end: '#ff842d'
+divider_rule_color: "#ed398b"
+divider_rule_end: "#ff842d"
 divider_rule_width: 4
 shop_url: https://www.pinktriangleportraits.com/
