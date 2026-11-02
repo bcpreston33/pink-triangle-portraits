@@ -2,7 +2,7 @@
 name: Gad Beck
 years: 10.10.10
 artworks:
-  - title: Sample Portrait 1
+  - title: Younger Gad
     image: /assets/images/portrait-1.jpg
     year: 2024?
     medium: Acrylic on canvas?
@@ -11,11 +11,11 @@ artworks:
     published: true
     featured: false
     display_order: 10
-  - title: older test
-    image: /assets/uploads/Pink-Triangle-Logo-sm.png
-    year: asdfa
-    medium: asdfasd
-    dimensions: asdfasd
+  - title: Older Gad
+    image: /assets/uploads/Gad Beck Older LR-1.jpg
+    year: "2025"
+    medium: Prismacolor Pencils on Strathmore Paper
+    dimensions: 9" x 12"
     date: 2026-11-02
     published: true
     featured: false
