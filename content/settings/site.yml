@@ -49,7 +49,8 @@ social_footer_enabled: true
 instagram_url: https://www.instagram.com/pinktriangleportraits/
 bluesky_url: https://bsky.app/profile/pinktriangleart.bsky.social
 tiktok_url: https://www.tiktok.com/@pinktriangleportraits
-event_paint_enabled: false
-interior_paint_enabled: false
-brush_accent_enabled: false
+event_paint_enabled: true
+interior_paint_enabled: true
+brush_accent_enabled: true
+brush_accent_color: "#000000"
 shop_url: https://www.pinktriangleportraits.com/
