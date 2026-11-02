@@ -74,18 +74,42 @@ content:
     label: Special thanks & acknowledgments
     type: rich-text
 - name: design
-  label: Site appearance, typography & navigation
+  label: Site design controls (organized by page area)
   type: file
   path: content/settings/site.yml
   fields:
   - name: logo
-    label: Logo
+    label: 01 · BRAND & GLOBAL  |  Logo
     type: image
   - name: logo_width
     label: Logo Width
     type: number
+  - name: favicon
+    label: Favicon (square PNG recommended)
+    type: image
+  - name: accent_color
+    label: Accent Color
+    type: string
+  - name: text_color
+    label: Base text color (fallback)
+    type: string
+  - name: page_background
+    label: Page Background
+    type: string
+  - name: button_color
+    label: Button Color
+    type: string
+  - name: button_text_color
+    label: Button Text Color
+    type: string
+  - name: content_width
+    label: Content Width
+    type: number
+  - name: section_spacing
+    label: Section Spacing
+    type: number
   - name: navigation
-    label: Navigation menu items
+    label: 02 · HEADER & NAVIGATION  |  Navigation menu items
     type: object
     list: true
     fields:
@@ -135,14 +159,55 @@ content:
   - name: nav_font_size
     label: Nav Font Size
     type: number
+    description: Size of menu links, not the main page title.
+  - name: nav_weight
+    label: Navigation weight (400–900)
+    type: number
+  - name: nav_tracking
+    label: Navigation letter spacing (px)
+    type: number
   - name: nav_gap
     label: Nav Gap
     type: number
+  - name: nav_rule_type
+    label: Navigation bottom rule type
+    type: select
+    options:
+      values:
+      - solid
+      - gradient
+  - name: nav_rule_color
+    label: Navigation rule start color
+    type: string
+  - name: nav_rule_end
+    label: Navigation rule end color
+    type: string
+  - name: nav_rule_width
+    label: Navigation rule thickness
+    type: number
   - name: heading_font
-    label: Heading Font
+    label: 03 · MAIN FONTS & TEXT  |  Fallback heading font (used when no specific heading font is set)
     type: select
     options:
       values: *id001
+  - name: body_font
+    label: Body Font
+    type: select
+    options:
+      values: *id001
+  - name: body_size
+    label: Body text and biographies size (px)
+    type: number
+    description: Regular paragraph text throughout the site.
+  - name: body_weight
+    label: Body text and biographies weight (400–900)
+    type: number
+  - name: body_leading
+    label: Body line height (e.g. 1.75)
+    type: number
+  - name: body_color
+    label: Body text color (overrides base text color)
+    type: string
   - name: display_font
     label: Page headings font
     type: select
@@ -151,6 +216,7 @@ content:
   - name: display_size
     label: Page headings size (px)
     type: number
+    description: Large page titles such as The Project or a person’s name.
   - name: display_mobile_size
     label: Page heading mobile size (px)
     type: number
@@ -171,30 +237,13 @@ content:
   - name: section_size
     label: Section headings size (px)
     type: number
+    description: Headings within page content, not research-box headings.
   - name: section_weight
     label: Section headings weight (400–900)
     type: number
   - name: section_color
     label: Section headings color (hex)
     type: string
-  - name: body_size
-    label: Body text and biographies size (px)
-    type: number
-  - name: body_weight
-    label: Body text and biographies weight (400–900)
-    type: number
-  - name: body_leading
-    label: Body line height (e.g. 1.75)
-    type: number
-  - name: body_color
-    label: Body text and biographies color (hex)
-    type: string
-  - name: nav_weight
-    label: Navigation weight (400–900)
-    type: number
-  - name: nav_tracking
-    label: Navigation letter spacing (px)
-    type: number
   - name: label_font
     label: Small labels font
     type: select
@@ -212,8 +261,42 @@ content:
   - name: label_color
     label: Small labels color (hex)
     type: string
+  - name: hero_banner
+    label: 04 · HOMEPAGE  |  Hero Banner
+    type: image
+  - name: hero_height
+    label: Hero Height
+    type: number
+  - name: intro_background
+    label: Intro Background
+    type: string
+  - name: event_background
+    label: Event Background
+    type: string
+  - name: gallery_background
+    label: 05 · PORTRAIT GALLERY  |  Gallery Background
+    type: string
+  - name: gallery_sort
+    label: Gallery Sort
+    type: select
+    options:
+      values:
+      - custom
+      - newest
+      - alphabetical
+      - random
+  - name: gallery_hover_color
+    label: Portrait rollover overlay color (hex)
+    type: string
+  - name: gallery_hover_opacity
+    label: Gallery Hover Opacity (0 to 100)
+    type: number
+    description: 0 = transparent; 100 = fully solid. Try 88.
+  - name: gallery_hover_text
+    label: Portrait rollover name color (hex)
+    type: string
   - name: art_font
-    label: Artwork information font
+    label: 06 · BIOGRAPHY PAGES  |  Artwork information font
     type: select
     options:
       values: *id001
@@ -232,87 +315,20 @@ content:
     options:
       values: *id001
   - name: research_heading_size
-    label: Research heading size (px)
+    label: Further Reading / Special Thanks heading size (px)
     type: number
+    description: Controls only the two headings inside the research box on individual biography pages. Try 18.
   - name: research_body_size
-    label: Research copy size (px)
+    label: Further Reading / Special Thanks copy size (px)
     type: number
+    description: Controls the text below those headings. Try 16.
   - name: research_background
-    label: Research solid background (hex)
+    label: Research box SOLID background color (hex)
     type: string
+    description: 'A single solid hex color, such as #fff0f6. No gradient.'
   - name: research_color
-    label: Research callout color (hex)
+    label: Research box text color (hex)
     type: string
-  - name: footer_font
-    label: Footer font
-    type: select
-    options:
-      values: *id001
-  - name: footer_size
-    label: Footer size (px)
-    type: number
-  - name: footer_color
-    label: Footer color (hex)
-    type: string
-  - name: body_font
-    label: Body Font
-    type: select
-    options:
-      values: *id001
-  - name: accent_color
-    label: Accent Color
-    type: string
-  - name: text_color
-    label: Text Color
-    type: string
-  - name: page_background
-    label: Page Background
-    type: string
-  - name: button_color
-    label: Button Color
-    type: string
-  - name: button_text_color
-    label: Button Text Color
-    type: string
-  - name: content_width
-    label: Content Width
-    type: number
-  - name: section_spacing
-    label: Section Spacing
-    type: number
-  - name: hero_banner
-    label: Hero Banner
-    type: image
-  - name: hero_height
-    label: Hero Height
-    type: number
-  - name: intro_background
-    label: Intro Background
-    type: string
-  - name: event_background
-    label: Event Background
-    type: string
-  - name: gallery_background
-    label: Gallery Background
-    type: string
-  - name: gallery_hover_color
-    label: Gallery Hover Overlay Color (hex, e.g.
-    type: string
-  - name: gallery_hover_opacity
-    label: Gallery Hover Opacity (0 to 100)
-    type: number
-  - name: gallery_hover_text
-    label: Gallery Hover Name Color (hex, e.g.
-    type: string
-  - name: gallery_sort
-    label: Gallery Sort
-    type: select
-    options:
-      values:
-      - custom
-      - newest
-      - alphabetical
-      - random
   - name: callout_rule_type
     label: Callout Rule Type
     type: select
@@ -330,10 +346,10 @@ content:
     label: Callout Rule Width
     type: number
   - name: callout_gap
-    label: Callout Gap
+    label: Callout inner spacing (px)
     type: number
   - name: divider_rule_type
-    label: Divider Rule Type
+    label: 07 · RULES & DIVIDERS  |  Divider Rule Type
     type: select
     options:
       values:
@@ -348,9 +364,17 @@ content:
   - name: divider_rule_width
     label: Divider Rule Width
     type: number
-  - name: favicon
-    label: Favicon (square PNG recommended)
-    type: image
+  - name: footer_font
+    label: 08 · FOOTER & SOCIAL LINKS  |  Footer font
+    type: select
+    options:
+      values: *id001
+  - name: footer_size
+    label: Footer size (px)
+    type: number
+  - name: footer_color
+    label: Footer color (hex)
+    type: string
   - name: social_nav_enabled
     label: Show social icons in navigation
     type: boolean
@@ -366,25 +390,10 @@ content:
   - name: tiktok_url
     label: TikTok profile URL (optional)
     type: string
-  - name: nav_rule_type
-    label: Navigation bottom rule type
-    type: select
-    options:
-      values:
-      - solid
-      - gradient
-  - name: nav_rule_color
-    label: Navigation rule start color
-    type: string
-  - name: nav_rule_end
-    label: Navigation rule end color
-    type: string
-  - name: nav_rule_width
-    label: Navigation rule thickness
-    type: number
   - name: shop_url
     label: Shop Url
     type: string
+    description: Used for the Shop navigation link, not biography purchase buttons.
 - name: pages
   label: Site pages
   type: collection
