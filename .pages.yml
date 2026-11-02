@@ -2,57 +2,277 @@ media:
   input: assets/uploads
   output: /assets/uploads
 content:
-  - name: portraits
-    label: Portraits
-    type: collection
-    path: content/portraits
-    filename: '{primary}.md'
-    view:
-      fields: [name, published, date, featured]
-      primary: name
-      sort: [date, name]
-      default:
-        sort: date
-        order: desc
+- name: people
+  label: People and biographies
+  type: collection
+  path: content/people
+  filename: '{primary}.md'
+  view:
     fields:
-      - {name: name, label: Name, type: string, required: true}
-      - {name: date, label: Published date, type: date, required: true}
-      - {name: published, label: Published, type: boolean, default: true}
-      - {name: featured, label: Feature on homepage (optional), type: boolean, default: false}
-      - {name: image, label: Portrait image, type: image, required: true}
-      - {name: years, label: Life dates, type: string}
-      - {name: medium, label: Medium, type: string}
-      - {name: dimensions, label: Dimensions, type: string}
-      - {name: year, label: Artwork year, type: string}
-      - {name: summary, label: Short introduction, type: text}
-      - {name: sources, label: Sources and further reading, type: rich-text}
-      - {name: body, label: Biography, type: rich-text}
-  - name: pages
-    label: Site pages
-    type: collection
-    path: content/pages
-    filename: '{primary}.md'
-    view:
-      fields: [title]
-      primary: title
+    - name
+    - years
+    primary: name
+  fields:
+  - name: name
+    label: Person name
+    type: string
+    required: true
+  - name: years
+    label: Life dates
+    type: string
+  - name: summary
+    label: Introduction
+    type: text
+  - name: sources
+    label: Sources and further reading
+    type: rich-text
+  - name: body
+    label: Biography
+    type: rich-text
+- name: artwork
+  label: Artwork and gallery order
+  type: collection
+  path: content/artwork
+  filename: '{primary}.md'
+  view:
     fields:
-      - {name: title, label: Page title, type: string, required: true}
-      - {name: subtitle, label: Intro subtitle, type: string}
-      - {name: hero_image, label: Header image (optional), type: image}
-      - {name: body, label: Page content, type: rich-text}
-  - name: events
-    label: Exhibitions and events
-    type: collection
-    path: content/events
-    filename: '{primary}.md'
-    view:
-      fields: [title, date, published]
-      primary: title
+    - title
+    - person
+    - display_order
+    - published
+    primary: title
+    sort:
+    - display_order
+    - title
+    default:
+      sort: display_order
+      order: asc
+  fields:
+  - name: title
+    label: Artwork title
+    type: string
+    required: true
+  - name: person
+    label: Person slug (e.g. sample-1)
+    type: string
+    required: true
+  - name: date
+    label: Published date
+    type: date
+    required: true
+  - name: published
+    label: Published
+    type: boolean
+    default: true
+  - name: featured
+    label: Feature on homepage
+    type: boolean
+    default: false
+  - name: display_order
+    label: Gallery position (lower numbers first)
+    type: number
+    default: 100
+  - name: image
+    label: Artwork image
+    type: image
+    required: true
+  - name: year
+    label: Artwork year
+    type: string
+  - name: medium
+    label: Medium
+    type: string
+  - name: dimensions
+    label: Dimensions
+    type: string
+  - name: summary
+    label: Short introduction
+    type: text
+  - name: shop_url
+    label: Square product URL
+    type: string
+- name: design
+  label: Site design and navigation
+  type: file
+  path: content/settings/site.yml
+  fields:
+  - name: logo
+    label: Logo
+    type: image
+  - name: logo_width
+    label: Logo Width
+    type: number
+  - name: navigation
+    label: Navigation menu items
+    type: object
+    list: true
     fields:
-      - {name: title, label: Event name, type: string, required: true}
-      - {name: date, label: Event date, type: date, required: true}
-      - {name: location, label: Location, type: string}
-      - {name: link, label: Event link, type: string}
-      - {name: image, label: Event image, type: image}
-      - {name: published, label: Published, type: boolean, default: true}
-      - {name: body, label: Event description, type: rich-text}
+    - name: label
+      label: Menu label
+      type: string
+    - name: url
+      label: Link
+      type: string
+  - name: nav_background
+    label: Nav Background
+    type: string
+  - name: nav_text_color
+    label: Nav Text Color
+    type: string
+  - name: nav_font
+    label: Nav Font
+    type: string
+  - name: nav_font_size
+    label: Nav Font Size
+    type: number
+  - name: nav_gap
+    label: Nav Gap
+    type: number
+  - name: heading_font
+    label: Heading Font
+    type: string
+  - name: body_font
+    label: Body Font
+    type: string
+  - name: accent_color
+    label: Accent Color
+    type: string
+  - name: text_color
+    label: Text Color
+    type: string
+  - name: page_background
+    label: Page Background
+    type: string
+  - name: button_color
+    label: Button Color
+    type: string
+  - name: button_text_color
+    label: Button Text Color
+    type: string
+  - name: content_width
+    label: Content Width
+    type: number
+  - name: section_spacing
+    label: Section Spacing
+    type: number
+  - name: hero_banner
+    label: Hero Banner
+    type: image
+  - name: hero_height
+    label: Hero Height
+    type: number
+  - name: intro_background
+    label: Intro Background
+    type: string
+  - name: event_background
+    label: Event Background
+    type: string
+  - name: gallery_background
+    label: Gallery Background
+    type: string
+  - name: gallery_sort
+    label: Gallery Sort
+    type: select
+    options:
+      values:
+      - custom
+      - newest
+      - alphabetical
+      - random
+  - name: callout_rule_type
+    label: Callout Rule Type
+    type: select
+    options:
+      values:
+      - solid
+      - gradient
+  - name: callout_rule_color
+    label: Callout Rule Color
+    type: string
+  - name: callout_rule_end
+    label: Callout Rule End
+    type: string
+  - name: callout_rule_width
+    label: Callout Rule Width
+    type: number
+  - name: callout_gap
+    label: Callout Gap
+    type: number
+  - name: divider_rule_type
+    label: Divider Rule Type
+    type: select
+    options:
+      values:
+      - solid
+      - gradient
+  - name: divider_rule_color
+    label: Divider Rule Color
+    type: string
+  - name: divider_rule_end
+    label: Divider Rule End
+    type: string
+  - name: divider_rule_width
+    label: Divider Rule Width
+    type: number
+  - name: shop_url
+    label: Shop Url
+    type: string
+- name: pages
+  label: Site pages
+  type: collection
+  path: content/pages
+  filename: '{primary}.md'
+  view:
+    fields:
+    - title
+    primary: title
+  fields:
+  - name: title
+    label: Page title
+    type: string
+    required: true
+  - name: subtitle
+    label: Intro subtitle
+    type: string
+  - name: hero_image
+    label: Header image (optional)
+    type: image
+  - name: body
+    label: Page content
+    type: rich-text
+- name: events
+  label: Exhibitions and events
+  type: collection
+  path: content/events
+  filename: '{primary}.md'
+  view:
+    fields:
+    - title
+    - date
+    - published
+    primary: title
+  fields:
+  - name: title
+    label: Event name
+    type: string
+    required: true
+  - name: date
+    label: Event date
+    type: date
+    required: true
+  - name: location
+    label: Location
+    type: string
+  - name: link
+    label: Event link
+    type: string
+  - name: image
+    label: Event image
+    type: image
+  - name: published
+    label: Published
+    type: boolean
+    default: true
+  - name: body
+    label: Event description
+    type: rich-text
