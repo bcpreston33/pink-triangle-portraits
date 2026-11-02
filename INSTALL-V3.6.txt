@@ -1,0 +1,24 @@
+PINK TRIANGLE PORTRAITS — VERSION 3.6
+
+Update only these four files in your GitHub repository (main branch):
+  .pages.yml
+  scripts/build.py
+  assets/site.css
+  assets/site.js
+
+The ZIP contains the files at the correct repository paths.
+Do not replace content/, settings, or uploaded artwork.
+
+Changes:
+- Removes the redundant 'The portraits / Biography' label.
+- Removes both introduction fields from the CMS (existing test data is left untouched but no longer used).
+- Artwork title is optional.
+- Moves artwork title, year, medium, and dimensions into the right biography column.
+- Adds identical gradient rules above and below the artwork information.
+- Uses pink vertical separators and hides missing fields cleanly.
+- Updates details when selecting a different painting thumbnail.
+- Keeps thumbnails below the image; no artwork caption below the image.
+- Reduces excessive bottom spacing before the research callout.
+
+After committing, allow Cloudflare Pages to deploy and refresh Pages CMS.
+No migration workflow is needed.

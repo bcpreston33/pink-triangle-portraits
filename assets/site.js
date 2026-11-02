@@ -5,5 +5,16 @@ const search=document.querySelector('#portrait-search');
 if(search){const cards=[...document.querySelectorAll('.searchable .portrait-card')];const count=document.querySelector('#result-count');const empty=document.querySelector('#empty-search');const update=()=>{const q=search.value.trim().toLocaleLowerCase();let shown=0;cards.forEach(card=>{const match=card.textContent.toLocaleLowerCase().includes(q);card.hidden=!match;if(match)shown++;});count.textContent=shown+' portrait'+(shown===1?'':'s');empty.hidden=shown>0;};search.addEventListener('input',update);update();}
 const copy=document.querySelector('.copy-link');if(copy){copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(location.href);copy.textContent='Link copied';}catch(e){copy.textContent='Copy from address bar';}});}
 
-// Switch the primary portrait without moving or overlaying thumbnails.
-document.querySelectorAll('.artwork-thumbnails').forEach(group=>{const panel=group.closest('.person-artworks');if(!panel)return;const main=panel.querySelector('.selected-artwork-image');const title=panel.querySelector('.selected-artwork-title');const details=panel.querySelector('.selected-artwork-details');group.querySelectorAll('.artwork-thumb').forEach(button=>{button.addEventListener('click',()=>{main.src=button.dataset.image;main.alt=button.dataset.title;title.textContent=button.dataset.title;details.textContent=button.dataset.details;group.querySelectorAll('.artwork-thumb').forEach(b=>{const selected=b===button;b.classList.toggle('is-selected',selected);b.setAttribute('aria-pressed',String(selected));});});});});
+// Keep artwork information alongside the biography, synchronized with thumbnails.
+document.querySelectorAll('.artwork-thumbnails').forEach(group=>{
+  const section=group.closest('.person-detail');if(!section)return;
+  const main=section.querySelector('.selected-artwork-image');
+  const title=section.querySelector('.selected-artwork-title');
+  const details=section.querySelector('.selected-artwork-details');
+  group.querySelectorAll('.artwork-thumb').forEach(button=>button.addEventListener('click',()=>{
+    main.src=button.dataset.image;main.alt=button.dataset.alt||button.dataset.title;
+    title.textContent=button.dataset.title||'';title.hidden=!button.dataset.title;
+    details.innerHTML=button.dataset.details||'';details.hidden=!button.dataset.details;
+    group.querySelectorAll('.artwork-thumb').forEach(b=>{const selected=b===button;b.classList.toggle('is-selected',selected);b.setAttribute('aria-pressed',String(selected));});
+  }));
+});

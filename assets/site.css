@@ -75,3 +75,18 @@ footer{font-family:var(--footer-font),sans-serif;font-size:var(--footer-size);co
 .event-grid h2{color:white}
 @media(max-width:1050px){.research-callout-inner{width:calc((100% - 40px)*.425)}}
 @media(max-width:700px){.research-callout{width:calc(100% - 40px)}.research-callout-inner{width:100%}.interior-hero h1,.home-hero h1,.portrait-bio h1{font-size:var(--display-mobile-size)}.artwork-thumb{width:60px;height:72px}}
+
+/* V3.6 — portrait details between matching gradient rules */
+.person-detail{padding-bottom:38px}
+.portrait-bio .accent-rule{height:var(--divider-height);background:var(--divider-rule);margin:25px 0}
+.portrait-artwork-meta{padding:3px 0 5px;min-height:0}
+.portrait-artwork-meta:has(> :not([hidden])){min-height:30px}
+.portrait-artwork-meta .selected-artwork-title{font-family:var(--art-font),'Barlow Condensed',sans-serif;font-size:var(--art-title-size);font-weight:800;line-height:1.2;color:var(--art-color);margin-bottom:5px}
+.portrait-artwork-meta .selected-artwork-details{font-family:var(--body-font),sans-serif;font-size:var(--art-details-size);color:var(--art-color);line-height:1.5}
+.portrait-artwork-meta .selected-artwork-details:not([hidden]){white-space:normal}
+.portrait-artwork-meta .selected-artwork-details:not([hidden])::first-letter{color:inherit}
+.portrait-artwork-meta [hidden]{display:none!important}
+.person-artwork figcaption{display:none}
+.research-callout{margin-top:0}
+
+.artwork-separator{color:var(--pink);font-weight:800;padding:0 4px}
