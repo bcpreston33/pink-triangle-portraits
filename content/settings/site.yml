@@ -43,4 +43,13 @@ divider_rule_type: gradient
 divider_rule_color: "#ed398b"
 divider_rule_end: "#ff842d"
 divider_rule_width: 4
+favicon: /assets/uploads/Pink-Triangle-Icon.png
+social_nav_enabled: true
+social_footer_enabled: true
+instagram_url: https://www.instagram.com/pinktriangleportraits/
+bluesky_url: https://bsky.app/profile/pinktriangleart.bsky.social
+tiktok_url: https://www.tiktok.com/@pinktriangleportraits
+event_paint_enabled: false
+interior_paint_enabled: false
+brush_accent_enabled: false
 shop_url: https://www.pinktriangleportraits.com/
