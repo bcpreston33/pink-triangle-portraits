@@ -1,0 +1,58 @@
+media:
+  input: assets/uploads
+  output: /assets/uploads
+content:
+  - name: portraits
+    label: Portraits
+    type: collection
+    path: content/portraits
+    filename: '{primary}.md'
+    view:
+      fields: [name, published, date, featured]
+      primary: name
+      sort: [date, name]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - {name: name, label: Name, type: string, required: true}
+      - {name: date, label: Published date, type: date, required: true}
+      - {name: published, label: Published, type: boolean, default: true}
+      - {name: featured, label: Feature on homepage (optional), type: boolean, default: false}
+      - {name: image, label: Portrait image, type: image, required: true}
+      - {name: years, label: Life dates, type: string}
+      - {name: medium, label: Medium, type: string}
+      - {name: dimensions, label: Dimensions, type: string}
+      - {name: year, label: Artwork year, type: string}
+      - {name: summary, label: Short introduction, type: text}
+      - {name: sources, label: Sources and further reading, type: rich-text}
+      - {name: body, label: Biography, type: rich-text}
+  - name: pages
+    label: Site pages
+    type: collection
+    path: content/pages
+    filename: '{primary}.md'
+    view:
+      fields: [title]
+      primary: title
+    fields:
+      - {name: title, label: Page title, type: string, required: true}
+      - {name: subtitle, label: Intro subtitle, type: string}
+      - {name: hero_image, label: Header image (optional), type: image}
+      - {name: body, label: Page content, type: rich-text}
+  - name: events
+    label: Exhibitions and events
+    type: collection
+    path: content/events
+    filename: '{primary}.md'
+    view:
+      fields: [title, date, published]
+      primary: title
+    fields:
+      - {name: title, label: Event name, type: string, required: true}
+      - {name: date, label: Event date, type: date, required: true}
+      - {name: location, label: Location, type: string}
+      - {name: link, label: Event link, type: string}
+      - {name: image, label: Event image, type: image}
+      - {name: published, label: Published, type: boolean, default: true}
+      - {name: body, label: Event description, type: rich-text}
