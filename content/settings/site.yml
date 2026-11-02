@@ -41,8 +41,8 @@ gallery_sort: custom
 gallery_hover_color: "#1c5858"
 gallery_hover_opacity: 85
 gallery_hover_text: "#FFFFFF"
-research_heading_size: 13
-research_body_size: 10
+research_heading_size: 17
+research_body_size: 14
 callout_rule_type: solid
 callout_rule_color: "#ed398b"
 callout_rule_end: "#ff842d"
