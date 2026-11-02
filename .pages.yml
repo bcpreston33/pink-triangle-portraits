@@ -25,26 +25,16 @@ content:
     type: object
     list: true
     fields:
-    - name: title
-      label: Artwork title (optional)
-      type: string
     - name: image
       label: Artwork image
       type: image
       required: true
-    - name: year
-      label: Artwork year
-      type: string
     - name: medium
-      label: Medium
+      label: Materials
       type: string
     - name: dimensions
-      label: Dimensions
+      label: Size
       type: string
-    - name: date
-      label: Published date
-      type: date
-      required: true
     - name: published
       label: Published
       type: boolean
