@@ -1,0 +1,20 @@
+PINK TRIANGLE PORTRAITS — VERSION 3.4
+
+This is an UPDATE, not a replacement website. It deliberately contains no content/ files, so it will not overwrite your current logo, settings, biographies, or artwork.
+
+1. Unzip this file.
+2. In your GitHub repository, on the main branch, upload the assets/ and scripts/ files, replacing the existing files.
+3. In GitHub, replace the ROOT .pages.yml file with the included .pages.yml. This file is hidden on Macs, so use GitHub's file editor if necessary.
+4. Create the file .github/workflows/migrate-portraits.yml in GitHub, copying the included file's contents. The .github folder may be hidden in Finder.
+5. Commit changes. Wait for Cloudflare Pages to deploy.
+6. IMPORTANT: Convert your EXISTING artwork to the new single-editor format. In GitHub, go to Actions > Migrate portraits into biographies > Run workflow > Run workflow. This action merges current content/artwork/*.md records into their corresponding content/people/*.md files and moves the old records to content/artwork-legacy/ as backups. It does not overwrite existing people biography text or your site settings.
+7. If the workflow says it cannot push, in GitHub Settings > Actions > General > Workflow permissions, allow Read and write permissions, then rerun the workflow. Your repository administrator may need to enable this.
+8. Refresh Pages CMS. Open Portraits & biographies > a person. The Paintings list now holds that person's artwork; you can add another painting in the same entry.
+9. Site appearance, typography & navigation contains the expanded font, size, color and weight controls.
+
+Note: Before running the migration workflow, existing portraits still display on the website through a backwards-compatibility fallback, but the old artwork entries are not editable from the new combined CMS menu. Run the migration before editing artwork.
+
+The Shop remains in the navigation/footer only. No individual biography-page purchase links.
+The paint-effect settings have been hidden for now; existing saved values remain in your site settings file.
+
+If GitHub Actions is not available on your repository, ask for a manual migration alternative before editing the sample artwork.

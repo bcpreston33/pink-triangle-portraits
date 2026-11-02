@@ -47,3 +47,31 @@ body{font-family:var(--body-font),'DM Sans',sans-serif}h1,h2,h3,.section-label,.
 /* V3.3: Portrait artwork selector and research callout */
 .person-artworks{display:block;min-width:0}.person-artwork{margin:0}.main-artwork-image img{display:block;width:100%;height:auto;max-height:760px;object-fit:contain;object-position:center;box-shadow:12px 12px 0 #ed398b2b}.artwork-thumbnails{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 0;padding:0}.artwork-thumb{display:block;width:78px;height:90px;padding:4px;border:2px solid #c6cfd0;background:#fff;cursor:pointer;transition:border-color .15s,box-shadow .15s}.artwork-thumb img{width:100%;height:100%;object-fit:contain;display:block;box-shadow:none}.artwork-thumb:hover,.artwork-thumb.is-selected{border-color:var(--pink);box-shadow:0 0 0 2px var(--pink)}.artwork-thumb:focus-visible{outline:3px solid var(--ink);outline-offset:3px}.person-artwork figcaption{padding-top:23px}.selected-artwork-details:empty{display:none}.research-callout{margin:0 auto 65px}.research-callout-inner{border-left:6px solid var(--pink);padding:8px 0 8px clamp(20px,3vw,42px);max-width:960px;background:linear-gradient(90deg,#fff0f7 0%,rgba(255,240,247,0) 95%)}.research-part+.research-part{border-top:1px solid #e4cad5;margin-top:25px;padding-top:22px}.research-part h2{font-size:clamp(29px,3.3vw,42px);margin:0 0 15px}.research-part .rich{overflow-wrap:anywhere}.research-part .rich p:last-child{margin-bottom:0}
 @media(max-width:700px){.artwork-thumb{width:65px;height:76px}.artwork-thumbnails{gap:10px;margin-top:22px}.research-callout{margin-bottom:40px}.research-callout-inner{padding-left:18px}}
+
+/* V3.4: refined biography presentation */
+.person-artwork img,.main-artwork-image img{box-shadow:none!important}
+.artwork-thumbnails{margin-top:16px;gap:9px}
+.artwork-thumb{width:64px;height:76px;box-shadow:none!important}
+.artwork-thumb.is-selected{border-color:var(--pink)}
+.research-callout{width:min(var(--max),calc(100% - 100px));margin:0 auto 55px}
+.research-callout-inner{box-sizing:border-box;width:calc((100% - 65px)*.425);max-width:none;background:var(--research-bg);padding:18px 22px;border-left:6px solid var(--pink)}
+.research-part+.research-part{margin-top:16px;padding-top:16px}
+.research-part h2{font-size:var(--research-heading-size);font-family:var(--section-font),sans-serif;font-weight:700;line-height:1.12;margin:0 0 6px;color:var(--research-color)}
+.research-part .rich{font-family:var(--research-font),sans-serif;font-size:var(--research-body-size);color:var(--research-color);line-height:1.5}
+.research-part .rich p{margin:0 0 8px}
+.research-part .rich p:last-child{margin-bottom:0}
+/* Site-wide typography options */
+body{font-size:var(--body-size);color:var(--body-color);font-weight:var(--body-weight)}
+h1{font-family:var(--display-font),sans-serif;font-size:clamp(46px,8vw,var(--display-size));font-weight:var(--display-weight);letter-spacing:var(--display-tracking);color:var(--heading-color)}
+h2,h3{font-family:var(--section-font),sans-serif;font-weight:var(--section-weight);color:var(--section-color)}
+h2{font-size:var(--section-size)}
+.rich{font-family:var(--body-font),sans-serif;font-size:var(--body-size);line-height:var(--body-leading);color:var(--body-color)}
+.section-label,.eyebrow{font-family:var(--label-font),sans-serif;font-size:var(--label-size);font-weight:var(--label-weight);letter-spacing:var(--label-tracking);color:var(--label-color)}
+#main-nav a{font-weight:var(--nav-weight);letter-spacing:var(--nav-tracking)}
+.person-artwork figcaption b{font-family:var(--art-font),sans-serif;font-size:var(--art-title-size);color:var(--art-color)}
+.selected-artwork-details{font-family:var(--body-font),sans-serif;font-size:var(--art-details-size);color:var(--art-color)}
+footer{font-family:var(--footer-font),sans-serif;font-size:var(--footer-size);color:var(--footer-color)}
+.interior-hero h1,.home-hero h1{color:white;font-family:var(--display-font),sans-serif}
+.event-grid h2{color:white}
+@media(max-width:1050px){.research-callout-inner{width:calc((100% - 40px)*.425)}}
+@media(max-width:700px){.research-callout{width:calc(100% - 40px)}.research-callout-inner{width:100%}.interior-hero h1,.home-hero h1,.portrait-bio h1{font-size:var(--display-mobile-size)}.artwork-thumb{width:60px;height:72px}}

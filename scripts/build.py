@@ -107,10 +107,47 @@ def page(title,active,content,desc=''):
       'brush-primary':setting('brush_accent_color','#ed398b'),
       'brush-secondary':setting('brush_accent_secondary','#ff842d'),
       'gallery-hover-overlay':f'rgba({int(str(setting("gallery_hover_color","#a81864")).lstrip("#")[0:2],16)},{int(str(setting("gallery_hover_color","#a81864")).lstrip("#")[2:4],16)},{int(str(setting("gallery_hover_color","#a81864")).lstrip("#")[4:6],16)},{max(0,min(100,int(setting("gallery_hover_opacity",88))))/100})',
+      'display-font':setting('display_font',setting('heading_font','Barlow Condensed')),
+      'section-font':setting('section_font',setting('heading_font','Barlow Condensed')),
+      'label-font':setting('label_font',setting('heading_font','Barlow Condensed')),
+      'art-font':setting('art_font',setting('heading_font','Barlow Condensed')),
+      'research-font':setting('research_font',setting('body_font','DM Sans')),
+      'footer-font':setting('footer_font',setting('body_font','DM Sans')),
+      'display-size':str(setting('display_size',112))+'px',
+      'display-mobile-size':str(setting('display_mobile_size',62))+'px',
+      'section-size':str(setting('section_size',54))+'px',
+      'body-size':str(setting('body_size',17))+'px',
+      'body-leading':str(setting('body_leading',1.75)),
+      'label-size':str(setting('label_size',18))+'px',
+      'art-title-size':str(setting('art_title_size',28))+'px',
+      'art-details-size':str(setting('art_details_size',16))+'px',
+      'research-heading-size':str(setting('research_heading_size',26))+'px',
+      'research-body-size':str(setting('research_body_size',16))+'px',
+      'footer-size':str(setting('footer_size',16))+'px',
+      'heading-color':setting('heading_color',setting('text_color','#082d3b')),
+      'section-color':setting('section_color',setting('text_color','#082d3b')),
+      'body-color':setting('body_color',setting('text_color','#082d3b')),
+      'label-color':setting('label_color',setting('accent_color','#ed398b')),
+      'art-color':setting('art_color',setting('text_color','#082d3b')),
+      'research-color':setting('research_color',setting('text_color','#082d3b')),
+      'research-bg':setting('research_background','#fff0f7'),
+      'footer-color':setting('footer_color','#ffffff'),
+      'display-weight':str(setting('display_weight',900)),
+      'section-weight':str(setting('section_weight',900)),
+      'body-weight':str(setting('body_weight',400)),
+      'nav-weight':str(setting('nav_weight',800)),
+      'label-weight':str(setting('label_weight',800)),
+      'display-tracking':str(setting('display_tracking',0))+'px',
+      'nav-tracking':str(setting('nav_tracking',0.7))+'px',
+      'label-tracking':str(setting('label_tracking',2))+'px',
       'gallery-hover-text':setting('gallery_hover_text','#ffffff')
     }
+    fonts=['Barlow Condensed','DM Sans','Caveat','Anton','Archivo Black','Oswald','Bebas Neue','Manrope','Montserrat','Outfit','Work Sans','Libre Baskerville','Playfair Display','Cormorant Garamond','Merriweather','Inter','Source Sans 3','Lato','Nunito Sans','Roboto','Poppins','Roboto Slab','Lora','Space Grotesk','Barlow','Archivo']
+    selected={str(setting(k,default)) for k,default in [('nav_font','Barlow Condensed'),('heading_font','Barlow Condensed'),('body_font','DM Sans'),('display_font','Barlow Condensed'),('section_font','Barlow Condensed'),('label_font','Barlow Condensed'),('art_font','Barlow Condensed'),('research_font','DM Sans'),('footer_font','DM Sans')]}
+    families='&'.join('family='+quote(f)+':wght@400;500;600;700;800;900' for f in fonts if f in selected)
+    font_link=f'<link rel="stylesheet" href="https://fonts.googleapis.com/css2?{families}&display=swap">' if families else ''
     styles=''.join(cssvar(k,v) for k,v in variables.items())
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="{attr(desc or 'Pink Triangle Portraits, an art and historical remembrance project by Bry Sharland')}"><title>{escape(title)} | Pink Triangle Portraits</title>{favicon}<link rel="stylesheet" href="/assets/site.css"><style>:root{{{styles}}}</style></head><body><header class="site-header"><div class="nav-wrap"><a class="brand" href="/" aria-label="Pink Triangle Portraits home">{brand}</a><button class="menu-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu">☰</button><nav id="main-nav" aria-label="Main navigation">{links}</nav>{navsocial}</div></header><main>{content}</main><footer><div class="container foot-grid"><div><b>PINK TRIANGLE PORTRAITS</b><p>Giving color and dignity to those who had it stripped away.</p></div><div><a href="{attr(setting('shop_url','https://www.pinktriangleportraits.com/'))}">Visit the shop</a><p>Artwork and research by Bry Sharland</p>{footsocial}</div></div></footer><script src="/assets/site.js" defer></script></body></html>'''
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="{attr(desc or 'Pink Triangle Portraits, an art and historical remembrance project by Bry Sharland')}"><title>{escape(title)} | Pink Triangle Portraits</title>{favicon}{font_link}<link rel="stylesheet" href="/assets/site.css"><style>:root{{{styles}}}</style></head><body><header class="site-header"><div class="nav-wrap"><a class="brand" href="/" aria-label="Pink Triangle Portraits home">{brand}</a><button class="menu-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu">☰</button><nav id="main-nav" aria-label="Main navigation">{links}</nav>{navsocial}</div></header><main>{content}</main><footer><div class="container foot-grid"><div><b>PINK TRIANGLE PORTRAITS</b><p>Giving color and dignity to those who had it stripped away.</p></div><div><a href="{attr(setting('shop_url','https://www.pinktriangleportraits.com/'))}">Visit the shop</a><p>Artwork and research by Bry Sharland</p>{footsocial}</div></div></footer><script src="/assets/site.js" defer></script></body></html>'''
 
 def write(route,html):
     target=OUT/route/'index.html' if route else OUT/'index.html'
@@ -119,14 +156,26 @@ def write(route,html):
 
 def heading(kicker,title,subtitle='',hero=''):
     bg=f' style="--hero-image:url(\'{attr(hero)}\')"' if hero else ''
-    paint_class=" paint-enabled" if setting("interior_paint_enabled",True) and not hero else ""
-    brush_class=" brush-enabled" if setting("brush_accent_enabled",True) else ""
+    paint_class=""
+    brush_class=""
     return f'<section class="interior-hero{paint_class}{brush_class}"{bg}><div class="container interior-inner"><div class="eyebrow">{escape(kicker)}</div><h1>{escape(title)}</h1><p>{escape(subtitle)}</p></div><div class="paint-swipe" aria-hidden="true"></div></section>'
 
 people={}
 for f in (ROOT/'content/people').glob('*.md'):
     p=load(f);p['_slug']=slug(f.stem);people[p['_slug']]=p
 portraits=[]
+for person_slug, person in people.items():
+    for j, artwork in enumerate(person.get('artworks') or []):
+        if not isinstance(artwork,dict) or artwork.get('published') is False: continue
+        p=dict(artwork)
+        p['_slug']=person_slug+'-'+str(j+1)
+        p['_date']=date_key(p.get('date'))
+        p['_person_slug']=person_slug
+        p['name']=person.get('name','Untitled')
+        p['display_order']=p.get('display_order',person.get('display_order',100))
+        portraits.append(p)
+# Backwards compatibility: old artwork records remain visible until migration is run.
+# If a person has migrated artworks, do not duplicate their legacy artwork records.
 for folder in ['artwork','portraits']:
     for f in (ROOT/'content'/folder).glob('*.md'):
         p=load(f)
@@ -136,6 +185,7 @@ for folder in ['artwork','portraits']:
         p['_person_slug']=slug(p.get('person','')) if p.get('person') else p['_slug']
         if p['_person_slug'] not in people:
             people[p['_person_slug']]={'_slug':p['_person_slug'],'name':p.get('name','Untitled'),'years':p.get('years',''),'body':p.get('body',''),'sources':p.get('sources','')}
+        if people[p['_person_slug']].get('artworks'): continue
         p['name']=people[p['_person_slug']].get('name',p.get('name','Untitled'))
         portraits.append(p)
 portraits=gallery_sort(portraits)
@@ -145,7 +195,9 @@ def portrait_card(p):
     name=escape(str(p.get('name','Untitled')))
     return f'<a class="portrait-card" href="{artwork_link(p)}"><span class="portrait-image">{img(p.get("image"),name)}<span class="portrait-hover-name" aria-hidden="true">{name}</span></span><span class="portrait-name">{name}<span aria-hidden="true"> ↗</span></span></a>'
 
-cards=''.join(portrait_card(p) for p in portraits)
+gallery_people=list(dict.fromkeys(p['_person_slug'] for p in portraits))
+gallery_art=[next(p for p in portraits if p['_person_slug']==ps) for ps in gallery_people]
+cards=''.join(portrait_card(p) for p in gallery_art)
 hero_cards=''.join(img(p.get('image'),p.get('name','')) for p in newest[:6])
 if featured:
     f=featured
@@ -167,7 +219,7 @@ if next_event:
 else:
     event_markup='<div><span class="section-label">Exhibitions & talks</span><h2>See the work in person</h2><p>Upcoming exhibitions and events will appear here automatically when published.</p><a class="button" href="/exhibitions/">Exhibitions →</a></div>'
 
-home=f'''<section class="home-hero" style="min-height:{attr(setting('hero_height',500))}px"><div class="home-portrait-strip">{img(setting('hero_banner'),'Pink Triangle Portraits banner','hero-banner') if setting('hero_banner') else hero_cards}</div><div class="home-hero-overlay"><div class="container"><span class="hero-eyebrow">Art / History / Remembrance / Queer Joy</span><h1>PINK TRIANGLE<br>PORTRAITS</h1><p>Giving color and dignity to those who had it stripped away.</p><a class="button" href="/portraits/">Explore the portraits →</a></div></div></section><section class="home-intro container"{section_style("intro")}><div><span class="section-label">The project</span><h2>Portraits to remember.<br>Stories to keep alive.</h2><p>Pink Triangle Portraits is an ongoing art and research project by Bry Sharland, honoring queer people persecuted by the Nazi regime.</p><a class="button" href="/the-project/">Learn about the project →</a></div><div class="feature-area">{featured_markup}</div></section><section class="event-band{" paint-enabled" if setting("event_paint_enabled",True) else ""}"{section_style("event")}><div class="container event-grid">{event_markup}</div></section><section class="container gallery-preview"{section_style("gallery")}><div class="section-head"><div><span class="section-label">Explore the portraits</span><h2>Every person has a story.</h2></div><a class="text-link" href="/portraits/">Browse all portraits →</a></div><div class="portrait-grid">{''.join(portrait_card(p) for p in newest[:5])}</div></section>'''
+home=f'''<section class="home-hero" style="min-height:{attr(setting('hero_height',500))}px"><div class="home-portrait-strip">{img(setting('hero_banner'),'Pink Triangle Portraits banner','hero-banner') if setting('hero_banner') else hero_cards}</div><div class="home-hero-overlay"><div class="container"><span class="hero-eyebrow">Art / History / Remembrance / Queer Joy</span><h1>PINK TRIANGLE<br>PORTRAITS</h1><p>Giving color and dignity to those who had it stripped away.</p><a class="button" href="/portraits/">Explore the portraits →</a></div></div></section><section class="home-intro container"{section_style("intro")}><div><span class="section-label">The project</span><h2>Portraits to remember.<br>Stories to keep alive.</h2><p>Pink Triangle Portraits is an ongoing art and research project by Bry Sharland, honoring queer people persecuted by the Nazi regime.</p><a class="button" href="/the-project/">Learn about the project →</a></div><div class="feature-area">{featured_markup}</div></section><section class="event-band"{section_style("event")}><div class="container event-grid">{event_markup}</div></section><section class="container gallery-preview"{section_style("gallery")}><div class="section-head"><div><span class="section-label">Explore the portraits</span><h2>Every person has a story.</h2></div><a class="text-link" href="/portraits/">Browse all portraits →</a></div><div class="portrait-grid">{''.join(portrait_card(p) for p in [next(a for a in newest if a['_person_slug']==ps) for ps in dict.fromkeys(a['_person_slug'] for a in newest)][:5])}</div></section>'''
 write('',page('Home','Home',home))
 
 for route in ['the-project','the-history','about-the-artist','contact','shop']:
@@ -196,12 +248,12 @@ for i,person_slug in enumerate(person_slugs):
     artwork_data=[]
     for a in artworks:
         details=' · '.join(str(a.get(k)) for k in ['year','medium','dimensions'] if a.get(k))
-        artwork_data.append({'image':str(a.get('image') or ''),'title':str(a.get('title') or name),'details':details,'shop':str(a.get('shop_url') or '')})
+        artwork_data.append({'image':str(a.get('image') or ''),'title':str(a.get('title') or name),'details':details,'shop':''})
     first=artwork_data[0]
-    purchase=f'<a class="text-link selected-artwork-shop" href="{attr(first["shop"])}">Purchase print →</a>' if first['shop'] else '<a class="text-link selected-artwork-shop" href="#" hidden>Purchase print →</a>'
+    purchase=''
     thumbs=''
     if len(artwork_data)>1:
-        buttons=''.join(f'<button type="button" class="artwork-thumb{" is-selected" if j==0 else ""}" aria-label="View artwork {j+1}: {attr(a["title"])}" aria-pressed="{str(j==0).lower()}" data-image="{attr(a["image"])}" data-title="{attr(a["title"])}" data-details="{attr(a["details"])}" data-shop="{attr(a["shop"])}">{img(a["image"],a["title"])}</button>' for j,a in enumerate(artwork_data))
+        buttons=''.join(f'<button type="button" class="artwork-thumb{" is-selected" if j==0 else ""}" aria-label="View artwork {j+1}: {attr(a["title"])}" aria-pressed="{str(j==0).lower()}" data-image="{attr(a["image"])}" data-title="{attr(a["title"])}" data-details="{attr(a["details"])}" >{img(a["image"],a["title"])}</button>' for j,a in enumerate(artwork_data))
         thumbs=f'<div class="artwork-thumbnails" role="group" aria-label="Choose a portrait of {attr(name)}">{buttons}</div>'
     main_art=f'<div class="person-artworks"><figure class="person-artwork"><div class="main-artwork-image">{img(first["image"],first["title"],"selected-artwork-image")}</div>{thumbs}<figcaption aria-live="polite"><b class="selected-artwork-title">{escape(first["title"])}</b><p class="selected-artwork-details">{escape(first["details"])}</p>{purchase}</figcaption></figure></div>'
     bio=render_md(person.get('body'))
