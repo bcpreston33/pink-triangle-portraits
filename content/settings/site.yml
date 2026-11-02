@@ -1,5 +1,12 @@
 logo: /assets/uploads/Pink-Triangle-Logo-Final2-ko-500.png
 logo_width: 190
+accent_color: "#ed398b"
+text_color: "#082d3b"
+page_background: "#fffdfb"
+button_color: "#ed398b"
+button_text_color: "#071f2c"
+content_width: 1280
+section_spacing: 75
 navigation:
   - label: Home
     url: /
@@ -20,23 +27,22 @@ nav_text_color: "#ffffff"
 nav_font: Barlow Condensed
 nav_font_size: 17
 nav_gap: 22
+nav_rule_type: solid
+nav_rule_color: "#ed398b"
+nav_rule_end: "#ff842d"
+nav_rule_width: 3
 heading_font: Barlow Condensed
 body_font: DM Sans
-accent_color: "#ed398b"
-text_color: "#082d3b"
-page_background: "#fffdfb"
-button_color: "#ed398b"
-button_text_color: "#071f2c"
-content_width: 1280
-section_spacing: 75
 hero_height: 500
 intro_background: "#fffdfb"
 event_background: "#062c3b"
 gallery_background: "#fffdfb"
+gallery_sort: custom
 gallery_hover_color: "#1c5858"
 gallery_hover_opacity: 85
 gallery_hover_text: "#FFFFFF"
-gallery_sort: custom
+research_heading_size: 13
+research_body_size: 10
 callout_rule_type: solid
 callout_rule_color: "#ed398b"
 callout_rule_end: "#ff842d"
@@ -51,15 +57,4 @@ social_footer_enabled: true
 instagram_url: https://www.instagram.com/pinktriangleportraits/
 bluesky_url: https://bsky.app/profile/pinktriangleart.bsky.social
 tiktok_url: https://www.tiktok.com/@pinktriangleportraits
-paint_background: /assets/images/painted-background.jpg
-event_paint_enabled: true
-interior_paint_enabled: true
-paint_opacity: 70
-brush_accent_enabled: true
-brush_accent_color: "#ed398b"
-brush_accent_secondary: "#ff842d"
-nav_rule_type: solid
-nav_rule_color: "#ed398b"
-nav_rule_end: "#ff842d"
-nav_rule_width: 3
 shop_url: https://www.pinktriangleportraits.com/
