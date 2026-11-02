@@ -88,6 +88,61 @@ content:
   - name: summary
     label: Short introduction
     type: text
+  - name: favicon
+    label: Favicon (square PNG recommended)
+    type: image
+  - name: social_nav_enabled
+    label: Show social icons in navigation
+    type: boolean
+  - name: social_footer_enabled
+    label: Show social icons in footer
+    type: boolean
+  - name: instagram_url
+    label: Instagram profile URL
+    type: string
+  - name: bluesky_url
+    label: Bluesky profile URL
+    type: string
+  - name: tiktok_url
+    label: TikTok profile URL (optional)
+    type: string
+  - name: paint_background
+    label: Painted background image
+    type: image
+  - name: event_paint_enabled
+    label: Use painted background in events section
+    type: boolean
+  - name: interior_paint_enabled
+    label: Use painted background in interior page headers
+    type: boolean
+  - name: paint_opacity
+    label: Painted background visibility (0 to 100)
+    type: number
+  - name: brush_accent_enabled
+    label: Show occasional brush accents
+    type: boolean
+  - name: brush_accent_color
+    label: Brush accent primary color
+    type: string
+  - name: brush_accent_secondary
+    label: Brush accent secondary color
+    type: string
+  - name: nav_rule_type
+    label: Navigation bottom rule type
+    type: select
+    options:
+      values:
+      - solid
+      - gradient
+  - name: nav_rule_color
+    label: Navigation rule start color
+    type: string
+  - name: nav_rule_end
+    label: Navigation rule end color
+    type: string
+  - name: nav_rule_width
+    label: Navigation rule thickness
+    type: number
   - name: shop_url
     label: Square product URL
     type: string
@@ -213,6 +268,61 @@ content:
     type: string
   - name: divider_rule_width
     label: Divider Rule Width
+    type: number
+  - name: favicon
+    label: Favicon (square PNG recommended)
+    type: image
+  - name: social_nav_enabled
+    label: Show social icons in navigation
+    type: boolean
+  - name: social_footer_enabled
+    label: Show social icons in footer
+    type: boolean
+  - name: instagram_url
+    label: Instagram profile URL
+    type: string
+  - name: bluesky_url
+    label: Bluesky profile URL
+    type: string
+  - name: tiktok_url
+    label: TikTok profile URL (optional)
+    type: string
+  - name: paint_background
+    label: Painted background image
+    type: image
+  - name: event_paint_enabled
+    label: Use painted background in events section
+    type: boolean
+  - name: interior_paint_enabled
+    label: Use painted background in interior page headers
+    type: boolean
+  - name: paint_opacity
+    label: Painted background visibility (0 to 100)
+    type: number
+  - name: brush_accent_enabled
+    label: Show occasional brush accents
+    type: boolean
+  - name: brush_accent_color
+    label: Brush accent primary color
+    type: string
+  - name: brush_accent_secondary
+    label: Brush accent secondary color
+    type: string
+  - name: nav_rule_type
+    label: Navigation bottom rule type
+    type: select
+    options:
+      values:
+      - solid
+      - gradient
+  - name: nav_rule_color
+    label: Navigation rule start color
+    type: string
+  - name: nav_rule_end
+    label: Navigation rule end color
+    type: string
+  - name: nav_rule_width
+    label: Navigation rule thickness
     type: number
   - name: shop_url
     label: Shop Url
