@@ -1,12 +1,6 @@
 ---
 name: Sample Portrait 1
-years: ''
-sources: ''
-body: '## Biography
-
-
-  This is **sample content only**, not a historical biography. Replace this entry
-  with the person''s verified name, life dates, researched biography, and sources.
-
-  '
+sources: this would be where I would put in the sources etcasdf
+special_thanks: thaaaaaanks!
 ---
+THis is a test for sample 1
