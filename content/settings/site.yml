@@ -1,3 +1,4 @@
+logo: /assets/uploads/Pink-Triangle-Logo-Final2-ko-500.png
 logo_width: 190
 navigation:
   - label: Home
@@ -32,6 +33,9 @@ hero_height: 500
 intro_background: "#fffdfb"
 event_background: "#062c3b"
 gallery_background: "#fffdfb"
+gallery_hover_color: "#1c5858"
+gallery_hover_opacity: 75
+gallery_hover_text: "#FFFFFF"
 gallery_sort: custom
 callout_rule_type: solid
 callout_rule_color: "#ed398b"
