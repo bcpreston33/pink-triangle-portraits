@@ -3,7 +3,7 @@ media:
   output: /assets/uploads
 content:
 - name: people
-  label: People and biographies
+  label: Portraits & biographies
   type: collection
   path: content/people
   filename: '{primary}.md'
@@ -23,134 +23,58 @@ content:
   - name: summary
     label: Introduction
     type: text
-  - name: sources
-    label: Sources and further reading
-    type: rich-text
+  - name: artworks
+    label: Paintings (add one or more below)
+    type: object
+    list: true
+    fields:
+    - name: title
+      label: Artwork title
+      type: string
+      required: true
+    - name: image
+      label: Artwork image
+      type: image
+      required: true
+    - name: year
+      label: Artwork year
+      type: string
+    - name: medium
+      label: Medium
+      type: string
+    - name: dimensions
+      label: Dimensions
+      type: string
+    - name: date
+      label: Published date
+      type: date
+      required: true
+    - name: published
+      label: Published
+      type: boolean
+      default: true
+    - name: featured
+      label: Feature on homepage
+      type: boolean
+      default: false
+    - name: display_order
+      label: Gallery position (lower numbers first)
+      type: number
+      default: 100
+    - name: summary
+      label: Short introduction
+      type: text
   - name: body
     label: Biography
     type: rich-text
-  - name: special_thanks
-    label: Special thanks and acknowledgments
+  - name: sources
+    label: Further reading & sources
     type: rich-text
-- name: artwork
-  label: Artwork and gallery order
-  type: collection
-  path: content/artwork
-  filename: '{primary}.md'
-  view:
-    fields:
-    - title
-    - person
-    - display_order
-    - published
-    primary: title
-    sort:
-    - display_order
-    - title
-    default:
-      sort: display_order
-      order: asc
-  fields:
-  - name: title
-    label: Artwork title
-    type: string
-    required: true
-  - name: person
-    label: Person slug (e.g. sample-1)
-    type: string
-    required: true
-  - name: date
-    label: Published date
-    type: date
-    required: true
-  - name: published
-    label: Published
-    type: boolean
-    default: true
-  - name: featured
-    label: Feature on homepage
-    type: boolean
-    default: false
-  - name: display_order
-    label: Gallery position (lower numbers first)
-    type: number
-    default: 100
-  - name: image
-    label: Artwork image
-    type: image
-    required: true
-  - name: year
-    label: Artwork year
-    type: string
-  - name: medium
-    label: Medium
-    type: string
-  - name: dimensions
-    label: Dimensions
-    type: string
-  - name: summary
-    label: Short introduction
-    type: text
-  - name: favicon
-    label: Favicon (square PNG recommended)
-    type: image
-  - name: social_nav_enabled
-    label: Show social icons in navigation
-    type: boolean
-  - name: social_footer_enabled
-    label: Show social icons in footer
-    type: boolean
-  - name: instagram_url
-    label: Instagram profile URL
-    type: string
-  - name: bluesky_url
-    label: Bluesky profile URL
-    type: string
-  - name: tiktok_url
-    label: TikTok profile URL (optional)
-    type: string
-  - name: paint_background
-    label: Painted background image
-    type: image
-  - name: event_paint_enabled
-    label: Use painted background in events section
-    type: boolean
-  - name: interior_paint_enabled
-    label: Use painted background in interior page headers
-    type: boolean
-  - name: paint_opacity
-    label: Painted background visibility (0 to 100)
-    type: number
-  - name: brush_accent_enabled
-    label: Show occasional brush accents
-    type: boolean
-  - name: brush_accent_color
-    label: Brush accent primary color
-    type: string
-  - name: brush_accent_secondary
-    label: Brush accent secondary color
-    type: string
-  - name: nav_rule_type
-    label: Navigation bottom rule type
-    type: select
-    options:
-      values:
-      - solid
-      - gradient
-  - name: nav_rule_color
-    label: Navigation rule start color
-    type: string
-  - name: nav_rule_end
-    label: Navigation rule end color
-    type: string
-  - name: nav_rule_width
-    label: Navigation rule thickness
-    type: number
-  - name: shop_url
-    label: Square product URL
-    type: string
+  - name: special_thanks
+    label: Special thanks & acknowledgments
+    type: rich-text
 - name: design
-  label: Site design and navigation
+  label: Site appearance, typography & navigation
   type: file
   path: content/settings/site.yml
   fields:
@@ -179,7 +103,35 @@ content:
     type: string
   - name: nav_font
     label: Nav Font
-    type: string
+    type: select
+    options:
+      values: &id001
+      - Barlow Condensed
+      - DM Sans
+      - Caveat
+      - Anton
+      - Archivo Black
+      - Oswald
+      - Bebas Neue
+      - Manrope
+      - Montserrat
+      - Outfit
+      - Work Sans
+      - Libre Baskerville
+      - Playfair Display
+      - Cormorant Garamond
+      - Merriweather
+      - Inter
+      - Source Sans 3
+      - Lato
+      - Nunito Sans
+      - Roboto
+      - Poppins
+      - Roboto Slab
+      - Lora
+      - Space Grotesk
+      - Barlow
+      - Archivo
   - name: nav_font_size
     label: Nav Font Size
     type: number
@@ -188,10 +140,125 @@ content:
     type: number
   - name: heading_font
     label: Heading Font
+    type: select
+    options:
+      values: *id001
+  - name: display_font
+    label: Page headings font
+    type: select
+    options:
+      values: *id001
+  - name: display_size
+    label: Page headings size (px)
+    type: number
+  - name: display_mobile_size
+    label: Page heading mobile size (px)
+    type: number
+  - name: display_weight
+    label: Page headings weight (400–900)
+    type: number
+  - name: display_tracking
+    label: Page headings letter spacing (px)
+    type: number
+  - name: heading_color
+    label: Page headings color (hex)
+    type: string
+  - name: section_font
+    label: Section headings font
+    type: select
+    options:
+      values: *id001
+  - name: section_size
+    label: Section headings size (px)
+    type: number
+  - name: section_weight
+    label: Section headings weight (400–900)
+    type: number
+  - name: section_color
+    label: Section headings color (hex)
+    type: string
+  - name: body_size
+    label: Body text and biographies size (px)
+    type: number
+  - name: body_weight
+    label: Body text and biographies weight (400–900)
+    type: number
+  - name: body_leading
+    label: Body line height (e.g. 1.75)
+    type: number
+  - name: body_color
+    label: Body text and biographies color (hex)
+    type: string
+  - name: nav_weight
+    label: Navigation weight (400–900)
+    type: number
+  - name: nav_tracking
+    label: Navigation letter spacing (px)
+    type: number
+  - name: label_font
+    label: Small labels font
+    type: select
+    options:
+      values: *id001
+  - name: label_size
+    label: Small labels size (px)
+    type: number
+  - name: label_weight
+    label: Small labels weight (400–900)
+    type: number
+  - name: label_tracking
+    label: Small labels letter spacing (px)
+    type: number
+  - name: label_color
+    label: Small labels color (hex)
+    type: string
+  - name: art_font
+    label: Artwork information font
+    type: select
+    options:
+      values: *id001
+  - name: art_title_size
+    label: Artwork title size (px)
+    type: number
+  - name: art_details_size
+    label: Artwork details size (px)
+    type: number
+  - name: art_color
+    label: Artwork information color (hex)
+    type: string
+  - name: research_font
+    label: Research callout font
+    type: select
+    options:
+      values: *id001
+  - name: research_heading_size
+    label: Research heading size (px)
+    type: number
+  - name: research_body_size
+    label: Research copy size (px)
+    type: number
+  - name: research_background
+    label: Research solid background (hex)
+    type: string
+  - name: research_color
+    label: Research callout color (hex)
+    type: string
+  - name: footer_font
+    label: Footer font
+    type: select
+    options:
+      values: *id001
+  - name: footer_size
+    label: Footer size (px)
+    type: number
+  - name: footer_color
+    label: Footer color (hex)
     type: string
   - name: body_font
     label: Body Font
-    type: string
+    type: select
+    options:
+      values: *id001
   - name: accent_color
     label: Accent Color
     type: string
@@ -229,13 +296,13 @@ content:
     label: Gallery Background
     type: string
   - name: gallery_hover_color
-    label: Gallery Hover Overlay Color (hex, e.g. #a81864)
+    label: Gallery Hover Overlay Color (hex, e.g.
     type: string
   - name: gallery_hover_opacity
     label: Gallery Hover Opacity (0 to 100)
     type: number
   - name: gallery_hover_text
-    label: Gallery Hover Name Color (hex, e.g. #ffffff)
+    label: Gallery Hover Name Color (hex, e.g.
     type: string
   - name: gallery_sort
     label: Gallery Sort
@@ -298,27 +365,6 @@ content:
     type: string
   - name: tiktok_url
     label: TikTok profile URL (optional)
-    type: string
-  - name: paint_background
-    label: Painted background image
-    type: image
-  - name: event_paint_enabled
-    label: Use painted background in events section
-    type: boolean
-  - name: interior_paint_enabled
-    label: Use painted background in interior page headers
-    type: boolean
-  - name: paint_opacity
-    label: Painted background visibility (0 to 100)
-    type: number
-  - name: brush_accent_enabled
-    label: Show occasional brush accents
-    type: boolean
-  - name: brush_accent_color
-    label: Brush accent primary color
-    type: string
-  - name: brush_accent_secondary
-    label: Brush accent secondary color
     type: string
   - name: nav_rule_type
     label: Navigation bottom rule type
