@@ -1,0 +1,26 @@
+name: Migrate portraits into biographies
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pyyaml
+      - run: python scripts/migrate_portraits.py
+      - name: Commit migrated portraits
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/people content/artwork content/artwork-legacy
+          if ! git diff --cached --quiet; then
+            git commit -m "Consolidate artwork and biographies"
+            git push
+          fi
