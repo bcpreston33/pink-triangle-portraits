@@ -29,14 +29,17 @@ body{font-family:var(--body-font),'DM Sans',sans-serif}h1,h2,h3,.section-label,.
 @media(max-width:1050px){.nav-social{margin-left:auto;margin-right:8px}.nav-wrap{gap:12px}}
 @media(max-width:450px){.nav-social{gap:8px}.nav-social a{width:20px;height:20px}.nav-social svg{width:19px;height:19px}}
 
-/* V3.1: portrait gallery hover labels (desktop) and persistent labels (touch). */
+/* V3.2: desktop hover, mobile/tablet captions. */
 .portrait-card .portrait-image{position:relative;isolation:isolate}
-.portrait-hover-name{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;background:rgba(237,57,139,.78);color:#fff;font:900 clamp(20px,2.2vw,34px)/1.08 var(--heading-font),'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;letter-spacing:.025em;opacity:0;transition:opacity .22s ease;pointer-events:none;z-index:1}
-@media (hover:hover) and (pointer:fine){
-.portrait-card:hover .portrait-hover-name,.portrait-card:focus-visible .portrait-hover-name{opacity:1}
-.portrait-card .portrait-name{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.portrait-card{position:relative}
-.portrait-card:hover img,.portrait-card:focus-visible img{transform:scale(1.04)}
+.portrait-hover-name{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;background:var(--gallery-hover-overlay,rgba(130,15,75,.88));color:var(--gallery-hover-text,#ffffff);font:900 clamp(20px,2.2vw,34px)/1.08 var(--heading-font),'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;letter-spacing:.025em;opacity:0;transition:opacity .22s ease;pointer-events:none;z-index:1}
+@media (min-width:1051px) and (hover:hover) and (pointer:fine){
+ .portrait-card{position:relative}
+ .portrait-card:hover .portrait-hover-name,.portrait-card:focus-visible .portrait-hover-name{opacity:1}
+ .portrait-card .portrait-name{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+ .portrait-card:hover img,.portrait-card:focus-visible img{transform:scale(1.04)}
 }
-@media (hover:none),(pointer:coarse){.portrait-hover-name{display:none}.portrait-card .portrait-name{display:flex}}
+@media (max-width:1050px),(hover:none),(pointer:coarse){
+ .portrait-hover-name{display:none!important}
+ .portrait-card .portrait-name{display:flex!important;position:static!important;width:auto!important;height:auto!important;margin:0!important;padding:11px 2px!important;overflow:visible!important;clip:auto!important;white-space:normal!important}
+}
 @media (prefers-reduced-motion:reduce){.portrait-hover-name,.portrait-image img{transition:none!important}}
