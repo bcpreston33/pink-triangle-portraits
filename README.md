@@ -51,3 +51,13 @@ Pages CMS now has **People and biographies**, **Artwork and gallery order**, and
 **Housekeeping reminder:** Add the hidden `.gitignore` to GitHub later (the file is included in this ZIP).
 
 CMS controls are settings fields, not a drag-and-drop designer. Editing settings commits to GitHub and triggers a Cloudflare build. To add a callout inside rich-text, use a blockquote.
+
+
+## Version 3 additions
+
+- Pages CMS → **Site design and navigation**: choose the painted background, enable or disable it for events and interior page headers, customize brush accents, change the navigation rule, manage social profile links, and upload a favicon.
+- The included artwork-style background is `/assets/images/painted-background.jpg` and can be replaced using Pages CMS.
+- Instagram and Bluesky icons appear in the navigation and footer. TikTok is optional; add its URL when ready.
+- The painted background and brush accents are deliberately selective; text-heavy sections remain clean.
+- **Reminder:** keep both hidden root files `.pages.yml` and `.gitignore` in GitHub. GitHub's browser upload may omit hidden files; add them manually if necessary.
+- Keep the current `pinktriangleportraits.com` domain unchanged until the new site is approved.
