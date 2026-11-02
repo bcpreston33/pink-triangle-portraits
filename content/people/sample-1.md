@@ -1,19 +1,19 @@
 ---
-name: Sample Portrait 1
+name: Gad Beck
 years: 10.10.10
 summary: This is an intro i guess
-sources: this would be where I would put in the sources etcasdf
-special_thanks: thaaaaaanks!
-body: THis is a test for sample 1
 artworks:
-- date: 2026-10-01
-  published: true
-  featured: false
-  image: /assets/images/portrait-1.jpg
-  medium: ''
-  dimensions: ''
-  year: ''
-  summary: Demonstration entry for the website layout. Replace with a researched person and approved artwork.
-  title: Sample Portrait 1
-  display_order: 10
+  - title: Sample Portrait 1
+    image: /assets/images/portrait-1.jpg
+    year: 2024?
+    medium: Acrylic on canvas?
+    dimensions: 24" x 36"?
+    date: 2026-10-01
+    published: true
+    featured: false
+    display_order: 10
+    summary: short intro?
+sources: further reading?
+special_thanks: thaaaaaanks!
 ---
+biography would go here?
