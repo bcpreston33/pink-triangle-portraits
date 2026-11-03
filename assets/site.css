@@ -214,23 +214,32 @@ body>footer{flex-shrink:0}
 .exhibition-feature h2,.exhibition-feature h3,
 .portrait-bio .rich h2,.portrait-bio .rich h3,
 .research-part h2{color:var(--secondary-teal)!important}
-/* Related content boxes: gentle, 20% pink-to-orange tint and a solid pink top rule. */
-.side-panel{
-  border-top:6px solid var(--pink);
-  background:linear-gradient(135deg,var(--callout-pink),var(--callout-orange));
+
+/* V3.14: consistent solid pink informational boxes */
+:root{--callout-solid-pink:#fce7f1;--rule-purple:#843ac5}
+.side-panel,.side-panel:nth-of-type(even),.side-panel.gradient-purple,
+.side-panel.gradient-teal,.side-panel.gradient-orange,.side-panel.gradient-pink,
+.side-panel.callout-teal,.side-panel.callout-orange,.side-panel.callout-pink,
+.callout-card,.callout-card.gradient-purple,.callout-card.gradient-teal,
+.callout-card.gradient-orange,.callout-card.gradient-pink,
+.callout-card.callout-teal,.callout-card.callout-orange,.callout-card.callout-pink{
+  background:var(--callout-solid-pink)!important;
+  border-top:6px solid var(--pink)!important;
 }
-.side-panel h2,.side-panel h3,.side-panel h4{color:var(--secondary-teal)!important}
-/* Purple alternate for other editorial cards when present. */
-.side-panel:nth-of-type(even),.side-panel.gradient-purple,.callout-card.gradient-purple{
-  background:linear-gradient(135deg,var(--callout-pink),var(--callout-purple));
-  border-top-color:var(--pink);
+.side-panel h2,.side-panel h3,.side-panel h4,
+.callout-card h2,.callout-card h3,.callout-card h4{color:var(--secondary-teal)!important}
+/* Preserve the pink left rule on portrait research and acknowledgments. */
+.person-artworks .research-callout-inner,.research-callout-inner{
+  background:var(--callout-solid-pink)!important;
+  border-left-color:var(--pink)!important;
 }
-.callout-card{
-  background:linear-gradient(135deg,var(--callout-pink),var(--callout-orange));
-  border-top:6px solid var(--pink);
+/* Keep pink-to-orange as default. Alternate selected interior page rules
+   using the active navigation link, without changing page content or templates. */
+.interior-inner{
+  border-bottom:4px solid transparent;
+  border-image:linear-gradient(90deg,var(--pink),var(--orange)) 1;
 }
-/* Research box remains under the artwork with its existing left pink rule. */
-.person-artworks .research-callout-inner{
-  background:linear-gradient(135deg,var(--callout-pink),var(--callout-purple));
-  border-left-color:var(--pink);
+body:has(#main-nav a[href="/the-history/"].active) .interior-inner,
+body:has(#main-nav a[href="/portraits/"].active) .interior-inner{
+  border-image:linear-gradient(90deg,var(--pink),var(--rule-purple)) 1;
 }

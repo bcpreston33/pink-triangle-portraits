@@ -1,11 +1,6 @@
-Pink Triangle Portraits — Version 3.12 (heading colors + 20% callout gradients)
+Version 3.14
+Replace assets/site.css in GitHub and commit to main.
 
-1. Unzip this package.
-2. In GitHub, replace assets/site.css with the included assets/site.css.
-3. Commit to main and wait for Cloudflare Pages deployment.
-4. Refresh the staging website (hard refresh if needed).
-
-This CSS-only change retains existing content, images, CMS fields and settings.
-Page label: dark teal; page title: pink; subtitle: #1c5858; interior article headings: #1c5858.
-Related boxes: 20% pink/orange tint; alternate purple available for elements marked gradient-purple.
-Research callouts: 20% pink/purple tint with their existing pink left rule.
+All callouts: solid light pink, pink rules.
+Interior page dividers: pink-to-purple on The History and Portraits; pink-to-orange elsewhere.
+Heading hierarchy from V3.12 preserved.
