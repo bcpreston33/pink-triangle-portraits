@@ -20,6 +20,15 @@ content:
   - name: years
     label: Life dates
     type: string
+  - name: homepage_teaser
+    label: Homepage teaser (100–200 characters)
+    type: text
+    description: Short text shown when this person is the latest portrait. Keep to about 100–200 characters.
+  - name: homepage_override
+    label: Manually feature this person on homepage (optional)
+    type: boolean
+    default: false
+    description: Normally the newest edited/published biography appears automatically. Check this to force a person instead; uncheck to return to automatic. If multiple are checked, the most recently edited one wins.
   - name: artworks
     label: Paintings (add one or more below)
     type: object
@@ -39,10 +48,6 @@ content:
       label: Published
       type: boolean
       default: true
-    - name: featured
-      label: Feature on homepage
-      type: boolean
-      default: false
     - name: display_order
       label: Gallery position (lower numbers first)
       type: number
@@ -244,17 +249,40 @@ content:
   - name: label_color
     label: Small labels color (hex)
     type: string
-  - name: hero_banner
-    label: 04 · HOMEPAGE  |  Hero Banner
+  - name: hero_banner_desktop
+    label: 04 · HOMEPAGE  |  Desktop hero artwork (wide)
     type: image
+  - name: hero_banner_mobile
+    label: Mobile hero artwork (narrow)
+    type: image
+  - name: hero_eyebrow
+    label: Hero small line above headline
+    type: string
+  - name: hero_headline
+    label: Hero main headline (use a line break for two lines)
+    type: text
+  - name: hero_tagline
+    label: Hero tagline
+    type: string
+  - name: hero_button_text
+    label: Hero button text
+    type: string
+  - name: hero_overlay_opacity
+    label: Hero dark overlay opacity (0–95)
+    type: number
+  - name: exhibitions_home_image
+    label: Exhibitions homepage image (right side)
+    type: image
+    description: Flyer or photo. Image is decorative and not clickable.
+  - name: paint_background
+    label: Exhibitions painted background image
+    type: image
+    description: Defaults to /assets/images/715931084-background-web.jpg
   - name: hero_height
     label: Hero Height
     type: number
   - name: intro_background
     label: Intro Background
-    type: string
-  - name: event_background
-    label: Event Background
     type: string
   - name: gallery_background
     label: 05 · PORTRAIT GALLERY  |  Gallery Background
@@ -470,6 +498,10 @@ content:
     label: Event date
     type: date
     required: true
+  - name: end_date
+    label: Event end date (optional)
+    type: date
+    description: If blank, event is treated as a one-day event. Once this date passes it moves to Previous Exhibitions.
   - name: location
     label: Location
     type: string
