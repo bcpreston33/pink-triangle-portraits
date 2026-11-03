@@ -1,0 +1,22 @@
+PINK TRIANGLE PORTRAITS — VERSION 3.9
+
+Upload/replace these files in your GitHub repository (main branch):
+  .pages.yml
+  scripts/build.py
+  assets/site.css
+  assets/images/715931084-background-web.jpg
+
+Do NOT replace content/settings/site.yml, any biography files, or any event files.
+This update keeps your current settings and content.
+
+After Cloudflare deploys, refresh Pages CMS.
+
+HOME HERO: In Site design controls, upload optional Desktop hero artwork and Mobile hero artwork. Existing hero_banner is retained as a fallback. Text and overlay darkness are editable.
+
+LATEST PORTRAIT: The homepage automatically selects the person whose content/people/<id>.md file was most recently CREATED in Git history. Editing an older biography does not change the featured person. Add a 100–200 character Homepage teaser under Portraits & biographies. To override, check "Manually feature this person on homepage" on a person. If multiple are checked, the newest created record wins; uncheck to return to automatic. When many records are imported in one Git commit, the initial selection is arbitrary by slug, so set an override for the initial featured portrait. Once new records are added individually, automatic selection works again after overrides are cleared.
+
+EXHIBITIONS: Add an optional homepage image in Site design controls. The image does not link anywhere; the Exhibitions button does. The painted background defaults to /assets/images/715931084-background-web.jpg. On the Exhibitions & events editor, optional End date controls when an event moves into Previous exhibitions. Events without an end date are one-day events.
+
+FOOTER: Visit the shop becomes a slim pink-outline button. The Bluesky butterfly SVG is updated in both header and footer.
+
+No migration or GitHub Action is needed.

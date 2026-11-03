@@ -127,3 +127,23 @@ footer{font-family:var(--footer-font),sans-serif;font-size:var(--footer-size);co
 .portrait-bio .rich strong{font-weight:700}
 .portrait-bio .rich em{font-style:italic}
 @media(max-width:700px){.portrait-bio .rich blockquote{font-size:min(var(--bio-quote-size),20px);padding:min(var(--bio-quote-padding),18px)}}
+
+/* V3.9 homepage and exhibitions */
+.home-portrait-strip .hero-picture{display:block;width:100%;height:100%}
+.home-portrait-strip .hero-picture img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.home-hero:before{background:linear-gradient(90deg,rgba(3,23,32,var(--hero-darkness,.4)),rgba(3,23,32,.15)),linear-gradient(0deg,rgba(3,23,32,.55),transparent 65%);mix-blend-mode:normal}
+.event-band{background-color:#082d3b;background-image:linear-gradient(90deg,rgba(4,28,40,.92) 0%,rgba(4,28,40,.76) 48%,rgba(4,28,40,.36) 100%),url('/assets/images/715931084-background-web.jpg');background-size:cover;background-position:center}
+.event-band:before{background:none}
+.event-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,.65fr);gap:clamp(28px,5vw,90px);align-items:center}
+.event-band-copy{min-width:0}
+.event-band-visual{display:flex;justify-content:flex-end;align-items:center}
+.event-band-visual img{display:block;max-width:100%;max-height:310px;object-fit:contain;box-shadow:0 8px 28px #00192360}
+.footer-shop-button{display:inline-flex;padding:8px 17px;border:2px solid var(--pink);color:#fff!important;text-decoration:none;text-transform:uppercase;font:800 17px var(--nav-font),'Barlow Condensed',sans-serif;letter-spacing:.04em}
+.footer-shop-button:hover{background:var(--pink);color:var(--navy)!important}
+.exhibition-feature{padding-top:60px}
+.exhibition-feature .event-card{margin-top:15px;border-top:4px solid var(--pink);padding-top:35px}
+.exhibition-list{padding-top:40px}
+.exhibition-list>h2{font-size:clamp(32px,4vw,48px)}
+.event-card-featured{grid-template-columns:minmax(200px,.9fr) minmax(0,1.5fr);gap:50px}
+.event-card-featured img{max-height:480px}
+@media(max-width:700px){.home-portrait-strip .hero-picture img{width:100%!important;display:block!important}.event-grid{grid-template-columns:1fr}.event-band-visual{justify-content:flex-start}.event-band-visual img{max-height:280px}.event-card-featured{grid-template-columns:1fr;gap:20px}.event-band{background-position:center}}
