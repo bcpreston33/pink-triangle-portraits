@@ -194,3 +194,43 @@ body>footer{flex-shrink:0}
 .social-icons svg{display:block!important;width:20px!important;height:20px!important;max-width:20px!important;max-height:20px!important;transform:none!important;position:static!important;margin:0!important;overflow:visible}
 .social-icons a[aria-label="Bluesky"] svg{width:20px!important;height:18px!important;transform:none!important}
 @media(max-width:450px){.social-icons{gap:10px!important}.social-icons a{width:24px!important;height:24px!important;min-width:24px!important;flex-basis:24px!important}}
+
+/* V3.12: editorial heading hierarchy and 20% tinted callout gradients */
+:root{
+  --secondary-teal:#1c5858;
+  --callout-pink:rgba(241,48,137,.20);
+  --callout-orange:rgba(255,119,43,.20);
+  --callout-purple:rgba(132,58,197,.20);
+}
+/* Small section identifier above interior page titles. */
+.interior-hero .eyebrow,.interior-hero .section-label{color:var(--ink)!important}
+/* Interior page title remains pink; subtitle is secondary teal. */
+.interior-hero h1{color:var(--pink)!important}
+.interior-hero p{color:var(--secondary-teal)!important}
+/* Body-level headings should not compete with page titles. */
+.editorial .rich h2,.editorial .rich h3,.editorial .rich h4,
+.editorial h2,.editorial h3,
+.exhibition-list h2,.exhibition-list h3,
+.exhibition-feature h2,.exhibition-feature h3,
+.portrait-bio .rich h2,.portrait-bio .rich h3,
+.research-part h2{color:var(--secondary-teal)!important}
+/* Related content boxes: gentle, 20% pink-to-orange tint and a solid pink top rule. */
+.side-panel{
+  border-top:6px solid var(--pink);
+  background:linear-gradient(135deg,var(--callout-pink),var(--callout-orange));
+}
+.side-panel h2,.side-panel h3,.side-panel h4{color:var(--secondary-teal)!important}
+/* Purple alternate for other editorial cards when present. */
+.side-panel:nth-of-type(even),.side-panel.gradient-purple,.callout-card.gradient-purple{
+  background:linear-gradient(135deg,var(--callout-pink),var(--callout-purple));
+  border-top-color:var(--pink);
+}
+.callout-card{
+  background:linear-gradient(135deg,var(--callout-pink),var(--callout-orange));
+  border-top:6px solid var(--pink);
+}
+/* Research box remains under the artwork with its existing left pink rule. */
+.person-artworks .research-callout-inner{
+  background:linear-gradient(135deg,var(--callout-pink),var(--callout-purple));
+  border-left-color:var(--pink);
+}

@@ -1,8 +1,11 @@
-Pink Triangle Portraits — V3.11 color and icon refinement
+Pink Triangle Portraits — Version 3.12 (heading colors + 20% callout gradients)
 
-1. In GitHub, replace assets/site.css with the included file.
-2. Commit the change to main.
-3. Wait for Cloudflare Pages to deploy, then refresh your staging website.
+1. Unzip this package.
+2. In GitHub, replace assets/site.css with the included assets/site.css.
+3. Commit to main and wait for Cloudflare Pages deployment.
+4. Refresh the staging website (hard refresh if needed).
 
-This is a CSS-only update. It preserves CMS data, images, and other site files.
-Main headings on light backgrounds are pink. Secondary editorial headings are #1c5858. White titles on dark imagery remain white. Social icon footprints and spacing are normalized.
+This CSS-only change retains existing content, images, CMS fields and settings.
+Page label: dark teal; page title: pink; subtitle: #1c5858; interior article headings: #1c5858.
+Related boxes: 20% pink/orange tint; alternate purple available for elements marked gradient-purple.
+Research callouts: 20% pink/purple tint with their existing pink left rule.
