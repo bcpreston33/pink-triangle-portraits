@@ -147,3 +147,27 @@ footer{font-family:var(--footer-font),sans-serif;font-size:var(--footer-size);co
 .event-card-featured{grid-template-columns:minmax(200px,.9fr) minmax(0,1.5fr);gap:50px}
 .event-card-featured img{max-height:480px}
 @media(max-width:700px){.home-portrait-strip .hero-picture img{width:100%!important;display:block!important}.event-grid{grid-template-columns:1fr}.event-band-visual{justify-content:flex-start}.event-band-visual img{max-height:280px}.event-card-featured{grid-template-columns:1fr;gap:20px}.event-band{background-position:center}}
+
+
+/* V3.10: clean banners, balanced social icons, and bottom-aligned footer */
+html,body{min-height:100%}
+body{min-height:100vh;display:flex;flex-direction:column}
+body>main{flex:1 0 auto}
+body>footer{flex-shrink:0}
+/* Remove decorative jagged strips, leaving clean rectangular image edges. */
+.home-hero::after,.event-band::after,.interior-hero::after{content:none!important;display:none!important}
+/* Make the exhibitions artwork more visible, especially on the right. */
+.event-band{background-image:linear-gradient(90deg,rgba(4,28,40,.78) 0%,rgba(4,28,40,.47) 47%,rgba(4,28,40,.08) 100%),url('/assets/images/715931084-background-web.jpg')}
+/* Interior pages: plain editorial heading and a full container-width gradient rule. */
+.interior-hero{background:var(--paper)!important;color:var(--ink)!important;min-height:0;overflow:visible;display:block}
+.interior-hero::before,.interior-hero .paint-swipe{content:none!important;display:none!important}
+.interior-inner{padding-block:55px 30px;border-bottom:4px solid transparent;border-image:linear-gradient(90deg,var(--pink),var(--orange)) 1}
+.interior-hero .eyebrow{color:var(--pink)}
+.interior-hero h1{color:var(--ink)!important;text-shadow:none!important}
+.interior-hero p{color:var(--ink)!important}
+/* Normalize icon footprints and the butterfly's vertical visual centering. */
+.social-icons{display:flex;align-items:center;gap:12px}
+.social-icons a{width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex:0 0 24px;padding:0;line-height:1}
+.social-icons svg{width:22px;height:22px;display:block;flex:none}
+.social-icons a[aria-label="Bluesky"] svg{width:24px;height:24px;transform:scale(1.1)}
+@media(max-width:700px){.interior-inner{padding-block:38px 24px}.event-band{background-image:linear-gradient(90deg,rgba(4,28,40,.75),rgba(4,28,40,.28)),url('/assets/images/715931084-background-web.jpg')}}

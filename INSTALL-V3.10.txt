@@ -1,0 +1,18 @@
+Pink Triangle Portraits - V3.10 visual refinements
+
+This is a CSS-only update built on the V3.9 website files.
+
+In GitHub, replace ONLY:
+  assets/site.css
+
+Commit to main and wait for Cloudflare Pages to deploy.
+Refresh the staging site (hard refresh if CSS is cached).
+
+Changes:
+- Removes jagged colored edges below homepage hero and exhibitions backgrounds.
+- Brightens the exhibition paint background, especially on the right.
+- Changes interior-page image banners to white editorial headers with a gradient rule inside the container.
+- Aligns and sizes social icons consistently, including Bluesky.
+- Keeps the footer at the bottom of the viewport on short pages.
+
+Does not change your CMS, content, images, or scripts.
