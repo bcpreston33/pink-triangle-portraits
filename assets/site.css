@@ -171,3 +171,26 @@ body>footer{flex-shrink:0}
 .social-icons svg{width:22px;height:22px;display:block;flex:none}
 .social-icons a[aria-label="Bluesky"] svg{width:24px;height:24px;transform:scale(1.1)}
 @media(max-width:700px){.interior-inner{padding-block:38px 24px}.event-band{background-image:linear-gradient(90deg,rgba(4,28,40,.75),rgba(4,28,40,.28)),url('/assets/images/715931084-background-web.jpg')}}
+
+/* V3.11 — pink display headings, secondary teal accents, aligned social icons */
+:root{--secondary-teal:#1c5858}
+/* Main display headings on light backgrounds. Keep white titles over artwork. */
+.home-intro h2,.gallery-preview h2,.feature-copy h2,
+.exhibition-list>h2,.exhibition-feature .event-card h2,
+.editorial h1,.editorial h2,.editorial h3,.side-panel h3,
+.portrait-bio h1,.portraits-list h1,.person-detail h1,
+.interior-hero h1{color:var(--pink)!important}
+/* Smaller headings and editorial accents use the lighter teal. */
+.exhibition-list h3,.editorial .rich h3,.editorial .rich h4,
+.portrait-bio .rich h2,.portrait-bio .rich h3,
+.person-artworks .research-part h2,.research-part h2,
+.side-panel .section-label,.portrait-artwork-meta .selected-artwork-details,
+.portrait-bio .years,.interior-hero p{color:var(--secondary-teal)!important}
+/* Preserve legibility on dark painted or photographic sections. */
+.home-hero h1,.event-band h2,.event-band h3{color:#fff!important}
+/* Make all social buttons equally sized, and center their icon geometry. */
+.social-icons{display:flex!important;align-items:center!important;gap:12px!important}
+.social-icons a{display:grid!important;place-items:center!important;width:24px!important;height:24px!important;min-width:24px!important;flex:0 0 24px!important;padding:0!important;margin:0!important;line-height:0!important;vertical-align:middle!important}
+.social-icons svg{display:block!important;width:20px!important;height:20px!important;max-width:20px!important;max-height:20px!important;transform:none!important;position:static!important;margin:0!important;overflow:visible}
+.social-icons a[aria-label="Bluesky"] svg{width:20px!important;height:18px!important;transform:none!important}
+@media(max-width:450px){.social-icons{gap:10px!important}.social-icons a{width:24px!important;height:24px!important;min-width:24px!important;flex-basis:24px!important}}
