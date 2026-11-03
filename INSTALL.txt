@@ -1,6 +1,16 @@
-Version 3.14
-Replace assets/site.css in GitHub and commit to main.
+V3.15 — HOMEPAGE HERO TEST
 
-All callouts: solid light pink, pink rules.
-Interior page dividers: pink-to-purple on The History and Portraits; pink-to-orange elsewhere.
-Heading hierarchy from V3.12 preserved.
+Upload these files to the same paths in GitHub (main):
+  assets/site.css
+  scripts/build.py
+  assets/images/ptp-home-hero-collage.png
+
+Then in Pages CMS > Site Design Controls, set:
+  Desktop hero artwork (wide): /assets/images/ptp-home-hero-collage.png
+  Hero main headline: PINK TRIANGLE PORTRAITS
+  Hero small line: ART / HISTORY / REMEMBRANCE / QUEER JOY
+  Hero tagline: Giving color and dignity to those who had it stripped away.
+  Hero overlay opacity: 0 (the CSS handles the lower fade)
+
+Keep the existing mobile hero image if already set. If none, the desktop image will crop on mobile.
+This uses your original collage image, NOT the generated mockup with baked-in text, so text remains editable and no artwork is re-created.

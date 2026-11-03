@@ -243,3 +243,16 @@ body:has(#main-nav a[href="/the-history/"].active) .interior-inner,
 body:has(#main-nav a[href="/portraits/"].active) .interior-inner{
   border-image:linear-gradient(90deg,var(--pink),var(--rule-purple)) 1;
 }
+
+/* V3.15: centered live type over original portrait collage */
+.home-hero{height:clamp(520px,48vw,750px)!important;min-height:520px!important}
+.home-portrait-strip .hero-picture img{filter:none!important;object-position:center top!important}
+.home-hero::before{background:linear-gradient(to bottom,transparent 25%,rgba(4,31,45,.10) 46%,rgba(4,31,45,.80) 78%,rgba(4,31,45,.96) 100%)!important;mix-blend-mode:normal!important}
+.home-hero-overlay{align-items:flex-end!important;justify-content:center!important;padding:0 20px 34px!important}
+.home-hero-overlay .container{display:flex;flex-direction:column;align-items:center;text-align:center;width:min(96%,1400px)!important}
+.home-hero-overlay h1{order:1;font-size:clamp(50px,6.8vw,112px)!important;line-height:.93!important;letter-spacing:.005em!important;margin:0 0 15px!important;max-width:100%;text-shadow:0 3px 12px rgba(0,0,0,.4)!important}
+.home-hero-overlay .hero-eyebrow{order:2;font-size:clamp(11px,1.45vw,19px)!important;letter-spacing:.19em!important;font-weight:700!important}
+.home-hero-overlay .hero-eyebrow::after{content:'';display:block;width:130px;height:5px;background:var(--pink);margin:16px auto 0}
+.home-hero-overlay p{order:3;font-size:clamp(23px,2.4vw,37px)!important;margin:13px 0 12px!important;line-height:1.2!important}
+.home-hero-overlay .button{order:4;font-size:16px!important;padding:9px 18px!important}
+@media(max-width:700px){.home-hero{height:590px!important;min-height:590px!important}.home-portrait-strip .hero-picture img{object-position:center top!important}.home-hero-overlay{padding:0 10px 28px!important}.home-hero-overlay h1{font-size:clamp(46px,10vw,70px)!important}.home-hero-overlay .hero-eyebrow{font-size:11px!important;letter-spacing:.10em!important}.home-hero-overlay p{font-size:24px!important}.home-hero-overlay .hero-eyebrow::after{margin-top:12px}}

@@ -269,7 +269,7 @@ hero_mobile=setting('hero_banner_mobile','')
 hero_source=f'<source media="(max-width:700px)" srcset="{attr(hero_mobile)}">' if hero_mobile else ''
 hero_picture=(f'<picture class="hero-picture">{hero_source}<img src="{attr(hero_desktop or hero_mobile)}" alt="" loading="eager"></picture>' if (hero_desktop or hero_mobile) else hero_cards)
 hero_eyebrow=escape(str(setting('hero_eyebrow','Art / History / Remembrance / Queer Joy')))
-hero_heading=escape(str(setting('hero_headline','PINK TRIANGLE\nPORTRAITS'))).replace('\n','<br>')
+hero_heading=escape(str(setting('hero_headline','PINK TRIANGLE PORTRAITS'))).replace('\n',' ')
 hero_tagline=escape(str(setting('hero_tagline','Giving color and dignity to those who had it stripped away.')))
 hero_cta=escape(str(setting('hero_button_text','Explore the portraits')))
 hero_overlay=max(0,min(95,int(setting('hero_overlay_opacity',40))))/100
