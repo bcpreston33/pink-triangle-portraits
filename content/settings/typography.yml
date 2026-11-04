@@ -4,7 +4,7 @@ body_size: 17
 body_weight: 400
 body_leading: 1.5
 paragraph_spacing: 15
-section_heading_spacing: 150
+section_heading_spacing: 10
 body_color: "#082d3b"
 display_font: Barlow Condensed
 display_size: 112
