@@ -211,6 +211,14 @@ content:
   - name: body_leading
     label: Body line height (e.g. 1.75)
     type: number
+  - name: paragraph_spacing
+    label: Paragraph spacing (px) - regular page content
+    type: number
+    description: Space after each paragraph on editorial pages.
+  - name: section_heading_spacing
+    label: Space above section headings (px) - regular page content
+    type: number
+    description: Space above H2 and H3 headings on editorial pages.
   - name: body_color
     label: Body text color (overrides base text color)
     type: string
