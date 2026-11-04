@@ -1,14 +1,15 @@
 ---
-title: The History
-subtitle: The pink triangle, Paragraph 175, and persecution under Nazism.
+title: THE HISTORY
+subtitle: |-
+  The Pink Triangle, 
+  Paragraph 175, 
+  and persecution under Nazism.
 ---
-
 ### Sexual liberation in post-WWI Germany
 
 The Weimar Republic was the period between WWI and 1933, when the Nazis seized power. 
 During this time, Germany, and especially Berlin, was the gay capital of the world, having over 100 gay bars, clubs, restaurants, and dozens of publications and magazines. You could find spaces that catered to lesbians, gay men, artists and musicians, drag queens, anyone. Arrests for being gay were rare, especially in cities.
 Dr. Magnus Hirschfeld ran the Institute for Sexual Sciences, where queer people could receive health care, trans people could get gender affirming care and even a transvestitenschein (passes that prevented the police from harassing non gender conforming people) and it was home to the world’s largest scientific library on queer studies. The Nazi’s first book burning was the destruction of this institute in 1933.
-
 
 ### Paragraph 175 & 175a
 
@@ -16,13 +17,10 @@ Paragraph 175 was the anti gay sodomy law adopted by Germany in 1871. It was ver
 
 *** PARAGRAPH 175 WAS NOT FULLY REPEALED UNTIL 1994, and convictions stayed until they were expunged in 2018.
 
-
 ### The pink triangle
-
 
 -It started as a Nazi symbol for queer men to wear in prisons and concentration camps and was for a long time seen as a symbol of shame. That started to change in the 70s as gay liberation activists were looking for symbols to express their desire for freedom and legal recognition. Pretty soon it became one of the most well known symbols of gay pride.
 -In the 80s it became very well known because of the silence=death campaign to raise awareness about AIDS. They accidentally put the triangle upside down, not knowing that it was worn the other way around originally.
-
 
 ### Treatment in concentration camps and prisons
 
@@ -33,7 +31,6 @@ While lesbians were not also directly targeted in the same way, they were consid
 Some of the most sadistic and terrible treatments were reserved for gay prisoners in concentration camps. Torture, mutilation, medical experimentation, and castration were common. They could be fed to German shepherds, strung up on poles like a crucifixion, being used for target practice, and sexual abuse by guards and Kapos was prevalent.  
 
 When death certificates were sent to families, they usually had the lie of heart failure as cause of death as there was a determined effort to hide what was happening in the camps.
-
 
 ### Who were they?
 
@@ -58,5 +55,5 @@ While I try to continue the legacy of queer victims and survivors through artwor
 
 As I sought to bring back queer joy into their stories of these lives, I found inspiration in the art these two created. Between images of abject horror, we have some like this, showing Christmas and other celebrations among the prisoners. Little joys showed through in camp concerts and the support prink triangle prisoners gave to each other, as other prisoners did not offer their compassion or empathy in most cases.
 
-
 ---
+
