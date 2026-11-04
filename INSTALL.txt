@@ -1,16 +1,9 @@
-V3.15 — HOMEPAGE HERO TEST
+PTP Header Artwork Anchor Update
 
-Upload these files to the same paths in GitHub (main):
-  assets/site.css
-  scripts/build.py
-  assets/images/ptp-home-hero-collage.png
+Replace assets/site.css in GitHub with the included file and commit.
 
-Then in Pages CMS > Site Design Controls, set:
-  Desktop hero artwork (wide): /assets/images/ptp-home-hero-collage.png
-  Hero main headline: PINK TRIANGLE PORTRAITS
-  Hero small line: ART / HISTORY / REMEMBRANCE / QUEER JOY
-  Hero tagline: Giving color and dignity to those who had it stripped away.
-  Hero overlay opacity: 0 (the CSS handles the lower fade)
+Desktop and tablet (701px+): The artwork stays 1200px wide. Above 1200px browser width, it anchors to the right with #eeeeee extending left. At 1200px and below, it anchors to the left and clips on the right. Your existing CMS header height and typography controls remain unchanged.
 
-Keep the existing mobile hero image if already set. If none, the desktop image will crop on mobile.
-This uses your original collage image, NOT the generated mockup with baked-in text, so text remains editable and no artwork is re-created.
+Phone (700px and below): The existing stacked mobile layout remains unchanged for now.
+
+Note: This patch is based on the most recent PTP-Adjustable-Header-Height-and-Line-Spacing.zip provided in this conversation. Install that package first if you have not already done so.

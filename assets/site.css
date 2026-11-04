@@ -487,3 +487,30 @@ body>footer{
 .interior-hero .interior-heading-copy p{
   line-height:var(--page-tagline-line-height,1.15)!important;
 }
+
+/* V3.18: fixed-width desktop header artwork. Above 1200px anchor to the
+   right with #eeeeee extending left; below 1200px anchor to the left and
+   clip the right side rather than scaling artwork into the text. */
+@media (min-width:701px){
+  .interior-hero--image .interior-header-media{
+    width:1200px!important;
+    max-width:none!important;
+    left:auto!important;
+    right:0!important;
+  }
+  .interior-hero--image .interior-header-media picture,
+  .interior-hero--image .interior-header-media img{
+    width:1200px!important;
+    max-width:none!important;
+  }
+  .interior-hero--image .interior-header-media img{
+    object-fit:cover!important;
+    object-position:left center!important;
+  }
+}
+@media (min-width:701px) and (max-width:1200px){
+  .interior-hero--image .interior-header-media{
+    left:0!important;
+    right:auto!important;
+  }
+}
