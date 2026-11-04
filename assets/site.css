@@ -256,3 +256,27 @@ body:has(#main-nav a[href="/portraits/"].active) .interior-inner{
 .home-hero-overlay p{order:3;font-size:clamp(23px,2.4vw,37px)!important;margin:13px 0 12px!important;line-height:1.2!important}
 .home-hero-overlay .button{order:4;font-size:16px!important;padding:9px 18px!important}
 @media(max-width:700px){.home-hero{height:590px!important;min-height:590px!important}.home-portrait-strip .hero-picture img{object-position:center top!important}.home-hero-overlay{padding:0 10px 28px!important}.home-hero-overlay h1{font-size:clamp(46px,10vw,70px)!important}.home-hero-overlay .hero-eyebrow{font-size:11px!important;letter-spacing:.10em!important}.home-hero-overlay p{font-size:24px!important}.home-hero-overlay .hero-eyebrow::after{margin-top:12px}}
+
+
+/* V3.16: brighter artwork hero, requested text hierarchy, matched social artwork */
+.home-hero::before{
+  background:linear-gradient(to bottom,transparent 0%,transparent 58%,rgba(3,23,32,.10) 78%,rgba(3,23,32,.24) 100%)!important;
+  mix-blend-mode:normal!important;
+  pointer-events:none;
+}
+.home-hero::after{display:none!important}
+.home-hero-overlay{padding-bottom:30px!important}
+.home-hero-overlay .hero-eyebrow{order:1!important;color:#fff;text-shadow:0 2px 7px rgba(0,0,0,.8);margin-bottom:12px!important}
+.home-hero-overlay .hero-eyebrow::after{margin:12px auto 0!important}
+.home-hero-overlay h1{order:2!important;margin:0 0 10px!important;text-shadow:0 3px 10px rgba(0,0,0,.78),0 0 3px rgba(0,0,0,.5)!important}
+.home-hero-overlay p{order:3!important;margin:0!important;text-shadow:0 2px 8px rgba(0,0,0,.85),0 0 3px rgba(0,0,0,.5)!important}
+.home-hero-overlay .button{display:none!important}
+.social-icons a{display:grid!important;place-items:center!important;width:24px!important;height:24px!important;flex:0 0 24px!important}
+.social-icons a img{display:block!important;width:20px!important;height:20px!important;object-fit:contain!important;max-width:none!important;max-height:none!important}
+@media(max-width:700px){
+  .home-hero-overlay{padding-bottom:22px!important}
+  .home-hero-overlay .hero-eyebrow{font-size:clamp(10px,2.25vw,13px)!important;letter-spacing:.08em!important;margin-bottom:10px!important}
+  .home-hero-overlay .hero-eyebrow::after{margin:10px auto 0!important;width:100px!important;height:4px!important}
+  .home-hero-overlay h1{font-size:clamp(42px,9.5vw,66px)!important}
+  .home-hero-overlay p{font-size:clamp(21px,5vw,27px)!important}
+}
