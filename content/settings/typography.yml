@@ -2,7 +2,7 @@ heading_font: Barlow Condensed
 body_font: DM Sans
 body_size: 17
 body_weight: 400
-body_leading: 1.35
+body_leading: 1
 body_color: "#082d3b"
 display_font: Barlow Condensed
 display_size: 112
