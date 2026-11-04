@@ -1,5 +1,5 @@
 ---
-title: Exhibitions
+title: EXHIBITIONS
 subtitle: |-
   Shows, talks, and conversations 
   about the project.
