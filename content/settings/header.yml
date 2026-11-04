@@ -1,0 +1,30 @@
+navigation:
+- label: Home
+  url: /
+- label: The Project
+  url: /the-project/
+- label: The Artist
+  url: /about-the-artist/
+- label: The History
+  url: /the-history/
+- label: The Portraits
+  url: /portraits/
+- label: Exhibitions
+  url: /exhibitions/
+- label: Shop
+  url: /shop/
+- label: Contact
+  url: /contact/
+nav_background: '#062c3b'
+nav_text_color: '#ffffff'
+nav_font: Barlow Condensed
+nav_font_size: 17
+nav_weight: 500
+nav_tracking: 0.7
+nav_gap: 22
+nav_rule_type: solid
+nav_rule_color: '#ed398b'
+nav_rule_end: '#ff842d'
+nav_rule_width: 3
+social_icon_gap: 6
+social_icon_mobile_gap: 5

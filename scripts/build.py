@@ -81,8 +81,14 @@ def section_style(section):
     return f' style="background-color:{attr(bg)}"' if bg else ''
 
 settings_path=ROOT/'content/settings/site.yml'
+# Merge individual CMS settings files. New values take precedence over legacy site.yml.
 design=yaml.safe_load(settings_path.read_text(encoding='utf-8')) if settings_path.exists() else {}
 design=design or {}
+for settings_name in ('global','header','typography','homepage','gallery','biography','rules','footer'):
+    settings_file=ROOT/'content/settings'/f'{settings_name}.yml'
+    if settings_file.exists():
+        settings_data=yaml.safe_load(settings_file.read_text(encoding='utf-8')) or {}
+        design.update(settings_data)
 def social_links():
     icons = {
         'instagram': '/assets/images/social-instagram-white.png',
@@ -96,9 +102,6 @@ def social_links():
 
 def page(title,active,content,desc=''):
     nav=list(design.get('navigation') or [{'label':a,'url':u} for a,u in [('Home','/'),('The Project','/the-project/'),('The Artist','/about-the-artist/'),('The History','/the-history/'),('The Portraits','/portraits/'),('Exhibitions','/exhibitions/'),('Shop','/shop/'),('Contact','/contact/')]])
-    if not any(n.get('url')=='/about-the-artist/' for n in nav):
-        idx=next((i+1 for i,n in enumerate(nav) if n.get('url')=='/the-project/'),1)
-        nav.insert(idx,{'label':'The Artist','url':'/about-the-artist/'})
     links=''.join(f'<a href="{attr(n.get("url","/"))}" class="{"active" if active==n.get("label") else ""}">{escape(str(n.get("label","")))}</a>' for n in nav if n.get('label'))
     social=social_links()
     navsocial=f'<div class="social-icons nav-social">{social}</div>' if setting('social_nav_enabled',True) and social else ''
@@ -113,7 +116,7 @@ def page(title,active,content,desc=''):
       'nav-text':setting('nav_text_color','#ffffff'),
       'nav-font':setting('nav_font','Barlow Condensed'),'heading-font':setting('heading_font','Barlow Condensed'),
       'body-font':setting('body_font','DM Sans'),'nav-size':str(setting('nav_font_size',17))+'px',
-      'nav-gap':str(setting('nav_gap',22))+'px','logo-width':str(setting('logo_width',190))+'px',
+      'social-icon-gap':str(setting('social_icon_gap',6))+'px','social-icon-mobile-gap':str(setting('social_icon_mobile_gap',5))+'px','interior-rule-width':str(setting('interior_rule_width',10))+'px','research-rule-width':str(setting('research_rule_width',10))+'px','panel-rule-width':str(setting('panel_rule_width',10))+'px','hero-eyebrow-rule-width':str(setting('hero_eyebrow_rule_width',10))+'px','nav-gap':str(setting('nav_gap',22))+'px','logo-width':str(setting('logo_width',190))+'px',
       'button-bg':setting('button_color','#ed398b'),'button-text':setting('button_text_color','#071f2c'),
       'callout-rule':rule_style('callout'),'callout-width':str(setting('callout_rule_width',7))+'px',
       'callout-gap':str(setting('callout_gap',20))+'px',

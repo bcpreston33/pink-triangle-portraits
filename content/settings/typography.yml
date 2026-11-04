@@ -1,0 +1,21 @@
+heading_font: Barlow Condensed
+body_font: DM Sans
+body_size: 17
+body_weight: 400
+body_leading: 1.75
+body_color: '#082d3b'
+display_font: Barlow Condensed
+display_size: 112
+display_mobile_size: 62
+display_weight: 900
+display_tracking: 0
+heading_color: '#082d3b'
+section_font: Barlow Condensed
+section_size: 54
+section_weight: 900
+section_color: '#082d3b'
+label_font: Barlow Condensed
+label_size: 18
+label_weight: 800
+label_tracking: 2
+label_color: '#ed398b'

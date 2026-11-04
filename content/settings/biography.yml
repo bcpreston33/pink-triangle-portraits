@@ -1,0 +1,26 @@
+art_font: Barlow Condensed
+art_title_size: 28
+art_details_size: 16
+art_color: '#082d3b'
+biography_quote_font: DM Sans
+biography_quote_size: 22
+biography_quote_weight: '500'
+biography_quote_style: italic
+biography_quote_color: '#082d3b'
+biography_quote_background: '#fff0f7'
+biography_quote_rule_color: '#ed398b'
+biography_quote_rule_width: 10
+biography_quote_padding: 22
+biography_quote_spacing: 28
+research_font: DM Sans
+research_heading_size: 17
+research_body_size: 14
+research_background: '#fff0f7'
+research_color: '#082d3b'
+callout_rule_type: solid
+callout_rule_color: '#ed398b'
+callout_rule_end: '#ff842d'
+callout_rule_width: 10
+callout_gap: 20
+research_rule_width: 10
+panel_rule_width: 10

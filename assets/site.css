@@ -282,13 +282,19 @@ body:has(#main-nav a[href="/portraits/"].active) .interior-inner{
 }
 
 /* Content expansion: consistent 10px decorative rules and tighter social spacing. */
-:root{--divider-height:10px!important;--callout-width:10px!important;--bio-quote-rule-width:10px!important}
-.interior-inner{border-bottom-width:10px!important}
-.interior-hero .interior-inner{border-bottom-width:10px!important}
-.accent-rule,.portrait-bio .accent-rule{height:10px!important}
-.side-panel,.callout,.exhibition-feature .event-card,.research-callout-inner{border-top-width:10px!important}
-.research-callout-inner,.editorial .rich blockquote,.portrait-bio .rich blockquote{border-left-width:10px!important}
-.social-icons,.nav-social,.footer-social{gap:6px!important}
-@media(max-width:450px){.social-icons,.nav-social,.footer-social{gap:5px!important}}
+
+.interior-inner{border-bottom-width:var(--interior-rule-width)!important}
+.interior-hero .interior-inner{border-bottom-width:var(--interior-rule-width)!important}
+.accent-rule,.portrait-bio .accent-rule{height:var(--divider-height)!important}
+.side-panel,.callout,.exhibition-feature .event-card,.research-callout-inner{border-top-width:var(--panel-rule-width)!important}
+.research-callout-inner,.editorial .rich blockquote,.portrait-bio .rich blockquote{border-left-width:var(--research-rule-width)!important}
+.social-icons,.nav-social,.footer-social{gap:var(--social-icon-gap)!important}
+@media(max-width:450px){.social-icons,.nav-social,.footer-social{gap:var(--social-icon-mobile-gap)!important}}
 .editorial-copy{padding-top:34px;padding-bottom:22px;max-width:960px}
 .editorial-copy h2{color:#1c5858}
+
+/* CMS synchronization: editable sitewide decorative rules and social spacing. */
+.home-hero-overlay .hero-eyebrow::after{height:var(--hero-eyebrow-rule-width)!important}
+.editorial .rich blockquote,.portrait-bio .rich blockquote{border-left-width:var(--callout-width)!important}
+.person-artworks .research-callout-inner,.research-callout-inner{border-left-width:var(--research-rule-width)!important}
+.side-panel,.callout-card,.exhibition-feature .event-card{border-top-width:var(--panel-rule-width)!important}
