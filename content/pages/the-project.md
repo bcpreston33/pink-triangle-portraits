@@ -46,6 +46,6 @@ The work is ultimately about remembrance, queer joy, and dignity. Through these 
 
 
 
-
+&nbsp;
 
 &nbsp;
