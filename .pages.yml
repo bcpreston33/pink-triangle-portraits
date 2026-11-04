@@ -567,12 +567,13 @@ content:
       type: select
       default: right
       options:
-      - label: Right column
-        value: right
-      - label: Left column
-        value: left
-      - label: Full width below section
-        value: full
+        values:
+        - label: Right column
+          value: right
+        - label: Left column
+          value: left
+        - label: Full width below section
+          value: full
 - name: events
   label: Exhibitions and events
   type: collection
