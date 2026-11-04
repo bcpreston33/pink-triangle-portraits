@@ -29,8 +29,20 @@ def load(path):
 def render_md(value):
     return markdown_html(str(value or ''))
 
-def render_section_images(body, assignments):
-    """Split rich-text at h2/h3 headings, pairing images with their own section."""
+def callout_markup(item):
+    style=str(item.get('style') or 'quote')
+    if style not in ('quote','highlight','statement'): style='quote'
+    title=str(item.get('heading') or '').strip()
+    body=str(item.get('text') or '').strip()
+    credit=str(item.get('attribution') or '').strip()
+    if not (title or body): return ''
+    alignment=str(item.get('alignment') or 'left')
+    if alignment not in ('left','center','right'): alignment='left'
+    content=(f'<h3>{escape(title)}</h3>' if title else '')+(f'<div class="ptp-callout-text">{render_md(body)}</div>' if body else '')+(f'<p class="ptp-callout-credit">{escape(credit)}</p>' if credit else '')
+    return f'<aside class="ptp-callout ptp-callout--{style} ptp-callout--{alignment}" aria-label="Featured text">{content}</aside>'
+
+def render_section_images(body, assignments, callouts=None):
+    """Section-linked images and callouts; exact inline markers such as [callout-1]."""
     html=render_md(body)
     pieces=re.split(r'(?=<h[23](?:\s[^>]*)?>)',html)
     sections=[]
@@ -41,9 +53,15 @@ def render_section_images(body, assignments):
         sections.append((key,piece))
     images_by_heading={}
     for item in assignments or []:
-        if not isinstance(item,dict) or not item.get('image'):continue
+        if not isinstance(item,dict) or not item.get('image'): continue
         key=re.sub(r'\s+',' ',str(item.get('section_heading',''))).strip().casefold()
         if key: images_by_heading.setdefault(key,[]).append(item)
+    callouts_by_heading={}
+    callouts=callouts or []
+    for i,item in enumerate(callouts,1):
+        if not isinstance(item,dict):continue
+        key=re.sub(r'\s+',' ',str(item.get('section_heading',''))).strip().casefold()
+        callouts_by_heading.setdefault(key,[]).append((i,item))
     result=[]
     for key,section_html in sections:
         assigned=images_by_heading.pop(key,[])
@@ -54,11 +72,32 @@ def render_section_images(body, assignments):
             caption=str(item.get('caption') or '').strip()
             caption_html=f'<figcaption>{escape(caption)}</figcaption>' if caption else ''
             figures.append(f'<figure class="editorial-figure">{img(item.get("image"),item.get("alt_text") or caption)}{caption_html}</figure>')
+        before=[]; after_heading=[]; after=[]; full=[]; side=[]
+        for i,item in callouts_by_heading.pop(key,[]):
+            block=callout_markup(item)
+            if not block:continue
+            marker=f'[callout-{i}]'
+            if marker in section_html:
+                section_html=section_html.replace(f'<p>{marker}</p>',block).replace(marker,block)
+                continue
+            layout=str(item.get('layout') or 'text')
+            position=str(item.get('position') or 'after-heading')
+            if layout=='side': side.append(block)
+            elif layout=='full': full.append(block)
+            elif position=='before-section': before.append(block)
+            elif position=='after-section': after.append(block)
+            else: after_heading.append(block)
+        if after_heading:
+            heading_match=re.search(r'</h[23]>',section_html)
+            insert=heading_match.end() if heading_match else 0
+            section_html=section_html[:insert]+''.join(after_heading)+section_html[insert:]
         cls=' editorial-section--'+placement if figures else ''
-        media=f'<div class="editorial-section-media">{"".join(figures)}</div>' if figures else ''
-        result.append(f'<section class="editorial-section{cls}"><div class="editorial-section-copy">{section_html}</div>{media}</section>')
-    # Never discard unrecognized assignments: they remain editable in the CMS.
-    return ''.join(result)
+        media_items=figures+side
+        media=f'<div class="editorial-section-media">{"".join(media_items)}</div>' if media_items else ''
+        result.append(''.join(before)+f'<section class="editorial-section{cls}"><div class="editorial-section-copy">{section_html}{"".join(after)}</div>{media}</section>'+''.join(f'<div class="ptp-callout-full">{c}</div>' for c in full))
+    # Unmatched section names should not silently discard content.
+    leftovers=[callout_markup(item) for entries in callouts_by_heading.values() for _,item in entries]
+    return ''.join(result)+''.join(f'<div class="ptp-callout-full">{c}</div>' for c in leftovers if c)
 
 def attr(value): return escape(str(value or ''),quote=True)
 def slug(value): return re.sub(r'[^a-z0-9]+','-',str(value).lower()).strip('-')
@@ -115,7 +154,7 @@ settings_path=ROOT/'content/settings/site.yml'
 # Merge individual CMS settings files. New values take precedence over legacy site.yml.
 design=yaml.safe_load(settings_path.read_text(encoding='utf-8')) if settings_path.exists() else {}
 design=design or {}
-for settings_name in ('global','header','typography','homepage','gallery','biography','rules','footer'):
+for settings_name in ('global','header','typography','homepage','gallery','biography','rules','footer','callouts'):
     settings_file=ROOT/'content/settings'/f'{settings_name}.yml'
     if settings_file.exists():
         settings_data=yaml.safe_load(settings_file.read_text(encoding='utf-8')) or {}
@@ -142,6 +181,9 @@ def page(title,active,content,desc=''):
     brand=(img(logo,'Pink Triangle Portraits','brand-logo') if logo else '<span class="brand-mark" aria-hidden="true"></span><span>PINK<br>TRIANGLE<br>PORTRAITS</span>')
     variables={
       'navy':setting('nav_background','#062c3b'),'pink':setting('accent_color','#ed398b'),
+      'ptp-callout-accent':setting('callout_accent','#ed398b'),'ptp-quote-rule':str(setting('callout_quote_rule',10))+'px',
+      'ptp-statement-rule':str(setting('callout_statement_rule',2))+'px','ptp-highlight-bg':setting('callout_highlight_background','#eeeeee'),
+      'ptp-callout-font':str(setting('callout_font_size',26))+'px','ptp-callout-spacing':str(setting('callout_spacing',26))+'px',
       'ink':setting('text_color','#082d3b'),'paper':setting('page_background','#fffdfb'),
       'max':str(setting('content_width',1280))+'px',
       'nav-text':setting('nav_text_color','#ffffff'),
@@ -223,10 +265,7 @@ def write(route,html):
 
 def heading(kicker,title,subtitle='',hero='',hero_mobile=''):
     """One unified interior banner: image behind the text on desktop."""
-    # Preserve CMS-entered newlines as desktop-only line breaks; mobile wraps naturally.
-    subtitle_lines = str(subtitle or '').splitlines()
-    subtitle_html = '<br class="desktop-subtitle-break">\n'.join(escape(line.strip()) for line in subtitle_lines)
-    subtitle_markup = f'<p>{subtitle_html}</p>' if subtitle_html.strip() else ''
+    subtitle_markup=f'<p>{escape(subtitle)}</p>' if subtitle else ''
     image_markup=''
     if hero or hero_mobile:
         mobile_source=f'<source media="(max-width:700px)" srcset="{attr(hero_mobile)}">' if hero_mobile else ''
@@ -338,12 +377,9 @@ for route in ['the-project','the-history','about-the-artist','contact','shop']:
     data=load(file)
     title=str(data.get('title',route.title()))
     supporting=data.get('supporting_images') or []
-    if supporting or route=='about-the-artist':
-        body=render_section_images(data.get('body'),supporting)
-        content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''),data.get('hero_mobile_image',''))+f'<div class="container editorial-with-images rich">{body}</div>'
-    else:
-        body=render_md(data.get('body'))
-        content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''),data.get('hero_mobile_image',''))+f'<section class="container editorial"><article class="rich">{body}</article><aside class="side-panel"><span class="section-label">Explore further</span><h3>Stories worth remembering</h3><p>Discover the people and historical context behind the portraits.</p><a class="text-link" href="/portraits/">Browse portraits →</a></aside></section>'
+    callouts=data.get('callouts') or []
+    body=render_section_images(data.get('body'),supporting,callouts)
+    content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''),data.get('hero_mobile_image',''))+f'<div class="container editorial-with-images rich">{body}</div>'
 
     write(route,page(title,title,content))
 

@@ -515,27 +515,17 @@ body>footer{
   }
 }
 
-
-/* V3.19: Give interior header text its natural width again. Keep the
-   V3.18 fixed-size artwork anchoring and all CMS typography variables. */
-@media (min-width:701px){
-  .interior-hero--image .interior-heading-copy{
-    width:auto;
-    max-width:none;
-  }
-  .interior-hero--image .interior-heading-copy h1{
-    font-size:100px;
-  }
-  .interior-hero--image .interior-heading-copy p{
-    max-width:900px;
-  }
-}
-@media (min-width:701px) and (max-width:900px){
-  .interior-hero--image .interior-heading-copy h1{
-    font-size:82px;
-  }
-}
-/* Manual line breaks in the CMS subtitle apply to desktop only. */
-@media (max-width:700px){
-  .interior-hero .desktop-subtitle-break{display:none}
-}
+/* Section callouts, controlled by Pages CMS. */
+.ptp-callout{box-sizing:border-box;margin:var(--ptp-callout-spacing,26px) 0;padding:16px 20px;max-width:100%;overflow-wrap:anywhere}
+.ptp-callout p{margin:0 0 12px!important}.ptp-callout p:last-child{margin-bottom:0!important}
+.ptp-callout h3{margin:0 0 12px!important;font-size:1.15em!important;color:inherit!important}
+.ptp-callout--quote{border-left:var(--ptp-quote-rule,10px) solid var(--ptp-callout-accent,#ed398b);padding-left:22px}
+.ptp-callout--quote .ptp-callout-text,.ptp-callout--statement .ptp-callout-text{font-size:var(--ptp-callout-font,26px);line-height:1.4;font-weight:500}
+.ptp-callout--quote .ptp-callout-text{font-style:italic}
+.ptp-callout--highlight{background:var(--ptp-highlight-bg,#eeeeee);padding:28px 30px}
+.ptp-callout--statement{border-top:var(--ptp-statement-rule,2px) solid var(--ptp-callout-accent,#ed398b);border-bottom:var(--ptp-statement-rule,2px) solid var(--ptp-callout-accent,#ed398b);padding:26px 12px}
+.ptp-callout-credit{font-size:14px;opacity:.75;margin-top:14px!important}
+.ptp-callout--left{text-align:left}.ptp-callout--center{text-align:center}.ptp-callout--right{text-align:right}
+.ptp-callout-full{grid-column:1/-1;width:100%;margin:8px 0 35px}
+.editorial-section-media>.ptp-callout{margin-top:0}
+@media(max-width:700px){.ptp-callout--quote .ptp-callout-text,.ptp-callout--statement .ptp-callout-text{font-size:clamp(19px,5vw,var(--ptp-callout-font,26px))}}
