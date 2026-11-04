@@ -541,7 +541,11 @@ content:
     type: string
   - name: hero_image
     label: Page header image (1200 × 400 px)
-    description: Upload a wide 1200 × 400 image. The image stays centered; the rule beneath spans the browser width.
+    description: Upload a 1200 × 400 image with the artwork on the right and a fade to #eeeeee on the left. Text overlays the left half on desktop.
+    type: image
+  - name: hero_mobile_image
+    label: Mobile header image (800 × 500 px, optional)
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
     type: image
   - name: body
     label: Page content
