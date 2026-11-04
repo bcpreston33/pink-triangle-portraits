@@ -473,3 +473,17 @@ body>footer{
   .interior-hero--image .interior-header-media img{width:100%;height:100%}
   .interior-hero--image .interior-header-media img{object-fit:cover;object-position:right center}
 }
+
+/* V3.17: CMS-controlled interior header height and heading leading. */
+@media (min-width:701px){
+  .interior-hero.interior-hero--image{
+    height:var(--interior-header-height,350px)!important;
+    min-height:var(--interior-header-height,350px)!important;
+  }
+}
+.interior-hero .interior-heading-copy h1{
+  line-height:var(--page-title-line-height,1.05)!important;
+}
+.interior-hero .interior-heading-copy p{
+  line-height:var(--page-tagline-line-height,1.15)!important;
+}

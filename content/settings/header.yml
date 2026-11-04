@@ -28,3 +28,5 @@ nav_rule_end: '#ff842d'
 nav_rule_width: 10
 social_icon_gap: 6
 social_icon_mobile_gap: 5
+
+interior_header_height: 350
