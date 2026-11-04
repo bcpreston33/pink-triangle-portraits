@@ -218,11 +218,19 @@ def write(route,html):
     target.parent.mkdir(parents=True,exist_ok=True)
     target.write_text(html,encoding='utf-8')
 
-def heading(kicker,title,subtitle='',hero=''):
-    # The image stays at a 1200 x 400 desktop frame; the rule spans the viewport.
-    image_markup=(f'<div class="interior-header-band"><div class="interior-header-media"><img src="{attr(hero)}" alt="" loading="eager"></div></div>' if hero else '')
+def heading(kicker,title,subtitle='',hero='',hero_mobile=''):
+    """One unified interior banner: image behind the text on desktop."""
     subtitle_markup=f'<p>{escape(subtitle)}</p>' if subtitle else ''
-    return f'<section class="interior-hero"><div class="container interior-inner"><div class="eyebrow">{escape(kicker)}</div><h1>{escape(title)}</h1>{subtitle_markup}</div>{image_markup}</section>'
+    image_markup=''
+    if hero or hero_mobile:
+        mobile_source=f'<source media="(max-width:700px)" srcset="{attr(hero_mobile)}">' if hero_mobile else ''
+        image_markup=(f'<div class="interior-header-media"><picture>{mobile_source}'
+                      f'<img src="{attr(hero or hero_mobile)}" alt="" loading="eager"></picture></div>')
+    banner_class=' interior-hero--image' if image_markup else ''
+    return (f'<section class="interior-hero{banner_class}">{image_markup}'
+            f'<div class="container interior-inner"><div class="interior-heading-copy">'
+            f'<div class="eyebrow">{escape(kicker)}</div><h1>{escape(title)}</h1>{subtitle_markup}'
+            f'</div></div></section>')
 
 people={}
 for f in (ROOT/'content/people').glob('*.md'):
@@ -326,10 +334,10 @@ for route in ['the-project','the-history','about-the-artist','contact','shop']:
     supporting=data.get('supporting_images') or []
     if supporting or route=='about-the-artist':
         body=render_section_images(data.get('body'),supporting)
-        content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''))+f'<div class="container editorial-with-images rich">{body}</div>'
+        content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''),data.get('hero_mobile_image',''))+f'<div class="container editorial-with-images rich">{body}</div>'
     else:
         body=render_md(data.get('body'))
-        content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''))+f'<section class="container editorial"><article class="rich">{body}</article><aside class="side-panel"><span class="section-label">Explore further</span><h3>Stories worth remembering</h3><p>Discover the people and historical context behind the portraits.</p><a class="text-link" href="/portraits/">Browse portraits →</a></aside></section>'
+        content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''),data.get('hero_mobile_image',''))+f'<section class="container editorial"><article class="rich">{body}</article><aside class="side-panel"><span class="section-label">Explore further</span><h3>Stories worth remembering</h3><p>Discover the people and historical context behind the portraits.</p><a class="text-link" href="/portraits/">Browse portraits →</a></aside></section>'
 
     write(route,page(title,title,content))
 
@@ -340,10 +348,10 @@ upcoming_markup=('<section class="container exhibition-list"><h2>More upcoming e
 past_markup='<section class="container exhibition-list"><h2>Previous exhibitions & talks</h2>'+(''.join(event_card(e) for e in past) if past else '<p>Past exhibitions and talks will appear here.</p>')+'</section>'
 exhibitions_copy=ROOT/'content/pages/exhibitions.md'
 exhibitions_intro=render_md(load(exhibitions_copy).get('body')) if exhibitions_copy.exists() else ''
-write('exhibitions',page('Exhibitions','Exhibitions',heading('On view','Exhibitions & Talks','Past and upcoming events.',load(exhibitions_copy).get('hero_image','') if exhibitions_copy.exists() else '')+(f'<section class="container editorial-copy rich">{exhibitions_intro}</section>' if exhibitions_intro else '')+featured_event_markup+upcoming_markup+past_markup))
+write('exhibitions',page('Exhibitions','Exhibitions',heading('On view','Exhibitions & Talks','Past and upcoming events.',load(exhibitions_copy).get('hero_image','') if exhibitions_copy.exists() else '',load(exhibitions_copy).get('hero_mobile_image','') if exhibitions_copy.exists() else '')+(f'<section class="container editorial-copy rich">{exhibitions_intro}</section>' if exhibitions_intro else '')+featured_event_markup+upcoming_markup+past_markup))
 
 search=f'''<section class="container portraits-list"><div class="search-tools"><label for="portrait-search">Search by name</label><input id="portrait-search" type="search" placeholder="Find a portrait…" autocomplete="off"><span id="result-count" aria-live="polite"></span></div><div class="portrait-grid searchable">{cards}</div><p id="empty-search" hidden>No matching portraits.</p></section>'''
-write('portraits',page('The Portraits','The Portraits',heading('The collection','The Portraits','Explore the artwork and the lives behind each portrait.',load(ROOT / 'content/pages/portraits.md').get('hero_image','') if (ROOT / 'content/pages/portraits.md').exists() else '')+(f'<section class="container editorial-copy rich">{render_md(load(ROOT / "content/pages/portraits.md").get("body"))}</section>' if (ROOT / 'content/pages/portraits.md').exists() else '')+search))
+write('portraits',page('The Portraits','The Portraits',heading('The collection','The Portraits','Explore the artwork and the lives behind each portrait.',load(ROOT / 'content/pages/portraits.md').get('hero_image','') if (ROOT / 'content/pages/portraits.md').exists() else '',load(ROOT / 'content/pages/portraits.md').get('hero_mobile_image','') if (ROOT / 'content/pages/portraits.md').exists() else '')+(f'<section class="container editorial-copy rich">{render_md(load(ROOT / "content/pages/portraits.md").get("body"))}</section>' if (ROOT / 'content/pages/portraits.md').exists() else '')+search))
 
 person_slugs=list(dict.fromkeys(p['_person_slug'] for p in portraits))
 for i,person_slug in enumerate(person_slugs):
