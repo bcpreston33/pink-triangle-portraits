@@ -1,6 +1,8 @@
 ---
 title: The Project
-subtitle: Giving color and dignity to those who had it stripped away.
+subtitle: |-
+  Giving color and dignity to those 
+  who had it stripped away.
 hero_image: /assets/uploads/PTP-Page-Headers-Project-5.jpg
 ---
 ### Introduction
