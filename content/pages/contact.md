@@ -2,4 +2,19 @@
 title: Contact
 subtitle: Connect with the project.
 ---
-For exhibition, education, collaboration, or media inquiries, please use the contact details below. A contact form can be connected once you choose the receiving email address and form provider.
+
+### About Bry Sharland
+
+[Learn more about Bry Sharland and his artwork](/about-the-artist/).
+
+### Inquiries
+
+
+
+
+
+### Follow the project
+
+[Instagram](https://www.instagram.com/pinktriangleportraits/) · [Bluesky](https://bsky.app/profile/pinktriangleart.bsky.social) · [TikTok](https://www.tiktok.com/@pinktriangleportraits)
+
+---
