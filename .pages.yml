@@ -113,6 +113,11 @@ content:
     - name: url
       label: Link
       type: string
+  - name: interior_header_height
+    label: Desktop page header height (px)
+    type: number
+    default: 350
+    description: Height of interior page headers with artwork. Try 300, 350, or 400. Mobile adjusts automatically.
   - name: nav_background
     label: Nav Background
     type: string
@@ -222,6 +227,16 @@ content:
   - name: body_color
     label: Body text color (overrides base text color)
     type: string
+  - name: page_title_line_height
+    label: Page title line height (e.g. 1.05)
+    type: number
+    default: 1.05
+    description: Spacing between lines when an interior page title wraps.
+  - name: page_tagline_line_height
+    label: Page tagline line height (e.g. 1.15)
+    type: number
+    default: 1.15
+    description: Spacing between lines of the handwritten tagline in interior page headers.
   - name: display_font
     label: Page headings font
     type: select
