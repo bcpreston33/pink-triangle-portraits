@@ -95,7 +95,10 @@ def social_links():
     )
 
 def page(title,active,content,desc=''):
-    nav=design.get('navigation') or [{'label':a,'url':u} for a,u in [('Home','/'),('The Project','/the-project/'),('The History','/the-history/'),('The Portraits','/portraits/'),('Exhibitions','/exhibitions/'),('Shop','/shop/'),('Contact','/contact/')]]
+    nav=list(design.get('navigation') or [{'label':a,'url':u} for a,u in [('Home','/'),('The Project','/the-project/'),('The Artist','/about-the-artist/'),('The History','/the-history/'),('The Portraits','/portraits/'),('Exhibitions','/exhibitions/'),('Shop','/shop/'),('Contact','/contact/')]])
+    if not any(n.get('url')=='/about-the-artist/' for n in nav):
+        idx=next((i+1 for i,n in enumerate(nav) if n.get('url')=='/the-project/'),1)
+        nav.insert(idx,{'label':'The Artist','url':'/about-the-artist/'})
     links=''.join(f'<a href="{attr(n.get("url","/"))}" class="{"active" if active==n.get("label") else ""}">{escape(str(n.get("label","")))}</a>' for n in nav if n.get('label'))
     social=social_links()
     navsocial=f'<div class="social-icons nav-social">{social}</div>' if setting('social_nav_enabled',True) and social else ''
@@ -293,10 +296,12 @@ featured_event_markup=('<div class="container exhibition-feature"><span class="s
 other_upcoming=[e for e in upcoming if e is not featured_event]
 upcoming_markup=('<section class="container exhibition-list"><h2>More upcoming events</h2>'+''.join(event_card(e) for e in other_upcoming)+'</section>') if other_upcoming else ''
 past_markup='<section class="container exhibition-list"><h2>Previous exhibitions & talks</h2>'+(''.join(event_card(e) for e in past) if past else '<p>Past exhibitions and talks will appear here.</p>')+'</section>'
-write('exhibitions',page('Exhibitions','Exhibitions',heading('On view','Exhibitions & Talks','Past and upcoming events.')+featured_event_markup+upcoming_markup+past_markup))
+exhibitions_copy=ROOT/'content/pages/exhibitions.md'
+exhibitions_intro=render_md(load(exhibitions_copy).get('body')) if exhibitions_copy.exists() else ''
+write('exhibitions',page('Exhibitions','Exhibitions',heading('On view','Exhibitions & Talks','Past and upcoming events.')+(f'<section class="container editorial-copy rich">{exhibitions_intro}</section>' if exhibitions_intro else '')+featured_event_markup+upcoming_markup+past_markup))
 
 search=f'''<section class="container portraits-list"><div class="search-tools"><label for="portrait-search">Search by name</label><input id="portrait-search" type="search" placeholder="Find a portrait…" autocomplete="off"><span id="result-count" aria-live="polite"></span></div><div class="portrait-grid searchable">{cards}</div><p id="empty-search" hidden>No matching portraits.</p></section>'''
-write('portraits',page('The Portraits','The Portraits',heading('The collection','The Portraits','Explore the artwork and the lives behind each portrait.')+search))
+write('portraits',page('The Portraits','The Portraits',heading('The collection','The Portraits','Explore the artwork and the lives behind each portrait.')+(f'<section class="container editorial-copy rich">{render_md(load(ROOT / "content/pages/portraits.md").get("body"))}</section>' if (ROOT / 'content/pages/portraits.md').exists() else '')+search))
 
 person_slugs=list(dict.fromkeys(p['_person_slug'] for p in portraits))
 for i,person_slug in enumerate(person_slugs):
