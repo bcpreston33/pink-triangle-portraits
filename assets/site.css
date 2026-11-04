@@ -324,3 +324,13 @@ body:has(#main-nav a[href="/portraits/"].active) .interior-inner{
 .editorial-with-images .editorial-section-copy h2,.editorial-with-images .editorial-section-copy h3{margin-top:var(--section-heading-spacing,55px);color:var(--secondary-teal)!important}
 .editorial-with-images .editorial-section:first-child .editorial-section-copy h2:first-child,.editorial-with-images .editorial-section:first-child .editorial-section-copy h3:first-child{margin-top:0}
 @media(max-width:700px){.editorial-with-images{padding-block:45px 75px}.editorial-section,.editorial-section--left,.editorial-section--full{display:flex;flex-direction:column;gap:8px}.editorial-section-copy,.editorial-section-media{width:100%}.editorial-section--left .editorial-section-media{order:2}.editorial-figure{margin-bottom:24px}.editorial-section-media{margin-bottom:12px}}
+
+/* Keep each supporting image aligned with its own section heading.
+   Apply heading spacing to the section as a whole, not just the text column. */
+.editorial-with-images .editorial-section + .editorial-section{
+  padding-top:var(--section-heading-spacing,55px);
+}
+.editorial-with-images .editorial-section .editorial-section-copy > h2:first-child,
+.editorial-with-images .editorial-section .editorial-section-copy > h3:first-child{
+  margin-top:0;
+}
