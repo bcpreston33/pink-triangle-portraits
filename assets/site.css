@@ -514,3 +514,28 @@ body>footer{
     right:auto!important;
   }
 }
+
+
+/* V3.19: Give interior header text its natural width again. Keep the
+   V3.18 fixed-size artwork anchoring and all CMS typography variables. */
+@media (min-width:701px){
+  .interior-hero--image .interior-heading-copy{
+    width:auto;
+    max-width:none;
+  }
+  .interior-hero--image .interior-heading-copy h1{
+    font-size:100px;
+  }
+  .interior-hero--image .interior-heading-copy p{
+    max-width:900px;
+  }
+}
+@media (min-width:701px) and (max-width:900px){
+  .interior-hero--image .interior-heading-copy h1{
+    font-size:82px;
+  }
+}
+/* Manual line breaks in the CMS subtitle apply to desktop only. */
+@media (max-width:700px){
+  .interior-hero .desktop-subtitle-break{display:none}
+}

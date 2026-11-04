@@ -223,7 +223,10 @@ def write(route,html):
 
 def heading(kicker,title,subtitle='',hero='',hero_mobile=''):
     """One unified interior banner: image behind the text on desktop."""
-    subtitle_markup=f'<p>{escape(subtitle)}</p>' if subtitle else ''
+    # Preserve CMS-entered newlines as desktop-only line breaks; mobile wraps naturally.
+    subtitle_lines = str(subtitle or '').splitlines()
+    subtitle_html = '<br class="desktop-subtitle-break">\n'.join(escape(line.strip()) for line in subtitle_lines)
+    subtitle_markup = f'<p>{subtitle_html}</p>' if subtitle_html.strip() else ''
     image_markup=''
     if hero or hero_mobile:
         mobile_source=f'<source media="(max-width:700px)" srcset="{attr(hero_mobile)}">' if hero_mobile else ''

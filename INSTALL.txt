@@ -1,9 +1,6 @@
-PTP Header Artwork Anchor Update
+Replace these three files in the GitHub repository, preserving their paths:
+assets/site.css
+scripts/build.py
+.pages.yml
 
-Replace assets/site.css in GitHub with the included file and commit.
-
-Desktop and tablet (701px+): The artwork stays 1200px wide. Above 1200px browser width, it anchors to the right with #eeeeee extending left. At 1200px and below, it anchors to the left and clips on the right. Your existing CMS header height and typography controls remain unchanged.
-
-Phone (700px and below): The existing stacked mobile layout remains unchanged for now.
-
-Note: This patch is based on the most recent PTP-Adjustable-Header-Height-and-Line-Spacing.zip provided in this conversation. Install that package first if you have not already done so.
+Then in Pages CMS > Site pages > Intro subtitle, press Enter to set desktop line breaks. Mobile wraps naturally.
