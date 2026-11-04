@@ -488,6 +488,10 @@ content:
   type: file
   path: content/settings/footer.yml
   fields:
+  - name: footer_rule_width
+    label: Footer top rule thickness (px)
+    type: number
+    description: Full-width decorative rule above the footer. Default 10 px.
   - name: footer_font
     label: Footer font
     type: select
@@ -536,7 +540,8 @@ content:
     label: Intro subtitle
     type: string
   - name: hero_image
-    label: Header image (optional)
+    label: Page header image (1200 × 400 px)
+    description: Upload a wide 1200 × 400 image. The image stays centered; the rule beneath spans the browser width.
     type: image
   - name: body
     label: Page content
