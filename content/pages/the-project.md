@@ -4,6 +4,31 @@ subtitle: |-
   Giving color and dignity to those 
   who had it stripped away.
 hero_image: /assets/uploads/PTP-Page-Headers-Project-5.jpg
+callouts:
+  - style: quote
+    heading: SPECIAL THANKS!
+    text: >-
+      The Mass Cultural Council
+
+
+      Dr. Klaus Müller, for whom we owe a tremendous debt of gratitude for
+      interviewing and sharing the story of survivors, and for his scholarship
+      on this topic, and assistance in finding sources.
+
+
+      Dr. Anna Hájková, for directly calling out institutions that erased queer
+      experiences/ testimonies, and championing the experiences of queer women
+      during the holocaust
+
+
+      Dr. Jake Newsome and the Pink Triangle Legacies Project, for guidance and
+      collaboration.
+
+
+      And My husband Brian, and our baby Luna, for everything.
+    position: after-heading
+    layout: text
+    alignment: left
 ---
 ### Introduction
 
@@ -19,23 +44,9 @@ The portraits are based on surviving historical photographs and are accompanied 
 
 The work is ultimately about remembrance, queer joy, and dignity. Through these portraits, Bry hopes viewers will understand the people behind this history and recognize how tenuous hard-won rights can remain, both today and around the world.
 
+## [callout-1]
 
 
-## Research and historical photographs
-
-### Special thanks
-
-[Source: Bry's presentation, slide 2 and speaker notes. Light punctuation/line-break normalization only; approve before publishing.]
-
-The Mass Cultural Council
-
-Dr. Klaus Müller, for whom we owe a tremendous debt of gratitude for interviewing and sharing the story of survivors, and for his scholarship on this topic, and assistance in finding sources.
-
-Dr. Anna Hájková, for directly calling out institutions that erased queer experiences/ testimonies, and championing the experiences of queer women during the holocaust
-
-Dr. Jake Newsome and the Pink Triangle Legacies Project, for guidance and collaboration.
-
-And My husband Brian, and our baby Luna, for everything.
 
 ---
 
