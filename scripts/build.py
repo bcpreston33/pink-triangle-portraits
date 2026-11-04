@@ -84,11 +84,15 @@ settings_path=ROOT/'content/settings/site.yml'
 design=yaml.safe_load(settings_path.read_text(encoding='utf-8')) if settings_path.exists() else {}
 design=design or {}
 def social_links():
-    icons={
-      'instagram': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg>',
-      'bluesky': '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 10.8c-1.087-2.114-4.046-6.057-6.797-7.997C2.566.944 1.561 1.266.902 1.566.139 1.908 0 3.068 0 3.75c0 .682.374 5.583.618 6.403.806 2.707 3.681 3.623 6.277 3.336-4.522.496-5.72 2.137-3.213 3.777 4.76 3.116 6.84-.78 7.375-3.164.098-.437.172-.87.243-1.265.07.395.145.828.243 1.265.535 2.384 2.615 6.28 7.375 3.164 2.507-1.64 1.309-3.281-3.213-3.777 2.596.287 5.471-.629 6.277-3.336.244-.82.618-5.721.618-6.403 0-.682-.139-1.842-.902-2.184-.659-.3-1.664-.622-4.301 1.237C16.046 4.743 13.087 8.686 12 10.8Z"/></svg>',
-      'tiktok': '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 2h-3v13.3a3.2 3.2 0 1 1-2.5-3.1V9.1a6.2 6.2 0 1 0 5.5 6.2V8.7c1.5 1.1 3.2 1.7 5 1.7V7.2c-2.9-.2-4.7-2.1-5-5.2Z"/></svg>'}
-    return ''.join(f'<a href="{attr(setting(k+"_url"))}" target="_blank" rel="noopener noreferrer" aria-label="{k.title()}" title="{k.title()}">{v}</a>' for k,v in icons.items() if setting(k+'_url'))
+    icons = {
+        'instagram': '/assets/images/social-instagram-white.png',
+        'bluesky': '/assets/images/social-bluesky-white.png',
+        'tiktok': '/assets/images/social-tiktok-white.png',
+    }
+    return ''.join(
+        f'<a href="{attr(setting(k+"_url"))}" target="_blank" rel="noopener noreferrer" aria-label="{k.title()}" title="{k.title()}"><img src="{v}" alt="" aria-hidden="true"></a>'
+        for k,v in icons.items() if setting(k+'_url')
+    )
 
 def page(title,active,content,desc=''):
     nav=design.get('navigation') or [{'label':a,'url':u} for a,u in [('Home','/'),('The Project','/the-project/'),('The History','/the-history/'),('The Portraits','/portraits/'),('Exhibitions','/exhibitions/'),('Shop','/shop/'),('Contact','/contact/')]]
@@ -271,9 +275,8 @@ hero_picture=(f'<picture class="hero-picture">{hero_source}<img src="{attr(hero_
 hero_eyebrow=escape(str(setting('hero_eyebrow','Art / History / Remembrance / Queer Joy')))
 hero_heading=escape(str(setting('hero_headline','PINK TRIANGLE PORTRAITS'))).replace('\n',' ')
 hero_tagline=escape(str(setting('hero_tagline','Giving color and dignity to those who had it stripped away.')))
-hero_cta=escape(str(setting('hero_button_text','Explore the portraits')))
 hero_overlay=max(0,min(95,int(setting('hero_overlay_opacity',40))))/100
-home=f'''<section class="home-hero" style="min-height:{attr(setting('hero_height',500))}px;--hero-darkness:{hero_overlay}"><div class="home-portrait-strip">{hero_picture}</div><div class="home-hero-overlay"><div class="container"><span class="hero-eyebrow">{hero_eyebrow}</span><h1>{hero_heading}</h1><p>{hero_tagline}</p><a class="button" href="/portraits/">{hero_cta} →</a></div></div></section><section class="home-intro container"{section_style("intro")}><div><span class="section-label">The project</span><h2>Portraits to remember.<br>Stories to keep alive.</h2><p>Pink Triangle Portraits is an ongoing art and research project by Bry Sharland, honoring queer people persecuted by the Nazi regime.</p><a class="button" href="/the-project/">Learn about the project →</a></div><div class="feature-area">{featured_markup}</div></section><section class="event-band"><div class="container event-grid">{event_markup}</div></section><section class="container gallery-preview"{section_style("gallery")}><div class="section-head"><div><span class="section-label">Explore the portraits</span><h2>Every person has a story.</h2></div><a class="text-link" href="/portraits/">Browse all portraits →</a></div><div class="portrait-grid">{''.join(portrait_card(p) for p in [next(a for a in newest if a['_person_slug']==ps) for ps in dict.fromkeys(a['_person_slug'] for a in newest)][:5])}</div></section>'''
+home=f'''<section class="home-hero" style="min-height:{attr(setting('hero_height',500))}px;--hero-darkness:{hero_overlay}"><div class="home-portrait-strip">{hero_picture}</div><div class="home-hero-overlay"><div class="container"><span class="hero-eyebrow">{hero_eyebrow}</span><h1>{hero_heading}</h1><p>{hero_tagline}</p></div></div></section><section class="home-intro container"{section_style("intro")}><div><span class="section-label">The project</span><h2>Portraits to remember.<br>Stories to keep alive.</h2><p>Pink Triangle Portraits is an ongoing art and research project by Bry Sharland, honoring queer people persecuted by the Nazi regime.</p><a class="button" href="/the-project/">Learn about the project →</a></div><div class="feature-area">{featured_markup}</div></section><section class="event-band"><div class="container event-grid">{event_markup}</div></section><section class="container gallery-preview"{section_style("gallery")}><div class="section-head"><div><span class="section-label">Explore the portraits</span><h2>Every person has a story.</h2></div><a class="text-link" href="/portraits/">Browse all portraits →</a></div><div class="portrait-grid">{''.join(portrait_card(p) for p in [next(a for a in newest if a['_person_slug']==ps) for ps in dict.fromkeys(a['_person_slug'] for a in newest)][:5])}</div></section>'''
 write('',page('Home','Home',home))
 
 for route in ['the-project','the-history','about-the-artist','contact','shop']:
