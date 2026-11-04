@@ -746,6 +746,11 @@ content:
   - name: image
     label: Event image
     type: image
+  - name: featured
+    label: Feature prominently on Exhibitions page
+    type: boolean
+    default: false
+    description: Display this exhibition as a larger featured card above the yearly listings. Uncheck to keep it in the regular year list.
   - name: published
     label: Published
     type: boolean
