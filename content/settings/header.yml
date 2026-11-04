@@ -25,6 +25,6 @@ nav_gap: 22
 nav_rule_type: solid
 nav_rule_color: '#ed398b'
 nav_rule_end: '#ff842d'
-nav_rule_width: 3
+nav_rule_width: 10
 social_icon_gap: 6
 social_icon_mobile_gap: 5

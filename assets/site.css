@@ -334,3 +334,37 @@ body:has(#main-nav a[href="/portraits/"].active) .interior-inner{
 .editorial-with-images .editorial-section .editorial-section-copy > h3:first-child{
   margin-top:0;
 }
+
+/* V3.14: CMS-managed interior header images and full-viewport rules. */
+.interior-hero{
+  border-bottom:var(--interior-rule-width,10px) solid var(--pink)!important;
+  border-image:var(--divider-rule,linear-gradient(90deg,#ed398b,#ff842d)) 1!important;
+  overflow:visible;
+}
+.interior-hero .interior-inner{
+  border:0!important;
+  padding-bottom:24px;
+}
+.interior-header-media{
+  width:min(1200px,calc(100% - 100px));
+  margin:0 auto 30px;
+}
+.interior-header-media img{
+  display:block;
+  width:100%;
+  aspect-ratio:3/1;
+  height:auto;
+  object-fit:cover;
+}
+.site-header{
+  box-shadow:0 var(--nav-rule-width,10px) 0 var(--nav-rule)!important;
+}
+body>footer{
+  border-top:var(--footer-rule-width,10px) solid var(--pink)!important;
+  border-image:var(--divider-rule,linear-gradient(90deg,#ed398b,#ff842d)) 1!important;
+}
+@media(max-width:1050px){.interior-header-media{width:calc(100% - 64px)}}
+@media(max-width:700px){
+  .interior-header-media{width:calc(100% - 40px);margin-bottom:22px}
+  .interior-hero .interior-inner{padding-bottom:18px}
+}

@@ -153,7 +153,7 @@ def page(title,active,content,desc=''):
       'callout-gap':str(setting('callout_gap',20))+'px',
       'divider-rule':rule_style('divider'),'divider-height':str(setting('divider_rule_width',4))+'px',
       'section-gap':str(setting('section_spacing',75))+'px',
-      'nav-rule':rule_style('nav'),'nav-rule-width':str(setting('nav_rule_width',3))+'px',
+      'nav-rule':rule_style('nav'),'nav-rule-width':str(setting('nav_rule_width',10))+'px','footer-rule-width':str(setting('footer_rule_width',10))+'px',
       'paint-image':f'url("{setting("paint_background","/assets/images/715931084-background-web.jpg")}")',
       'paint-opacity':str(max(0,min(100,int(setting('paint_opacity',70))))/100),
       'brush-primary':setting('brush_accent_color','#ed398b'),
@@ -219,10 +219,10 @@ def write(route,html):
     target.write_text(html,encoding='utf-8')
 
 def heading(kicker,title,subtitle='',hero=''):
-    bg=f' style="--hero-image:url(\'{attr(hero)}\')"' if hero else ''
-    paint_class=""
-    brush_class=""
-    return f'<section class="interior-hero{paint_class}{brush_class}"{bg}><div class="container interior-inner"><div class="eyebrow">{escape(kicker)}</div><h1>{escape(title)}</h1><p>{escape(subtitle)}</p></div><div class="paint-swipe" aria-hidden="true"></div></section>'
+    # The image stays at a 1200 x 400 desktop frame; the rule spans the viewport.
+    image_markup=(f'<div class="container interior-header-media"><img src="{attr(hero)}" alt="" loading="eager"></div>' if hero else '')
+    subtitle_markup=f'<p>{escape(subtitle)}</p>' if subtitle else ''
+    return f'<section class="interior-hero"><div class="container interior-inner"><div class="eyebrow">{escape(kicker)}</div><h1>{escape(title)}</h1>{subtitle_markup}</div>{image_markup}</section>'
 
 people={}
 for f in (ROOT/'content/people').glob('*.md'):
@@ -340,10 +340,10 @@ upcoming_markup=('<section class="container exhibition-list"><h2>More upcoming e
 past_markup='<section class="container exhibition-list"><h2>Previous exhibitions & talks</h2>'+(''.join(event_card(e) for e in past) if past else '<p>Past exhibitions and talks will appear here.</p>')+'</section>'
 exhibitions_copy=ROOT/'content/pages/exhibitions.md'
 exhibitions_intro=render_md(load(exhibitions_copy).get('body')) if exhibitions_copy.exists() else ''
-write('exhibitions',page('Exhibitions','Exhibitions',heading('On view','Exhibitions & Talks','Past and upcoming events.')+(f'<section class="container editorial-copy rich">{exhibitions_intro}</section>' if exhibitions_intro else '')+featured_event_markup+upcoming_markup+past_markup))
+write('exhibitions',page('Exhibitions','Exhibitions',heading('On view','Exhibitions & Talks','Past and upcoming events.',load(exhibitions_copy).get('hero_image','') if exhibitions_copy.exists() else '')+(f'<section class="container editorial-copy rich">{exhibitions_intro}</section>' if exhibitions_intro else '')+featured_event_markup+upcoming_markup+past_markup))
 
 search=f'''<section class="container portraits-list"><div class="search-tools"><label for="portrait-search">Search by name</label><input id="portrait-search" type="search" placeholder="Find a portrait…" autocomplete="off"><span id="result-count" aria-live="polite"></span></div><div class="portrait-grid searchable">{cards}</div><p id="empty-search" hidden>No matching portraits.</p></section>'''
-write('portraits',page('The Portraits','The Portraits',heading('The collection','The Portraits','Explore the artwork and the lives behind each portrait.')+(f'<section class="container editorial-copy rich">{render_md(load(ROOT / "content/pages/portraits.md").get("body"))}</section>' if (ROOT / 'content/pages/portraits.md').exists() else '')+search))
+write('portraits',page('The Portraits','The Portraits',heading('The collection','The Portraits','Explore the artwork and the lives behind each portrait.',load(ROOT / 'content/pages/portraits.md').get('hero_image','') if (ROOT / 'content/pages/portraits.md').exists() else '')+(f'<section class="container editorial-copy rich">{render_md(load(ROOT / "content/pages/portraits.md").get("body"))}</section>' if (ROOT / 'content/pages/portraits.md').exists() else '')+search))
 
 person_slugs=list(dict.fromkeys(p['_person_slug'] for p in portraits))
 for i,person_slug in enumerate(person_slugs):
