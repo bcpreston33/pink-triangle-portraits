@@ -553,7 +553,8 @@ content:
     required: true
   - name: subtitle
     label: Intro subtitle
-    type: string
+    type: text
+    description: Press Enter to add a desktop line break. On mobile the text wraps naturally.
   - name: hero_image
     label: Page header image (1200 × 400 px)
     description: Upload a 1200 × 400 image with the artwork on the right and a fade to #eeeeee on the left. Text overlays the left half on desktop.
