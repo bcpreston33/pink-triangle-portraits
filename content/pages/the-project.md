@@ -5,7 +5,7 @@ subtitle: |-
   who had it stripped away.
 hero_image: /assets/uploads/PTP-Page-Headers-Project-5.jpg
 callouts:
-  - style: highlight
+  - style: statement
     heading: SPECIAL THANKS!
     text: >-
       The Mass Cultural Council
