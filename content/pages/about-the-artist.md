@@ -2,15 +2,8 @@
 title: THE ARTIST
 subtitle: Bry Sharland
 supporting_images:
-  - section_heading: From “Fading” to queer joy and resistance
-    image: /assets/uploads/Gad Beck Older LR.jpg
-    caption: caption test
-    alt_text: desc test
-    placement: right
-  - section_heading: Meet Bry Sharland
-    image: /assets/uploads/Pink-Triangle-Icon.png
-    caption: cap 2
-    alt_text: desc 2
+  - section_heading: From sketches and lists
+    image: /assets/uploads/Notes.png
     placement: right
 ---
 ## Meet Bry Sharland
