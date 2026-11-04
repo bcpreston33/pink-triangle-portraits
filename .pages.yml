@@ -553,7 +553,8 @@ content:
     required: true
   - name: subtitle
     label: Intro subtitle
-    type: string
+    type: text
+    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
   - name: hero_image
     label: Page header image (1200 × 400 px)
     description: Upload a 1200 × 400 image with the artwork on the right and a fade to #eeeeee on the left. Text overlays the left half on desktop.
@@ -596,7 +597,7 @@ content:
           value: right
         - label: Left column
           value: left
-        - label: Full width below section
+        - label: Full width below section (explicit only)
           value: full
   - name: callouts
     label: Quotes, callouts & featured statements
@@ -622,6 +623,7 @@ content:
     - name: text
       label: Quote or callout text
       type: text
+      description: Use **bold**, *italic*, or ***bold italic***. Blank lines create paragraphs.
       required: true
     - name: attribution
       label: Attribution / source (optional)
@@ -652,7 +654,7 @@ content:
           value: text
         - label: Side image area
           value: side
-        - label: Full width below section
+        - label: Full width below section (explicit only)
           value: full
     - name: alignment
       label: Text alignment
@@ -684,13 +686,29 @@ content:
     type: number
     default: 2
   - name: callout_highlight_background
-    label: Highlight background color
+    label: Highlight tint color (hex)
     type: string
-    default: '#eeeeee'
-  - name: callout_font_size
-    label: Pull quote and statement text size (px)
+    default: '#ed398b'
+  - name: callout_highlight_opacity
+    label: Highlight tint opacity (percent)
+    type: number
+    default: 12
+  - name: callout_highlight_text_color
+    label: Highlight text and heading color
+    type: string
+    default: '#082d3b'
+  - name: callout_highlight_heading_size
+    label: Highlight heading size (px)
     type: number
     default: 26
+  - name: callout_quote_font_size
+    label: Pull quote text size (px)
+    type: number
+    default: 20
+  - name: callout_statement_font_size
+    label: Featured statement text size (px)
+    type: number
+    default: 21
   - name: callout_spacing
     label: Callout vertical spacing (px)
     type: number
