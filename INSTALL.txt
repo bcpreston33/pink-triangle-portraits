@@ -1,6 +1,1 @@
-Replace these three files in the GitHub repository, preserving their paths:
-assets/site.css
-scripts/build.py
-.pages.yml
-
-Then in Pages CMS > Site pages > Intro subtitle, press Enter to set desktop line breaks. Mobile wraps naturally.
+Replace these four files in GitHub, preserving their folder paths. Commit and wait for Cloudflare Pages to rebuild.

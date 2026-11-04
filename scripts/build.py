@@ -77,10 +77,17 @@ def render_section_images(body, assignments, callouts=None):
             block=callout_markup(item)
             if not block:continue
             marker=f'[callout-{i}]'
-            if marker in section_html:
-                section_html=section_html.replace(f'<p>{marker}</p>',block).replace(marker,block)
-                continue
             layout=str(item.get('layout') or 'text')
+            if marker in section_html:
+                if layout=='side':
+                    section_html=section_html.replace(f'<p>{marker}</p>','').replace(marker,'')
+                    side.append(block)
+                elif layout=='full':
+                    section_html=section_html.replace(f'<p>{marker}</p>','').replace(marker,'')
+                    full.append(block)
+                else:
+                    section_html=section_html.replace(f'<p>{marker}</p>',block).replace(marker,block)
+                continue
             position=str(item.get('position') or 'after-heading')
             if layout=='side': side.append(block)
             elif layout=='full': full.append(block)
@@ -94,10 +101,18 @@ def render_section_images(body, assignments, callouts=None):
         cls=' editorial-section--'+placement if figures else ''
         media_items=figures+side
         media=f'<div class="editorial-section-media">{"".join(media_items)}</div>' if media_items else ''
-        result.append(''.join(before)+f'<section class="editorial-section{cls}"><div class="editorial-section-copy">{section_html}{"".join(after)}</div>{media}</section>'+''.join(f'<div class="ptp-callout-full">{c}</div>' for c in full))
+        before_markup=''.join(f'<div class="ptp-callout-text-column">{c}</div>' for c in before)
+        result.append(before_markup+f'<section class="editorial-section{cls}"><div class="editorial-section-copy">{section_html}{"".join(after)}</div>{media}</section>'+''.join(f'<div class="ptp-callout-full">{c}</div>' for c in full))
     # Unmatched section names should not silently discard content.
     leftovers=[callout_markup(item) for entries in callouts_by_heading.values() for _,item in entries]
-    return ''.join(result)+''.join(f'<div class="ptp-callout-full">{c}</div>' for c in leftovers if c)
+    return ''.join(result)+''.join(f'<div class="ptp-callout-text-column">{c}</div>' for c in leftovers if c)
+
+def hex_to_rgba(color, opacity):
+    color=str(color or '#ed398b').strip()
+    if not re.fullmatch(r'#[0-9a-fA-F]{6}',color): color='#ed398b'
+    try: alpha=max(0,min(100,float(opacity)))/100
+    except (ValueError,TypeError): alpha=.12
+    return f'rgba({int(color[1:3],16)},{int(color[3:5],16)},{int(color[5:7],16)},{alpha:g})'
 
 def attr(value): return escape(str(value or ''),quote=True)
 def slug(value): return re.sub(r'[^a-z0-9]+','-',str(value).lower()).strip('-')
@@ -182,8 +197,13 @@ def page(title,active,content,desc=''):
     variables={
       'navy':setting('nav_background','#062c3b'),'pink':setting('accent_color','#ed398b'),
       'ptp-callout-accent':setting('callout_accent','#ed398b'),'ptp-quote-rule':str(setting('callout_quote_rule',10))+'px',
-      'ptp-statement-rule':str(setting('callout_statement_rule',2))+'px','ptp-highlight-bg':setting('callout_highlight_background','#eeeeee'),
-      'ptp-callout-font':str(setting('callout_font_size',26))+'px','ptp-callout-spacing':str(setting('callout_spacing',26))+'px',
+      'ptp-statement-rule':str(setting('callout_statement_rule',2))+'px',
+      'ptp-highlight-bg':hex_to_rgba(setting('callout_highlight_background','#ed398b'),setting('callout_highlight_opacity',12)),
+      'ptp-highlight-text':setting('callout_highlight_text_color','#082d3b'),
+      'ptp-highlight-heading-size':str(setting('callout_highlight_heading_size',26))+'px',
+      'ptp-quote-font':str(setting('callout_quote_font_size',20))+'px',
+      'ptp-statement-font':str(setting('callout_statement_font_size',21))+'px',
+      'ptp-callout-spacing':str(setting('callout_spacing',26))+'px',
       'ink':setting('text_color','#082d3b'),'paper':setting('page_background','#fffdfb'),
       'max':str(setting('content_width',1280))+'px',
       'nav-text':setting('nav_text_color','#ffffff'),
@@ -265,7 +285,9 @@ def write(route,html):
 
 def heading(kicker,title,subtitle='',hero='',hero_mobile=''):
     """One unified interior banner: image behind the text on desktop."""
-    subtitle_markup=f'<p>{escape(subtitle)}</p>' if subtitle else ''
+    subtitle_lines = str(subtitle or '').splitlines()
+    subtitle_html = '<br class="desktop-subtitle-break">\n'.join(escape(line.strip()) for line in subtitle_lines)
+    subtitle_markup = f'<p>{subtitle_html}</p>' if subtitle_html.strip() else ''
     image_markup=''
     if hero or hero_mobile:
         mobile_source=f'<source media="(max-width:700px)" srcset="{attr(hero_mobile)}">' if hero_mobile else ''
