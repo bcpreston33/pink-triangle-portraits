@@ -149,6 +149,8 @@ def page(title,active,content,desc=''):
       'section-size':str(setting('section_size',54))+'px',
       'body-size':str(setting('body_size',17))+'px',
       'body-leading':str(setting('body_leading',1.75)),
+       'paragraph-spacing':str(setting('paragraph_spacing',28))+'px',
+       'section-heading-spacing':str(setting('section_heading_spacing',55))+'px',
       'label-size':str(setting('label_size',18))+'px',
       'art-title-size':str(setting('art_title_size',28))+'px',
       'art-details-size':str(setting('art_details_size',16))+'px',

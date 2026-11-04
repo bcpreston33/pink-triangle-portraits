@@ -298,3 +298,9 @@ body:has(#main-nav a[href="/portraits/"].active) .interior-inner{
 .editorial .rich blockquote,.portrait-bio .rich blockquote{border-left-width:var(--callout-width)!important}
 .person-artworks .research-callout-inner,.research-callout-inner{border-left-width:var(--research-rule-width)!important}
 .side-panel,.callout-card,.exhibition-feature .event-card{border-top-width:var(--panel-rule-width)!important}
+
+/* CMS typography controls: editorial copy only. Kept at end to win over legacy rules. */
+.editorial .rich{line-height:var(--body-leading,1.75)}
+.editorial .rich p{line-height:inherit;margin-top:0;margin-bottom:var(--paragraph-spacing,28px)}
+.editorial .rich h2,.editorial .rich h3{margin-top:var(--section-heading-spacing,55px)}
+.editorial .rich h2:first-child,.editorial .rich h3:first-child{margin-top:0}
