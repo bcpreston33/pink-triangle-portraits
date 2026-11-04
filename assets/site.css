@@ -304,3 +304,23 @@ body:has(#main-nav a[href="/portraits/"].active) .interior-inner{
 .editorial .rich p{line-height:inherit;margin-top:0;margin-bottom:var(--paragraph-spacing,28px)}
 .editorial .rich h2,.editorial .rich h3{margin-top:var(--section-heading-spacing,55px)}
 .editorial .rich h2:first-child,.editorial .rich h3:first-child{margin-top:0}
+
+/* Section-linked editorial imagery, managed in Pages CMS. */
+.editorial-with-images{padding-block:70px 110px}
+.editorial-section{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);column-gap:clamp(28px,5vw,85px);align-items:start;margin:0 0 14px}
+.editorial-section-copy{min-width:0}
+.editorial-section-copy > :first-child{margin-top:0}
+.editorial-section-media{min-width:0;display:grid;gap:24px}
+.editorial-figure{margin:0 0 22px}
+.editorial-figure img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;margin:0;box-shadow:none}
+.editorial-figure figcaption{font-size:13px;line-height:1.5;color:var(--ink);opacity:.78;margin-top:9px}
+.editorial-section--left{grid-template-columns:minmax(0,1fr) minmax(0,1.7fr)}
+.editorial-section--left .editorial-section-media{grid-column:1;grid-row:1}
+.editorial-section--left .editorial-section-copy{grid-column:2;grid-row:1}
+.editorial-section--full{grid-template-columns:1fr}
+.editorial-section--full .editorial-section-media{max-width:900px;margin-top:15px}
+.editorial-with-images .editorial-section-copy{line-height:var(--body-leading,1.75)}
+.editorial-with-images .editorial-section-copy p{line-height:inherit;margin-top:0;margin-bottom:var(--paragraph-spacing,28px)}
+.editorial-with-images .editorial-section-copy h2,.editorial-with-images .editorial-section-copy h3{margin-top:var(--section-heading-spacing,55px);color:var(--secondary-teal)!important}
+.editorial-with-images .editorial-section:first-child .editorial-section-copy h2:first-child,.editorial-with-images .editorial-section:first-child .editorial-section-copy h3:first-child{margin-top:0}
+@media(max-width:700px){.editorial-with-images{padding-block:45px 75px}.editorial-section,.editorial-section--left,.editorial-section--full{display:flex;flex-direction:column;gap:8px}.editorial-section-copy,.editorial-section-media{width:100%}.editorial-section--left .editorial-section-media{order:2}.editorial-figure{margin-bottom:24px}.editorial-section-media{margin-bottom:12px}}

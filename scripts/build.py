@@ -29,6 +29,37 @@ def load(path):
 def render_md(value):
     return markdown_html(str(value or ''))
 
+def render_section_images(body, assignments):
+    """Split rich-text at h2/h3 headings, pairing images with their own section."""
+    html=render_md(body)
+    pieces=re.split(r'(?=<h[23](?:\s[^>]*)?>)',html)
+    sections=[]
+    for piece in pieces:
+        if not piece.strip(): continue
+        heading=re.search(r'<h[23](?:\s[^>]*)?>(.*?)</h[23]>',piece,re.S)
+        key=re.sub(r'\s+',' ',re.sub(r'<[^>]*>','',heading.group(1))).strip().casefold() if heading else ''
+        sections.append((key,piece))
+    images_by_heading={}
+    for item in assignments or []:
+        if not isinstance(item,dict) or not item.get('image'):continue
+        key=re.sub(r'\s+',' ',str(item.get('section_heading',''))).strip().casefold()
+        if key: images_by_heading.setdefault(key,[]).append(item)
+    result=[]
+    for key,section_html in sections:
+        assigned=images_by_heading.pop(key,[])
+        figures=[]
+        placement='right'
+        for item in assigned:
+            placement=str(item.get('placement') or 'right') if len(assigned)==1 else 'right'
+            caption=str(item.get('caption') or '').strip()
+            caption_html=f'<figcaption>{escape(caption)}</figcaption>' if caption else ''
+            figures.append(f'<figure class="editorial-figure">{img(item.get("image"),item.get("alt_text") or caption)}{caption_html}</figure>')
+        cls=' editorial-section--'+placement if figures else ''
+        media=f'<div class="editorial-section-media">{"".join(figures)}</div>' if figures else ''
+        result.append(f'<section class="editorial-section{cls}"><div class="editorial-section-copy">{section_html}</div>{media}</section>')
+    # Never discard unrecognized assignments: they remain editable in the CMS.
+    return ''.join(result)
+
 def attr(value): return escape(str(value or ''),quote=True)
 def slug(value): return re.sub(r'[^a-z0-9]+','-',str(value).lower()).strip('-')
 def person_modified(slug_id):
@@ -292,8 +323,14 @@ for route in ['the-project','the-history','about-the-artist','contact','shop']:
     if not file.exists():continue
     data=load(file)
     title=str(data.get('title',route.title()))
-    body=render_md(data.get('body'))
-    content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''))+f'<section class="container editorial"><article class="rich">{body}</article><aside class="side-panel"><span class="section-label">Explore further</span><h3>Stories worth remembering</h3><p>Discover the people and historical context behind the portraits.</p><a class="text-link" href="/portraits/">Browse portraits →</a></aside></section>'
+    supporting=data.get('supporting_images') or []
+    if supporting or route=='about-the-artist':
+        body=render_section_images(data.get('body'),supporting)
+        content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''))+f'<div class="container editorial-with-images rich">{body}</div>'
+    else:
+        body=render_md(data.get('body'))
+        content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''))+f'<section class="container editorial"><article class="rich">{body}</article><aside class="side-panel"><span class="section-label">Explore further</span><h3>Stories worth remembering</h3><p>Discover the people and historical context behind the portraits.</p><a class="text-link" href="/portraits/">Browse portraits →</a></aside></section>'
+
     write(route,page(title,title,content))
 
 featured_event=(next_event or None)
