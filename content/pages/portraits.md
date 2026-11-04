@@ -1,5 +1,5 @@
 ---
-title: The Portraits
+title: THE PORTRAITS
 subtitle: |-
   Stories of queer lives, 
   resistance, 
