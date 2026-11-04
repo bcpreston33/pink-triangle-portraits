@@ -553,8 +553,7 @@ content:
     required: true
   - name: subtitle
     label: Intro subtitle
-    type: text
-    description: Press Enter to add a desktop line break. On mobile the text wraps naturally.
+    type: string
   - name: hero_image
     label: Page header image (1200 × 400 px)
     description: Upload a 1200 × 400 image with the artwork on the right and a fade to #eeeeee on the left. Text overlays the left half on desktop.
@@ -599,6 +598,103 @@ content:
           value: left
         - label: Full width below section
           value: full
+  - name: callouts
+    label: Quotes, callouts & featured statements
+    type: object
+    list: true
+    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content, matching their order here. Otherwise choose a section and placement.
+    fields:
+    - name: style
+      label: Style
+      type: select
+      default: quote
+      options:
+        values:
+        - label: Pull Quote (10px left rule)
+          value: quote
+        - label: Highlight / Callout
+          value: highlight
+        - label: Featured Statement (thin horizontal rules)
+          value: statement
+    - name: heading
+      label: Optional heading
+      type: string
+    - name: text
+      label: Quote or callout text
+      type: text
+      required: true
+    - name: attribution
+      label: Attribution / source (optional)
+      type: string
+    - name: section_heading
+      label: Related section heading (exact wording)
+      type: string
+      description: Match a heading in Page content. Not needed when using an inline [callout-N] marker.
+    - name: position
+      label: Position within section
+      type: select
+      default: after-heading
+      options:
+        values:
+        - label: Before section
+          value: before-section
+        - label: After heading
+          value: after-heading
+        - label: After section text
+          value: after-section
+    - name: layout
+      label: Layout
+      type: select
+      default: text
+      options:
+        values:
+        - label: Text column
+          value: text
+        - label: Side image area
+          value: side
+        - label: Full width below section
+          value: full
+    - name: alignment
+      label: Text alignment
+      type: select
+      default: left
+      options:
+        values:
+        - label: Left
+          value: left
+        - label: Center
+          value: center
+        - label: Right
+          value: right
+- name: settings_callouts
+  label: Page Design | Callouts & Quotes
+  type: file
+  path: content/settings/callouts.yml
+  fields:
+  - name: callout_accent
+    label: Pull quote rule color
+    type: string
+    default: '#ed398b'
+  - name: callout_quote_rule
+    label: Pull quote vertical rule (px)
+    type: number
+    default: 10
+  - name: callout_statement_rule
+    label: Featured statement horizontal rule (px)
+    type: number
+    default: 2
+  - name: callout_highlight_background
+    label: Highlight background color
+    type: string
+    default: '#eeeeee'
+  - name: callout_font_size
+    label: Pull quote and statement text size (px)
+    type: number
+    default: 26
+  - name: callout_spacing
+    label: Callout vertical spacing (px)
+    type: number
+    default: 26
 - name: events
   label: Exhibitions and events
   type: collection
