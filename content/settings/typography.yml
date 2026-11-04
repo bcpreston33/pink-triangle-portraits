@@ -6,6 +6,8 @@ body_leading: 1.5
 paragraph_spacing: 15
 section_heading_spacing: 60
 body_color: "#082d3b"
+page_title_line_height: 1.05
+page_tagline_line_height: 1
 display_font: Barlow Condensed
 display_size: 112
 display_mobile_size: 62
@@ -21,6 +23,3 @@ label_size: 18
 label_weight: 800
 label_tracking: 2
 label_color: "#ed398b"
-
-page_title_line_height: 1.05
-page_tagline_line_height: 1.15
