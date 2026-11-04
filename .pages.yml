@@ -541,6 +541,38 @@ content:
   - name: body
     label: Page content
     type: rich-text
+  - name: supporting_images
+    label: Supporting images alongside page sections
+    type: object
+    list: true
+    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty to show no caption.
+    fields:
+    - name: section_heading
+      label: Related section heading (exact wording)
+      type: string
+      required: true
+      description: Match a heading in Page content, without the # marks. For the opening text use the first heading.
+    - name: image
+      label: Supporting image
+      type: image
+      required: true
+    - name: caption
+      label: Small caption (optional)
+      type: string
+    - name: alt_text
+      label: Image description for accessibility
+      type: string
+    - name: placement
+      label: Image placement
+      type: select
+      default: right
+      options:
+      - label: Right column
+        value: right
+      - label: Left column
+        value: left
+      - label: Full width below section
+        value: full
 - name: events
   label: Exhibitions and events
   type: collection
