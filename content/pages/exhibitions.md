@@ -1,10 +1,10 @@
 ---
 title: Exhibitions
-subtitle: Shows, talks, and conversations about the project.
+subtitle: |-
+  Shows, talks, and conversations 
+  about the project.
 ---
-
 Bry has had the pleasure of hosting a number of gallery shows and talks about the project, with more coming this year!
-
 
 ### 2026
 
@@ -56,5 +56,5 @@ Follow the project for updates on upcoming shows, new portraits, and the incredi
 
 [Instagram](https://www.instagram.com/pinktriangleportraits/) · [Bluesky](https://bsky.app/profile/pinktriangleart.bsky.social) · [TikTok](https://www.tiktok.com/@pinktriangleportraits)
 
-
 ---
+
