@@ -405,14 +405,54 @@ for route in ['the-project','the-history','about-the-artist','contact','shop']:
 
     write(route,page(title,title,content))
 
+# Exhibitions uses the same CMS-managed header as every other interior page.
+# Split the existing editable rich-text page content by year headings. 2027+
+# is featured above the two-column 2025/2026 archive, without moving links
+# or requiring the editor to re-enter any existing listings.
+exhibitions_file=ROOT/'content/pages/exhibitions.md'
+exhibitions_data=load(exhibitions_file) if exhibitions_file.exists() else {}
+exhibitions_html=render_md(exhibitions_data.get('body',''))
+year_heading=re.compile(r'<h([2-4])>\s*(20\d{2})\s*</h\1>',re.I)
+year_matches=list(year_heading.finditer(exhibitions_html))
+intro_html=exhibitions_html[:year_matches[0].start()] if year_matches else exhibitions_html
+by_year={}
+trailing_html=''
+for idx,match in enumerate(year_matches):
+    end=year_matches[idx+1].start() if idx+1<len(year_matches) else len(exhibitions_html)
+    chunk=exhibitions_html[match.end():end]
+    # Non-year headings after the last year's entries remain outside the year grid.
+    if idx==len(year_matches)-1:
+        trailing_match=re.search(r'<h[2-4]>',chunk)
+        if trailing_match:
+            trailing_html=chunk[trailing_match.start():]
+            chunk=chunk[:trailing_match.start()]
+    year=int(match.group(2))
+    by_year[year]=by_year.get(year,'')+chunk
+
+def exhibition_year(year,body,cls=''):
+    return f'<section class="exhibition-year {cls}"><h2>{year}</h2><div class="exhibition-year-items">{body}</div></section>'
+
+future_years=''.join(exhibition_year(y,by_year[y],'exhibition-year--featured') for y in sorted(by_year,reverse=True) if y>=2027)
+archive_years=''.join(exhibition_year(y,by_year[y]) for y in (2025,2026) if y in by_year)
+other_years=''.join(exhibition_year(y,by_year[y]) for y in sorted(by_year,reverse=True) if y<2025)
 featured_event=(next_event or None)
-featured_event_markup=('<div class="container exhibition-feature"><span class="section-label">Current & upcoming</span>'+event_card(featured_event,True)+'</div>') if featured_event else '<div class="container exhibition-feature"><span class="section-label">Current & upcoming</span><p>No upcoming events have been announced yet.</p></div>'
+featured_event_markup=('<section class="exhibition-event-feature"><span class="section-label">Current & upcoming</span>'+event_card(featured_event,True)+'</section>') if featured_event else ''
 other_upcoming=[e for e in upcoming if e is not featured_event]
-upcoming_markup=('<section class="container exhibition-list"><h2>More upcoming events</h2>'+''.join(event_card(e) for e in other_upcoming)+'</section>') if other_upcoming else ''
-past_markup='<section class="container exhibition-list"><h2>Previous exhibitions & talks</h2>'+(''.join(event_card(e) for e in past) if past else '<p>Past exhibitions and talks will appear here.</p>')+'</section>'
-exhibitions_copy=ROOT/'content/pages/exhibitions.md'
-exhibitions_intro=render_md(load(exhibitions_copy).get('body')) if exhibitions_copy.exists() else ''
-write('exhibitions',page('Exhibitions','Exhibitions',heading('On view','Exhibitions & Talks','Past and upcoming events.',load(exhibitions_copy).get('hero_image','') if exhibitions_copy.exists() else '',load(exhibitions_copy).get('hero_mobile_image','') if exhibitions_copy.exists() else '')+(f'<section class="container editorial-copy rich">{exhibitions_intro}</section>' if exhibitions_intro else '')+featured_event_markup+upcoming_markup+past_markup))
+upcoming_markup=('<section class="exhibition-event-list"><h2>More upcoming events</h2>'+''.join(event_card(e) for e in other_upcoming)+'</section>') if other_upcoming else ''
+past_markup=('<section class="exhibition-event-list"><h2>Other past events</h2>'+''.join(event_card(e) for e in past)+'</section>') if past else ''
+exhibition_content=(f'<div class="container exhibitions-editorial rich">'
+    + (f'<div class="exhibitions-intro">{intro_html}</div>' if intro_html.strip() else '')
+    + (f'<div class="exhibitions-featured-years">{future_years}</div>' if future_years else '')
+    + featured_event_markup+upcoming_markup
+    + (f'<div class="exhibitions-archive"><h2 class="exhibitions-archive-heading">Past Exhibitions & Talks</h2><div class="exhibitions-year-grid">{archive_years}</div></div>' if archive_years else '')
+    + (f'<div class="exhibitions-other-years">{other_years}</div>' if other_years else '')
+    + past_markup
+    + (f'<div class="exhibitions-follow">{trailing_html}</div>' if trailing_html.strip() else '')
+    + '</div>')
+write('exhibitions',page('Exhibitions',str(exhibitions_data.get('title') or 'Exhibitions'),
+    heading('Pink Triangle Portraits',str(exhibitions_data.get('title') or 'Exhibitions'),
+        exhibitions_data.get('subtitle',''),exhibitions_data.get('hero_image',''),
+        exhibitions_data.get('hero_mobile_image',''))+exhibition_content))
 
 search=f'''<section class="container portraits-list"><div class="search-tools"><label for="portrait-search">Search by name</label><input id="portrait-search" type="search" placeholder="Find a portrait…" autocomplete="off"><span id="result-count" aria-live="polite"></span></div><div class="portrait-grid searchable">{cards}</div><p id="empty-search" hidden>No matching portraits.</p></section>'''
 write('portraits',page('The Portraits','The Portraits',heading('The collection','The Portraits','Explore the artwork and the lives behind each portrait.',load(ROOT / 'content/pages/portraits.md').get('hero_image','') if (ROOT / 'content/pages/portraits.md').exists() else '',load(ROOT / 'content/pages/portraits.md').get('hero_mobile_image','') if (ROOT / 'content/pages/portraits.md').exists() else '')+(f'<section class="container editorial-copy rich">{render_md(load(ROOT / "content/pages/portraits.md").get("body"))}</section>' if (ROOT / 'content/pages/portraits.md').exists() else '')+search))

@@ -1,1 +1,18 @@
-Replace these four files in GitHub, preserving their folder paths. Commit and wait for Cloudflare Pages to rebuild.
+PTP Exhibitions Header + Year Layout Update
+
+Replace these two complete files in your GitHub repository:
+  scripts/build.py
+  assets/site.css
+
+Commit and wait for Cloudflare to rebuild.
+
+Exhibitions page header now reads the Page title and Intro subtitle from
+Pages CMS > Site pages > EXHIBITIONS, including manual desktop line breaks.
+
+The existing Page content remains editable in the same rich-text field.
+Year headings 2027 and later appear as featured content above the archive.
+Headings 2025 and 2026 form two columns within the left text column.
+They stack on narrow screens. Existing links and copy are retained.
+
+Events added through the separate Exhibitions and events CMS collection
+continue to appear as current/upcoming or past events based on their dates.

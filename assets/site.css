@@ -547,3 +547,21 @@ body>footer{
   .editorial-with-images .ptp-callout--statement .ptp-callout-text{font-size:min(var(--ptp-statement-font,21px),5vw);}
   .desktop-subtitle-break{display:none;}
 }
+
+/* Exhibitions: CMS-managed year headings, editorial text-column archive. */
+.exhibitions-editorial{padding-top:40px;padding-bottom:95px;}
+.exhibitions-editorial > *{max-width:calc((100% - clamp(28px,5vw,85px)) * 1.7 / 2.7);}
+.exhibitions-editorial .exhibitions-intro{margin-bottom:32px;}
+.exhibitions-editorial .exhibitions-intro p{margin-top:0;}
+.exhibitions-editorial .exhibitions-featured-years{margin-bottom:42px;}
+.exhibitions-editorial .exhibition-year h2{font-family:var(--section-font,inherit);font-weight:800;margin:0 0 17px;color:var(--secondary-teal,#082d3b);}
+.exhibitions-editorial .exhibition-year-items p{margin:0 0 22px;line-height:var(--body-leading,1.75);}
+.exhibitions-editorial .exhibition-year-items p:last-child{margin-bottom:0;}
+.exhibitions-editorial .exhibitions-archive{margin-top:36px;}
+.exhibitions-editorial .exhibitions-archive-heading{margin:0 0 26px;color:var(--secondary-teal,#082d3b);}
+.exhibitions-editorial .exhibitions-year-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,3vw,42px);align-items:start;}
+.exhibitions-editorial .exhibition-year-items a{overflow-wrap:anywhere;}
+.exhibitions-editorial .exhibition-event-feature,.exhibitions-editorial .exhibition-event-list{margin:26px 0 42px;}
+.exhibitions-editorial .exhibitions-follow{margin-top:46px;}
+@media(max-width:900px){.exhibitions-editorial > *{max-width:100%;}}
+@media(max-width:600px){.exhibitions-editorial .exhibitions-year-grid{grid-template-columns:1fr;gap:35px;}}
