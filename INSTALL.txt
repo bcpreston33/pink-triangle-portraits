@@ -1,18 +1,16 @@
-PTP Exhibitions Header + Year Layout Update
+Pink Triangle Portraits — Exhibitions Featured + Year Archive
 
-Replace these two complete files in your GitHub repository:
+Replace these three files in GitHub, preserving their paths:
   scripts/build.py
   assets/site.css
+  .pages.yml
 
-Commit and wait for Cloudflare to rebuild.
+Pages CMS > Exhibitions and events:
+- Add an event, with its date, optional end date, location, link, image, and description.
+- Published: enabled for a live entry.
+- Feature prominently: enabled for the large featured area; otherwise it appears in the running year list (2027 onward).
+- Upcoming / Past event is determined automatically by event end date.
 
-Exhibitions page header now reads the Page title and Intro subtitle from
-Pages CMS > Site pages > EXHIBITIONS, including manual desktop line breaks.
+The existing 2025 and 2026 history remains editable under Site pages > EXHIBITIONS > Page content. The archive shows a thin pink line above each year and smaller year headings.
 
-The existing Page content remains editable in the same rich-text field.
-Year headings 2027 and later appear as featured content above the archive.
-Headings 2025 and 2026 form two columns within the left text column.
-They stack on narrow screens. Existing links and copy are retained.
-
-Events added through the separate Exhibitions and events CMS collection
-continue to appear as current/upcoming or past events based on their dates.
+No live site was changed by this package.

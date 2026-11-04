@@ -435,18 +435,25 @@ def exhibition_year(year,body,cls=''):
 future_years=''.join(exhibition_year(y,by_year[y],'exhibition-year--featured') for y in sorted(by_year,reverse=True) if y>=2027)
 archive_years=''.join(exhibition_year(y,by_year[y]) for y in (2025,2026) if y in by_year)
 other_years=''.join(exhibition_year(y,by_year[y]) for y in sorted(by_year,reverse=True) if y<2025)
-featured_event=(next_event or None)
-featured_event_markup=('<section class="exhibition-event-feature"><span class="section-label">Current & upcoming</span>'+event_card(featured_event,True)+'</section>') if featured_event else ''
-other_upcoming=[e for e in upcoming if e is not featured_event]
-upcoming_markup=('<section class="exhibition-event-list"><h2>More upcoming events</h2>'+''.join(event_card(e) for e in other_upcoming)+'</section>') if other_upcoming else ''
-past_markup=('<section class="exhibition-event-list"><h2>Other past events</h2>'+''.join(event_card(e) for e in past)+'</section>') if past else ''
+# CMS events are managed separately from the historical 2025/2026 body copy.
+# The Featured toggle promotes any event into the large spotlight area; all
+# other events from 2027 onward appear in a year-organized running list.
+featured_events=sorted([e for e in events if e.get('featured') is True and int(e['_date'][:4] or 0)>=2027],key=lambda e:e['_date'])
+regular_events=[e for e in events if e not in featured_events and int(e['_date'][:4] or 0)>=2027]
+featured_event_markup=('<section class="exhibitions-featured-events"><span class="section-label">Featured exhibitions & talks</span>'+''.join(event_card(e,True) for e in featured_events)+'</section>') if featured_events else ''
+current_event_years=sorted({int(e['_date'][:4]) for e in regular_events},reverse=True)
+current_events_markup=''.join(
+    f'<section class="exhibitions-current-year"><h2>{year}</h2>'+
+    ''.join('<div class="exhibitions-current-item"><span class="exhibitions-event-status">'+('Upcoming' if e['_end']>=today else 'Past event')+'</span>'+event_card(e)+'</div>' for e in sorted((e for e in regular_events if int(e['_date'][:4])==year),key=lambda e:e['_date'],reverse=True))+
+    '</section>' for year in current_event_years)
+if current_events_markup:
+    current_events_markup='<section class="exhibitions-current-events"><h2 class="exhibitions-current-heading">Exhibitions & talks by year</h2>'+current_events_markup+'</section>'
 exhibition_content=(f'<div class="container exhibitions-editorial rich">'
     + (f'<div class="exhibitions-intro">{intro_html}</div>' if intro_html.strip() else '')
     + (f'<div class="exhibitions-featured-years">{future_years}</div>' if future_years else '')
-    + featured_event_markup+upcoming_markup
+    + featured_event_markup+current_events_markup
     + (f'<div class="exhibitions-archive"><h2 class="exhibitions-archive-heading">Past Exhibitions & Talks</h2><div class="exhibitions-year-grid">{archive_years}</div></div>' if archive_years else '')
     + (f'<div class="exhibitions-other-years">{other_years}</div>' if other_years else '')
-    + past_markup
     + (f'<div class="exhibitions-follow">{trailing_html}</div>' if trailing_html.strip() else '')
     + '</div>')
 write('exhibitions',page('Exhibitions',str(exhibitions_data.get('title') or 'Exhibitions'),
