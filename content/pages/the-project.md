@@ -1,5 +1,5 @@
 ---
-title: The Project
+title: THE PROJECT
 subtitle: |-
   Giving color and dignity to those 
   who had it stripped away.
