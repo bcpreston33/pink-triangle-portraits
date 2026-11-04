@@ -24,7 +24,7 @@ Dr. Magnus Hirschfeld ran the Institute for Sexual Sciences, where queer people 
 
 Paragraph 175 was the anti gay sodomy law adopted by Germany in 1871. It was very nearly repealed in 1929 due to the tireless efforts over decades by Dr. Hirschfeld. In 1935 the Nazis strengthened paragraph 175, making it much easier to arrest gay people. Almost any same sex affection could be prosecuted under this law, from holding hands, to hugging, to having looks that lasted too long. This Nazi law stayed on the books in West Germany after the war, even when all other Nazi policies were abolished. 
 
-*** PARAGRAPH 175 WAS NOT FULLY REPEALED UNTIL 1994, and convictions stayed until they were expunged in 2018.
+[callout-1]
 
 ### The pink triangle
 
