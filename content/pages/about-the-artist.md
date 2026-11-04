@@ -1,5 +1,5 @@
 ---
-title: The Artist
+title: THE ARTIST
 subtitle: Bry Sharland
 supporting_images:
   - section_heading: From “Fading” to queer joy and resistance
