@@ -26,6 +26,7 @@ callouts:
 
 
       And My husband Brian, and our baby Luna, for everything.
+    section_heading: Introduction
     position: after-heading
     layout: side
     alignment: left
