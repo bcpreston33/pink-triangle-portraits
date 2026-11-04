@@ -44,8 +44,3 @@ The portraits are based on surviving historical photographs and are accompanied 
 
 The work is ultimately about remembrance, queer joy, and dignity. Through these portraits, Bry hopes viewers will understand the people behind this history and recognize how tenuous hard-won rights can remain, both today and around the world.
 
-
-
-&nbsp;
-
-&nbsp;
