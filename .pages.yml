@@ -28,7 +28,8 @@ content:
     label: Manually feature this person on homepage (optional)
     type: boolean
     default: false
-    description: Normally the newest edited/published biography appears automatically. Check this to force a person instead; uncheck to return to automatic. If multiple are checked, the most recently edited one wins.
+    description: Normally the newest edited/published biography appears automatically. Check this to force a person
+      instead; uncheck to return to automatic. If multiple are checked, the most recently edited one wins.
   - name: artworks
     label: Paintings (add one or more below)
     type: object
@@ -61,13 +62,13 @@ content:
   - name: special_thanks
     label: Special thanks & acknowledgments
     type: rich-text
-- name: design
-  label: Site design controls (organized by page area)
+- name: settings_global
+  label: Branding & Global
   type: file
-  path: content/settings/site.yml
+  path: content/settings/global.yml
   fields:
   - name: logo
-    label: 01 · BRAND & GLOBAL  |  Logo
+    label: Logo
     type: image
   - name: logo_width
     label: Logo Width
@@ -96,8 +97,13 @@ content:
   - name: section_spacing
     label: Section Spacing
     type: number
+- name: settings_header
+  label: Header & Navigation
+  type: file
+  path: content/settings/header.yml
+  fields:
   - name: navigation
-    label: 02 · HEADER & NAVIGATION  |  Navigation menu items
+    label: Navigation menu items
     type: object
     list: true
     fields:
@@ -173,8 +179,20 @@ content:
   - name: nav_rule_width
     label: Navigation rule thickness
     type: number
+  - name: social_icon_gap
+    label: Social icon spacing (px)
+    type: number
+    description: Space between icons in both header and footer.
+  - name: social_icon_mobile_gap
+    label: Social icon spacing on small screens (px)
+    type: number
+- name: settings_typography
+  label: Typography
+  type: file
+  path: content/settings/typography.yml
+  fields:
   - name: heading_font
-    label: 03 · MAIN FONTS & TEXT  |  Fallback heading font (used when no specific heading font is set)
+    label: Fallback heading font (used when no specific heading font is set)
     type: select
     options:
       values: *id001
@@ -249,8 +267,13 @@ content:
   - name: label_color
     label: Small labels color (hex)
     type: string
+- name: settings_homepage
+  label: Homepage Design
+  type: file
+  path: content/settings/homepage.yml
+  fields:
   - name: hero_banner_desktop
-    label: 04 · HOMEPAGE  |  Desktop hero artwork (wide)
+    label: Desktop hero artwork (wide)
     type: image
   - name: hero_banner_mobile
     label: Mobile hero artwork (narrow)
@@ -284,8 +307,16 @@ content:
   - name: intro_background
     label: Intro Background
     type: string
+  - name: hero_eyebrow_rule_width
+    label: Hero small pink divider thickness (px)
+    type: number
+- name: settings_gallery
+  label: Portrait Gallery
+  type: file
+  path: content/settings/gallery.yml
+  fields:
   - name: gallery_background
-    label: 05 · PORTRAIT GALLERY  |  Gallery Background
+    label: Gallery Background
     type: string
   - name: gallery_sort
     label: Gallery Sort
@@ -306,8 +337,13 @@ content:
   - name: gallery_hover_text
     label: Portrait rollover name color (hex)
     type: string
+- name: settings_biography
+  label: Biography Pages
+  type: file
+  path: content/settings/biography.yml
+  fields:
   - name: art_font
-    label: 06 · BIOGRAPHY PAGES  |  Artwork information font
+    label: Artwork information font
     type: select
     options:
       values: *id001
@@ -409,8 +445,19 @@ content:
   - name: callout_gap
     label: Callout inner spacing (px)
     type: number
+  - name: research_rule_width
+    label: Research box left rule thickness (px)
+    type: number
+  - name: panel_rule_width
+    label: Information box top rule thickness (px)
+    type: number
+- name: settings_rules
+  label: Rules & Dividers
+  type: file
+  path: content/settings/rules.yml
+  fields:
   - name: divider_rule_type
-    label: 07 · RULES & DIVIDERS  |  Divider Rule Type
+    label: Divider Rule Type
     type: select
     options:
       values:
@@ -425,8 +472,16 @@ content:
   - name: divider_rule_width
     label: Divider Rule Width
     type: number
+  - name: interior_rule_width
+    label: Interior page header rule thickness (px)
+    type: number
+- name: settings_footer
+  label: Footer & Social Media
+  type: file
+  path: content/settings/footer.yml
+  fields:
   - name: footer_font
-    label: 08 · FOOTER & SOCIAL LINKS  |  Footer font
+    label: Footer font
     type: select
     options:
       values: *id001
