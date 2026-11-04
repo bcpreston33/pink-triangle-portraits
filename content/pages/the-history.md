@@ -4,6 +4,15 @@ subtitle: |-
   The Pink Triangle, 
   Paragraph 175, 
   and persecution under Nazism.
+callouts:
+  - style: statement
+    text: |-
+      **PARAGRAPH 175 WAS NOT FULLY REPEALED UNTIL 1994**
+      and convictions stayed until they were expunged in 2018.
+    section_heading: "### Paragraph 175 & 175a"
+    position: after-section
+    layout: text
+    alignment: left
 ---
 ### Sexual liberation in post-WWI Germany
 
