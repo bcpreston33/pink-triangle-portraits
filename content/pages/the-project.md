@@ -1,8 +1,8 @@
 ---
 title: The Project
 subtitle: Giving color and dignity to those who had it stripped away.
+hero_image: /assets/uploads/PTP-Page-Headers-Project-3.jpg
 ---
-
 ### Introduction
 
 Pink Triangle Portraits is an ongoing portrait project by artist and art teacher Bry Sharland, focused on remembering queer people persecuted by the Nazi regime and under Paragraph 175.
@@ -19,11 +19,7 @@ The work is ultimately about remembrance, queer joy, and dignity. Through these 
 
 
 
-
 ## Research and historical photographs
-
-
-
 
 ### Special thanks
 
@@ -40,3 +36,4 @@ Dr. Jake Newsome and the Pink Triangle Legacies Project, for guidance and collab
 And My husband Brian, and our baby Luna, for everything.
 
 ---
+
