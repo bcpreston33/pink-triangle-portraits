@@ -280,3 +280,15 @@ body:has(#main-nav a[href="/portraits/"].active) .interior-inner{
   .home-hero-overlay h1{font-size:clamp(42px,9.5vw,66px)!important}
   .home-hero-overlay p{font-size:clamp(21px,5vw,27px)!important}
 }
+
+/* Content expansion: consistent 10px decorative rules and tighter social spacing. */
+:root{--divider-height:10px!important;--callout-width:10px!important;--bio-quote-rule-width:10px!important}
+.interior-inner{border-bottom-width:10px!important}
+.interior-hero .interior-inner{border-bottom-width:10px!important}
+.accent-rule,.portrait-bio .accent-rule{height:10px!important}
+.side-panel,.callout,.exhibition-feature .event-card,.research-callout-inner{border-top-width:10px!important}
+.research-callout-inner,.editorial .rich blockquote,.portrait-bio .rich blockquote{border-left-width:10px!important}
+.social-icons,.nav-social,.footer-social{gap:6px!important}
+@media(max-width:450px){.social-icons,.nav-social,.footer-social{gap:5px!important}}
+.editorial-copy{padding-top:34px;padding-bottom:22px;max-width:960px}
+.editorial-copy h2{color:#1c5858}
