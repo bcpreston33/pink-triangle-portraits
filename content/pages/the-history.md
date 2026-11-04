@@ -9,7 +9,7 @@ callouts:
     text: |-
       **PARAGRAPH 175 WAS NOT FULLY REPEALED UNTIL 1994**
       and convictions stayed until they were expunged in 2018.
-    section_heading: "### Paragraph 175 & 175a"
+    section_heading: Paragraph 175 & 175a
     position: after-section
     layout: text
     alignment: left
@@ -63,6 +63,3 @@ Heinz Fleischer, for example, was not freed by the allies, and then re-sentenced
 While I try to continue the legacy of queer victims and survivors through artwork, I am certainly not the first to use art in the culture of remembrance. Some of the very first queer testimonies of the holocaust were created in 1946 by artists Richard Grune and Hugo Walleitner.
 
 As I sought to bring back queer joy into their stories of these lives, I found inspiration in the art these two created. Between images of abject horror, we have some like this, showing Christmas and other celebrations among the prisoners. Little joys showed through in camp concerts and the support prink triangle prisoners gave to each other, as other prisoners did not offer their compassion or empathy in most cases.
-
----
-
