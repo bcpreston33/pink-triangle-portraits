@@ -220,7 +220,7 @@ def write(route,html):
 
 def heading(kicker,title,subtitle='',hero=''):
     # The image stays at a 1200 x 400 desktop frame; the rule spans the viewport.
-    image_markup=(f'<div class="container interior-header-media"><img src="{attr(hero)}" alt="" loading="eager"></div>' if hero else '')
+    image_markup=(f'<div class="interior-header-band"><div class="interior-header-media"><img src="{attr(hero)}" alt="" loading="eager"></div></div>' if hero else '')
     subtitle_markup=f'<p>{escape(subtitle)}</p>' if subtitle else ''
     return f'<section class="interior-hero"><div class="container interior-inner"><div class="eyebrow">{escape(kicker)}</div><h1>{escape(title)}</h1>{subtitle_markup}</div>{image_markup}</section>'
 

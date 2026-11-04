@@ -368,3 +368,27 @@ body>footer{
   .interior-header-media{width:calc(100% - 40px);margin-bottom:22px}
   .interior-hero .interior-inner{padding-bottom:18px}
 }
+
+/* V3.15: Right-aligned 1200 x 400 interior header on a full-width #eeeeee band.
+   Images may be faded to #eeeeee on their left edge before upload. */
+.interior-header-band{
+  width:100%;
+  background:#eeeeee;
+  margin:0 0 30px;
+}
+.interior-header-band .interior-header-media{
+  width:min(1200px,100%);
+  max-width:1200px;
+  margin:0 0 0 auto;
+}
+.interior-header-band .interior-header-media img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:3/1;
+  object-fit:cover;
+}
+@media(max-width:700px){
+  .interior-header-band{margin-bottom:22px}
+  .interior-header-band .interior-header-media{width:100%;margin-left:auto}
+}
