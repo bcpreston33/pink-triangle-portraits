@@ -3,3 +3,4 @@ gallery_sort: custom
 gallery_hover_color: '#1c5858'
 gallery_hover_opacity: 85
 gallery_hover_text: '#FFFFFF'
+gallery_spacing: 22

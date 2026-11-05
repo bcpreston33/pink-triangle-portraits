@@ -586,3 +586,8 @@ body>footer{
 .exhibitions-editorial .event-card .section-label{font-size:13px;letter-spacing:.07em}
 .exhibitions-editorial .event-card .rich p{margin-bottom:10px}
 @media(max-width:600px){.exhibitions-editorial .exhibitions-featured-events .event-card{grid-template-columns:1fr}.exhibitions-editorial .exhibitions-current-item .event-card>img{float:none;display:block;margin:10px 0}}
+
+/* CMS-controlled square gallery thumbnails: equal row/column spacing and artwork-specific crop. */
+.portrait-grid,.portrait-grid.searchable{column-gap:var(--gallery-spacing,22px);row-gap:var(--gallery-spacing,22px)}
+.portrait-card .portrait-image img{object-position:var(--thumb-x,50%) var(--thumb-y,50%);transform:scale(var(--thumb-zoom,1));transform-origin:var(--thumb-x,50%) var(--thumb-y,50%)}
+.portrait-card:hover .portrait-image img,.portrait-card:focus-visible .portrait-image img{transform:scale(calc(var(--thumb-zoom,1)*1.04))}

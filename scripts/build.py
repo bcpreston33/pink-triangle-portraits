@@ -284,7 +284,8 @@ def page(title,active,content,desc=''):
       'display-tracking':str(setting('display_tracking',0))+'px',
       'nav-tracking':str(setting('nav_tracking',0.7))+'px',
       'label-tracking':str(setting('label_tracking',2))+'px',
-      'gallery-hover-text':setting('gallery_hover_text','#ffffff')
+      'gallery-hover-text':setting('gallery_hover_text','#ffffff'),
+      'gallery-spacing':str(max(0,min(100,int(setting('gallery_spacing',22) or 22))))+'px'
     }
     fonts=['Barlow Condensed','DM Sans','Caveat','Anton','Archivo Black','Oswald','Bebas Neue','Manrope','Montserrat','Outfit','Work Sans','Libre Baskerville','Playfair Display','Cormorant Garamond','Merriweather','Inter','Source Sans 3','Lato','Nunito Sans','Roboto','Poppins','Roboto Slab','Lora','Space Grotesk','Barlow','Archivo']
     selected={str(setting(k,default)) for k,default in [('nav_font','Barlow Condensed'),('heading_font','Barlow Condensed'),('body_font','DM Sans'),('display_font','Barlow Condensed'),('section_font','Barlow Condensed'),('label_font','Barlow Condensed'),('art_font','Barlow Condensed'),('research_font','DM Sans'),('biography_quote_font','DM Sans'),('footer_font','DM Sans')]}
@@ -325,6 +326,7 @@ for person_slug, person in people.items():
         p['_slug']=person_slug+'-'+str(j+1)
         p['_date']=date_key(p.get('date'))
         p['_person_slug']=person_slug
+        p['_artwork_index']=j
         p['name']=person.get('name','Untitled')
         p['display_order']=p.get('display_order',person.get('display_order',100))
         portraits.append(p)
@@ -355,10 +357,15 @@ featured=next((p for p in portraits if p['_person_slug']==selected_person),None)
 
 def portrait_card(p):
     name=escape(str(p.get('name','Untitled')))
-    return f'<a class="portrait-card" href="{artwork_link(p)}"><span class="portrait-image">{img(p.get("image"),name)}<span class="portrait-hover-name" aria-hidden="true">{name}</span></span><span class="portrait-name">{name}<span aria-hidden="true"> ↗</span></span></a>'
+    position_x=max(0,min(100,float(p.get('gallery_x',50) or 50)))
+    position_y=max(0,min(100,float(p.get('gallery_y',50) or 50)))
+    zoom=max(75,min(150,float(p.get('gallery_zoom',100) or 100)))
+    style=f' style="--thumb-x:{position_x}%;--thumb-y:{position_y}%;--thumb-zoom:{zoom/100}"'
+    return f'<a class="portrait-card" href="{artwork_link(p)}"><span class="portrait-image"{style}>{img(p.get("image"),name)}<span class="portrait-hover-name" aria-hidden="true">{name}</span></span><span class="portrait-name">{name}<span aria-hidden="true"> ↗</span></span></a>'
 
 gallery_people=list(dict.fromkeys(p['_person_slug'] for p in portraits))
-gallery_art=[next(p for p in portraits if p['_person_slug']==ps) for ps in gallery_people]
+gallery_art=[min((p for p in portraits if p['_person_slug']==ps),key=lambda p:p.get('_artwork_index',0)) for ps in gallery_people]
+gallery_art=gallery_sort(gallery_art)
 cards=''.join(portrait_card(p) for p in gallery_art)
 hero_cards=''.join(img(p.get('image'),p.get('name','')) for p in newest[:6])
 if featured:
@@ -482,7 +489,7 @@ write('portraits',page('The Portraits','The Portraits',heading('The collection',
 person_slugs=list(dict.fromkeys(p['_person_slug'] for p in portraits))
 for i,person_slug in enumerate(person_slugs):
     person=people[person_slug]
-    artworks=[p for p in portraits if p['_person_slug']==person_slug]
+    artworks=sorted((p for p in portraits if p['_person_slug']==person_slug),key=lambda p:p.get('_artwork_index',0))
     name=str(person.get('name','Untitled'))
     prev=people[person_slugs[(i-1)%len(person_slugs)]]
     nxt=people[person_slugs[(i+1)%len(person_slugs)]]
