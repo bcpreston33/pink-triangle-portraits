@@ -1,6 +1,6 @@
 from pathlib import Path
 from datetime import date, datetime
-from html import escape
+from html import escape, unescape
 from urllib.parse import quote
 import re, shutil, subprocess
 import yaml
@@ -49,19 +49,24 @@ def render_section_images(body, assignments, callouts=None):
     for piece in pieces:
         if not piece.strip(): continue
         heading=re.search(r'<h[23](?:\s[^>]*)?>(.*?)</h[23]>',piece,re.S)
-        key=re.sub(r'\s+',' ',re.sub(r'<[^>]*>','',heading.group(1))).strip().casefold() if heading else ''
+        key=re.sub(r'\s+',' ',unescape(re.sub(r'<[^>]*>','',heading.group(1)))).strip().casefold() if heading else ''
         sections.append((key,piece))
     images_by_heading={}
     for item in assignments or []:
         if not isinstance(item,dict) or not item.get('image'): continue
         key=re.sub(r'\s+',' ',str(item.get('section_heading',''))).strip().casefold()
         if key: images_by_heading.setdefault(key,[]).append(item)
+    # Inline markers take precedence over section-based placement. A marker may
+    # occur in any section, regardless of the optional related-heading field.
     callouts_by_heading={}
+    callouts_by_index={}
     callouts=callouts or []
     for i,item in enumerate(callouts,1):
-        if not isinstance(item,dict):continue
-        key=re.sub(r'\s+',' ',str(item.get('section_heading',''))).strip().casefold()
+        if not isinstance(item,dict): continue
+        callouts_by_index[i]=item
+        key=re.sub(r'\s+',' ',unescape(str(item.get('section_heading','')))).strip().casefold()
         callouts_by_heading.setdefault(key,[]).append((i,item))
+    used_callouts=set()
     result=[]
     for key,section_html in sections:
         assigned=images_by_heading.pop(key,[])
@@ -73,21 +78,31 @@ def render_section_images(body, assignments, callouts=None):
             caption_html=f'<figcaption>{escape(caption)}</figcaption>' if caption else ''
             figures.append(f'<figure class="editorial-figure">{img(item.get("image"),item.get("alt_text") or caption)}{caption_html}</figure>')
         before=[]; after_heading=[]; after=[]; full=[]; side=[]
+        # Resolve all inline markers in this section first, even when the
+        # related heading was entered differently in the CMS.
+        for marker_match in list(re.finditer(r'\[callout-(\d+)\]',section_html,re.I)):
+            i=int(marker_match.group(1))
+            item=callouts_by_index.get(i)
+            if item is None or i in used_callouts: continue
+            block=callout_markup(item)
+            if not block: continue
+            used_callouts.add(i)
+            layout=str(item.get('layout') or 'text')
+            token=marker_match.group(0)
+            if layout=='side': side.append(block)
+            elif layout=='full': full.append(block)
+            else:
+                section_html=section_html.replace(f'<p>{token}</p>',block)
+                section_html=section_html.replace(token,block)
+                continue
+            section_html=section_html.replace(f'<p>{token}</p>','').replace(token,'')
+
         for i,item in callouts_by_heading.pop(key,[]):
+            if i in used_callouts: continue
             block=callout_markup(item)
             if not block:continue
-            marker=f'[callout-{i}]'
+            used_callouts.add(i)
             layout=str(item.get('layout') or 'text')
-            if marker in section_html:
-                if layout=='side':
-                    section_html=section_html.replace(f'<p>{marker}</p>','').replace(marker,'')
-                    side.append(block)
-                elif layout=='full':
-                    section_html=section_html.replace(f'<p>{marker}</p>','').replace(marker,'')
-                    full.append(block)
-                else:
-                    section_html=section_html.replace(f'<p>{marker}</p>',block).replace(marker,block)
-                continue
             position=str(item.get('position') or 'after-heading')
             if layout=='side': side.append(block)
             elif layout=='full': full.append(block)
@@ -104,7 +119,7 @@ def render_section_images(body, assignments, callouts=None):
         before_markup=''.join(f'<div class="ptp-callout-text-column">{c}</div>' for c in before)
         result.append(before_markup+f'<section class="editorial-section{cls}"><div class="editorial-section-copy">{section_html}{"".join(after)}</div>{media}</section>'+''.join(f'<div class="ptp-callout-full">{c}</div>' for c in full))
     # Unmatched section names should not silently discard content.
-    leftovers=[callout_markup(item) for entries in callouts_by_heading.values() for _,item in entries]
+    leftovers=[callout_markup(item) for i,item in callouts_by_index.items() if i not in used_callouts]
     return ''.join(result)+''.join(f'<div class="ptp-callout-text-column">{c}</div>' for c in leftovers if c)
 
 def hex_to_rgba(color, opacity):
