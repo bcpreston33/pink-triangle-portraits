@@ -5,12 +5,12 @@ bio_name_color: "#ed398b"
 bio_name_line_height: 1
 bio_name_letter_spacing: 0
 bio_name_bottom_gap: 8
-bio_dates_font: Merriweather
+bio_dates_font: Anton
 bio_dates_size: 17
 bio_dates_weight: 600
 bio_dates_color: "#082d3b"
 bio_dates_bottom_gap: 8
-bio_details_font: Anton
+bio_details_font: Montserrat
 bio_details_size: 20
 bio_details_weight: 400
 bio_details_color: "#082d3b"
