@@ -7,6 +7,7 @@ artworks:
   dimensions: 30" x 24"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/fredy-hirsch-and-jan-mautner.jpg
 sources: ''
 ---
 Fredy Hirsch, born Feb 11, 1916, was a proudly gay Jewish athlete, gym teacher, and a children’s group leader and their protector in the Theresienstadt concentration camp and then in Auschwitz. After the Nüremberg laws were passed, seeking to get away from persecution of both Jews and queer people, Fredy moved to Czechoslovakia. It was in there in 1936 when he met his partner Jan Mautner, (b. Nov 11, 1912) who was a medical student and later a doctor. They lived together happily for years before they both were sent to Theresienstadt. 

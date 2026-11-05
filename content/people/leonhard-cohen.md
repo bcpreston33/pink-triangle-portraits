@@ -7,6 +7,7 @@ artworks:
   dimensions: 9" x 12"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/leonhard-cohen.jpg
 sources: ''
 ---
 Leonhard Cohen (Possibly Cohn) was born December 9, 1908. I first found Leonhard in the Yad Vashem archives, just a single photo labeled: "21-year-old Leonhard Cohen, had relations with men." This was part of a propaganda album titled "Jewish Criminals" from 1938.

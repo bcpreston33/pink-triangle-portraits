@@ -7,6 +7,7 @@ artworks:
   dimensions: 9" x 12"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/eve-adams.jpg
 sources: Thank you to @pinktrianglelegacies for bringing Eve into my knowledge.
 ---
 Eve Adams was born Chana Zloczewer June 15, 1891. At 20, she came to the US. She sold socialist,

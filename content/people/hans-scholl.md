@@ -7,6 +7,7 @@ artworks:
   dimensions: 9" x 12"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/hans-scholl.jpg
 sources: ''
 ---
 Hans Scholl was born September 22,1918. He was proof that even people that began to fall for fascist beliefs still have a chance to change and resist. Together with his sister Sophie and other friends, he was a founder of The White Rose resistance group in Germany. In 1933 he joined the Hitler youth, despite his father being liberal and against the Nazi regime. Over time he began to see the flaws of the fascists, and had contact with dissident youth groups. A boyfriend who had left the Hiterljugend admitted to their relationship and Hans was arrested, kept in solitary confinement, and interrogated. He admitted his queerness and was put on trial. The judge acquitted Hans based on his good standing in Hiterljugend. This series of events cemented Hans as a resistance member against the Nazis, with his trial for being gay the final nail in the coffin.

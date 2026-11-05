@@ -7,6 +7,7 @@ artworks:
   dimensions: 18" x 24"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/reed-peggram.jpg
 sources: ''
 ---
 When I discovered Reed Peggram, I knew there was something special and unique to his story and its place in my project. For one, there was the physical proximity to me. None of my subjects have ever lived anywhere near me in Mass, usually separated by an ocean. But Reed was born and spent most of his life in Dorchester, just 40 minutes from me. It has also brought me joy to represent a person of color in my project which is made of predominantly white people. Reed has been a breath of fresh air, and I haven’t read a book as fast as I’ve read his biography in many years. 

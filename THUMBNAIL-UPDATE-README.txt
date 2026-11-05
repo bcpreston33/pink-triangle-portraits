@@ -1,0 +1,1 @@
+Gallery thumbnail update: 35 user-supplied thumbnails imported; remaining artworks fall back to original image. Each thumbnail is referenced in its artwork record. Biography typography and editorial navigation are editable in Pages CMS > Biography Pages. Upload files preserving paths. Do not upload high-resolution original artwork.

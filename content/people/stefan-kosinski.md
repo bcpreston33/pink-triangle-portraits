@@ -7,6 +7,7 @@ artworks:
   dimensions: 11" x 14"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/stefan-kosinski.jpg
 - image: /assets/images/portraits/stefan-kosinski-2.jpg
   medium: Oil on Paper
   dimensions: 8.5" x 11"

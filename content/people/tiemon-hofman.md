@@ -7,6 +7,7 @@ artworks:
   dimensions: 9" x 12"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/tiemon-hofman.jpg
 sources: ''
 ---
 Tiemon Hofman, born April 14, 1925 is unique in that he is the only survivor to ever be officially recognized by his government as a persecutee on the grounds of being gay, and paid reparations on that basis (in 1990). This was only because it was the Dutch government, not Germany, which didn’t recognize queer victims until 2002. Growing up, his mother was deeply homophobic and beat him for his sexual orientation.

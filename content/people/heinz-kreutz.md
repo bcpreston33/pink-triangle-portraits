@@ -7,6 +7,7 @@ artworks:
   dimensions: 11" x 14"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/heinz-kreutz.jpg
 sources: ''
 ---
 Heinz Kreutz was born on March 10, 1911 in Hamburg, Germany. Heinz first trained as a printer before pursuing his passion for acting in 1931. From 1933 to 1935, he performed at the Landestheater in Altenburg, later working in Elbing and Rudolstadt.

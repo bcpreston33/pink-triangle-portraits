@@ -7,6 +7,7 @@ artworks:
   dimensions: 9" x 12"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/agnes-spindler.jpg
 sources: ''
 ---
 Agnes Spindler was born on June 17, 1904 in Berlin. She lived her truth, dressing as she wished and living with her partner. Even as a child, Agnes liked to wear boys’ clothing. She knew she was a lesbian by the time she was a teenager, but sadly her first major relationship ended when he girlfriend died.

@@ -251,6 +251,33 @@ def page(title,active,content,desc=''):
       'bio-quote-rule-width':str(setting('biography_quote_rule_width',5))+'px',
       'bio-quote-padding':str(setting('biography_quote_padding',22))+'px',
       'bio-quote-spacing':str(setting('biography_quote_spacing',28))+'px',
+      'bio-name-font':str(setting('bio_name_font','Barlow Condensed')),
+      'bio-name-size':str(setting('bio_name_size',62))+'px',
+      'bio-name-weight':str(setting('bio_name_weight',900)),
+      'bio-name-color':str(setting('bio_name_color','#ed398b')),
+      'bio-name-line-height':str(setting('bio_name_line_height',1)),
+      'bio-name-letter-spacing':str(setting('bio_name_letter_spacing',0))+'px',
+      'bio-name-bottom-gap':str(setting('bio_name_bottom_gap',8))+'px',
+      'bio-dates-font':str(setting('bio_dates_font','DM Sans')),
+      'bio-dates-size':str(setting('bio_dates_size',20))+'px',
+      'bio-dates-weight':str(setting('bio_dates_weight',400)),
+      'bio-dates-color':str(setting('bio_dates_color','#082d3b')),
+      'bio-dates-bottom-gap':str(setting('bio_dates_bottom_gap',8))+'px',
+      'bio-details-font':str(setting('bio_details_font','DM Sans')),
+      'bio-details-size':str(setting('bio_details_size',20))+'px',
+      'bio-details-weight':str(setting('bio_details_weight',400)),
+      'bio-details-color':str(setting('bio_details_color','#082d3b')),
+      'bio-details-separator-gap':str(setting('bio_details_separator_gap',13))+'px',
+      'bio-rule-width':str(setting('bio_rule_width',10))+'px',
+      'bio-rule-top-gap':str(setting('bio_rule_top_gap',22))+'px',
+      'bio-rule-bottom-gap':str(setting('bio_rule_bottom_gap',30))+'px',
+      'bio-nav-font':str(setting('bio_nav_font','DM Sans')),
+      'bio-nav-size':str(setting('bio_nav_size',20))+'px',
+      'bio-nav-label-size':str(setting('bio_nav_label_size',12))+'px',
+      'bio-nav-color':str(setting('bio_nav_color','#082d3b')),
+      'bio-nav-rule-color':str(setting('bio_nav_rule_color','#a4b1b5')),
+      'bio-nav-rule-width':str(setting('bio_nav_rule_width',1))+'px',
+      'bio-nav-padding':str(setting('bio_nav_padding',24))+'px',
       'footer-font':setting('footer_font',setting('body_font','DM Sans')),
       'display-size':str(setting('display_size',112))+'px',
       'display-mobile-size':str(setting('display_mobile_size',62))+'px',
@@ -288,7 +315,7 @@ def page(title,active,content,desc=''):
       'gallery-spacing':str(max(0,min(100,int(setting('gallery_spacing',22) or 22))))+'px'
     }
     fonts=['Barlow Condensed','DM Sans','Caveat','Anton','Archivo Black','Oswald','Bebas Neue','Manrope','Montserrat','Outfit','Work Sans','Libre Baskerville','Playfair Display','Cormorant Garamond','Merriweather','Inter','Source Sans 3','Lato','Nunito Sans','Roboto','Poppins','Roboto Slab','Lora','Space Grotesk','Barlow','Archivo']
-    selected={str(setting(k,default)) for k,default in [('nav_font','Barlow Condensed'),('heading_font','Barlow Condensed'),('body_font','DM Sans'),('display_font','Barlow Condensed'),('section_font','Barlow Condensed'),('label_font','Barlow Condensed'),('art_font','Barlow Condensed'),('research_font','DM Sans'),('biography_quote_font','DM Sans'),('footer_font','DM Sans')]}
+    selected={str(setting(k,default)) for k,default in [('nav_font','Barlow Condensed'),('heading_font','Barlow Condensed'),('body_font','DM Sans'),('display_font','Barlow Condensed'),('section_font','Barlow Condensed'),('label_font','Barlow Condensed'),('art_font','Barlow Condensed'),('research_font','DM Sans'),('biography_quote_font','DM Sans'),('footer_font','DM Sans'),('bio_name_font','Barlow Condensed'),('bio_dates_font','DM Sans'),('bio_details_font','DM Sans'),('bio_nav_font','DM Sans')]}
     families='&'.join('family='+quote(f)+':wght@400;500;600;700;800;900' for f in fonts if f in selected)
     font_link=f'<link rel="stylesheet" href="https://fonts.googleapis.com/css2?{families}&display=swap">' if families else ''
     styles=''.join(cssvar(k,v) for k,v in variables.items())
@@ -357,11 +384,8 @@ featured=next((p for p in portraits if p['_person_slug']==selected_person),None)
 
 def portrait_card(p):
     name=escape(str(p.get('name','Untitled')))
-    position_x=max(0,min(100,float(p.get('gallery_x',50) or 50)))
-    position_y=max(0,min(100,float(p.get('gallery_y',50) or 50)))
-    zoom=max(75,min(150,float(p.get('gallery_zoom',100) or 100)))
-    style=f' style="--thumb-x:{position_x}%;--thumb-y:{position_y}%;--thumb-zoom:{zoom/100}"'
-    return f'<a class="portrait-card" href="{artwork_link(p)}"><span class="portrait-image"{style}>{img(p.get("image"),name)}<span class="portrait-hover-name" aria-hidden="true">{name}</span></span><span class="portrait-name">{name}<span aria-hidden="true"> ↗</span></span></a>'
+    thumb=p.get('gallery_thumbnail') or p.get('image')
+    return f'<a class="portrait-card" href="{artwork_link(p)}"><span class="portrait-image">{img(thumb,name)}<span class="portrait-hover-name" aria-hidden="true">{name}</span></span><span class="portrait-name">{name}<span aria-hidden="true"> ↗</span></span></a>'
 
 gallery_people=list(dict.fromkeys(p['_person_slug'] for p in portraits))
 gallery_art=[min((p for p in portraits if p['_person_slug']==ps),key=lambda p:p.get('_artwork_index',0)) for ps in gallery_people]
@@ -515,7 +539,7 @@ for i,person_slug in enumerate(person_slugs):
         if thanks: research+=f'<div class="research-part"><h2>Special Thanks</h2><div class="rich">{thanks}</div></div>'
         research+='</div></section>'
     left=f'<div class="person-artworks">{main_art}{research}</div>'
-    content=f'''<div class="container portrait-breadcrumb"><a href="/portraits/">← All portraits</a></div><section class="container person-detail">{left}<article class="portrait-bio"><h1>{escape(name)}</h1><p class="years">{escape(str(person.get('years','')))}</p>{artwork_meta}<div class="accent-rule"></div><div class="rich">{bio}</div></article></section><nav class="container prev-next"><a href="/people/{prev['_slug']}/">← {escape(str(prev.get('name','Previous')))}</a><a href="/portraits/">All portraits ▦</a><a href="/people/{nxt['_slug']}/">{escape(str(nxt.get('name','Next')))} →</a></nav>'''
+    content=f'''<div class="container portrait-breadcrumb"><a href="/portraits/">← All portraits</a></div><section class="container person-detail">{left}<article class="portrait-bio"><h1>{escape(name)}</h1><p class="years">{escape(str(person.get('years','')))}</p>{artwork_meta}<div class="accent-rule"></div><div class="rich">{bio}</div></article></section><nav class="container prev-next bio-editorial-nav" aria-label="Browse portraits"><a class="bio-nav-previous" href="/people/{prev['_slug']}/"><span class="bio-nav-label">← Previous portrait</span><span class="bio-nav-name">{escape(str(prev.get('name','Previous')))}</span></a><a class="bio-nav-all" href="/portraits/">All Portraits</a><a class="bio-nav-next" href="/people/{nxt['_slug']}/"><span class="bio-nav-label">Next portrait →</span><span class="bio-nav-name">{escape(str(nxt.get('name','Next')))}</span></a></nav>'''
     write('people/'+person_slug,page(name,'The Portraits',content,desc=person.get('summary','')))
 # old portrait routes redirect to shared person page
 for p in portraits:

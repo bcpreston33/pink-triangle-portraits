@@ -7,6 +7,7 @@ artworks:
   dimensions: 12" x 12"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/robert-olbermann.jpg
 sources: ''
 ---
 Robert Ölbermann was born on April 24, 1896. Along with his twin brother Karl, he co-founded the Nerother Bund, a youth organization based in Köln. Robert was a filmmaker and author whose work focused on fostering a deep connection with nature and compassion for all living creatures.

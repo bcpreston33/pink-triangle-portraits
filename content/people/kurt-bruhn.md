@@ -12,6 +12,7 @@ artworks:
   dimensions: 16" x 20"
   published: true
   display_order: 20
+  gallery_thumbnail: /assets/images/gallery-thumbnails/kurt-bruhn-2.jpg
 sources: ''
 ---
 Kurt Bruhn was born in Königsberg, Bavaria, on December 20, 1913. He worked as a waiter before being arrested and sent to Auschwitz on November 27, 1941. His prisoner number, 23520, was tattooed onto him.

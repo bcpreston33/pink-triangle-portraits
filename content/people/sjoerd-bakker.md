@@ -7,6 +7,7 @@ artworks:
   dimensions: 36" x 48"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/sjoerd-bakker.jpg
 sources: ''
 ---
 Last Pride Month, I painted queer resistance fighters, but didn’t get to everyone. The next one was a Dutch couturier named Sjoerd Bakker. He came from an extraordinary family that waged its own personal war against the Nazi occupation of their homeland. The Bakkers fought back in myriad ways, from an uncle who published illegal newspapers and pamphlets, to helping shelter Jews in hiding, to planning the bombing of the Nazi population registry building. Even more fascinating, 4 of the 9 siblings were queer men who fought against the Nazis. Dirk, Sjoerd, Lammert, and Albert were all queer. Sjoerd helped his younger siblings come to terms with their orientation as they all were close. They all came out in their teens; Lammert was only 12 when he first spoke of it.

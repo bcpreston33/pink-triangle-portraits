@@ -7,6 +7,7 @@ artworks:
   dimensions: 30" x 40"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/willem-arondeus.jpg
 sources: ''
 ---
 There were many, many queer people who actively resisted the Nazis. One very significant individual was Willem Arondéus, a 

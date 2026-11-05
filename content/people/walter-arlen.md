@@ -7,6 +7,7 @@ artworks:
   dimensions: 24" x 36"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/walter-arlen.jpg
 sources: ''
 ---
 Walter Arlen's story is uniquely special. To my knowledge, he is the oldest subject of my portrait project, having lived to 103 years old, only passing away recently. He is also the only known survivor in this series who lived to witness marriage equality, and, in 2013, he married his partner.

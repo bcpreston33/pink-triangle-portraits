@@ -7,6 +7,7 @@ artworks:
   dimensions: 9" x 12"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/gunther-pieka.jpg
 sources: ''
 ---
 Günter Pieka was born in Brice, Slovakia, on January 24, 1920. Günter worked as a mill worker before his life was stolen by the Nazi regime. He was deported to Auschwitz on May 23, 1941 because of being gay. After that, he disappears from the record.

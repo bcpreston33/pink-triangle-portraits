@@ -7,6 +7,7 @@ artworks:
   dimensions: 9" x 12"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/paul-kufel.jpg
 sources: ''
 ---
 In 2023 I embarked on a research trip to the archives of the United States Holocaust Memorial Museum. There, I uncovered the stories of many queer victims—stories I had never heard before, stories that seem to exist nowhere online or in books. One of those stories belongs to Paul Kufel.

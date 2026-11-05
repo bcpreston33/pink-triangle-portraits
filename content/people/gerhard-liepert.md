@@ -7,6 +7,7 @@ artworks:
   dimensions: 9" x 12"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/gerhard-liepert.jpg
 sources: ''
 ---
 Gerhard Liepert was born February 12, 1911 in Berlin. He worked as a tailor. Gerhard’s persecution is especially relevant today, as the current US administration has made it legal to spy on/target individuals and groups due solely to their sexual orientation. The Nazis regularly engaged in surveillance of queer people and groups and kept “pink lists” of queer and suspected queer people. The police worked hand in hand with the Nazis to engage in these vicious hunts of gay people. Gerhard’s struggles began in the same way many other gay men were entrapped, through mail surveillance. He had a gay circle of friends and was writing to one of them (Paul Immendorf in Sweden) about how one of them was being blackmailed. This letter was intercepted by the police.

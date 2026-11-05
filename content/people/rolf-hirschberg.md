@@ -7,6 +7,7 @@ artworks:
   dimensions: 6" x 8"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/rolf-hirschberg.jpg
 sources: ''
 ---
 Rolf Hirschberg

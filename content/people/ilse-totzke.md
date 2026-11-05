@@ -7,6 +7,7 @@ artworks:
   dimensions: 13" x 13"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/ilse-totzke.jpg
 sources: ''
 ---
 Ilse lived in Strasbourg as a child with a family with a passion for the arts. Her dad directed a choir and her mom was an actress. At 19, she started to study music in Würzburg. Due to her friendship with Jewish people, Ilse was reported to the Gestapo as a “spy” by one of her own teachers from the university. She was then investigated, and her landlord said Ilse was someone who never received gentleman visitors and was a man hater. 

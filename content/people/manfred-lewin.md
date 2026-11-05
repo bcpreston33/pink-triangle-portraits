@@ -7,6 +7,7 @@ artworks:
   dimensions: 11" x 14"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/manfred-lewin.jpg
 - image: /assets/images/portraits/manfred-lewin-2.jpg
   medium: Prismacolor Colored Pencils on Paper
   dimensions: 9" x 12"

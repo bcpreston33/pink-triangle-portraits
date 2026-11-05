@@ -7,6 +7,7 @@ artworks:
   dimensions: 9" x 12"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/elsa-conrad.jpg
 sources: ''
 ---
 Elsa Conrad was born on May 9, 1887. Elsa is one of the rare documented cases of someone being arrested and sent to a concentration camp specifically for being a lesbian. Though she was also Jewish, her lesbian identity was repeatedly emphasized in Gestapo records.

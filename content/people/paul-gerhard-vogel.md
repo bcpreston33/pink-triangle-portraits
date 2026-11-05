@@ -7,6 +7,7 @@ artworks:
   dimensions: 16" x 20"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/paul-gerhard-vogel.jpg
 sources: ''
 ---
 Paul Gerhard Vogel was born in Leipzig in 1915. Paul was one of the brave queer people who spoke out openly about his experiences as a persecutee of the Nazis. As a teenager, he refused to serve as a Hitler Youth flag bearer. For that refusal alone, he was imprisoned for five years by the fascist government.

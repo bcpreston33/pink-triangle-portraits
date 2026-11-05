@@ -587,7 +587,22 @@ body>footer{
 .exhibitions-editorial .event-card .rich p{margin-bottom:10px}
 @media(max-width:600px){.exhibitions-editorial .exhibitions-featured-events .event-card{grid-template-columns:1fr}.exhibitions-editorial .exhibitions-current-item .event-card>img{float:none;display:block;margin:10px 0}}
 
-/* CMS-controlled square gallery thumbnails: equal row/column spacing and artwork-specific crop. */
+/* Square gallery thumbnails: use separately cropped files; keep consistent gaps. */
 .portrait-grid,.portrait-grid.searchable{column-gap:var(--gallery-spacing,22px);row-gap:var(--gallery-spacing,22px)}
-.portrait-card .portrait-image img{object-position:var(--thumb-x,50%) var(--thumb-y,50%);transform:scale(var(--thumb-zoom,1));transform-origin:var(--thumb-x,50%) var(--thumb-y,50%)}
-.portrait-card:hover .portrait-image img,.portrait-card:focus-visible .portrait-image img{transform:scale(calc(var(--thumb-zoom,1)*1.04))}
+.portrait-card .portrait-image img{object-fit:cover;object-position:center;transform:none;transform-origin:center}
+.portrait-card:hover .portrait-image img,.portrait-card:focus-visible .portrait-image img{transform:scale(1.04)}
+/* Independent biography header typography and spacing */
+.person-detail .portrait-bio h1{font-family:var(--bio-name-font),'Barlow Condensed',sans-serif;font-size:clamp(34px,6vw,var(--bio-name-size));font-weight:var(--bio-name-weight);color:var(--bio-name-color);line-height:var(--bio-name-line-height);letter-spacing:var(--bio-name-letter-spacing);margin:0 0 var(--bio-name-bottom-gap)}
+.person-detail .portrait-bio .years{font-family:var(--bio-dates-font),'DM Sans',sans-serif;font-size:var(--bio-dates-size);font-weight:var(--bio-dates-weight);color:var(--bio-dates-color);margin:0 0 var(--bio-dates-bottom-gap);line-height:1.4}
+.person-detail .portrait-bio .portrait-artwork-meta .selected-artwork-details{font-family:var(--bio-details-font),'DM Sans',sans-serif;font-size:var(--bio-details-size);font-weight:var(--bio-details-weight);color:var(--bio-details-color);line-height:1.5}
+.person-detail .portrait-bio .artwork-separator{margin:0 var(--bio-details-separator-gap)}
+.person-detail .portrait-bio .accent-rule{height:var(--bio-rule-width);margin:var(--bio-rule-top-gap) 0 var(--bio-rule-bottom-gap)}
+/* Editorial previous / all / next navigation */
+.bio-editorial-nav{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:20px;align-items:center;border-top:var(--bio-nav-rule-width) solid var(--bio-nav-rule-color);border-bottom:var(--bio-nav-rule-width) solid var(--bio-nav-rule-color);padding-top:var(--bio-nav-padding);padding-bottom:var(--bio-nav-padding);font-family:var(--bio-nav-font),'DM Sans',sans-serif;color:var(--bio-nav-color)}
+.bio-editorial-nav a{display:flex;flex-direction:column;gap:7px;min-width:0;text-decoration:none;color:inherit}
+.bio-editorial-nav .bio-nav-label{font-size:var(--bio-nav-label-size);text-transform:uppercase;letter-spacing:.08em;opacity:.72}
+.bio-editorial-nav .bio-nav-name{font-size:var(--bio-nav-size);font-weight:700;line-height:1.25}
+.bio-editorial-nav .bio-nav-all{font-size:var(--bio-nav-label-size);font-weight:700;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;text-align:center}
+.bio-editorial-nav .bio-nav-next{text-align:right;align-items:flex-end}
+.bio-editorial-nav a:hover{text-decoration:underline;text-underline-offset:4px}
+@media(max-width:600px){.bio-editorial-nav{grid-template-columns:1fr 1fr;gap:22px 12px}.bio-editorial-nav .bio-nav-all{grid-column:1/-1;grid-row:2}.bio-editorial-nav .bio-nav-name{font-size:clamp(15px,4vw,var(--bio-nav-size))}}

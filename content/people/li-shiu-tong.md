@@ -7,6 +7,7 @@ artworks:
   dimensions: 36" x 24"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/li-shiu-tong.jpg
 sources: ''
 ---
 Li Shiu Tong was born January 9th, 1907 in Hong Kong. Li bravely stood against homophobia and racism in his life. He studied medicine at university but his life changed when he met Dr. Magnus Hirschfeld. Li met Magnus at a lecture for Chinese feminists and was drawn to hearing someone speak openly about subjects that were then taboo, especially queerness. He dropped out of medical school in order to study sexology with Dr. Hirschfeld. Li served as a student and protege of Magnus while also being an interpreter. While traveling he endured many instances of racism. 

@@ -7,6 +7,7 @@ artworks:
   dimensions: 9" x 12"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/peter-flinsch.jpg
 sources: ''
 ---
 I often find myself wondering, what is my place in all this? Since childhood, I’ve asked: What would have happened to me if I had been born back then? What role would I have played, depending on the time and place of my birth? Recent events in the US has made this even more prescient a thought.

@@ -7,6 +7,7 @@ artworks:
   dimensions: 9" x 12"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/henny-schermann.jpg
 sources: ''
 ---
 Henny Schermann was born February 19, 1912. While gay men were directly targeted by the Nazis, lesbians were deemed “asocial”—undesirable for failing to contribute to the Aryan population. Many were arrested and forced to wear the black triangle.

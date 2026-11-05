@@ -7,6 +7,7 @@ artworks:
   dimensions: 36" x 24"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/magnus-hirschfeld.jpg
 sources: ''
 ---
 Dr. Magnus Hirschfeld was a German physician and researcher who was a trailblazer in studying human sexuality. His work was famous across the world in the late nineteenth and early twentieth centuries. Hirschfeld’s overlapping identities as gay, social democratic, and Jewish shaped his work as a scientific researcher and political advocate for LGBTQ+ rights.

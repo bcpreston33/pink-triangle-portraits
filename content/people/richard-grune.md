@@ -7,6 +7,7 @@ artworks:
   dimensions: 20" x 20"
   published: true
   display_order: 10
+  gallery_thumbnail: /assets/images/gallery-thumbnails/richard-grune.jpg
 sources: ''
 ---
 Richard Grüne, much like me, was born August 2 and was an artist. Drawing from a young age, he later attended the Bauhaus, having teachers such as Paul Klee and Wassily Kandinsky. His family were social democrats, and this upbringing helped him resist the Nazis as an artist. He moved to Berlin so he could live freer as a gay man. 
