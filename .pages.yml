@@ -53,6 +53,21 @@ content:
       label: Gallery position (lower numbers first)
       type: number
       default: 100
+    - name: gallery_x
+      label: Gallery thumbnail | Horizontal position (%)
+      type: number
+      default: 50
+      description: 0 = left, 50 = center, 100 = right. Affects gallery preview only.
+    - name: gallery_y
+      label: Gallery thumbnail | Vertical position (%)
+      type: number
+      default: 50
+      description: 0 = top, 50 = center, 100 = bottom. Affects gallery preview only.
+    - name: gallery_zoom
+      label: Gallery thumbnail | Zoom (%)
+      type: number
+      default: 100
+      description: 100 = normal crop. 75 shows more of the artwork; 150 zooms in. Gallery only.
   - name: body
     label: Biography
     type: rich-text
@@ -341,6 +356,10 @@ content:
   - name: gallery_background
     label: Gallery Background
     type: string
+  - name: gallery_spacing
+    label: Gallery spacing (px, horizontal and vertical)
+    type: number
+    default: 22
   - name: gallery_sort
     label: Gallery Sort
     type: select
