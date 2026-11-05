@@ -1,18 +1,19 @@
 ---
 name: Albrecht Becker
 years: November 14, 1906 - April 22, 2002
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/albrecht-becker-1.jpg
-  medium: Acrylic on Strathmore Paper
-  dimensions: 8.5" x 11"
-  published: true
-  display_order: 10
-- image: /assets/images/portraits/albrecht-becker-2.jpg
-  medium: Oil on Canvas
-  dimensions: 24" x 48"
-  published: true
-  display_order: 20
-sources: ''
+  - image: /assets/images/portraits/albrecht-becker-2.jpg
+    medium: Oil on Canvas
+    dimensions: 24" x 48"
+    published: true
+    display_order: 20
+    gallery_thumbnail: /assets/uploads/Albrecht-Becker-LR.jpg
+  - image: /assets/images/portraits/albrecht-becker-1.jpg
+    medium: Acrylic on Strathmore Paper
+    dimensions: 8.5" x 11"
+    published: true
+    display_order: 10
 ---
 Albrecht Becker was born November 14, 1906. His persecution began when the Gestapo discovered a photo of him in the possession of a gay friend. Brought in for questioning, he responded with defiant courage, declaring: "Everybody knows I’m a homosexual!" Even in the face of unimaginable danger, he refused to deny who he was. For this, he was sentenced to three years in Nürnberg prison.
 
