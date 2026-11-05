@@ -1,0 +1,19 @@
+---
+name: Rolf Hirschberg
+years: March 30, 1902 - January 6, 2002
+artworks:
+- image: /assets/images/portraits/rolf-hirschberg.jpg
+  medium: Watercolor on Watercolor Paper
+  dimensions: 6" x 8"
+  published: true
+  display_order: 10
+sources: ''
+---
+Rolf Hirschberg
+
+  Rolf is one of the brave survivors who testified on camera. He was born onMarch 30, 1902 in Berlin, and gave his testimony at age 94 in 1996. As someone both gay and Jewish, he risked double persecution during the Third Reich. Learned Latin, English, and French in addition to his native German. When he was 16, he had his first boyfriend. Later he began dating a man named Emi Kronerl. Together they traveled all around Europe, enjoying a wonderful life together. Rolf’s mother loved Emil, who came to dinner every Friday night at her house. She considered him as a second son. However, their sister-in-law was homophobic and interestingly suggested they go to see Dr. Magnus Hirschfeld at his Institute. She thought this was a place where you could have your sexual orientation changed, but of course it was the complete opposite; a place where queerness was accepted and trans people could receive gender affirming care. Dr. Hirschfeld sent a letter to her stating they were born queer, they were not sick, no question about it. 
+ Rolf and Emil attended a queer ball at Hirschfeld's institute, which happened on Saturday nights. Emil’s sister-in-law continued in her homophobic views even after getting the letter from Magnus, and she continued to berate Rolf for “what he did to her brother-in-law”. At a dinner at Emil’s home, he was depressed by the anti-queer verbal attacks from his sister-in-law. Emil’s mother was supportive of her queer son and came to his defense. “Is this not enough for you, does it not clear up your mind?” 
+ As a blond haired, blue eyed Jew, Rolf sometimes escaped public harassment. That ended one day in a movie theater. Emil complained about some loud Nazis in the theater. In response, they threatened the couple as “dirty homosexual Jews.” After the movie theater incident, Rolf started receiving threatening anonymous letters and was warned not to sleep at home anymore, so he stayed with a friend. Rolf had a car so they could stay mobile when needed. "That was the end for me," Emil said. "Let's go to America." Rolf said. It was clear they were being hunted. Some of their queer and Jewish friends could see the writing on the wall, and discussed their options. Rolf said “I don't want to give those bastards the possibility to kill me, I'd rather escape."
+ During plans to escape Nazi Germany, Rolf and Emil arrived in Prague. The hotel had them booked in the honeymoon suite, but when the hotel staff realized it was two men, they gave them different rooms. The last step in their escape was coming up with a convincing story for the Nazi passport agents. Their hearts pumping out of their chests, they were interrogated about why they were leaving Germany. The agent believed their story, and as they were still required to perform mandatory military service, they were allowed three months to visit (fictional) elderly German relatives in New York. Rolf and Emil got onto the ship and never looked back. 
+ After registering on Ellis Island, they sent word to Emil’s father that he should escape to America. Due to his status as a business owner, he managed to request his passport to escape. He had to bribe Hermann Göring himself with his life savings of 180,000 Reichsmarks. And due to this, Rolf’s father-in-law escaped to New York City as well. Rolf had gay friends that were not able to escape and were sent to Auschwitz where they were murdered. 45 members of Rolf’s family were murdered by the Nazis.
+ Rolf and Emil lived in their apartment on West 74th Street for the next 60+ years, both working in retail. Emil passed away on February 17, 1988 at the age of 88. Rolf died on January 6, 2002 at the age of 99.
