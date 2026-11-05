@@ -1,8 +1,7 @@
 ---
 title: THE HISTORY
 subtitle: |-
-  The Pink Triangle, 
-  Paragraph 175, 
+  The Pink Triangle, Paragraph 175, 
   and persecution under Nazism.
 callouts:
   - style: statement
