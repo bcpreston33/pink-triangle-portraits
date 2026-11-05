@@ -11,9 +11,10 @@ artworks:
     gallery_x: 50
     gallery_y: 0
     gallery_zoom: 100
-sources: Special thanks to @pinktrianglelegacies for publishing the resources
-  and biographical details that led me to Gerd’s story. Please check out their
-  Instagram and website to learn more.
+special_thanks: Special thanks to
+  [@pinktrianglelegacies](https://www.instagram.com/pinktrianglelegacies/) for
+  publishing the resources and biographical details that led me to Gerd’s story.
+  Please check out their Instagram and website to learn more.
 ---
 Gerd Katter was born on March 14, 1910, in Berlin. As a child, he lived as a boy and, as a teenager, wished to physically transition. Seeking support, he and his mother turned to Dr. Magnus Hirschfeld’s Institute for Sexual Science.
 
