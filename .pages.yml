@@ -53,21 +53,10 @@ content:
       label: Gallery position (lower numbers first)
       type: number
       default: 100
-    - name: gallery_x
-      label: Gallery thumbnail | Horizontal position (%)
-      type: number
-      default: 50
-      description: 0 = left, 50 = center, 100 = right. Affects gallery preview only.
-    - name: gallery_y
-      label: Gallery thumbnail | Vertical position (%)
-      type: number
-      default: 50
-      description: 0 = top, 50 = center, 100 = bottom. Affects gallery preview only.
-    - name: gallery_zoom
-      label: Gallery thumbnail | Zoom (%)
-      type: number
-      default: 100
-      description: 100 = normal crop. 75 shows more of the artwork; 150 zooms in. Gallery only.
+    - name: gallery_thumbnail
+      label: Gallery thumbnail (optional square image)
+      type: image
+      description: Used only in the Portraits gallery. Leave empty to use the artwork image.
   - name: body
     label: Biography
     type: rich-text
@@ -384,6 +373,95 @@ content:
   type: file
   path: content/settings/biography.yml
   fields:
+  - name: bio_name_font
+    label: Person name | Font
+    type: select
+    options:
+      values: *id001
+  - name: bio_name_size
+    label: Person name | Size (px)
+    type: number
+  - name: bio_name_weight
+    label: Person name | Weight
+    type: number
+  - name: bio_name_color
+    label: Person name | Color (hex)
+    type: string
+  - name: bio_name_line_height
+    label: Person name | Line height (e.g. 1.0)
+    type: number
+  - name: bio_name_letter_spacing
+    label: Person name | Letter spacing (px)
+    type: number
+  - name: bio_name_bottom_gap
+    label: Person name | Space below (px)
+    type: number
+  - name: bio_dates_font
+    label: Life dates | Font
+    type: select
+    options:
+      values: *id001
+  - name: bio_dates_size
+    label: Life dates | Size (px)
+    type: number
+  - name: bio_dates_weight
+    label: Life dates | Weight
+    type: number
+  - name: bio_dates_color
+    label: Life dates | Color (hex)
+    type: string
+  - name: bio_dates_bottom_gap
+    label: Life dates | Space below (px)
+    type: number
+  - name: bio_details_font
+    label: Materials and size | Font
+    type: select
+    options:
+      values: *id001
+  - name: bio_details_size
+    label: Materials and size | Size (px)
+    type: number
+  - name: bio_details_weight
+    label: Materials and size | Weight
+    type: number
+  - name: bio_details_color
+    label: Materials and size | Color (hex)
+    type: string
+  - name: bio_details_separator_gap
+    label: Materials and size | Separator spacing (px)
+    type: number
+  - name: bio_rule_width
+    label: Biography divider | Thickness (px)
+    type: number
+  - name: bio_rule_top_gap
+    label: Biography divider | Space above (px)
+    type: number
+  - name: bio_rule_bottom_gap
+    label: Biography divider | Space below (px)
+    type: number
+  - name: bio_nav_font
+    label: Previous / Next navigation | Font
+    type: select
+    options:
+      values: *id001
+  - name: bio_nav_size
+    label: Previous / Next navigation | Name size (px)
+    type: number
+  - name: bio_nav_label_size
+    label: Previous / Next navigation | Label size (px)
+    type: number
+  - name: bio_nav_color
+    label: Previous / Next navigation | Color (hex)
+    type: string
+  - name: bio_nav_rule_color
+    label: Previous / Next navigation | Rule color (hex)
+    type: string
+  - name: bio_nav_rule_width
+    label: Previous / Next navigation | Rule thickness (px)
+    type: number
+  - name: bio_nav_padding
+    label: Previous / Next navigation | Vertical padding (px)
+    type: number
   - name: art_font
     label: Artwork information font
     type: select
