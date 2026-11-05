@@ -1,13 +1,19 @@
 ---
 name: Gerd Katter
 years: March 14, 1910 - 1985
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/gerd-katter.jpg
-  medium: Oil on Canvas
-  dimensions: 10" x 20"
-  published: true
-  display_order: 10
-sources: Special thanks to @pinktrianglelegacies for publishing the resources and biographical details that led me to Gerd’s story. Please check out their Instagram and website to learn more.
+  - image: /assets/images/portraits/gerd-katter.jpg
+    medium: Oil on Canvas
+    dimensions: 10" x 20"
+    published: true
+    display_order: 10
+    gallery_x: 50
+    gallery_y: 0
+    gallery_zoom: 100
+sources: Special thanks to @pinktrianglelegacies for publishing the resources
+  and biographical details that led me to Gerd’s story. Please check out their
+  Instagram and website to learn more.
 ---
 Gerd Katter was born on March 14, 1910, in Berlin. As a child, he lived as a boy and, as a teenager, wished to physically transition. Seeking support, he and his mother turned to Dr. Magnus Hirschfeld’s Institute for Sexual Science.
 
