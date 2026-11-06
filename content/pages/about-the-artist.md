@@ -3,7 +3,7 @@ title: THE ARTIST
 subtitle: Bry Sharland
 supporting_images:
   - section_heading: Meet Bry Sharland
-    image: /assets/uploads/IMG_7198-LR.jpg
+    image: /assets/uploads/Artist-Meet-Bry.jpg
     placement: right
   - section_heading: From sketches and lists
     image: /assets/uploads/Notes.png
