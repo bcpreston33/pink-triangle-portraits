@@ -9,6 +9,8 @@ artworks:
     published: true
     display_order: 10
     gallery_thumbnail: /assets/uploads/Josef-Kahout-LR.jpg
+sources: "***The Men with the Pink Triangle,* 1972 (Die Männer With Dem Rosa
+  Winkel) Heinz Heger**"
 ---
 Without Josef Kohout, much of the history of queer persecution under the Nazis might have been lost or never told. He was the first pink triangle prisoner to publish an account of the horrors faced by queer victims of the Nazi regime.
 
