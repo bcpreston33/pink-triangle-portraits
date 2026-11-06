@@ -638,3 +638,6 @@ body>footer{
 /* Portrait search: hidden cards must override legacy display:block styling. */
 .portrait-grid.searchable > .portrait-card[hidden]{display:none!important}
 #empty-search[hidden]{display:none!important}
+
+/* Auto-fit supporting images: proportional scaling, no cropping. */
+@media(min-width:701px){.editorial-section-media .editorial-figure[data-auto-fit="true"] img{width:100%;height:auto;object-fit:contain}.editorial-section-media .editorial-figure[data-auto-fit="true"]{transition:max-width .12s ease-out}}

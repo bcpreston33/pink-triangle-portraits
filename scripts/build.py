@@ -76,7 +76,7 @@ def render_section_images(body, assignments, callouts=None):
             placement=str(item.get('placement') or 'right') if len(assigned)==1 else 'right'
             caption=str(item.get('caption') or '').strip()
             caption_html=f'<figcaption>{escape(caption)}</figcaption>' if caption else ''
-            figures.append(f'<figure class="editorial-figure">{img(item.get("image"),item.get("alt_text") or caption)}{caption_html}</figure>')
+            figures.append(f'<figure class="editorial-figure" data-auto-fit="{"false" if item.get("auto_fit", True) is False else "true"}" data-max-height="{attr(item.get("max_height") or 0)}">{img(item.get("image"),item.get("alt_text") or caption)}{caption_html}</figure>')
         before=[]; after_heading=[]; after=[]; full=[]; side=[]
         # Resolve all inline markers in this section first, even when the
         # related heading was entered differently in the CMS.

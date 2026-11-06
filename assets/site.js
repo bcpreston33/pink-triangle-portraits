@@ -70,3 +70,41 @@ document.querySelectorAll('.artwork-thumbnails').forEach(group=>{
     }finally{button.disabled=false;}
   });
 })();
+
+// Keep supporting images from stretching editorial sections far beyond their copy.
+// Width is reduced proportionally, never cropped. Per-image CMS toggle opts out.
+(()=>{
+  const sections=[...document.querySelectorAll('.editorial-section')];
+  if(!sections.length)return;
+  let queued=false;
+  function fit(){
+    queued=false;
+    const desktop=window.matchMedia('(min-width:701px)').matches;
+    sections.forEach(section=>{
+      const copy=section.querySelector('.editorial-section-copy');
+      const media=section.querySelector('.editorial-section-media');
+      if(!copy||!media)return;
+      const figures=[...media.querySelectorAll('.editorial-figure[data-auto-fit="true"]')];
+      figures.forEach(f=>{f.style.removeProperty('max-width');f.style.removeProperty('width');});
+      if(!desktop||section.classList.contains('editorial-section--full')||figures.length!==1||media.children.length!==1)return;
+      const figure=figures[0], img=figure.querySelector('img');
+      if(!img||!img.complete||!img.naturalWidth||!img.naturalHeight)return;
+      const caption=figure.querySelector('figcaption');
+      const captionHeight=caption?caption.getBoundingClientRect().height+12:0;
+      const explicit=Number(figure.dataset.maxHeight)||0;
+      const copyHeight=copy.getBoundingClientRect().height;
+      let available=Math.max(100,copyHeight-captionHeight);
+      if(explicit>0)available=Math.min(available,explicit);
+      const mediaWidth=media.getBoundingClientRect().width;
+      const imageHeightAtFullWidth=mediaWidth*img.naturalHeight/img.naturalWidth;
+      if(imageHeightAtFullWidth>available){
+        figure.style.maxWidth=Math.max(1,Math.min(mediaWidth,available*img.naturalWidth/img.naturalHeight))+'px';
+      }
+    });
+  }
+  function schedule(){if(queued)return;queued=true;requestAnimationFrame(fit);}
+  window.addEventListener('resize',schedule,{passive:true});
+  document.querySelectorAll('.editorial-section-media img').forEach(img=>img.addEventListener('load',schedule));
+  if(document.fonts?.ready)document.fonts.ready.then(schedule);
+  schedule();
+})();
