@@ -1,13 +1,14 @@
 ---
 name: Willy Käcker
 years: July 2, 1905 - October 18, 1941
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/willy-kacker.jpg
-  medium: Prismacolor Colored Pencils on Paper
-  dimensions: 9" x 12"
-  published: true
-  display_order: 10
-sources: ''
+  - image: /assets/images/portraits/willy-kacker.jpg
+    medium: Prismacolor Colored Pencils on Paper
+    dimensions: 9" x 12"
+    published: true
+    display_order: 10
+    gallery_thumbnail: /assets/uploads/Willy-Käcker-lr.jpg
 ---
 Willy Hans-Heinrich Käcker was born on July 2, 1905 into a family of craftsmen. After graduating from Wismar Secondary School, he completed a three-year apprenticeship with a grain dealer, Karl Sodemann. In the 1920s, he also learned carpentry from his father, a master carpenter.
 
