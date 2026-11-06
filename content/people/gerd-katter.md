@@ -8,9 +8,7 @@ artworks:
     dimensions: 10" x 20"
     published: true
     display_order: 10
-    gallery_x: 50
-    gallery_y: 0
-    gallery_zoom: 100
+    gallery_thumbnail: /assets/uploads/Gerd-Katter-LR.jpg
 special_thanks: Special thanks to
   [@pinktrianglelegacies](https://www.instagram.com/pinktrianglelegacies/) for
   publishing the resources and biographical details that led me to Gerd’s story.
