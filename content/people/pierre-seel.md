@@ -1,13 +1,14 @@
 ---
 name: Pierre Seel
 years: August 16, 1923 - November 25, 2005
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/pierre-seel.jpg
-  medium: Acrylic on Canvas
-  dimensions: 18" x 24"
-  published: true
-  display_order: 10
-sources: ''
+  - image: /assets/images/portraits/pierre-seel.jpg
+    medium: Acrylic on Canvas
+    dimensions: 18" x 24"
+    published: true
+    display_order: 10
+    gallery_thumbnail: /assets/uploads/Pierre-Seel-LR.jpg
 ---
 Pierre Seel was born in the Alsace region of France on August 16, 1923. After the Nazis annexed his home, he was arrested for being gay at only 17 years old.
 
