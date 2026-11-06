@@ -1,8 +1,36 @@
 const toggle=document.querySelector('.menu-toggle');
 const nav=document.querySelector('#main-nav');
 if(toggle&&nav){toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close menu':'Open menu');toggle.textContent=open?'×':'☰';});document.addEventListener('click',e=>{if(!e.target.closest('.site-header')){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='☰';}});}
+// Live portrait filtering. Explicit display control avoids legacy display:block rules.
 const search=document.querySelector('#portrait-search');
-if(search){const cards=[...document.querySelectorAll('.searchable .portrait-card')];const count=document.querySelector('#result-count');const empty=document.querySelector('#empty-search');const update=()=>{const q=search.value.trim().toLocaleLowerCase();let shown=0;cards.forEach(card=>{const match=card.textContent.toLocaleLowerCase().includes(q);card.hidden=!match;if(match)shown++;});count.textContent=shown+' portrait'+(shown===1?'':'s');empty.hidden=shown>0;};search.addEventListener('input',update);update();}
+if(search){
+  const cards=Array.from(document.querySelectorAll('.portrait-grid.searchable .portrait-card'));
+  const count=document.querySelector('#result-count');
+  const empty=document.querySelector('#empty-search');
+  const normalize=value=>(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase().trim();
+  const names=[...new Set(cards.map(card=>card.querySelector('.portrait-name')?.textContent.replace('↗','').trim()||'').filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+  const suggestions=document.createElement('datalist');
+  suggestions.id='portrait-name-suggestions';
+  names.forEach(name=>{const option=document.createElement('option');option.value=name;suggestions.appendChild(option);});
+  search.after(suggestions);
+  search.setAttribute('list',suggestions.id);
+  const update=()=>{
+    const query=normalize(search.value);
+    let shown=0;
+    cards.forEach(card=>{
+      const name=card.querySelector('.portrait-name')?.textContent||card.textContent;
+      const matches=normalize(name).includes(query);
+      card.hidden=!matches;
+      if(matches){card.style.removeProperty('display');shown++;}
+      else{card.style.setProperty('display','none','important');}
+    });
+    if(count)count.textContent=shown+' portrait'+(shown===1?'':'s');
+    if(empty)empty.hidden=shown!==0;
+  };
+  search.addEventListener('input',update);
+  search.addEventListener('change',update);
+  update();
+}
 const copy=document.querySelector('.copy-link');if(copy){copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(location.href);copy.textContent='Link copied';}catch(e){copy.textContent='Copy from address bar';}});}
 
 // Keep artwork information alongside the biography, synchronized with thumbnails.
