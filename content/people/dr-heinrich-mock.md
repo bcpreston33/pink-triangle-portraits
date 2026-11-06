@@ -1,13 +1,14 @@
 ---
 name: Dr. Heinrich Mock
 years: August 31, 1904 - September 26, 1984
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/dr-heinrich-mock.jpg
-  medium: Acrylic on Canvas
-  dimensions: 16" x 20"
-  published: true
-  display_order: 10
-sources: ''
+  - image: /assets/images/portraits/dr-heinrich-mock.jpg
+    medium: Acrylic on Canvas
+    dimensions: 16" x 20"
+    published: true
+    display_order: 10
+    gallery_thumbnail: /assets/uploads/Heinrich-Mock-LR.jpg
 ---
 Dr. Heinrich Mock was born on August 31, 1904, in Altenburg. An economist and art historian, he earned his doctorate and became the director of the Lindenau Museum, a role that made him a respected figure in the art world. Under his leadership, the museum became a gathering place for queer men, offering a rare refuge even after the Nazis dissolved official LGBTQ+ organizations.
 
