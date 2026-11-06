@@ -8,6 +8,7 @@ artworks:
     dimensions: 16" x 20"
     published: true
     display_order: 10
+    gallery_thumbnail: /assets/uploads/Wilhelm-Kuhlen-LR.jpg
 sources: |-
   ***We remember August Zgorzelski, Willi Kühlen and his brother Otto Kühlen.***  
   **[https://www.stolpersteine-homosexuelle.de/wilhelm-kuehlen](https://www.stolpersteine-homosexuelle.de/wilhelm-kuehlen)**
