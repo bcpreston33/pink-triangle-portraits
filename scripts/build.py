@@ -453,19 +453,19 @@ for route in ['the-project','the-history','about-the-artist','contact','shop']:
         def contact_show(key): return data.get(key, True) is not False
         def contact_box(kind, title, body, extra=''):
             return f'<aside class="ptp-contact-{kind}" aria-label="{attr(title)}"><h2>{escape(title)}</h2><div class="rich">{render_md(body)}</div>{extra}</aside>'
-        cards=[]
+        contact_cards=[]
         if contact_show('contact_research_visible'):
-            cards.append(contact_box('research',data.get('contact_research_heading') or 'Looking for Historical Sources?',data.get('contact_research_text') or 'Bry may be able to help with research.', '<a class="text-link" href="#ptp-contact-title">Ask about research →</a>'))
+            contact_cards.append(contact_box('research',data.get('contact_research_heading') or 'Looking for Historical Sources?',data.get('contact_research_text') or 'Bry may be able to help with research.', '<a class="text-link" href="#ptp-contact-title">Ask about research →</a>'))
         if contact_show('contact_social_visible'):
             socials=''.join(f'<a href="{attr(setting(k+"_url"))}" target="_blank" rel="noopener noreferrer">{escape(k.title())}</a>' for k in ('instagram','bluesky','tiktok') if setting(k+'_url'))
-            cards.append(contact_box('social',data.get('contact_social_heading') or 'Follow the Project',data.get('contact_social_text') or '',f'<div class="ptp-social-links">{socials}</div>'))
-        if data.get('contact_card_order') == 'social_first': cards.reverse()
+            contact_cards.append(contact_box('social',data.get('contact_social_heading') or 'Follow the Project',data.get('contact_social_text') or '',f'<div class="ptp-social-links">{socials}</div>'))
+        if data.get('contact_card_order') == 'social_first': contact_cards.reverse()
         intro=render_md(data.get('contact_intro') or 'For exhibition inquiries, collaborations, support, or questions about the project, please use the form below.')
         form_title=escape(str(data.get('contact_form_heading') or 'Get in Touch'))
         form_html='<form id="ptp-contact-form" class="ptp-contact-form" action="https://formspree.io/f/mbggejvn" method="POST" accept-charset="UTF-8"><div class="ptp-contact-fields"><label for="ptp-name">Name <span aria-hidden="true">*</span></label><input id="ptp-name" name="name" type="text" autocomplete="name" required maxlength="150"><label for="ptp-email">Email <span aria-hidden="true">*</span></label><input id="ptp-email" name="email" type="email" autocomplete="email" required maxlength="254"><label for="ptp-subject">Subject <span aria-hidden="true">*</span></label><input id="ptp-subject" name="subject" type="text" required maxlength="200"><label for="ptp-message">Message <span aria-hidden="true">*</span></label><textarea id="ptp-message" name="message" rows="7" required maxlength="10000"></textarea></div><div class="ptp-contact-honeypot" aria-hidden="true"><label for="ptp-website">Leave this field empty</label><input id="ptp-website" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div><button class="button ptp-contact-submit" type="submit">Send message</button><p id="ptp-contact-status" class="ptp-contact-status" role="status" aria-live="polite"></p><noscript><p>JavaScript is disabled. You can still submit this form; Formspree will handle the response.</p></noscript></form>'
         form_html=form_html.replace('Send message</button>',escape(str(data.get('contact_button_text') or 'Send message'))+'</button>')
         left=f'<div class="ptp-contact-main"><div class="ptp-contact-intro"><h2 id="ptp-contact-title">{form_title}</h2><div class="rich">{intro}</div></div>{form_html if contact_show("contact_form_visible") else ""}</div>'
-        right=f'<div class="ptp-contact-sidebar">{"".join(cards)}</div>' if cards else ''
+        right=f'<div class="ptp-contact-sidebar">{"".join(contact_cards)}</div>' if contact_cards else ''
         content += f'<section class="container ptp-contact-layout" style="--contact-side-width:{max(20,min(50,int(data.get("contact_sidebar_width") or 35)))}%">{left}{right}</section>'
     write(route,page(title,title,content))
 
