@@ -1,13 +1,14 @@
 ---
 name: Herbert Fiß
 years: September 17, 1901 - July 14, 1942
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/herbert-fiss.jpg
-  medium: Watercolor and Prismacolor Colored Pencils
-  dimensions: 9" x 12"
-  published: true
-  display_order: 10
-sources: ''
+  - image: /assets/images/portraits/herbert-fiss.jpg
+    medium: Watercolor and Prismacolor Colored Pencils
+    dimensions: 9" x 12"
+    published: true
+    display_order: 10
+    gallery_thumbnail: /assets/uploads/Herbert-Fiss-lr.jpg
 ---
 Herbert Fiß was born in Berlin on September 17, 1901, to Max and Anna Fiß. As an adult, he worked as a medical assistant. On May 14, 1935, Herbert was arrested for his first violation of Paragraph 175, the law criminalizing homosexuality in Nazi Germany.
 
