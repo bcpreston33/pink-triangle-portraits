@@ -16,7 +16,7 @@ bio_details_weight: 400
 bio_details_color: "#082d3b"
 bio_details_separator_gap: 13
 bio_rule_width: 2
-bio_rule_top_gap: 15
+bio_rule_top_gap: 20
 bio_rule_bottom_gap: 20
 bio_nav_font: DM Sans
 bio_nav_size: 20
