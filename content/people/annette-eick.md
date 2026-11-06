@@ -1,13 +1,14 @@
 ---
 name: Annette Eick
 years: September 14, 1909 - February 25, 2010
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/annette-eick.jpg
-  medium: Acrylic on Canvas
-  dimensions: 18" x 24"
-  published: true
-  display_order: 10
-sources: ''
+  - image: /assets/images/portraits/annette-eick.jpg
+    medium: Acrylic on Canvas
+    dimensions: 18" x 24"
+    published: true
+    display_order: 10
+    gallery_thumbnail: /assets/uploads/Annette-Eick-LR.jpg
 ---
 As we continue our Pride Month celebration of those who bravely spoke out, today we honor Annette Eick, a Jewish lesbian who escaped Nazi persecution at its height.
 
