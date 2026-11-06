@@ -4,20 +4,20 @@ bio_name_weight: 900
 bio_name_color: "#ed398b"
 bio_name_line_height: 1
 bio_name_letter_spacing: 0
-bio_name_bottom_gap: 8
+bio_name_bottom_gap: 10
 bio_dates_font: Anton
-bio_dates_size: 20
+bio_dates_size: 24
 bio_dates_weight: 600
 bio_dates_color: "#082d3b"
-bio_dates_bottom_gap: 8
+bio_dates_bottom_gap: 10
 bio_details_font: Nunito Sans
-bio_details_size: 17
-bio_details_weight: 400
+bio_details_size: 18
+bio_details_weight: 600
 bio_details_color: "#082d3b"
 bio_details_separator_gap: 13
-bio_rule_width: 10
-bio_rule_top_gap: 22
-bio_rule_bottom_gap: 30
+bio_rule_width: 2
+bio_rule_top_gap: 15
+bio_rule_bottom_gap: 20
 bio_nav_font: DM Sans
 bio_nav_size: 20
 bio_nav_label_size: 12
