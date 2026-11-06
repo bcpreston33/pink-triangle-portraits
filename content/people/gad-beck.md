@@ -1,13 +1,14 @@
 ---
 name: Gad Beck
 years: June 30, 1923 - June 24, 2012
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/gad-beck.jpg
-  medium: Acrylic on Canvas
-  dimensions: 30" x 40"
-  published: true
-  display_order: 10
-sources: ''
+  - image: /assets/images/portraits/gad-beck.jpg
+    medium: Acrylic on Canvas
+    dimensions: 30" x 40"
+    published: true
+    display_order: 10
+    gallery_thumbnail: /assets/uploads/Gad-Beck-LR.jpg
 ---
 Gad Beck has been an inspiration to me since I began this project. His life and story embody extraordinary heroism. When I first started formulating this work, he had only recently passed away, and I deeply wished I had been able to meet or speak with him.
 
