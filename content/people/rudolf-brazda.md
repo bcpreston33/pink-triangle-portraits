@@ -1,18 +1,19 @@
 ---
 name: Rudolf Brazda
 years: June 26, 1913 - August 3, 2011
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/rudolf-brazda-1.jpg
-  medium: Oil on Canvas
-  dimensions: 20" x 24"
-  published: true
-  display_order: 10
-- image: /assets/images/portraits/rudolf-brazda-2.jpg
-  medium: Oil on Canvas
-  dimensions: 9" x 12"
-  published: true
-  display_order: 20
-sources: ''
+  - image: /assets/images/portraits/rudolf-brazda-1.jpg
+    medium: Oil on Canvas
+    dimensions: 20" x 24"
+    published: true
+    display_order: 10
+    gallery_thumbnail: /assets/uploads/Rudolf-Brazda-LR.jpg
+  - image: /assets/images/portraits/rudolf-brazda-2.jpg
+    medium: Oil on Canvas
+    dimensions: 9" x 12"
+    published: true
+    display_order: 20
 ---
 Born June 26, 1913, Rudolf Brazda was twice arrested by the Nazis for his sexuality and survived the unimaginable horrors of the concentration camps. He was likely the last known survivor to have worn the pink triangle, the symbol forced upon gay prisoners in the camps.
 
