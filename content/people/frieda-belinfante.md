@@ -1,13 +1,14 @@
 ---
 name: Frieda Belinfante
 years: May 10, 1904 - March 5, 1995
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/frieda-belinfante.jpg
-  medium: Acrylic on Canvas
-  dimensions: 30" x 40"
-  published: true
-  display_order: 10
-sources: ''
+  - image: /assets/images/portraits/frieda-belinfante.jpg
+    medium: Acrylic on Canvas
+    dimensions: 30" x 40"
+    published: true
+    display_order: 10
+    gallery_thumbnail: /assets/uploads/Frieda-Belinfante-LR.jpg
 ---
 Frieda Belinfante was a heroic lesbian resistance fighter from the Netherlands born on May 10th, 1904. In 1920 she fell in love with composer Henriëtte Bosmans, with whom she spent seven years. Frieda also played cello and was friends with other queer artists.
  By 1940, Frieda was working with Dutch Resistance Group Groep 2000. Her close friend Willem Arondeús and other members of her cell created false identity cards for Dutch Jews to escape arrest and deportation. Frieda was especially talented in the forging of documents and saved countless lives. By 1943 there was concern that the false cards could be cross referenced with the Nazi’s municipal records building. Frieda created the plan to blow up the building and guarantee the safety of thousands of Jews living with the fake IDs. In a team effort that included many queer resistance members, weapons and explosives were stockpiled in the basement of a lesbian bar named Cafe Mandje. Even though she wanted to directly participate, sadly Frieda was not allowed to as she was a woman. Frieda snuck along anyway and watched from a nearby rooftop to keep an eye on her compatriots. The building was destroyed, taking with it 800,000 original ID cards. Though everyone made it home that night, the group was eventually betrayed. 
