@@ -285,9 +285,9 @@ body:has(#main-nav a[href="/portraits/"].active) .interior-inner{
 
 .interior-inner{border-bottom-width:var(--interior-rule-width)!important}
 .interior-hero .interior-inner{border-bottom-width:var(--interior-rule-width)!important}
-.accent-rule,.portrait-bio .accent-rule{height:var(--divider-height)!important}
-.side-panel,.callout,.exhibition-feature .event-card,.research-callout-inner{border-top-width:var(--panel-rule-width)!important}
-.research-callout-inner,.editorial .rich blockquote,.portrait-bio .rich blockquote{border-left-width:var(--research-rule-width)!important}
+.accent-rule{height:var(--divider-height)}
+.side-panel,.exhibition-feature .event-card{border-top-width:var(--panel-rule-width)!important}
+.research-callout-inner{border-left-width:var(--research-rule-width)!important}
 .social-icons,.nav-social,.footer-social{gap:var(--social-icon-gap)!important}
 @media(max-width:450px){.social-icons,.nav-social,.footer-social{gap:var(--social-icon-mobile-gap)!important}}
 .editorial-copy{padding-top:34px;padding-bottom:22px;max-width:960px}
@@ -596,7 +596,7 @@ body>footer{
 .person-detail .portrait-bio .years{font-family:var(--bio-dates-font),'DM Sans',sans-serif;font-size:var(--bio-dates-size);font-weight:var(--bio-dates-weight);color:var(--bio-dates-color);margin:0 0 var(--bio-dates-bottom-gap);line-height:1.4}
 .person-detail .portrait-bio .portrait-artwork-meta .selected-artwork-details{font-family:var(--bio-details-font),'DM Sans',sans-serif;font-size:var(--bio-details-size);font-weight:var(--bio-details-weight);color:var(--bio-details-color);line-height:1.5}
 .person-detail .portrait-bio .artwork-separator{margin:0 var(--bio-details-separator-gap)}
-.person-detail .portrait-bio .accent-rule{height:var(--bio-rule-width);margin:var(--bio-rule-top-gap) 0 var(--bio-rule-bottom-gap)}
+.person-detail .portrait-bio .accent-rule{height:var(--bio-rule-width);margin:var(--bio-rule-top-gap) 0 var(--bio-rule-bottom-gap);background:var(--divider-rule)}
 /* Editorial previous / all / next navigation */
 .bio-editorial-nav{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:20px;align-items:center;border-top:var(--bio-nav-rule-width) solid var(--bio-nav-rule-color);border-bottom:var(--bio-nav-rule-width) solid var(--bio-nav-rule-color);padding-top:var(--bio-nav-padding);padding-bottom:var(--bio-nav-padding);font-family:var(--bio-nav-font),'DM Sans',sans-serif;color:var(--bio-nav-color)}
 .bio-editorial-nav a{display:flex;flex-direction:column;gap:7px;min-width:0;text-decoration:none;color:inherit}
