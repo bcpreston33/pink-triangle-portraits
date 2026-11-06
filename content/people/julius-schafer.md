@@ -12,7 +12,7 @@ artworks:
 special_thanks: "Thanks to the extraordinary research of Davide Napolitano, I
   have a story for someone who I had no information on before. "
 ---
-++**UPDATE! ++**  
+++**UPDATE! ++**
 Julius Matthias Schäfer was born on October 22, 1908 in Düsseldorf, Germany. His mother was a housewife and his father was a butcher. He attended school until the age of 16 and did not perform compulsory military service. He had an older brother who died in the war in 1942. From 1923 to 1933, Julius was a member of the Nerotherbund, a male scouting organization similar to the Boy Scouts. Julius was the leader of the Order of the Pirates and as Head of the Order in the Lower Rhine district.
 
 After 1933, the youth movement was declared illegal, and Julius became one of the members of the Rhineland Youth League, the Rheinischer Jugendbund. During these years, from 1923 to 1935, Julius changed jobs several times and traveled extensively abroad, traveling to Turkey, Africa, Spain, Greece, and Iceland. These trips were organized by the youth association of which he was one of the leader.
@@ -23,7 +23,7 @@ Julius’s arrest is connected to many other arrests within the youth organizati
 
 However, on September 22nd, 1936, he was arrested again (without any evidence!) because the Gestapo believed that Julius might reoffend, that is, continue to have sexual relations with other men. This time, Julius was not kept in prison but was transferred first to the Lichtenburg concentration camp and then to the Sachsenhausen concentration camp (admission: October 19th,1936, prisoner number 1000, Block 8 – release: January 21st, 1937).
 
-The concentration camp experience was terrible. A friend of Julius later said:  
+The concentration camp experience was terrible. A friend of Julius later said:
 ***“Julius had called me asking to meet; I immediately said: what are you waiting for? Come! When I saw Julla, I didn’t recognize him, he was so changed, so different. He didn’t smile anymore. The concentration camp had broken him.”***
 
 In October 1941, Julius was accused of belonging to an illegal German youth movement, but the charges were dropped and he was acquitted. In 1942, he became engaged to a younger woman. In 1944, he became the father of a child.

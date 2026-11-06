@@ -12,6 +12,6 @@ sources: ''
 ---
 Heinz Kreutz was born on March 10, 1911 in Hamburg, Germany. Heinz first trained as a printer before pursuing his passion for acting in 1931. From 1933 to 1935, he performed at the Landestheater in Altenburg, later working in Elbing and Rudolstadt.
 
- Like many gay victims of the Holocaust, his persecution began when another arrested individual, tortured by the Gestapo, revealed his name. He was acquitted in 1936 but was tried again in 1937 and sent to Fuhlsbüttel concentration camp, where he endured nearly two years of imprisonment.
+Like many gay victims of the Holocaust, his persecution began when another arrested individual, tortured by the Gestapo, revealed his name. He was acquitted in 1936 but was tried again in 1937 and sent to Fuhlsbüttel concentration camp, where he endured nearly two years of imprisonment.
 
- His suffering did not end with the defeat of the Third Reich. He was arrested again in 1943 and, after the war, continued to be persecuted under Paragraph 175, which remained in effect. In 1952, he was again targeted, and after this, he disappears from the historical record.
+His suffering did not end with the defeat of the Third Reich. He was arrested again in 1943 and, after the war, continued to be persecuted under Paragraph 175, which remained in effect. In 1952, he was again targeted, and after this, he disappears from the historical record.

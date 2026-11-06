@@ -17,8 +17,8 @@ artworks:
 ---
 Born June 26, 1913, Rudolf Brazda was twice arrested by the Nazis for his sexuality and survived the unimaginable horrors of the concentration camps. He was likely the last known survivor to have worn the pink triangle, the symbol forced upon gay prisoners in the camps.
 
- For decades, he remained silent about his past. But in the late 2000s, following the opening of the Berlin memorial to gay victims of the Nazis, Rudolf bravely began to share his story. He spent the final years of his life educating the world about what he endured, ensuring that history would not forget.
+For decades, he remained silent about his past. But in the late 2000s, following the opening of the Berlin memorial to gay victims of the Nazis, Rudolf bravely began to share his story. He spent the final years of his life educating the world about what he endured, ensuring that history would not forget.
 
- Rudolf passed away at age 98 on August 3, 2011, a witness to some of the darkest and also most hopeful chapters of queer history.
+Rudolf passed away at age 98 on August 3, 2011, a witness to some of the darkest and also most hopeful chapters of queer history.
 
- These two oil paintings honor his resilience, survival, and dedication to truth.
+These two oil paintings honor his resilience, survival, and dedication to truth.

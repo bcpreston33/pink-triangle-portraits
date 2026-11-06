@@ -15,7 +15,7 @@ Without Josef Kohout, much of the history of queer persecution under the Nazis m
 Born on January 24, 1915, Josef’s ordeal began in 1939, when he sent his boyfriend, Fred, a Christmas card. The letter was intercepted. Fred’s father, a high-ranking Nazi, ensured his son escaped punishment, but Josef was not so lucky. He was arrested and sent to multiple concentration camps, enduring unimaginable brutality.
 
 In his memoir, The Men with the Pink Triangle, Josef detailed the horrific and sadistic conditions that gay prisoners faced. Against all odds, he survived until the end of the war. His final diary entry simply read:
- ***“Amerikaner gekommen.” (The Americans have come.)***
+***“Amerikaner gekommen.” (The Americans have come.)***
 
 The following year, Josef met his lifelong partner, Wilhelm Kroepfl, with whom he would share nearly five decades. He bravely sought reparations from the German government, but, like all gay survivors, was denied.
 

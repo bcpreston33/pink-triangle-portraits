@@ -17,8 +17,8 @@ artworks:
 ---
 Heinz "Saddie" Dörmer's appearance in the documentary Paragraph 175 had a profound effect on me. To me, he embodies the broken life of gay victims of the Holocaust, a reminder of both the atrocities committed and the lingering injustice they endured.
 
- He spent ten years in concentration camps and prisons. Many pink triangle prisoners were not freed when the Allies liberated the camps; instead, they were forced to complete their Nazi-imposed sentences in prison after the war.
+He spent ten years in concentration camps and prisons. Many pink triangle prisoners were not freed when the Allies liberated the camps; instead, they were forced to complete their Nazi-imposed sentences in prison after the war.
 
- Despite everything, Heinz bravely spoke out. In 1982, he applied for reparations, but was denied, like so many others. His haunting testimony in Paragraph 175 is a stark reminder of where we have been and where we could return if we do not continue to fight for Queer rights and representation.
+Despite everything, Heinz bravely spoke out. In 1982, he applied for reparations, but was denied, like so many others. His haunting testimony in Paragraph 175 is a stark reminder of where we have been and where we could return if we do not continue to fight for Queer rights and representation.
 
- I have returned to his face many times in my work. It serves as a painful yet necessary reflection of history’s darkest chapters.
+I have returned to his face many times in my work. It serves as a painful yet necessary reflection of history’s darkest chapters.

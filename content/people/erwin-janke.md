@@ -12,4 +12,4 @@ sources: ''
 ---
 Erwin Janke was born July 11, 1911 in Drochow, Germany. He worked as an electrician before being arrested for being gay. On December 19, 1941, he was sent to Auschwitz. Through my research, I traced his imprisonment in two other concentration camps before being sent to Auschwitz: Camp V, Neusustrum, and Hamburg-Fuhlsbüttel concentration camp.
 
- Beyond these fragments, his fate remains unknown.
+Beyond these fragments, his fate remains unknown.

@@ -24,6 +24,6 @@ Eventually the moment came that changed everything. One day, when Gad arrived to
 
 But once free, Manfred made an impossible decision. Though Gad urged him to escape to a safe house and gave him money, Manfred couldn't bear to abandon his four siblings and parents. He returned to the camp.
 
-It’s agonizing to imagine this moment, the voice inside screaming, run away with your boyfriend! But for young Manfred, he had to stay and help his ailing family members. 
+It’s agonizing to imagine this moment, the voice inside screaming, run away with your boyfriend! But for young Manfred, he had to stay and help his ailing family members.
 
 Not long after, at just 19 years old, Manfred and his entire family were gassed to death at Auschwitz.
