@@ -606,3 +606,19 @@ body>footer{
 .bio-editorial-nav .bio-nav-next{text-align:right;align-items:flex-end}
 .bio-editorial-nav a:hover{text-decoration:underline;text-underline-offset:4px}
 @media(max-width:600px){.bio-editorial-nav{grid-template-columns:1fr 1fr;gap:22px 12px}.bio-editorial-nav .bio-nav-all{grid-column:1/-1;grid-row:2}.bio-editorial-nav .bio-nav-name{font-size:clamp(15px,4vw,var(--bio-nav-size))}}
+
+/* Contact page: responsive form */
+.ptp-contact-section{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(30px,6vw,90px);padding-block:20px 100px;align-items:start}
+.ptp-contact-intro h2{margin-top:0;color:var(--pink)}
+.ptp-contact-fields{display:grid;gap:10px}
+.ptp-contact-fields label{font:800 19px var(--heading-font),'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+.ptp-contact-fields input,.ptp-contact-fields textarea{display:block;width:100%;min-width:0;border:1px solid #8ba3ac;border-radius:0;background:#fff;color:var(--ink);padding:13px 14px;font:inherit;font-size:16px;margin-bottom:13px}
+.ptp-contact-fields textarea{resize:vertical;min-height:160px}
+.ptp-contact-fields input:focus-visible,.ptp-contact-fields textarea:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+.ptp-contact-submit{border:0;cursor:pointer;margin-top:7px}
+.ptp-contact-submit:disabled{opacity:.65;cursor:wait}
+.ptp-contact-status{margin:14px 0 0;min-height:1.6em;font-weight:600}
+.ptp-contact-status[data-state="success"]{color:#146c43}
+.ptp-contact-status[data-state="error"]{color:#a12648}
+.ptp-contact-honeypot{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:800px){.ptp-contact-section{grid-template-columns:1fr;gap:24px;padding-bottom:70px}}

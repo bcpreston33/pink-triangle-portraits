@@ -16,3 +16,29 @@ document.querySelectorAll('.artwork-thumbnails').forEach(group=>{
     group.querySelectorAll('.artwork-thumb').forEach(b=>{const selected=b===button;b.classList.toggle('is-selected',selected);b.setAttribute('aria-pressed',String(selected));});
   }));
 });
+
+// Submit the contact form without leaving the site; retain standard POST fallback.
+(function(){
+  const form=document.getElementById('ptp-contact-form');
+  if(!form)return;
+  const status=document.getElementById('ptp-contact-status');
+  const button=form.querySelector('button[type="submit"]');
+  form.addEventListener('submit',async function(event){
+    if(!window.fetch || !window.FormData)return;
+    event.preventDefault();
+    if(!form.reportValidity())return;
+    button.disabled=true;
+    status.dataset.state='';
+    status.textContent='Sending your message…';
+    try{
+      const response=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
+      if(!response.ok)throw new Error('Submission failed');
+      form.reset();
+      status.dataset.state='success';
+      status.textContent='Thank you! Your message has been sent.';
+    }catch(error){
+      status.dataset.state='error';
+      status.textContent='Your message could not be sent. Please try again.';
+    }finally{button.disabled=false;}
+  });
+})();
