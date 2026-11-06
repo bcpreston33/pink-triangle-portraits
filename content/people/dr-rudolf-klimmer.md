@@ -1,13 +1,14 @@
 ---
 name: Dr. Rudolf Klimmer
 years: May 17, 1905 - July 26, 1977
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/dr-rudolf-klimmer.jpg
-  medium: Acrylic on Canvas
-  dimensions: 24" x 36"
-  published: true
-  display_order: 10
-sources: ''
+  - image: /assets/images/portraits/dr-rudolf-klimmer.jpg
+    medium: Acrylic on Canvas
+    dimensions: 24" x 36"
+    published: true
+    display_order: 10
+    gallery_thumbnail: /assets/uploads/Rudolf-Klimmer-LR.jpg
 ---
 Dr. Rudolf Klimmer was born on May 17, 1905 in Dresden. He studied medicine at the University of Leipzig and earned his doctorate in 1930. However, his career was abruptly derailed in 1933 when the Nazis came to power; he was fired from his position as an assistant doctor. He took a job as a ship’s doctor on the Hamburg America Line before eventually returning to Germany.
 
