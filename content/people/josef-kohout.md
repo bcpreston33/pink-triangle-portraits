@@ -9,6 +9,11 @@ artworks:
     published: true
     display_order: 10
     gallery_thumbnail: /assets/uploads/Josef-Kahout-LR.jpg
+  - image: /assets/uploads/Josef-Kahout-2-LR.jpg
+    medium: Acrylic on Canvas
+    dimensions: 11" x 14"
+    published: true
+    display_order: 100
 sources: "***The Men with the Pink Triangle,* 1972 (Die Männer With Dem Rosa
   Winkel) Heinz Heger**"
 ---
