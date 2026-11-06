@@ -1,18 +1,19 @@
 ---
 name: Heinz “Saddie” Dörmer
 years: January 8, 1912 - September 28, 1998
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/heinz-saddie-dormer-1.jpg
-  medium: Watercolor and Prismacolor Colored Pencils on Watercolor Paper
-  dimensions: 9" x 12"
-  published: true
-  display_order: 10
-- image: /assets/images/portraits/heinz-saddie-dormer-2.jpg
-  medium: Prismacolor Colored Pencils on Strathmore Paper
-  dimensions: 12" x 9"
-  published: true
-  display_order: 20
-sources: ''
+  - image: /assets/images/portraits/heinz-saddie-dormer-2.jpg
+    medium: Prismacolor Colored Pencils on Strathmore Paper
+    dimensions: 12" x 9"
+    published: true
+    display_order: 20
+    gallery_thumbnail: /assets/uploads/Heinz-Dormer2.jpg
+  - image: /assets/images/portraits/heinz-saddie-dormer-1.jpg
+    medium: Watercolor and Prismacolor Colored Pencils on Watercolor Paper
+    dimensions: 9" x 12"
+    published: true
+    display_order: 10
 ---
 Heinz "Saddie" Dörmer's appearance in the documentary Paragraph 175 had a profound effect on me. To me, he embodies the broken life of gay victims of the Holocaust, a reminder of both the atrocities committed and the lingering injustice they endured.
 
