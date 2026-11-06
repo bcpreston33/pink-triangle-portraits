@@ -4,6 +4,8 @@ subtitle: Bry Sharland
 supporting_images:
   - section_heading: Meet Bry Sharland
     image: /assets/uploads/Artist-Meet-Bry.jpg
+    caption: Some self portraits of Bry through the years
+    alt_text: Some self portraits of Bry through the years
     placement: right
   - section_heading: From sketches and lists
     image: /assets/uploads/Notes.png
