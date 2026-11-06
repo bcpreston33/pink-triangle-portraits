@@ -2,6 +2,11 @@
 title: CONTACT
 subtitle: Connect with the project.
 contact_form_heading: Get in Touch
+contact_form_visible: true
+contact_research_visible: true
+contact_social_visible: true
+contact_card_order: research_first
+contact_sidebar_width: 35
 contact_intro: Whether you are interested in exhibiting the portraits, supporting the project, collaborating, or simply learning more, we would love to hear from you.
 contact_research_heading: Looking for Historical Sources?
 contact_research_text: >-

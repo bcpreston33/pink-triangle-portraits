@@ -634,3 +634,28 @@ body>footer{
 .ptp-social-links a:hover,.ptp-social-links a:focus-visible{background:var(--ink);color:white}
 .ptp-contact-section{padding-top:36px}
 @media(max-width:800px){.ptp-contact-extras{grid-template-columns:1fr;padding-block:38px 20px}.ptp-contact-section{padding-top:25px}}
+
+/* Contact: CMS-controlled left form and right sidebar */
+.ptp-contact-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(230px,var(--contact-side-width));gap:clamp(24px,4vw,65px);align-items:start;padding-block:55px 100px}
+.ptp-contact-main,.ptp-contact-sidebar{min-width:0}
+.ptp-contact-sidebar{display:grid;gap:24px}
+.ptp-contact-layout .ptp-contact-research,.ptp-contact-layout .ptp-contact-social{padding:clamp(20px,2.5vw,34px)}
+.ptp-contact-layout .ptp-contact-sidebar h2{margin:0 0 16px;font-size:clamp(25px,2.5vw,36px)}
+.ptp-contact-layout .ptp-contact-intro{margin-bottom:26px}
+.ptp-contact-layout .ptp-social-links{gap:8px}
+@media(max-width:800px){.ptp-contact-layout{grid-template-columns:1fr;padding-block:35px 70px}.ptp-contact-sidebar{margin-top:8px}}
+/* Standalone, mobile-first QR landing page; URL /qr/ must stay stable */
+.qr-landing{background:var(--qr-bg);margin:0;color:#082d3b}
+.qr-wrap{max-width:480px;margin:0 auto;padding:clamp(28px,7vw,55px) 22px 50px;text-align:center}
+.qr-logo-link{display:block;margin:0 auto 28px;max-width:310px;text-decoration:none;color:#082d3b}
+.qr-logo-link img{display:block;max-height:160px;width:100%;object-fit:contain}
+.qr-wordmark{font:900 44px/1 'Barlow Condensed',sans-serif}
+.qr-wrap h1{font:900 clamp(35px,9vw,53px)/1.05 'Barlow Condensed',sans-serif;text-transform:uppercase;margin:0 0 14px;color:#082d3b}
+.qr-wrap>p{font-size:16px;line-height:1.6;margin:0 auto 30px;max-width:360px}
+.qr-social-list{display:grid;gap:14px}
+.qr-social-button{display:flex;align-items:center;gap:14px;padding:17px 20px;min-height:70px;border-radius:9px;background:linear-gradient(160deg,#f25c8a,var(--qr-accent) 55%,#951080);color:#fff;text-decoration:none;text-align:left;font-weight:800;font-size:19px}
+.qr-social-button img{width:32px;height:32px;object-fit:contain}
+.qr-arrow{margin-left:auto}
+.qr-social-button:hover{filter:brightness(.94)}
+.qr-gallery-button{display:block;border:2px solid var(--qr-accent);color:#082d3b;padding:16px;margin-top:24px;text-decoration:none;font-weight:800;border-radius:8px}
+.qr-home{display:inline-block;margin-top:26px;color:#082d3b;font-size:14px}

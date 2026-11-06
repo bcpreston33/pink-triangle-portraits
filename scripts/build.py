@@ -450,17 +450,37 @@ for route in ['the-project','the-history','about-the-artist','contact','shop']:
     content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''),data.get('hero_mobile_image',''))+(f'<div class="container editorial-with-images rich">{body}</div>' if body.strip() else '')
 
     if route == 'contact':
-        # Dedicated contact sections replace the legacy markdown content,
-        # preventing stray <hr> rules from old page copy.
-        research_heading=escape(str(data.get('contact_research_heading') or 'Looking for Historical Sources?'))
-        research_text=render_md(data.get('contact_research_text') or 'Bry may be able to help locate historical sources and research materials. Please reach out using the form below.')
-        social_heading=escape(str(data.get('contact_social_heading') or 'Follow the Project'))
-        social_text=render_md(data.get('contact_social_text') or 'Stay connected for new artwork, historical stories, exhibitions, and project updates.')
-        content += f'''<section class="container ptp-contact-extras"><aside class="ptp-contact-research" aria-labelledby="ptp-research-heading"><h2 id="ptp-research-heading">{research_heading}</h2><div class="rich">{research_text}</div><a href="#ptp-contact-title" class="text-link">Ask about research →</a></aside><aside class="ptp-contact-social" aria-labelledby="ptp-social-heading"><h2 id="ptp-social-heading">{social_heading}</h2><div class="rich">{social_text}</div><div class="ptp-social-links"><a href="https://www.instagram.com/pinktriangleportraits/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://bsky.app/profile/pinktriangleart.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a><a href="https://www.tiktok.com/@pinktriangleportraits" target="_blank" rel="noopener noreferrer">TikTok</a></div></aside></section>'''
+        def contact_show(key): return data.get(key, True) is not False
+        def contact_box(kind, title, body, extra=''):
+            return f'<aside class="ptp-contact-{kind}" aria-label="{attr(title)}"><h2>{escape(title)}</h2><div class="rich">{render_md(body)}</div>{extra}</aside>'
+        cards=[]
+        if contact_show('contact_research_visible'):
+            cards.append(contact_box('research',data.get('contact_research_heading') or 'Looking for Historical Sources?',data.get('contact_research_text') or 'Bry may be able to help with research.', '<a class="text-link" href="#ptp-contact-title">Ask about research →</a>'))
+        if contact_show('contact_social_visible'):
+            socials=''.join(f'<a href="{attr(setting(k+"_url"))}" target="_blank" rel="noopener noreferrer">{escape(k.title())}</a>' for k in ('instagram','bluesky','tiktok') if setting(k+'_url'))
+            cards.append(contact_box('social',data.get('contact_social_heading') or 'Follow the Project',data.get('contact_social_text') or '',f'<div class="ptp-social-links">{socials}</div>'))
+        if data.get('contact_card_order') == 'social_first': cards.reverse()
         intro=render_md(data.get('contact_intro') or 'For exhibition inquiries, collaborations, support, or questions about the project, please use the form below.')
-        form_title=escape(str(data.get('contact_form_heading') or 'Send a message'))
-        content += f'''<section class="container ptp-contact-section" aria-labelledby="ptp-contact-title"><div class="ptp-contact-intro"><h2 id="ptp-contact-title">{form_title}</h2><div class="rich">{intro}</div></div><form id="ptp-contact-form" class="ptp-contact-form" action="https://formspree.io/f/mbggejvn" method="POST" accept-charset="UTF-8"><div class="ptp-contact-fields"><label for="ptp-name">Name <span aria-hidden="true">*</span></label><input id="ptp-name" name="name" type="text" autocomplete="name" required maxlength="150"><label for="ptp-email">Email <span aria-hidden="true">*</span></label><input id="ptp-email" name="email" type="email" autocomplete="email" required maxlength="254"><label for="ptp-subject">Subject <span aria-hidden="true">*</span></label><input id="ptp-subject" name="subject" type="text" required maxlength="200"><label for="ptp-message">Message <span aria-hidden="true">*</span></label><textarea id="ptp-message" name="message" rows="7" required maxlength="10000"></textarea></div><div class="ptp-contact-honeypot" aria-hidden="true"><label for="ptp-website">Leave this field empty</label><input id="ptp-website" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div><button class="button ptp-contact-submit" type="submit">Send message</button><p id="ptp-contact-status" class="ptp-contact-status" role="status" aria-live="polite"></p><noscript><p>JavaScript is disabled. You can still submit this form; Formspree will handle the response.</p></noscript></form></section>'''
+        form_title=escape(str(data.get('contact_form_heading') or 'Get in Touch'))
+        form_html='<form id="ptp-contact-form" class="ptp-contact-form" action="https://formspree.io/f/mbggejvn" method="POST" accept-charset="UTF-8"><div class="ptp-contact-fields"><label for="ptp-name">Name <span aria-hidden="true">*</span></label><input id="ptp-name" name="name" type="text" autocomplete="name" required maxlength="150"><label for="ptp-email">Email <span aria-hidden="true">*</span></label><input id="ptp-email" name="email" type="email" autocomplete="email" required maxlength="254"><label for="ptp-subject">Subject <span aria-hidden="true">*</span></label><input id="ptp-subject" name="subject" type="text" required maxlength="200"><label for="ptp-message">Message <span aria-hidden="true">*</span></label><textarea id="ptp-message" name="message" rows="7" required maxlength="10000"></textarea></div><div class="ptp-contact-honeypot" aria-hidden="true"><label for="ptp-website">Leave this field empty</label><input id="ptp-website" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div><button class="button ptp-contact-submit" type="submit">Send message</button><p id="ptp-contact-status" class="ptp-contact-status" role="status" aria-live="polite"></p><noscript><p>JavaScript is disabled. You can still submit this form; Formspree will handle the response.</p></noscript></form>'
+        form_html=form_html.replace('Send message</button>',escape(str(data.get('contact_button_text') or 'Send message'))+'</button>')
+        left=f'<div class="ptp-contact-main"><div class="ptp-contact-intro"><h2 id="ptp-contact-title">{form_title}</h2><div class="rich">{intro}</div></div>{form_html if contact_show("contact_form_visible") else ""}</div>'
+        right=f'<div class="ptp-contact-sidebar">{"".join(cards)}</div>' if cards else ''
+        content += f'<section class="container ptp-contact-layout" style="--contact-side-width:{max(20,min(50,int(data.get("contact_sidebar_width") or 35)))}%">{left}{right}</section>'
     write(route,page(title,title,content))
+
+# Permanent QR destination used on printed materials. Never redirect or remove this route.
+qr_file=ROOT/'content/pages/qr.md'
+qr_data=load(qr_file) if qr_file.exists() else {}
+qr_links=[]
+for key,label in [('instagram','Instagram'),('bluesky','Bluesky'),('tiktok','TikTok')]:
+    if qr_data.get('show_'+key,True) and setting(key+'_url'):
+        qr_links.append(f'<a class="qr-social-button" href="{attr(setting(key+"_url"))}" target="_blank" rel="noopener noreferrer"><img src="/assets/images/social-{key}-white.png" alt="" aria-hidden="true"><span>{escape(str(qr_data.get(key+"_label") or label))}</span><span class="qr-arrow" aria-hidden="true">↗</span></a>')
+qr_gallery='<a class="qr-gallery-button" href="/portraits/">'+escape(str(qr_data.get('gallery_label') or 'Explore the Portrait Gallery'))+'</a>' if qr_data.get('show_gallery',True) else ''
+qr_logo=qr_data.get('logo_image') or setting('logo_image','')
+qr_logo_html=img(qr_logo,'Pink Triangle Portraits logo') if qr_logo else '<div class="qr-wordmark">PINK TRIANGLE<br>PORTRAITS</div>'
+qr_html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="index,follow"><title>Follow Pink Triangle Portraits</title><link rel="stylesheet" href="/assets/site.css"><style>:root{{--qr-accent:{attr(qr_data.get('accent_color') or '#ed398b')};--qr-bg:{attr(qr_data.get('background_color') or '#ffffff')};}}</style></head><body class="qr-landing"><main class="qr-wrap"><a href="/" class="qr-logo-link" aria-label="Visit Pink Triangle Portraits">{qr_logo_html}</a><h1>{escape(str(qr_data.get('heading') or 'Follow the Project'))}</h1><p>{escape(str(qr_data.get('intro') or 'Discover new portraits, stories, exhibitions, and project updates.'))}</p><div class="qr-social-list">{''.join(qr_links)}</div>{qr_gallery}<a class="qr-home" href="/">Visit Pink Triangle Portraits</a></main></body></html>"""
+write('qr',qr_html)
 
 # Exhibitions uses the same CMS-managed header as every other interior page.
 # Split the existing editable rich-text page content by year headings. 2027+
