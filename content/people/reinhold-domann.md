@@ -1,13 +1,14 @@
 ---
 name: Reinhold Domann
 years: September 15, 1902 - September 11, 1942
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/reinhold-domann.jpg
-  medium: Oil on Canvas
-  dimensions: 9" x 12"
-  published: true
-  display_order: 10
-sources: ''
+  - image: /assets/images/portraits/reinhold-domann.jpg
+    medium: Oil on Canvas
+    dimensions: 9" x 12"
+    published: true
+    display_order: 10
+    gallery_thumbnail: /assets/uploads/Reinhold-Domann-LR.jpg
 ---
 Reinhold Domann was born on September 15, 1902, in Ströbitz. Reinhold was a roofer by trade. In 1935, he was imprisoned in Lichtenberg Concentration Camp for being gay, a sentence that marked the beginning of years of suffering. Over time, he was transferred to at least three other camps: Sachsenhausen, Flossenbürg, and finally, Dachau.
 
