@@ -1,13 +1,17 @@
 ---
 name: Fritz Kitzing
 years: December 28, 1905 - 1987
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/fritz-kitzing.jpg
-  medium: Oil on Canvas
-  dimensions: 11" x 14"
-  published: true
-  display_order: 10
-sources: Special thanks to @pinktrianglelegacies for providing additional information on Fritz. Please check out their Instagram and website to learn more about their incredible work.
+  - image: /assets/images/portraits/fritz-kitzing.jpg
+    medium: Oil on Canvas
+    dimensions: 11" x 14"
+    published: true
+    display_order: 10
+    gallery_thumbnail: /assets/uploads/Fritz-Kitzing-LR.jpg
+sources: Special thanks to @pinktrianglelegacies for providing additional
+  information on Fritz. Please check out their Instagram and website to learn
+  more about their incredible work.
 ---
 Born on December 28, 1905, Fritz Kitzing was a bookkeeper who moved to Berlin in their twenties. As someone who wore both men’s and women’s clothing, they faced frequent harassment from both society and the police. Unlike most of the world around them, Fritz’s family was accepting.
 
