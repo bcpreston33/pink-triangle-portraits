@@ -488,33 +488,6 @@ body>footer{
   line-height:var(--page-tagline-line-height,1.15)!important;
 }
 
-/* V3.18: fixed-width desktop header artwork. Above 1200px anchor to the
-   right with #eeeeee extending left; below 1200px anchor to the left and
-   clip the right side rather than scaling artwork into the text. */
-@media (min-width:701px){
-  .interior-hero--image .interior-header-media{
-    width:1200px!important;
-    max-width:none!important;
-    left:auto!important;
-    right:0!important;
-  }
-  .interior-hero--image .interior-header-media picture,
-  .interior-hero--image .interior-header-media img{
-    width:1200px!important;
-    max-width:none!important;
-  }
-  .interior-hero--image .interior-header-media img{
-    object-fit:cover!important;
-    object-position:left center!important;
-  }
-}
-@media (min-width:701px) and (max-width:1200px){
-  .interior-hero--image .interior-header-media{
-    left:0!important;
-    right:auto!important;
-  }
-}
-
 /* Section callouts, controlled by Pages CMS. */
 .ptp-callout{box-sizing:border-box;margin:var(--ptp-callout-spacing,26px) 0;padding:16px 20px;max-width:100%;overflow-wrap:anywhere}
 .ptp-callout p{margin:0 0 12px!important}.ptp-callout p:last-child{margin-bottom:0!important}
@@ -674,18 +647,22 @@ body>footer{
     font-size:var(--display-mobile-size)!important;
   }
 }
-/* 1100px desktop header artwork: original-size crop, no upscaling. */
-@media(min-width:701px){
-  .interior-hero--image .interior-header-media,
+/* Desktop header artwork: fixed 1100px, always anchored to the right.
+   Narrower viewports crop the left edge; mobile retains its own layout. */
+@media (min-width:701px){
+  .interior-hero--image .interior-header-media{
+    width:1100px!important;
+    max-width:none!important;
+    left:auto!important;
+    right:0!important;
+  }
   .interior-hero--image .interior-header-media picture,
   .interior-hero--image .interior-header-media img{
     width:1100px!important;
     max-width:none!important;
   }
-}
-@media(min-width:701px) and (max-width:1100px){
-  .interior-hero--image .interior-header-media{
-    left:0!important;
-    right:auto!important;
+  .interior-hero--image .interior-header-media img{
+    object-fit:cover!important;
+    object-position:left center!important;
   }
 }
