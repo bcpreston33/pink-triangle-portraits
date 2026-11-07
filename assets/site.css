@@ -660,3 +660,32 @@ body>footer{
 #main-nav a.active,#main-nav a[aria-current="page"]{color:var(--pink)!important;border-bottom-color:var(--pink)!important}
 #main-nav a:hover{color:var(--pink)!important}
 @media(max-width:1050px){#main-nav a.active,#main-nav a[aria-current="page"]{border-left:4px solid var(--pink);border-bottom-color:transparent!important;padding-left:14px}}
+
+
+/* V3.19: Same page-heading typography with or without a header image.
+   The image controls the backdrop, never the text scale. */
+.interior-hero .interior-heading-copy h1,
+.interior-hero--image .interior-heading-copy h1{
+  font-size:clamp(46px,8vw,var(--display-size))!important;
+}
+@media(max-width:700px){
+  .interior-hero .interior-heading-copy h1,
+  .interior-hero--image .interior-heading-copy h1{
+    font-size:var(--display-mobile-size)!important;
+  }
+}
+/* 1100px desktop header artwork: original-size crop, no upscaling. */
+@media(min-width:701px){
+  .interior-hero--image .interior-header-media,
+  .interior-hero--image .interior-header-media picture,
+  .interior-hero--image .interior-header-media img{
+    width:1100px!important;
+    max-width:none!important;
+  }
+}
+@media(min-width:701px) and (max-width:1100px){
+  .interior-hero--image .interior-header-media{
+    left:0!important;
+    right:auto!important;
+  }
+}
