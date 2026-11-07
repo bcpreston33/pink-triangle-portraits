@@ -647,8 +647,8 @@ body>footer{
     font-size:var(--display-mobile-size)!important;
   }
 }
-/* Desktop header artwork: fixed 1100px, always anchored to the right.
-   Narrower viewports crop the left edge; mobile retains its own layout. */
+/* Desktop artwork is 1100px: right-aligned above 1100px, left-aligned
+   below 1100px so the right side crops until the mobile breakpoint. */
 @media (min-width:701px){
   .interior-hero--image .interior-header-media{
     width:1100px!important;
@@ -664,5 +664,14 @@ body>footer{
   .interior-hero--image .interior-header-media img{
     object-fit:cover!important;
     object-position:left center!important;
+  }
+}
+
+/* At the image's natural width, switch anchors without scaling the image.
+   Desktop >1100: right edge anchored. 701-1100: left edge anchored. */
+@media (min-width:701px) and (max-width:1100px){
+  .interior-hero--image .interior-header-media{
+    left:0!important;
+    right:auto!important;
   }
 }
