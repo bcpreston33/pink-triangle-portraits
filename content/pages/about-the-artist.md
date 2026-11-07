@@ -13,12 +13,14 @@ supporting_images:
     alt_text: High school yearbook GSA photo from 2001
     placement: right
   - section_heading: From “Fading” to QueerJoy and Resistance
-    image: /assets/uploads/Artist-From-Fading.jpg
+    image: /assets/uploads/Artist-From-Fading-1.jpg
     caption: Albrecht Becker's transformation
     alt_text: Albrecht Becker's transformation
     placement: right
   - section_heading: From Sketches and Lists
-    image: /assets/uploads/Notes.png
+    image: /assets/uploads/Artist-Sketches-Lists.jpg
+    caption: My original notebook where I would write down names I found and do
+      small studies and sketches
     placement: right
 ---
 ### Meet Bry Sharland
