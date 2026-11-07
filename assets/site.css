@@ -655,3 +655,8 @@ body>footer{
 .editorial-with-images.rich blockquote p,.editorial-copy.rich blockquote p,.exhibitions-editorial.rich blockquote p,.ptp-contact-layout .rich blockquote p{margin:0 0 .65em}
 .editorial-with-images.rich blockquote p:last-child,.editorial-copy.rich blockquote p:last-child,.exhibitions-editorial.rich blockquote p:last-child,.ptp-contact-layout .rich blockquote p:last-child{margin-bottom:0}
 @media(max-width:700px){.editorial-with-images.rich blockquote,.editorial-copy.rich blockquote,.exhibitions-editorial.rich blockquote,.ptp-contact-layout .rich blockquote{padding-left:16px;margin:22px 0}}
+
+/* Active navigation state, desktop and mobile */
+#main-nav a.active,#main-nav a[aria-current="page"]{color:var(--pink)!important;border-bottom-color:var(--pink)!important}
+#main-nav a:hover{color:var(--pink)!important}
+@media(max-width:1050px){#main-nav a.active,#main-nav a[aria-current="page"]{border-left:4px solid var(--pink);border-bottom-color:transparent!important;padding-left:14px}}

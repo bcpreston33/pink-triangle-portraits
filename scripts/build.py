@@ -65,6 +65,9 @@ def render_section_images(body, assignments, callouts=None):
         if not isinstance(item,dict): continue
         callouts_by_index[i]=item
         key=re.sub(r'\s+',' ',unescape(str(item.get('section_heading','')))).strip().casefold()
+        # No heading supplied: attach to the final editorial section.
+        # Explicit inline markers continue to take precedence.
+        if not key and sections: key=sections[-1][0]
         callouts_by_heading.setdefault(key,[]).append((i,item))
     used_callouts=set()
     result=[]
@@ -202,7 +205,7 @@ def social_links():
 
 def page(title,active,content,desc=''):
     nav=list(design.get('navigation') or [{'label':a,'url':u} for a,u in [('Home','/'),('The Project','/the-project/'),('The Artist','/about-the-artist/'),('The History','/the-history/'),('The Portraits','/portraits/'),('Exhibitions','/exhibitions/'),('Shop','/shop/'),('Contact','/contact/')]])
-    links=''.join(f'<a href="{attr(n.get("url","/"))}" class="{"active" if active==n.get("label") else ""}">{escape(str(n.get("label","")))}</a>' for n in nav if n.get('label'))
+    links=''.join(f'<a href="{attr(n.get("url","/"))}" class="{"active" if str(active).strip().casefold()==str(n.get("label","")).strip().casefold() else ""}" aria-current="{"page" if str(active).strip().casefold()==str(n.get("label","")).strip().casefold() else "false"}">{escape(str(n.get("label","")))}</a>' for n in nav if n.get('label'))
     social=social_links()
     navsocial=f'<div class="social-icons nav-social">{social}</div>' if setting('social_nav_enabled',True) and social else ''
     footsocial=f'<div class="social-icons footer-social">{social}</div>' if setting('social_footer_enabled',True) and social else ''
