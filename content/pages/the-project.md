@@ -38,7 +38,7 @@ The project began with Bry’s interest in the Nazi persecution of queer people,
 
 One fact in particular continued to drive his interest in the subject: the persecution of queer people did not simply end with the fall of the Third Reich. Nazi-era laws and attitudes continued to affect queer people long after the war ended, and most victims did not receive recognition or justice.
 
-Pink Triangle Portraits grew from that history into a larger goal: ***to create a portrait of every photographed queer person who experienced the Nazi regime.***
+> Pink Triangle Portraits grew from that history into a larger goal: ***to create a portrait of every photographed queer person who experienced the Nazi regime.***
 
 The portraits are based on surviving historical photographs and are accompanied by researched information about the individual depicted. By focusing on individual people rather than statistics alone, the project seeks to encourage viewers to stop, look, and contemplate the lives of those who came before them.
 
