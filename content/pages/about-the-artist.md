@@ -7,12 +7,17 @@ supporting_images:
     caption: Some self portraits of Bry through the years
     alt_text: Some self portraits of Bry through the years
     placement: right
-  - section_heading: Where it began
+  - section_heading: Where it Began
     image: /assets/uploads/Artist-Where-Began.jpg
     caption: High school yearbook GSA photo from 2001
     alt_text: High school yearbook GSA photo from 2001
     placement: right
-  - section_heading: From sketches and lists
+  - section_heading: From “Fading” to QueerJoy and Resistance
+    image: /assets/uploads/Artist-From-Fading.jpg
+    caption: Albrecht Becker's transformation
+    alt_text: Albrecht Becker's transformation
+    placement: right
+  - section_heading: From Sketches and Lists
     image: /assets/uploads/Notes.png
     placement: right
 ---
@@ -26,7 +31,7 @@ Bry is the creator of the Pink Triangle Portraits Project, an ongoing quest to c
 
 Through these portraits, Bry hopes to bring attention to people whose stories have received too little recognition and encourage viewers to consider both the history of LGBTQ+ persecution and the continuing vulnerability of LGBTQ+ rights around the world.
 
-### Where it began
+### Where it Began
 
 In sophomore year of high school, we were learning about WWII and the holocaust. Our textbook and teacher only spoke about Jewish victims. I had been learning about queer victims online and asked if I could teach about it.
 
@@ -34,11 +39,11 @@ Graciously, my teacher let me and I taught about what I had learned to the class
 
 I also made posters that highlighted lesser known victim groups such as disabled people, Jehovah’s Witnesses, and the Roma and Sinti people. In college I took German to help start my research.
 
-### From sketches and lists
+### From Sketches and Lists
 
 The project began as sketches and lists. Every time I found a new pink triangle prisoner I would write down their name and information on the sheet to the right. The more people I found, the more I learned about the history behind it all, and parallels to queer peoples’ treatment in other time periods and places. I had started with just the 6 survivors interviewed in the film Paragraph 175; now I have files and photos of over 600 queer individuals.
 
-### From “Fading” to queer joy and resistance
+### From “Fading” to QueerJoy and Resistance
 
 Early on for me, I focused on just the survivors who spoke out. This mainly portrayed the people as they were pictured in camp photos/outfits, or as is from police mugshots. I wanted to portray the fading of memory of this time in history and the toll it took on survivors.
 
