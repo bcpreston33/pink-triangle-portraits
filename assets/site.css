@@ -641,3 +641,17 @@ body>footer{
 
 /* Auto-fit supporting images: proportional scaling, no cropping. */
 @media(min-width:701px){.editorial-section-media .editorial-figure[data-auto-fit="true"] img{width:100%;height:auto;object-fit:contain}.editorial-section-media .editorial-figure[data-auto-fit="true"]{transition:max-width .12s ease-out}}
+
+/* Contact repair: current build.py markup; width remains controlled by Pages CMS. */
+.ptp-contact-layout{display:grid;grid-template-columns:minmax(0,calc(100% - var(--contact-side-width,35%) - 36px)) minmax(0,var(--contact-side-width,35%));gap:36px;align-items:start;padding-block:36px 100px}
+.ptp-contact-main,.ptp-contact-sidebar{min-width:0}
+.ptp-contact-sidebar{display:flex;flex-direction:column;gap:24px}
+.ptp-contact-sidebar h2{margin:0 0 16px;font-size:clamp(28px,3vw,42px)}
+.ptp-contact-sidebar .rich p:last-child{margin-bottom:0}
+@media(max-width:800px){.ptp-contact-layout{grid-template-columns:minmax(0,1fr);gap:28px;padding-block:25px 70px}}
+
+/* Body-copy inset/blockquote styling; biography quotation settings remain separate. */
+.editorial-with-images.rich blockquote,.editorial-copy.rich blockquote,.exhibitions-editorial.rich blockquote,.ptp-contact-layout .rich blockquote{border:0;border-left:4px solid var(--pink);border-image:none;padding:4px 0 4px 22px;margin:26px 0 30px;background:transparent;font-size:1.08em;font-style:normal;font-weight:500;line-height:1.65}
+.editorial-with-images.rich blockquote p,.editorial-copy.rich blockquote p,.exhibitions-editorial.rich blockquote p,.ptp-contact-layout .rich blockquote p{margin:0 0 .65em}
+.editorial-with-images.rich blockquote p:last-child,.editorial-copy.rich blockquote p:last-child,.exhibitions-editorial.rich blockquote p:last-child,.ptp-contact-layout .rich blockquote p:last-child{margin-bottom:0}
+@media(max-width:700px){.editorial-with-images.rich blockquote,.editorial-copy.rich blockquote,.exhibitions-editorial.rich blockquote,.ptp-contact-layout .rich blockquote{padding-left:16px;margin:22px 0}}
