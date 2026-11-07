@@ -21,6 +21,8 @@ supporting_images:
     image: /assets/uploads/Artist-Sketches-Lists.jpg
     caption: My original notebook where I would write down names I found and do
       small studies and sketches
+    alt_text: My original notebook where I would write down names I found and do
+      small studies and sketches
     placement: right
 ---
 ### Meet Bry Sharland
