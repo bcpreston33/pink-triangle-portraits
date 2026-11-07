@@ -27,7 +27,7 @@ callouts:
 
       My husband **Brian**, and our dog **Luna**, for everything.
     position: after-section
-    layout: text
+    layout: side
     alignment: left
 ---
 ### Introduction
