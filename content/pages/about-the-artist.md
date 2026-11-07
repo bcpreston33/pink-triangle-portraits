@@ -18,7 +18,7 @@ supporting_images:
     alt_text: Albrecht Becker's transformation
     placement: right
   - section_heading: From Sketches and Lists
-    image: /assets/uploads/Artist-Sketches-Lists.jpg
+    image: /assets/uploads/Artist-Sketches-Lists-1.jpg
     caption: My original notebook where I would write down names I found and do
       small studies and sketches
     alt_text: My original notebook where I would write down names I found and do
