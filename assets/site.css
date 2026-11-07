@@ -675,3 +675,8 @@ body>footer{
     right:auto!important;
   }
 }
+
+/* Portrait gallery introduction: align with the site editorial column. */
+.portraits-intro.editorial-copy{width:min(960px,calc(100% - 100px));max-width:960px;margin-inline:auto;padding-top:34px;padding-bottom:22px}
+@media(max-width:1050px){.portraits-intro.editorial-copy{width:calc(100% - 64px)}}
+@media(max-width:700px){.portraits-intro.editorial-copy{width:calc(100% - 40px)}}
