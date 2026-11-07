@@ -7,6 +7,11 @@ supporting_images:
     caption: Some self portraits of Bry through the years
     alt_text: Some self portraits of Bry through the years
     placement: right
+  - section_heading: Where it began
+    image: /assets/uploads/Artist-Where-Began.jpg
+    caption: High school yearbook GSA photo from 2001
+    alt_text: High school yearbook GSA photo from 2001
+    placement: right
   - section_heading: From sketches and lists
     image: /assets/uploads/Notes.png
     placement: right
