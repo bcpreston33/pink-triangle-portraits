@@ -3,7 +3,7 @@ title: THE PROJECT
 subtitle: |-
   Giving color and dignity to those 
   who had it stripped away.
-hero_image: /assets/uploads/PTP-Page-Headers-Project-5.jpg
+hero_image: /assets/uploads/PTP-Page-Headers-Project-7.jpg
 callouts:
   - style: highlight
     heading: Special Thanks!
