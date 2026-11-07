@@ -59,4 +59,4 @@ No more camp uniforms, ever! I began to show my subjects as real, in color, quee
 
 ## Beyond Pink Triangle Portraits
 
-[Explore Bry’s other artwork](https://brysharland.com/).
+[Explore Bry’s other artwork](https://brysharland.com/)
