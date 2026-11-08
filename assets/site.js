@@ -139,7 +139,10 @@ events.forEach(item=>{const y=Number(item.dataset.year);if(item.dataset.end>=day
 old.forEach(item=>{const y=Number(item.dataset.year);add(y===yr?cur:archive,y,item)});
 function groups(map){return [...map.keys()].sort((a,b)=>b-a).map(y=>{const section=document.createElement('section');section.className='exhibition-year-list';const h=document.createElement('h3');h.textContent=y;section.append(h,...map.get(y));return section})}
 function draw(target,items){target.querySelector('.exhibition-group-items').replaceChildren(...items);target.hidden=!items.length}
-draw(upcoming,up.sort((a,b)=>a.dataset.start.localeCompare(b.dataset.start)));draw(current,groups(cur));draw(past,groups(archive));}
+draw(upcoming,up.sort((a,b)=>a.dataset.start.localeCompare(b.dataset.start)));draw(current,groups(cur));draw(past,groups(archive));
+const featuredList=document.getElementById('exhibitions-featured-list'),featuredEmpty=document.getElementById('exhibitions-featured-empty');
+if(featuredList){const featured=events.filter(item=>item.dataset.featured==='true'&&item.dataset.end>=day).sort((a,b)=>(Number(a.dataset.order)||10)-(Number(b.dataset.order)||10)||a.dataset.start.localeCompare(b.dataset.start));featuredList.replaceChildren(...featured.map(item=>{const clone=item.cloneNode(true);clone.removeAttribute('data-featured');clone.classList.add('is-featured');return clone}));if(featuredEmpty)featuredEmpty.hidden=featured.length>0;}
+}
 render();document.addEventListener('visibilitychange',()=>{if(!document.hidden)render()});window.addEventListener('focus',render);setInterval(render,60000);
 })();
 

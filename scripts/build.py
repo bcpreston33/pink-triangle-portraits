@@ -428,9 +428,9 @@ if next_event:
     ev=next_event
     event_text=f'<span class="section-label">Upcoming exhibition or talk</span><h2>{escape(str(ev.get("title","")))}</h2><p>{escape(ev["_date"])} · {escape(str(ev.get("location","")))}</p>'
 else:
-    event_text='<span class="section-label">Exhibitions & talks</span><h2>See the work in person</h2><p>Explore exhibitions, artist talks, and events featuring Pink Triangle Portraits.</p>'
+    event_text=f'<span class="section-label">{escape(str(setting("event_band_eyebrow","Exhibitions & talks")))}</span><h2>{escape(str(setting("event_band_heading","See the work in person")))}</h2><p>{escape(str(setting("event_band_description","Explore exhibitions, artist talks, and events featuring Pink Triangle Portraits.")))}</p>'
 exhibition_home_image=setting('exhibitions_home_image','') or (next_event or {}).get('image','')
-event_markup=f'<div class="event-band-copy">{event_text}<a class="button" href="/exhibitions/">Exhibitions →</a></div>'
+event_markup=f'<div class="event-band-copy">{event_text}<a class="button" href="/exhibitions/">{escape(str(setting("event_band_button_label","Exhibitions")))} →</a></div>'
 if exhibition_home_image: event_markup+=f'<div class="event-band-visual">{img(exhibition_home_image,"Exhibitions and talks")}</div>'
 
 hero_desktop=setting('hero_banner_desktop','') or setting('hero_banner','')
@@ -533,12 +533,13 @@ def press_card(item):
         if fallback:
             image_html=image_html.replace(' loading="lazy">',f' data-fallback-src="{attr(fallback)}" loading="lazy">')
         picture=f'<div class="press-card-visual">{image_html}</div>' 
+    if item.get('hide_image') is True: picture=''
     return (f'<article class="press-card">'
             +f'<div class="press-card-copy"><p class="press-meta">{publication}{" · " if publication and day else ""}{day}</p>'
             +f'<h3>{title}</h3><div class="rich">{summary}</div>{link}</div>'
             +picture+'</article>')
 press_project=('''<section id="press-media" class="container project-press"><div class="section-head"><div><span class="section-label">In the press</span><h2>Press &amp; Media</h2></div></div><div class="press-list">'''+''.join(map(press_card,press))+'''</div></section>''') if press else ''
-press_home=('''<section class="container home-press"><div class="section-head"><div><span class="section-label">Recognition &amp; coverage</span><h2>In the Press</h2></div><a class="text-link" href="/the-project/#press-media">All press &amp; media →</a></div><div class="press-list">'''+''.join(map(press_card,press[:3]))+'''</div></section>''') if press else ''
+press_home=('''<section class="container home-press"><div class="section-head"><div><span class="section-label">Recognition &amp; coverage</span><h2>{escape(str(setting("home_press_heading","In the Press")))}</h2></div><a class="text-link" href="/the-project/#press-media">{escape(str(setting("home_press_link_label","All press & media")))} →</a></div><div class="press-list">'''+''.join(map(press_card,press[:3]))+'''</div></section>''') if press else ''
 
 # Homepage spotlight selection is evaluated in the visitor's browser, so dates expire
 # without a scheduled rebuild. CMS entries are the single source of truth.
@@ -564,18 +565,18 @@ for e in events:
     if e.get('homepage_feature',True) is False: continue
     start=e['_date'][:10]; end=e['_end'][:10]
     if not start or not end: continue
-    spotlights.append(spotlight_card('exhibition',e.get('title','Exhibition'),e.get('location',''),e.get('link') or '/exhibitions/',e.get('image',''), 'Exhibitions & Events',start,end,'Event details'))
+    spotlights.append(spotlight_card('exhibition',e.get('title','Exhibition'),e.get('location',''),e.get('link') or '/exhibitions/',e.get('image',''), 'Exhibitions & Events',start,end,str(home_option('spotlight_event_link_label','Event details'))))
 for item in press:
     if item.get('homepage_feature',True) is False: continue
     pub=str(item.get('publication') or 'In the press')
     url=str(item.get('url') or '')
     logo=item.get('logo') or item.get('image') or press_images.get(url,('',''))[0]
-    spotlights.append(spotlight_card('press',item.get('title','Press feature'),item.get('summary',''),url or '/the-project/#press-media',logo,pub,item['_date'],item.get('homepage_until') or '', 'Read feature',f'data-days="{attr(item.get("homepage_days") or "")}"'))
+    spotlights.append(spotlight_card('press',item.get('title','Press feature'),item.get('summary',''),url or '/the-project/#press-media',logo,pub,item['_date'],item.get('homepage_until') or '', str(home_option('spotlight_press_link_label','Read feature')),f'data-days="{attr(item.get("homepage_days") or "")}"'))
 if featured:
-    spotlights.append(spotlight_card('portrait',featured.get('name','Latest portrait'),teaser,artwork_link(featured),featured.get('image',''),'The latest portrait','','','Read their story'))
+    spotlights.append(spotlight_card('portrait',featured.get('name','Latest portrait'),teaser,artwork_link(featured),featured.get('image',''),'The latest portrait','','',str(home_option('spotlight_portrait_link_label','Read their story'))))
 else:
     spotlights.append(spotlight_card('portrait','The portraits','Explore the stories behind the artwork.','/portraits/','','The latest portrait'))
-spotlights.append(spotlight_card('project','Portraits to remember. Stories to keep alive.','Pink Triangle Portraits is an ongoing art and research project by Bry Sharland, honoring queer people persecuted by the Nazi regime.','/the-project/','','The project','','','Learn about the project'))
+spotlights.append(spotlight_card('project',home_option('spotlight_project_heading','Portraits to remember. Stories to keep alive.'),home_option('spotlight_project_description','Pink Triangle Portraits is an ongoing art and research project by Bry Sharland, honoring queer people persecuted by the Nazi regime.'),'/the-project/','','The project','','',home_option('spotlight_project_link_label','Learn about the project')))
 spotlight_markup=''.join(spotlights)
 spotlight_config=(f'data-event-lead="{attr(home_option("spotlight_exhibition_lead_days",60))}" '
                   f'data-press-days="{attr(home_option("spotlight_press_days",90))}" '
@@ -617,7 +618,7 @@ spotlight_script=r"""<script>
 })();
 </script>"""
 
-home=f'''<section class="home-hero" style="min-height:{attr(setting('hero_height',500))}px;--hero-darkness:{hero_overlay};{hero_style}"><div class="home-portrait-strip">{hero_picture}</div><div class="home-hero-overlay"><div class="container"><span class="hero-eyebrow">{hero_eyebrow}</span><h1>{hero_heading}</h1><p>{hero_tagline}</p>{hero_actions}</div></div></section><section class="home-intro home-spotlights container"{section_style("intro")}><div class="spotlight-grid" data-spotlights {spotlight_config}>{spotlight_markup}</div></section>{spotlight_script}<section class="event-band"><div class="container event-grid">{event_markup}</div></section><section class="container gallery-preview"{section_style("gallery")}><div class="section-head"><div><span class="section-label">Explore the portraits</span><h2>Every person has a story.</h2></div><a class="text-link" href="/portraits/">Browse all portraits →</a></div><div class="portrait-grid">{''.join(portrait_card(p) for p in [next(a for a in newest if a['_person_slug']==ps) for ps in dict.fromkeys(a['_person_slug'] for a in newest)][:5])}</div></section>{press_home}'''
+home=f'''<section class="home-hero" style="min-height:{attr(setting('hero_height',500))}px;--hero-darkness:{hero_overlay};{hero_style}"><div class="home-portrait-strip">{hero_picture}</div><div class="home-hero-overlay"><div class="container"><span class="hero-eyebrow">{hero_eyebrow}</span><h1>{hero_heading}</h1><p>{hero_tagline}</p>{hero_actions}</div></div></section><section class="home-intro home-spotlights container"{section_style("intro")}><div class="spotlight-grid" data-spotlights {spotlight_config}>{spotlight_markup}</div></section>{spotlight_script}<section class="event-band"><div class="container event-grid">{event_markup}</div></section><section class="container gallery-preview"{section_style("gallery")}><div class="section-head"><div><span class="section-label">{escape(str(home_option("gallery_preview_eyebrow","Explore the portraits")))}</span><h2>{escape(str(home_option("gallery_preview_heading","Every person has a story.")))}</h2></div><a class="text-link" href="/portraits/">{escape(str(home_option("gallery_preview_link_label","Browse all portraits")))} →</a></div><div class="portrait-grid">{''.join(portrait_card(p) for p in [next(a for a in newest if a['_person_slug']==ps) for ps in dict.fromkeys(a['_person_slug'] for a in newest)][:5])}</div></section>{press_home}'''
 write('',page('Home','Home',home))
 
 for route in ['the-project','the-history','about-the-artist','contact','shop']:
@@ -719,17 +720,25 @@ for e in events:
     start=e['_date']; end=max(e['_end'],start)
     photo=img(e.get('image'),e.get('title',''),'event-cover') if e.get('image') else ''
     body=(f'<span class="section-label">{escape(start)}'+(f' – {escape(end)}' if end!=start else '')+'</span>'
-         +f'<h3>{escape(str(e.get("title","")))}</h3><p>{escape(str(e.get("location","")))}</p>'
+         +f'<h3>{escape(str(e.get("title","")))}</h3>'
+         +''.join(f'<p class="event-detail"><strong>{label}:</strong> {escape(str(e.get(field)))}</p>' for field,label in [('venue','Venue'),('address','Address'),('reception','Opening reception'),('hours','Gallery hours')] if e.get(field))
+         +(f'<p>{escape(str(e.get("location","")))}</p>' if e.get('location') else '')
          +f'<div class="rich">{render_md(e.get("body"))}</div>'
          +(f'<p><a class="text-link" href="{attr(e["link"])}">Event details ↗</a></p>' if e.get('link') else ''))
-    event_items.append(f'<article class="exhibition-entry" data-start="{attr(start)}" data-end="{attr(end)}" data-year="{attr(start[:4])}"><div class="exhibition-entry-copy">{body}</div><div class="exhibition-entry-image">{photo}</div></article>')
+    event_items.append(f'<article class="exhibition-entry" data-start="{attr(start)}" data-end="{attr(end)}" data-year="{attr(start[:4])}" data-featured="{str(e.get('featured',False)).lower()}" data-order="{attr(e.get('featured_order',10))}"><div class="exhibition-entry-copy">{body}</div><div class="exhibition-entry-image">{photo}</div></article>')
 legacy_html=''.join(f'<section class="exhibition-legacy-year" data-year="{y}"><div>{body}</div></section>' for y,body in legacy)
+featured_enabled=exhibitions_data.get('exhibitions_featured_enabled',True) is not False
+featured_heading=escape(str(exhibitions_data.get('exhibitions_featured_heading') or 'Featured & Upcoming'))
+featured_empty=escape(str(exhibitions_data.get('exhibitions_featured_empty') or 'New exhibitions will be announced here.'))
 exhibition_content=(f'<div class="container exhibitions-editorial rich exhibitions-redesign">'
     +(f'<div class="exhibitions-intro">{intro_html}</div>' if intro_html.strip() else '')
+    +f'<div class="exhibitions-columns{"" if featured_enabled else " exhibitions-no-sidebar"}">'
+    +'<div class="exhibitions-history">'
     +'<section id="exhibitions-upcoming" class="exhibition-group" hidden><h2>Upcoming Exhibitions</h2><div class="exhibition-group-items"></div></section>'
     +'<section id="exhibitions-current" class="exhibition-group" hidden><div class="exhibition-group-items"></div></section>'
-    +'<section id="exhibitions-past" class="exhibition-group" hidden><h2>Past Exhibitions</h2><div class="exhibition-group-items"></div></section>'
-    +'<div id="exhibition-event-source" hidden>'+''.join(event_items)+'</div>'
+    +'<section id="exhibitions-past" class="exhibition-group" hidden><h2>Past Exhibitions</h2><div class="exhibition-group-items"></div></section></div>'
+    +(f'<aside class="exhibitions-featured"><h2>{featured_heading}</h2><div id="exhibitions-featured-list"></div><p id="exhibitions-featured-empty">{featured_empty}</p></aside>' if featured_enabled else '')
+    +'</div><div id="exhibition-event-source" hidden>'+''.join(event_items)+'</div>'
     +'<div id="exhibition-legacy-source" hidden>'+legacy_html+'</div></div>')
 write('exhibitions',page('Exhibitions',str(exhibitions_data.get('title') or 'Exhibitions'),
     heading('Pink Triangle Portraits',str(exhibitions_data.get('title') or 'Exhibitions'),
