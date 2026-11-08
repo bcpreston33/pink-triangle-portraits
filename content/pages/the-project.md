@@ -4,6 +4,10 @@ subtitle: |-
   Giving color and dignity to those 
   who had it stripped away.
 hero_image: /assets/uploads/PTP-Page-Headers-Project-7.jpg
+project_sidebar_enabled: true
+project_sidebar_press_enabled: true
+project_sidebar_press_heading: Press & Media
+project_sidebar_press_limit: 0
 callouts:
   - style: quote
     heading: Special Thanks!

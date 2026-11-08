@@ -500,7 +500,30 @@ for route in ['the-project','the-history','about-the-artist','contact','shop']:
     content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''),data.get('hero_mobile_image',''))+(f'<div class="container editorial-with-images rich">{body}</div>' if body.strip() else '')
 
     if route == 'the-project':
-        content += press_project
+        # Project-only editorial sidebar. Existing page body and callouts remain independent.
+        if data.get('project_sidebar_enabled', True) is not False:
+            side_image=str(data.get('project_sidebar_image') or '').strip()
+            side_heading=str(data.get('project_sidebar_heading') or '').strip()
+            side_body=str(data.get('project_sidebar_body') or '').strip()
+            side_callout=str(data.get('project_sidebar_callout') or '').strip()
+            show_press=data.get('project_sidebar_press_enabled',True) is not False
+            press_title=str(data.get('project_sidebar_press_heading') or 'Press & Media').strip()
+            press_intro=str(data.get('project_sidebar_press_intro') or '').strip()
+            press_limit=data.get('project_sidebar_press_limit',0)
+            try: press_limit=max(0,min(30,int(press_limit or 0)))
+            except (TypeError,ValueError): press_limit=0
+            visible_press=press[:press_limit] if press_limit else press
+            sidebar_parts=[]
+            if side_image: sidebar_parts.append(f'<div class="project-side-art">{img(side_image,str(data.get("project_sidebar_image_alt") or "Abstract painted artwork"))}</div>')
+            if side_heading: sidebar_parts.append(f'<h2 class="project-side-heading">{escape(side_heading)}</h2>')
+            if side_body: sidebar_parts.append(f'<div class="project-side-rich rich">{render_md(side_body)}</div>')
+            if side_callout: sidebar_parts.append(f'<aside class="project-side-note rich">{render_md(side_callout)}</aside>')
+            if show_press and visible_press:
+                sidebar_parts.append(f'<section id="press-media" class="project-side-press"><div class="section-head"><div><span class="section-label">In the press</span><h2>{escape(press_title)}</h2></div></div>'+(f'<div class="rich project-press-intro">{render_md(press_intro)}</div>' if press_intro else '')+'<div class="press-list">'+''.join(map(press_card,visible_press))+'</div></section>')
+            if sidebar_parts:
+                content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''),data.get('hero_mobile_image',''))+f'<div class="container project-two-column"><div class="project-main editorial-with-images rich">{body}</div><aside class="project-sidebar" aria-label="Project features and press">{"".join(sidebar_parts)}</aside></div>'
+        else:
+            content += press_project
 
     if route == 'contact':
         def contact_show(key): return data.get(key, True) is not False
