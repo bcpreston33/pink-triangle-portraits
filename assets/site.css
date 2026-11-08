@@ -794,3 +794,25 @@ body>footer{
   .home-hero .home-hero-overlay h1,
   .home-hero .home-hero-overlay p{max-width:100%!important}
 }
+
+/* Homepage: scale the full 2400px banner composition with viewport width. */
+@media(min-width:701px){
+.home-hero .home-portrait-strip .hero-picture{left:0!important;right:0!important;width:100%!important;height:100%!important}
+.home-hero .home-portrait-strip .hero-picture img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center!important}
+}
+/* Exhibition page: featured upcoming shows, plain chronological archive. */
+.exhibitions-redesign{padding-block:48px 90px}
+.exhibitions-redesign .exhibitions-intro{max-width:920px;margin-bottom:36px}
+.exhibitions-redesign .exhibition-group{margin:36px 0 56px}
+.exhibitions-redesign .exhibition-group[hidden]{display:none!important}
+.exhibitions-redesign .exhibition-group>h2{margin-bottom:24px}
+.exhibition-entry{border-top:1px solid #ccc;padding:24px 0}
+.exhibition-entry h3{margin:8px 0 12px}
+.exhibition-entry .exhibition-entry-image{display:none}
+.exhibition-entry.is-upcoming{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:32px;align-items:start}
+.exhibition-entry.is-upcoming .exhibition-entry-image{display:block}
+.exhibition-entry-image img{display:block;width:100%;height:auto}
+.exhibition-year-list{margin:24px 0 36px}
+.exhibition-year-list>h3{font-size:clamp(28px,4vw,40px);margin:0 0 16px}
+.exhibition-legacy-year{margin-bottom:20px}
+@media(max-width:700px){.exhibition-entry.is-upcoming{display:flex;flex-direction:column}}

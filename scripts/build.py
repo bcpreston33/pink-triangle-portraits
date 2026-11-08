@@ -485,57 +485,35 @@ qr_logo_html=img(qr_logo,'Pink Triangle Portraits logo') if qr_logo else '<div c
 qr_html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="index,follow"><title>Follow Pink Triangle Portraits</title><link rel="stylesheet" href="/assets/site.css"><style>:root{{--qr-accent:{attr(qr_data.get('accent_color') or '#ed398b')};--qr-bg:{attr(qr_data.get('background_color') or '#ffffff')};}}</style></head><body class="qr-landing"><main class="qr-wrap"><a href="/" class="qr-logo-link" aria-label="Visit Pink Triangle Portraits">{qr_logo_html}</a><h1>{escape(str(qr_data.get('heading') or 'Follow the Project'))}</h1><p>{escape(str(qr_data.get('intro') or 'Discover new portraits, stories, exhibitions, and project updates.'))}</p><div class="qr-social-list">{''.join(qr_links)}</div>{qr_gallery}<a class="qr-home" href="/">Visit Pink Triangle Portraits</a></main></body></html>"""
 write('qr',qr_html)
 
-# Exhibitions uses the same CMS-managed header as every other interior page.
-# Split the existing editable rich-text page content by year headings. 2027+
-# is featured above the two-column 2025/2026 archive, without moving links
-# or requiring the editor to re-enter any existing listings.
+# Date-aware exhibitions: all items are emitted once, then categorized on each visit.
 exhibitions_file=ROOT/'content/pages/exhibitions.md'
 exhibitions_data=load(exhibitions_file) if exhibitions_file.exists() else {}
 exhibitions_html=render_md(exhibitions_data.get('body',''))
 year_heading=re.compile(r'<h([2-4])>\s*(20\d{2})\s*</h\1>',re.I)
-year_matches=list(year_heading.finditer(exhibitions_html))
-intro_html=exhibitions_html[:year_matches[0].start()] if year_matches else exhibitions_html
-by_year={}
-trailing_html=''
-for idx,match in enumerate(year_matches):
-    end=year_matches[idx+1].start() if idx+1<len(year_matches) else len(exhibitions_html)
-    chunk=exhibitions_html[match.end():end]
-    # Non-year headings after the last year's entries remain outside the year grid.
-    if idx==len(year_matches)-1:
-        trailing_match=re.search(r'<h[2-4]>',chunk)
-        if trailing_match:
-            trailing_html=chunk[trailing_match.start():]
-            chunk=chunk[:trailing_match.start()]
-    year=int(match.group(2))
-    by_year[year]=by_year.get(year,'')+chunk
-
-def exhibition_year(year,body,cls=''):
-    return f'<section class="exhibition-year {cls}"><h2>{year}</h2><div class="exhibition-year-items">{body}</div></section>'
-
-future_years=''.join(exhibition_year(y,by_year[y],'exhibition-year--featured') for y in sorted(by_year,reverse=True) if y>=2027)
-archive_years=''.join(exhibition_year(y,by_year[y]) for y in (2025,2026) if y in by_year)
-other_years=''.join(exhibition_year(y,by_year[y]) for y in sorted(by_year,reverse=True) if y<2025)
-# CMS events are managed separately from the historical 2025/2026 body copy.
-# The Featured toggle promotes any event into the large spotlight area; all
-# other events from 2027 onward appear in a year-organized running list.
-featured_events=sorted([e for e in events if e.get('featured') is True and int(e['_date'][:4] or 0)>=2027],key=lambda e:e['_date'])
-regular_events=[e for e in events if e not in featured_events and int(e['_date'][:4] or 0)>=2027]
-featured_event_markup=('<section class="exhibitions-featured-events"><span class="section-label">Featured exhibitions & talks</span>'+''.join(event_card(e,True) for e in featured_events)+'</section>') if featured_events else ''
-current_event_years=sorted({int(e['_date'][:4]) for e in regular_events},reverse=True)
-current_events_markup=''.join(
-    f'<section class="exhibitions-current-year"><h2>{year}</h2>'+
-    ''.join('<div class="exhibitions-current-item"><span class="exhibitions-event-status">'+('Upcoming' if e['_end']>=today else 'Past event')+'</span>'+event_card(e)+'</div>' for e in sorted((e for e in regular_events if int(e['_date'][:4])==year),key=lambda e:e['_date'],reverse=True))+
-    '</section>' for year in current_event_years)
-if current_events_markup:
-    current_events_markup='<section class="exhibitions-current-events"><h2 class="exhibitions-current-heading">Exhibitions & talks by year</h2>'+current_events_markup+'</section>'
-exhibition_content=(f'<div class="container exhibitions-editorial rich">'
-    + (f'<div class="exhibitions-intro">{intro_html}</div>' if intro_html.strip() else '')
-    + (f'<div class="exhibitions-featured-years">{future_years}</div>' if future_years else '')
-    + featured_event_markup+current_events_markup
-    + (f'<div class="exhibitions-archive"><h2 class="exhibitions-archive-heading">Past Exhibitions & Talks</h2><div class="exhibitions-year-grid">{archive_years}</div></div>' if archive_years else '')
-    + (f'<div class="exhibitions-other-years">{other_years}</div>' if other_years else '')
-    + (f'<div class="exhibitions-follow">{trailing_html}</div>' if trailing_html.strip() else '')
-    + '</div>')
+match_years=list(year_heading.finditer(exhibitions_html))
+intro_html=exhibitions_html[:match_years[0].start()] if match_years else exhibitions_html
+legacy=[]
+for i,m in enumerate(match_years):
+    end=match_years[i+1].start() if i+1<len(match_years) else len(exhibitions_html)
+    legacy.append((int(m.group(2)),exhibitions_html[m.end():end]))
+event_items=[]
+for e in events:
+    if not e['_date']:continue
+    start=e['_date']; end=max(e['_end'],start)
+    photo=img(e.get('image'),e.get('title',''),'event-cover') if e.get('image') else ''
+    body=(f'<span class="section-label">{escape(start)}'+(f' – {escape(end)}' if end!=start else '')+'</span>'
+         +f'<h3>{escape(str(e.get("title","")))}</h3><p>{escape(str(e.get("location","")))}</p>'
+         +f'<div class="rich">{render_md(e.get("body"))}</div>'
+         +(f'<p><a class="text-link" href="{attr(e["link"])}">Event details ↗</a></p>' if e.get('link') else ''))
+    event_items.append(f'<article class="exhibition-entry" data-start="{attr(start)}" data-end="{attr(end)}" data-year="{attr(start[:4])}"><div class="exhibition-entry-copy">{body}</div><div class="exhibition-entry-image">{photo}</div></article>')
+legacy_html=''.join(f'<section class="exhibition-legacy-year" data-year="{y}"><div>{body}</div></section>' for y,body in legacy)
+exhibition_content=(f'<div class="container exhibitions-editorial rich exhibitions-redesign">'
+    +(f'<div class="exhibitions-intro">{intro_html}</div>' if intro_html.strip() else '')
+    +'<section id="exhibitions-upcoming" class="exhibition-group" hidden><h2>Upcoming Exhibitions</h2><div class="exhibition-group-items"></div></section>'
+    +'<section id="exhibitions-current" class="exhibition-group" hidden><div class="exhibition-group-items"></div></section>'
+    +'<section id="exhibitions-past" class="exhibition-group" hidden><h2>Past Exhibitions</h2><div class="exhibition-group-items"></div></section>'
+    +'<div id="exhibition-event-source" hidden>'+''.join(event_items)+'</div>'
+    +'<div id="exhibition-legacy-source" hidden>'+legacy_html+'</div></div>')
 write('exhibitions',page('Exhibitions',str(exhibitions_data.get('title') or 'Exhibitions'),
     heading('Pink Triangle Portraits',str(exhibitions_data.get('title') or 'Exhibitions'),
         exhibitions_data.get('subtitle',''),exhibitions_data.get('hero_image',''),
