@@ -27,9 +27,14 @@ content:
   - name: summary
     label: Short description
     type: text
-  - name: image
-    label: Optional article thumbnail
+  - name: logo
+    label: Publication logo (optional override)
     type: image
+    description: Preferred over thumbnails and automatic logos. Leave empty to use automatic detection.
+  - name: image
+    label: Article thumbnail (optional override)
+    type: image
+    description: Used if no custom publication logo is supplied. Leave empty for automatic logo detection.
   - name: url
     label: Link to article / recording
     type: string
@@ -770,6 +775,50 @@ content:
     type: number
     default: 0
     description: Shows newest first. Set to 0 to include every published article.
+  - name: project_press_show_images
+    label: The Project | Show press logos / thumbnails
+    type: boolean
+    default: true
+  - name: project_press_image_width
+    label: The Project | Logo / thumbnail width (pixels)
+    type: number
+    default: 95
+  - name: project_press_title_font
+    label: The Project | Article title font
+    type: select
+    default: DM Sans
+    options:
+    - label: Clean sans-serif (DM Sans)
+      value: DM Sans
+    - label: Condensed (Barlow Condensed)
+      value: Barlow Condensed
+    - label: Serif (Georgia)
+      value: Georgia
+  - name: project_press_title_size
+    label: The Project | Article title size (pixels)
+    type: number
+    default: 19
+  - name: project_press_title_weight
+    label: The Project | Article title weight
+    type: select
+    default: '600'
+    options:
+    - label: Regular
+      value: '400'
+    - label: Medium
+      value: '500'
+    - label: Semibold
+      value: '600'
+    - label: Bold
+      value: '700'
+  - name: project_press_rule_color
+    label: The Project | Article divider color (hex)
+    type: string
+    default: '#d7d7d7'
+  - name: project_press_rule_spacing
+    label: The Project | Divider spacing (pixels)
+    type: number
+    default: 18
   - name: supporting_images
     label: Supporting images alongside page sections
     type: object
