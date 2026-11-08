@@ -550,7 +550,7 @@ def spotlight_card(kind, heading, description, link, image='', meta='', start=''
     href=link if str(link).startswith(('/', 'https://', 'http://')) else ''
     action=(f'<a class="text-link" href="{attr(href)}"'+(' target="_blank" rel="noopener noreferrer"' if href.startswith('http') else '')+f'>{escape(label or "Learn more")} →</a>') if href else ''
     return (f'<article class="spotlight-card spotlight-{attr(kind)}" data-kind="{attr(kind)}" data-start="{attr(start)}" data-end="{attr(end)}" {extra}>'
-            +(f'<div class="spotlight-image"><div class="press-laptop"><div class="press-laptop-screen">{img(image,heading)}</div><img class="press-laptop-frame" src="/assets/images/press-laptop-transparent.png" alt="" aria-hidden="true"></div></div>' if kind=='press' and image else spotlight_picture(image,heading))
+            +(f'<div class="spotlight-image"><div class="press-laptop"><div class="press-laptop-screen" role="img" aria-label="{attr(heading)}" style="background-image:url(&quot;{attr(image)}&quot;)"></div><img class="press-laptop-frame" src="/assets/images/press-laptop-transparent.png" alt="" aria-hidden="true"></div></div>' if kind=='press' and image else spotlight_picture(image,heading))
             +f'<div class="spotlight-copy"><span class="section-label">{escape(meta or kind.title())}</span><h2>{escape(str(heading))}</h2>'
             +(f'<p>{escape(str(description))}</p>' if description else '')+action+'</div></article>')
 

@@ -914,19 +914,30 @@ body>footer{
 @media(max-width:900px){.spotlight-grid.spotlights-ready .spotlight-card:nth-child(3){border-left:0;padding-left:0;border-top:1px solid #bacbd0;padding-top:25px;margin-top:25px}}
 @media(max-width:700px){.spotlight-grid.spotlights-ready .spotlight-card,.spotlight-grid.spotlights-ready .spotlight-card:not(.spotlight-first){border-left:0;padding-left:0;padding-right:0}.spotlight-grid.spotlights-ready .spotlight-card:not(.spotlight-first){border-top:1px solid #bacbd0;padding-top:25px;margin-top:0}.spotlight-grid .spotlight-image{height:min(var(--spotlight-visual-height,220px),270px)}}
 
-/* Reusable, transparent laptop frame: the screenshot remains a separate live image. */
-.spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image{background:#e9478c var(--spotlight-press-background) center/cover no-repeat;position:relative;padding:0;isolation:isolate}
-.spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image:before{content:none}
-.spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image:after{content:"";position:absolute;z-index:2;width:calc(91% * var(--spotlight-laptop-scale,1.18));max-width:none;aspect-ratio:1310/880;left:50%;top:calc(7% + var(--spotlight-laptop-offset,12px));transform:translateX(-50%);background:url('/assets/images/press-laptop-frame.png') center top/100% 100% no-repeat;pointer-events:none}
-.spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image img{position:absolute;z-index:1;left:50%;top:calc(7% + var(--spotlight-laptop-offset,12px) + (91vw * 0));transform:translateX(-50%);width:calc(83% * var(--spotlight-laptop-scale,1.18));height:calc(75% * var(--spotlight-laptop-scale,1.18));max-height:none;max-width:none;object-fit:cover;object-position:top center;padding:0;border:0;box-shadow:none;background:white}
-
-/* Press spotlight: supplied laptop with a true transparent screen and live screenshot. */
-.spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image{background:#e9478c var(--spotlight-press-background) center/cover no-repeat;overflow:hidden;position:relative;padding:0}
-.spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image:before,.spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image:after{content:none!important;display:none!important}
-.spotlight-grid[data-press-browser="1"] .spotlight-press .press-laptop{position:absolute;width:calc(100% * var(--spotlight-laptop-scale,1.45));left:50%;top:var(--spotlight-laptop-offset,0px);transform:translateX(-50%);aspect-ratio:1440/960;pointer-events:none}
-.spotlight-grid[data-press-browser="1"] .spotlight-press .press-laptop-frame{position:absolute;inset:0;width:100%;height:100%;max-width:none;max-height:none;object-fit:fill;background:none;padding:0;border:0;box-shadow:none;z-index:2}
-.spotlight-grid[data-press-browser="1"] .spotlight-press .press-laptop-screen{position:absolute;left:3.2%;top:5.9%;width:83.1%;height:78.6%;overflow:hidden;background:white;z-index:1}
-.spotlight-grid[data-press-browser="1"] .spotlight-press .press-laptop-screen img{position:static;display:block;width:100%;height:auto;min-height:100%;max-width:none;max-height:none;object-fit:cover;object-position:top;transform:none;padding:0;border:0;box-shadow:none}
+/* Featured press: one laptop frame with a fixed screen opening. The screenshot
+   is a CSS background within that opening, not a separately scaled img element.
+   This prevents global spotlight image rules from moving or hiding it. */
+.spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image{
+  background:#e9478c var(--spotlight-press-background) center/cover no-repeat;
+  position:relative;overflow:hidden;padding:0;isolation:isolate;
+}
+.spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image::before,
+.spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image::after{content:none;display:none}
+.spotlight-grid[data-press-browser="1"] .spotlight-press .press-laptop{
+  position:absolute;left:50%;top:var(--spotlight-laptop-offset,0px);
+  width:calc(100% * var(--spotlight-laptop-scale,1.45));
+  aspect-ratio:1440/960;transform:translateX(-50%);pointer-events:none;
+}
+.spotlight-grid[data-press-browser="1"] .spotlight-press .press-laptop-screen{
+  position:absolute;left:3.4%;top:7.8%;width:83%;height:77.5%;
+  background-color:#fff;background-position:center top;background-size:cover;
+  background-repeat:no-repeat;z-index:1;overflow:hidden;
+}
+.spotlight-grid[data-press-browser="1"] .spotlight-press .press-laptop-frame{
+  position:absolute;inset:0;display:block;width:100%;height:100%;
+  max-width:none;max-height:none;object-fit:fill;
+  background:transparent;border:0;padding:0;box-shadow:none;z-index:2;
+}
 
 /* Brand triangle in place of decorative arrows on action links. */
 .ptp-link-triangle{display:inline-block;width:0;height:0;border-top:.27em solid transparent;border-bottom:.27em solid transparent;border-left:.42em solid var(--pink);margin-left:.42em;vertical-align:.08em}
