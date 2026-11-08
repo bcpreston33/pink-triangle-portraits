@@ -816,3 +816,23 @@ body>footer{
 .exhibition-year-list>h3{font-size:clamp(28px,4vw,40px);margin:0 0 16px}
 .exhibition-legacy-year{margin-bottom:20px}
 @media(max-width:700px){.exhibition-entry.is-upcoming{display:flex;flex-direction:column}}
+
+/* Home banner text controls and two CMS-managed navigation buttons. */
+.home-hero .home-hero-overlay .hero-eyebrow{margin-bottom:var(--hero-eyebrow-gap,14px)!important}
+.home-hero .home-hero-overlay h1{margin-bottom:var(--hero-title-gap,14px)!important;max-width:min(var(--hero-copy-width,660px),70%)!important}
+.home-hero .home-hero-overlay p{max-width:min(var(--hero-copy-width,660px),70%)!important}
+.home-hero .home-hero-overlay .hero-actions{order:4;display:flex;gap:12px;flex-wrap:wrap;margin-top:var(--hero-tagline-gap,22px)}
+.home-hero .home-hero-overlay .hero-actions .button{display:inline-flex!important;text-shadow:none!important;text-decoration:none;align-items:center;justify-content:center}
+.home-hero .hero-cta--secondary{background:transparent!important;color:var(--ink)!important;border:2px solid var(--pink)!important}
+.home-hero .hero-cta--secondary:hover{background:var(--pink)!important;color:#fff!important}
+@media(max-width:700px){.home-hero .home-hero-overlay h1,.home-hero .home-hero-overlay p{max-width:100%!important}.home-hero .hero-actions{gap:9px}}
+/* Press is an editorial section, not part of the exhibitions timeline. */
+.project-press,.home-press{padding-block:44px 75px}
+.press-list{max-width:970px}
+.press-card{display:grid;grid-template-columns: minmax(0,150px) minmax(0,1fr);gap:24px;padding:24px 0;border-top:1px solid #d7d7d7}
+.press-card:not(:has(.press-card-visual)){grid-template-columns:1fr}
+.press-card-visual img{display:block;width:100%;height:auto;object-fit:cover}
+.press-card h3{margin:5px 0 10px}
+.press-card .press-meta{margin:0;font-size:.85rem;letter-spacing:.05em;text-transform:uppercase}
+.press-card .rich p{margin:0 0 12px}
+@media(max-width:600px){.press-card{grid-template-columns:90px minmax(0,1fr);gap:14px}}

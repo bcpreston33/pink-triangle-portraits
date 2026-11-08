@@ -435,11 +435,58 @@ hero_desktop=setting('hero_banner_desktop','') or setting('hero_banner','')
 hero_mobile=setting('hero_banner_mobile','')
 hero_source=f'<source media="(max-width:700px)" srcset="{attr(hero_mobile)}">' if hero_mobile else ''
 hero_picture=(f'<picture class="hero-picture">{hero_source}<img src="{attr(hero_desktop or hero_mobile)}" alt="" loading="eager"></picture>' if (hero_desktop or hero_mobile) else hero_cards)
+# Homepage hero text supports manual line breaks without changing its current defaults.
+def hero_lines(value):
+    return '<br>'.join(escape(part) for part in str(value or '').splitlines())
+def safe_hero_spacing(key, default, lo, hi):
+    try: value=int(setting(key,default))
+    except (TypeError,ValueError): value=default
+    return max(lo,min(hi,value))
+hero_style=(f'--hero-copy-width:{safe_hero_spacing("hero_text_width",660,300,1000)}px;'
+            f'--hero-eyebrow-gap:{safe_hero_spacing("hero_eyebrow_gap",14,0,90)}px;'
+            f'--hero-title-gap:{safe_hero_spacing("hero_title_gap",14,0,90)}px;'
+            f'--hero-tagline-gap:{safe_hero_spacing("hero_tagline_gap",22,0,90)}px')
 hero_eyebrow=escape(str(setting('hero_eyebrow','Art / History / Remembrance / Queer Joy')))
-hero_heading=escape(str(setting('hero_headline','PINK TRIANGLE PORTRAITS'))).replace('\n',' ')
-hero_tagline=escape(str(setting('hero_tagline','Giving color and dignity to those who had it stripped away.')))
+hero_heading=hero_lines(setting('hero_headline','PINK TRIANGLE PORTRAITS'))
+hero_tagline=hero_lines(setting('hero_tagline','Giving color and dignity to those who had it stripped away.'))
 hero_overlay=max(0,min(95,int(setting('hero_overlay_opacity',40))))/100
-home=f'''<section class="home-hero" style="min-height:{attr(setting('hero_height',500))}px;--hero-darkness:{hero_overlay}"><div class="home-portrait-strip">{hero_picture}</div><div class="home-hero-overlay"><div class="container"><span class="hero-eyebrow">{hero_eyebrow}</span><h1>{hero_heading}</h1><p>{hero_tagline}</p></div></div></section><section class="home-intro container"{section_style("intro")}><div><span class="section-label">The project</span><h2>Portraits to remember.<br>Stories to keep alive.</h2><p>Pink Triangle Portraits is an ongoing art and research project by Bry Sharland, honoring queer people persecuted by the Nazi regime.</p><a class="button" href="/the-project/">Learn about the project →</a></div><div class="feature-area">{featured_markup}</div></section><section class="event-band"><div class="container event-grid">{event_markup}</div></section><section class="container gallery-preview"{section_style("gallery")}><div class="section-head"><div><span class="section-label">Explore the portraits</span><h2>Every person has a story.</h2></div><a class="text-link" href="/portraits/">Browse all portraits →</a></div><div class="portrait-grid">{''.join(portrait_card(p) for p in [next(a for a in newest if a['_person_slug']==ps) for ps in dict.fromkeys(a['_person_slug'] for a in newest)][:5])}</div></section>'''
+hero_buttons=[]
+for enabled,label_key,url_key,default_label,default_url,kind in [
+    ('hero_button_show','hero_button_text','hero_button_url','View the Portraits','/portraits/','primary'),
+    ('hero_button_2_show','hero_button_2_text','hero_button_2_url','Exhibitions & Events','/exhibitions/','secondary')]:
+    if setting(enabled,True) is not False:
+        label=str(setting(label_key,default_label) or default_label)
+        url=str(setting(url_key,default_url) or default_url)
+        if url.startswith('/') or url.startswith('https://') or url.startswith('http://'):
+            hero_buttons.append(f'<a class="button hero-cta hero-cta--{kind}" href="{attr(url)}">{escape(label)}</a>')
+hero_actions='<div class="hero-actions">'+''.join(hero_buttons)+'</div>' if hero_buttons else ''
+
+# Shared CMS collection for project press coverage; sorted newest first.
+press=[]
+for f in (ROOT/'content/press').glob('*.md') if (ROOT/'content/press').exists() else []:
+    try: item=load(f)
+    except (ValueError,yaml.YAMLError): continue
+    if item.get('published',True) is False: continue
+    item['_date']=str(item.get('date') or '')[:10]
+    press.append(item)
+press.sort(key=lambda p:p['_date'],reverse=True)
+def press_card(item):
+    title=escape(str(item.get('title') or 'Press feature'))
+    publication=escape(str(item.get('publication') or ''))
+    day=escape(item['_date'])
+    summary=render_md(item.get('summary') or item.get('body') or '')
+    url=str(item.get('url') or '').strip()
+    link=(f'<a class="text-link" href="{attr(url)}" target="_blank" rel="noopener noreferrer">'
+          +escape(str(item.get('link_label') or 'Read feature'))+' ↗</a>') if url.startswith(('https://','http://')) else ''
+    picture=img(item['image'],str(item.get('title') or ''),'press-card-image') if item.get('image') else ''
+    return (f'<article class="press-card">'
+            +(f'<div class="press-card-visual">{picture}</div>' if picture else '')
+            +f'<div class="press-card-copy"><p class="press-meta">{publication}{" · " if publication and day else ""}{day}</p>'
+            +f'<h3>{title}</h3><div class="rich">{summary}</div>{link}</div></article>')
+press_project=('''<section id="press-media" class="container project-press"><div class="section-head"><div><span class="section-label">In the press</span><h2>Press &amp; Media</h2></div></div><div class="press-list">'''+''.join(map(press_card,press))+'''</div></section>''') if press else ''
+press_home=('''<section class="container home-press"><div class="section-head"><div><span class="section-label">Recognition &amp; coverage</span><h2>In the Press</h2></div><a class="text-link" href="/the-project/#press-media">All press &amp; media →</a></div><div class="press-list">'''+''.join(map(press_card,press[:3]))+'''</div></section>''') if press else ''
+
+home=f'''<section class="home-hero" style="min-height:{attr(setting('hero_height',500))}px;--hero-darkness:{hero_overlay};{hero_style}"><div class="home-portrait-strip">{hero_picture}</div><div class="home-hero-overlay"><div class="container"><span class="hero-eyebrow">{hero_eyebrow}</span><h1>{hero_heading}</h1><p>{hero_tagline}</p>{hero_actions}</div></div></section><section class="home-intro container"{section_style("intro")}><div><span class="section-label">The project</span><h2>Portraits to remember.<br>Stories to keep alive.</h2><p>Pink Triangle Portraits is an ongoing art and research project by Bry Sharland, honoring queer people persecuted by the Nazi regime.</p><a class="button" href="/the-project/">Learn about the project →</a></div><div class="feature-area">{featured_markup}</div></section><section class="event-band"><div class="container event-grid">{event_markup}</div></section><section class="container gallery-preview"{section_style("gallery")}><div class="section-head"><div><span class="section-label">Explore the portraits</span><h2>Every person has a story.</h2></div><a class="text-link" href="/portraits/">Browse all portraits →</a></div><div class="portrait-grid">{''.join(portrait_card(p) for p in [next(a for a in newest if a['_person_slug']==ps) for ps in dict.fromkeys(a['_person_slug'] for a in newest)][:5])}</div></section>{press_home}'''
 write('',page('Home','Home',home))
 
 for route in ['the-project','the-history','about-the-artist','contact','shop']:
@@ -451,6 +498,9 @@ for route in ['the-project','the-history','about-the-artist','contact','shop']:
     callouts=data.get('callouts') or []
     body=render_section_images(data.get('body'),supporting,callouts)
     content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''),data.get('hero_mobile_image',''))+(f'<div class="container editorial-with-images rich">{body}</div>' if body.strip() else '')
+
+    if route == 'the-project':
+        content += press_project
 
     if route == 'contact':
         def contact_show(key): return data.get(key, True) is not False
