@@ -23,7 +23,7 @@ bio_nav_size: 20
 bio_nav_label_size: 12
 bio_nav_color: "#082d3b"
 bio_nav_rule_color: "#a4b1b5"
-bio_nav_rule_width: 1
+bio_nav_rule_width: 0
 bio_nav_padding: 24
 art_font: Barlow Condensed
 art_title_size: 28
