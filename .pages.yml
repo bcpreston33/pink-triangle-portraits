@@ -500,18 +500,21 @@ content:
     label: FEATURES / Featured content | Portrait link text
     type: string
   - name: event_band_eyebrow
-    label: Homepage | Exhibition band small heading (when no show is scheduled)
+    label: HOME EXHIBITIONS BANNER / Small pink heading
     type: string
-    description: The colored exhibition strip below the rotating features; shown when there is no upcoming event.
+    description: Large painted banner on the homepage, below the rotating Press and Latest Portrait cards. This text is the fallback when there is no upcoming event; an upcoming event can replace the heading and description automatically.
   - name: event_band_heading
-    label: Homepage | Exhibition band headline (when no show is scheduled)
+    label: HOME EXHIBITIONS BANNER / Large headline
     type: string
+    description: Large white title in the homepage painted Exhibitions banner. An upcoming event may automatically replace it.
   - name: event_band_description
-    label: Homepage | Exhibition band description (when no show is scheduled)
+    label: HOME EXHIBITIONS BANNER / Supporting paragraph
     type: text
+    description: White paragraph under the large title in the homepage Exhibitions banner. An upcoming event may automatically replace it.
   - name: event_band_button_label
-    label: Homepage | Exhibition band button label
+    label: HOME EXHIBITIONS BANNER / Button text
     type: string
+    description: Pink button in the homepage painted Exhibitions banner; it links to the Exhibitions page.
   - name: gallery_preview_eyebrow
     label: Homepage | Portrait gallery small heading
     type: string
@@ -533,9 +536,9 @@ content:
     type: image
     description: Flyer or photo. Image is decorative and not clickable.
   - name: paint_background
-    label: Exhibitions painted background image
+    label: HOME EXHIBITIONS BANNER / Painted background image
     type: image
-    description: Defaults to /assets/images/715931084-background-web.jpg
+    description: Large painted banner behind “See the work in person” on the homepage (not the Exhibitions page). Choose a replacement image here. The current image is prefilled in Homepage Design settings.
   - name: hero_height
     label: Hero Height
     type: number
