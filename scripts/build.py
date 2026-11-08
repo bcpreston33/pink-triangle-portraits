@@ -540,7 +540,84 @@ def press_card(item):
 press_project=('''<section id="press-media" class="container project-press"><div class="section-head"><div><span class="section-label">In the press</span><h2>Press &amp; Media</h2></div></div><div class="press-list">'''+''.join(map(press_card,press))+'''</div></section>''') if press else ''
 press_home=('''<section class="container home-press"><div class="section-head"><div><span class="section-label">Recognition &amp; coverage</span><h2>In the Press</h2></div><a class="text-link" href="/the-project/#press-media">All press &amp; media →</a></div><div class="press-list">'''+''.join(map(press_card,press[:3]))+'''</div></section>''') if press else ''
 
-home=f'''<section class="home-hero" style="min-height:{attr(setting('hero_height',500))}px;--hero-darkness:{hero_overlay};{hero_style}"><div class="home-portrait-strip">{hero_picture}</div><div class="home-hero-overlay"><div class="container"><span class="hero-eyebrow">{hero_eyebrow}</span><h1>{hero_heading}</h1><p>{hero_tagline}</p>{hero_actions}</div></div></section><section class="home-intro container"{section_style("intro")}><div><span class="section-label">The project</span><h2>Portraits to remember.<br>Stories to keep alive.</h2><p>Pink Triangle Portraits is an ongoing art and research project by Bry Sharland, honoring queer people persecuted by the Nazi regime.</p><a class="button" href="/the-project/">Learn about the project →</a></div><div class="feature-area">{featured_markup}</div></section><section class="event-band"><div class="container event-grid">{event_markup}</div></section><section class="container gallery-preview"{section_style("gallery")}><div class="section-head"><div><span class="section-label">Explore the portraits</span><h2>Every person has a story.</h2></div><a class="text-link" href="/portraits/">Browse all portraits →</a></div><div class="portrait-grid">{''.join(portrait_card(p) for p in [next(a for a in newest if a['_person_slug']==ps) for ps in dict.fromkeys(a['_person_slug'] for a in newest)][:5])}</div></section>{press_home}'''
+# Homepage spotlight selection is evaluated in the visitor's browser, so dates expire
+# without a scheduled rebuild. CMS entries are the single source of truth.
+def spotlight_picture(path, alt):
+    return f'<div class="spotlight-image">{img(path, alt)}</div>' if path else ''
+
+def spotlight_card(kind, heading, description, link, image='', meta='', start='', end='', label='', extra=''):
+    href=link if str(link).startswith(('/', 'https://', 'http://')) else ''
+    action=(f'<a class="text-link" href="{attr(href)}"'+(' target="_blank" rel="noopener noreferrer"' if href.startswith('http') else '')+f'>{escape(label or "Learn more")} →</a>') if href else ''
+    return (f'<article class="spotlight-card spotlight-{attr(kind)}" data-kind="{attr(kind)}" data-start="{attr(start)}" data-end="{attr(end)}" {extra}>'
+            +spotlight_picture(image,heading)
+            +f'<div class="spotlight-copy"><span class="section-label">{escape(meta or kind.title())}</span><h2>{escape(str(heading))}</h2>'
+            +(f'<p>{escape(str(description))}</p>' if description else '')+action+'</div></article>')
+
+home_design=yaml.safe_load((ROOT/'content/settings/homepage.yml').read_text(encoding='utf-8')) or {} if (ROOT/'content/settings/homepage.yml').exists() else {}
+def home_option(key, default):
+    value=home_design.get(key,default)
+    return default if value is None else value
+
+spotlights=[]
+# Each event is eligible starting N days before opening and until its end date.
+for e in events:
+    if e.get('homepage_feature',True) is False: continue
+    start=e['_date'][:10]; end=e['_end'][:10]
+    if not start or not end: continue
+    spotlights.append(spotlight_card('exhibition',e.get('title','Exhibition'),e.get('location',''),e.get('link') or '/exhibitions/',e.get('image',''), 'Exhibitions & Events',start,end,'Event details'))
+for item in press:
+    if item.get('homepage_feature',True) is False: continue
+    pub=str(item.get('publication') or 'In the press')
+    url=str(item.get('url') or '')
+    logo=item.get('logo') or item.get('image') or press_images.get(url,('',''))[0]
+    spotlights.append(spotlight_card('press',item.get('title','Press feature'),item.get('summary',''),url or '/the-project/#press-media',logo,pub,item['_date'],item.get('homepage_until') or '', 'Read feature',f'data-days="{attr(item.get("homepage_days") or "")}"'))
+if featured:
+    spotlights.append(spotlight_card('portrait',featured.get('name','Latest portrait'),teaser,artwork_link(featured),featured.get('image',''),'The latest portrait','','','Read their story'))
+else:
+    spotlights.append(spotlight_card('portrait','The portraits','Explore the stories behind the artwork.','/portraits/','','The latest portrait'))
+spotlights.append(spotlight_card('project','Portraits to remember. Stories to keep alive.','Pink Triangle Portraits is an ongoing art and research project by Bry Sharland, honoring queer people persecuted by the Nazi regime.','/the-project/','','The project','','','Learn about the project'))
+spotlight_markup=''.join(spotlights)
+spotlight_config=(f'data-event-lead="{attr(home_option("spotlight_exhibition_lead_days",60))}" '
+                  f'data-press-days="{attr(home_option("spotlight_press_days",90))}" '
+                  f'data-press-enabled="{str(home_option("spotlight_press_enabled",True)).lower()}" '
+                  f'data-events-enabled="{str(home_option("spotlight_exhibitions_enabled",True)).lower()}"')
+# The browser chooses 2 or 3 eligible cards; the portrait is always included.
+spotlight_script=r"""<script>
+(function(){
+ const root=document.querySelector('[data-spotlights]');if(!root)return;
+ const cards=[...root.querySelectorAll('.spotlight-card')];
+ const now=new Date();now.setHours(0,0,0,0);
+ const parse=s=>/^\d{4}-\d{2}-\d{2}$/.test(s||'')?new Date(s+'T00:00:00'):null;
+ const days=(n)=>{const d=new Date(now);d.setDate(d.getDate()+n);return d};
+ const num=(v,f)=>Number.isFinite(Number(v))&&v!==''?Number(v):f;
+ const candidates=[];
+ cards.forEach((card,index)=>{
+  const kind=card.dataset.kind;let valid=false,sort=0;
+  const start=parse(card.dataset.start),end=parse(card.dataset.end);
+  if(kind==='exhibition' && root.dataset.eventsEnabled!=='false' && start && end){
+   valid=now<=end && start<=days(num(root.dataset.eventLead,60));sort=-start.getTime();
+  } else if(kind==='press' && root.dataset.pressEnabled!=='false' && start){
+   const expiry=end||new Date(start.getFullYear(),start.getMonth(),start.getDate()+num(card.dataset.days,num(root.dataset.pressDays,90)));
+   valid=now>=start && now<=expiry;sort=start.getTime();
+  } else if(kind==='portrait'||kind==='project'){valid=true}
+  if(valid)candidates.push({card,index,kind,sort});
+ });
+ const event=candidates.filter(x=>x.kind==='exhibition').sort((a,b)=>b.sort-a.sort)[0];
+ const press=candidates.filter(x=>x.kind==='press').sort((a,b)=>b.sort-a.sort)[0];
+ const portrait=candidates.find(x=>x.kind==='portrait');
+ const project=candidates.find(x=>x.kind==='project');
+ const selected=[event,press,portrait].filter(Boolean);
+ if(selected.length<2 && project)selected.push(project);
+ const keep=new Set(selected.map(x=>x.card));
+ cards.forEach(card=>{card.hidden=!keep.has(card)});
+ selected.forEach(x=>root.appendChild(x.card));
+ root.classList.toggle('spotlights-three',selected.length===3);
+ root.classList.toggle('spotlights-two',selected.length===2);
+ root.classList.add('spotlights-ready');
+})();
+</script>"""
+
+home=f'''<section class="home-hero" style="min-height:{attr(setting('hero_height',500))}px;--hero-darkness:{hero_overlay};{hero_style}"><div class="home-portrait-strip">{hero_picture}</div><div class="home-hero-overlay"><div class="container"><span class="hero-eyebrow">{hero_eyebrow}</span><h1>{hero_heading}</h1><p>{hero_tagline}</p>{hero_actions}</div></div></section><section class="home-intro home-spotlights container"{section_style("intro")}><div class="spotlight-grid" data-spotlights {spotlight_config}>{spotlight_markup}</div></section>{spotlight_script}<section class="event-band"><div class="container event-grid">{event_markup}</div></section><section class="container gallery-preview"{section_style("gallery")}><div class="section-head"><div><span class="section-label">Explore the portraits</span><h2>Every person has a story.</h2></div><a class="text-link" href="/portraits/">Browse all portraits →</a></div><div class="portrait-grid">{''.join(portrait_card(p) for p in [next(a for a in newest if a['_person_slug']==ps) for ps in dict.fromkeys(a['_person_slug'] for a in newest)][:5])}</div></section>{press_home}'''
 write('',page('Home','Home',home))
 
 for route in ['the-project','the-history','about-the-artist','contact','shop']:

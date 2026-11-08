@@ -1,0 +1,14 @@
+Pink Triangle Portraits - Automatic homepage spotlights
+
+Upload the three replacement files to the matching GitHub paths:
+  scripts/build.py
+  assets/site.css
+  .pages.yml (HIDDEN FILE: Cmd+Shift+. in Finder)
+
+Homepage Design CMS controls: exhibition lead days (default 60), press days (default 90), enable/disable each category.
+Press & Media entries: homepage toggle, optional duration days and end date.
+Exhibitions & Events entries: homepage toggle; event date and end date control the window.
+
+Priority: upcoming exhibition, recent press, latest portrait, project fallback. 2 or 3 columns, max 3. Dates update in browser without a site rebuild; adding or editing CMS entries still triggers your normal deployment.
+
+Existing separate Exhibitions & Talks banner below this area remains unchanged.
