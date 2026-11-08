@@ -543,6 +543,40 @@ press_home=(f'<section class="container home-press"><div class="section-head"><d
 
 # Homepage spotlight selection is evaluated in the visitor's browser, so dates expire
 # without a scheduled rebuild. CMS entries are the single source of truth.
+def render_press_banner(screenshot_path, background_path, slug):
+    """Compose one stable image, avoiding fragile browser positioning of laptop layers."""
+    try:
+        from PIL import Image, ImageOps
+        from io import BytesIO
+        def local_image(url):
+            if not str(url).startswith('/assets/'): return None
+            path=ROOT/str(url).lstrip('/')
+            return Image.open(path).convert('RGBA') if path.is_file() else None
+        shot=local_image(screenshot_path)
+        if shot is None: return ''
+        frame=Image.open(ROOT/'assets/images/press-laptop-transparent.png').convert('RGBA')
+        # Coordinates refer to the transparent laptop artwork's native 1440x960 canvas.
+        # The visible screen opening is x=49..1244 and begins at y=51.
+        screen=ImageOps.fit(shot,(1195,780),method=Image.Resampling.LANCZOS,centering=(0.5,0.0))
+        laptop=Image.new('RGBA',frame.size,(0,0,0,0))
+        laptop.paste(screen,(49,52))
+        laptop.alpha_composite(frame)
+        canvas=Image.new('RGBA',(1200,560),(237,56,140,255))
+        bg=local_image(background_path)
+        if bg is not None: canvas.alpha_composite(ImageOps.fit(bg,canvas.size,method=Image.Resampling.LANCZOS))
+        # Match the portrait banner's composition: oversized screen, cropped at bottom.
+        resized=laptop.resize((1180,787),Image.Resampling.LANCZOS)
+        canvas.alpha_composite(resized,(10,32))
+        target=OUT/'assets/generated-press'
+        target.mkdir(parents=True,exist_ok=True)
+        name=re.sub(r'[^a-z0-9-]+','-',slug.lower()).strip('-') or 'press'
+        result=target/(name+'.png')
+        canvas.convert('RGB').save(result,optimize=True)
+        return '/assets/generated-press/'+result.name
+    except Exception as exc:
+        print(f'Warning: could not compose press banner {slug}: {exc}')
+        return ''
+
 def spotlight_picture(path, alt):
     return f'<div class="spotlight-image">{img(path, alt)}</div>' if path else ''
 
@@ -550,7 +584,7 @@ def spotlight_card(kind, heading, description, link, image='', meta='', start=''
     href=link if str(link).startswith(('/', 'https://', 'http://')) else ''
     action=(f'<a class="text-link" href="{attr(href)}"'+(' target="_blank" rel="noopener noreferrer"' if href.startswith('http') else '')+f'>{escape(label or "Learn more")} →</a>') if href else ''
     return (f'<article class="spotlight-card spotlight-{attr(kind)}" data-kind="{attr(kind)}" data-start="{attr(start)}" data-end="{attr(end)}" {extra}>'
-            +(f'<div class="spotlight-image"><div class="press-laptop"><div class="press-laptop-screen" role="img" aria-label="{attr(heading)}" style="background-image:url(&quot;{attr(image)}&quot;)"></div><img class="press-laptop-frame" src="/assets/images/press-laptop-transparent.png" alt="" aria-hidden="true"></div></div>' if kind=='press' and image else spotlight_picture(image,heading))
+            +(spotlight_picture(render_press_banner(image, str(home_option('spotlight_press_background',home_option('spotlight_portrait_background','/assets/images/painted-background.jpg'))),heading) or image,heading) if kind=='press' and image else spotlight_picture(image,heading))
             +f'<div class="spotlight-copy"><span class="section-label">{escape(meta or kind.title())}</span><h2>{escape(str(heading))}</h2>'
             +(f'<p>{escape(str(description))}</p>' if description else '')+action+'</div></article>')
 
