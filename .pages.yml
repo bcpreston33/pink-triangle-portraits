@@ -38,11 +38,14 @@ content:
   - name: image
     label: Article thumbnail (optional override)
     type: image
-    description: Used in the Project page and lower press list if no custom logo is supplied. For a homepage screenshot, use the separate Homepage spotlight field below.
+    description: Used in the Project page and lower press list if no custom logo is supplied. For a homepage screenshot, use
+      the separate Homepage spotlight field below.
   - name: homepage_image
     label: Homepage spotlight | Article screenshot (optional)
     type: image
-    description: Only the rotating homepage press feature uses this image, inside the browser-style banner. Upload a screenshot of the article here. The Project page and lower press list continue using the publication logo or article thumbnail. Leave empty to use those existing images automatically.
+    description: Only the rotating homepage press feature uses this image, inside the browser-style banner. Upload a screenshot
+      of the article here. The Project page and lower press list continue using the publication logo or article thumbnail.
+      Leave empty to use those existing images automatically.
   - name: url
     label: Link to article / recording
     description: The external page opened when visitors select this feature.
@@ -98,8 +101,8 @@ content:
     label: Manually feature this person on homepage (optional)
     type: boolean
     default: false
-    description: Normally the newest edited/published biography appears automatically. Check this to force a person
-      instead; uncheck to return to automatic. If multiple are checked, the most recently edited one wins.
+    description: Normally the newest edited/published biography appears automatically. Check this to force a person instead;
+      uncheck to return to automatic. If multiple are checked, the most recently edited one wins.
   - name: artworks
     label: Paintings (add one or more below)
     type: object
@@ -365,189 +368,219 @@ content:
     label: Small labels color (hex)
     type: string
 - name: settings_homepage
-  label: Homepage Design
+  label: Homepage Design · 7 labeled sections
   type: file
   path: content/settings/homepage.yml
   fields:
   - name: hero_banner_desktop
-    label: HERO / Desktop hero artwork (wide)
+    label: 01 · HERO / MAIN HEADER  |  Desktop hero background image
     type: image
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_banner_mobile
-    label: HERO / Mobile hero artwork (narrow)
+    label: 01 · HERO / MAIN HEADER  |  Mobile hero background image
     type: image
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_eyebrow
-    label: HERO / Hero small line above headline
+    label: 01 · HERO / MAIN HEADER  |  Small heading above hero title
     type: string
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_headline
-    label: HERO / Hero main headline (Enter for a line break)
+    label: 01 · HERO / MAIN HEADER  |  Main hero title
     type: text
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_tagline
-    label: HERO / Hero tagline (Enter for a line break)
+    label: 01 · HERO / MAIN HEADER  |  Hero tagline
     type: text
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_button_show
-    label: HERO / Show View the Portraits button
+    label: 01 · HERO / MAIN HEADER  |  Show first hero button
     type: boolean
     default: true
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_button_text
-    label: HERO / First button label
+    label: 01 · HERO / MAIN HEADER  |  First button text
     type: string
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_button_url
-    label: HERO / First button destination
+    label: 01 · HERO / MAIN HEADER  |  First button link
     type: string
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_button_2_show
-    label: HERO / Show Exhibitions button
+    label: 01 · HERO / MAIN HEADER  |  Show second hero button
     type: boolean
     default: true
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_button_2_text
-    label: HERO / Second button label
+    label: 01 · HERO / MAIN HEADER  |  Second button text
     type: string
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_button_2_url
-    label: HERO / Second button destination
+    label: 01 · HERO / MAIN HEADER  |  Second button link
     type: string
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
+  - name: hero_height
+    label: 01 · HERO / MAIN HEADER  |  Hero height (px)
+    type: number
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_text_width
-    label: HERO / Hero text maximum width (px)
+    label: 01 · HERO / MAIN HEADER  |  Hero text maximum width (px)
     type: number
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_eyebrow_gap
-    label: HERO / Space below small heading (px)
+    label: 01 · HERO / MAIN HEADER  |  Space after small heading (px)
     type: number
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_title_gap
-    label: HERO / Space below main heading (px)
+    label: 01 · HERO / MAIN HEADER  |  Space after main title (px)
     type: number
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_tagline_gap
-    label: HERO / Space below tagline (px)
+    label: 01 · HERO / MAIN HEADER  |  Space after tagline (px)
     type: number
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_overlay_opacity
-    label: HERO / Hero dark overlay opacity (0–95)
+    label: 01 · HERO / MAIN HEADER  |  Dark overlay opacity (0–95)
     type: number
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
+  - name: hero_eyebrow_rule_width
+    label: 01 · HERO / MAIN HEADER  |  Small pink rule thickness (px)
+    type: number
+    description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
+  - name: spotlight_exhibitions_enabled
+    label: 02 · FEATURED CONTENT / ROTATION  |  Include upcoming exhibitions automatically
+    description: If enabled, the next eligible exhibition has first priority on the homepage.
+    type: boolean
+    default: true
+  - name: spotlight_exhibition_lead_days
+    label: 02 · FEATURED CONTENT / ROTATION  |  Show exhibitions this many days ahead
+    description: Upcoming events come from Exhibitions and events; this controls how early they become eligible for the homepage.
+    type: number
+    default: 60
+  - name: spotlight_press_enabled
+    label: 02 · FEATURED CONTENT / ROTATION  |  Include recent press automatically
+    description: If enabled, the newest eligible article has second priority on the homepage.
+    type: boolean
+    default: true
+  - name: spotlight_press_days
+    label: 02 · FEATURED CONTENT / ROTATION  |  Default press feature duration (days)
+    description: Press entries and dates come from Press & Media. Individual article overrides can extend their display.
+    type: number
+    default: 90
+  - name: spotlight_project_heading
+    label: 02 · FEATURED CONTENT / ROTATION  |  Fallback Project headline
+    type: string
+    description: Shown only when the Project fallback is selected by the automatic feature rotation.
+  - name: spotlight_project_description
+    label: 02 · FEATURED CONTENT / ROTATION  |  Fallback Project description
+    type: text
+    description: Shown only when the Project fallback is selected.
+  - name: spotlight_project_link_label
+    label: 02 · FEATURED CONTENT / ROTATION  |  Fallback Project link text
+    type: string
+    description: 'Below the hero: automatically chosen exhibition, press article, latest portrait, and fallback project.'
+  - name: spotlight_press_link_label
+    label: 02 · FEATURED CONTENT / ROTATION  |  Press feature link text
+    type: string
+    description: Button wording for the automatic homepage press feature.
+  - name: spotlight_event_link_label
+    label: 02 · FEATURED CONTENT / ROTATION  |  Exhibition feature link text
+    type: string
+    description: 'Below the hero: automatically chosen exhibition, press article, latest portrait, and fallback project.'
+  - name: spotlight_portrait_link_label
+    label: 02 · FEATURED CONTENT / ROTATION  |  Latest portrait link text
+    type: string
+    description: 'Below the hero: automatically chosen exhibition, press article, latest portrait, and fallback project.'
   - name: spotlight_visual_height
-    label: Featured content / IMAGE AREA height (px)
+    label: 03 · FEATURED CONTENT / IMAGES  |  Feature image/banner height (px)
     description: Sets the height of image banners above homepage portrait, press and exhibition features. Recommended 220.
     type: number
     default: 220
   - name: spotlight_portrait_background
-    label: Featured content / PORTRAIT painted background
-    description: Wide artwork behind the portrait image. The portrait itself is automatically selected.
+    label: 03 · FEATURED CONTENT / IMAGES  |  Portrait painted banner background
+    description: Background behind the newest portrait; the portrait itself is chosen automatically.
     type: image
     default: /assets/images/painted-background.jpg
   - name: spotlight_portrait_border
-    label: Featured content / PORTRAIT white border (px)
+    label: 03 · FEATURED CONTENT / IMAGES  |  Portrait white frame width (px)
     description: White frame around the featured portrait. Recommended 9.
     type: number
     default: 9
   - name: spotlight_portrait_shadow
-    label: Featured content / PORTRAIT subtle shadow
+    label: 03 · FEATURED CONTENT / IMAGES  |  Show portrait shadow
     description: Adds a slight shadow behind the white-framed portrait.
     type: boolean
     default: true
   - name: spotlight_press_browser
-    label: Featured content / PRESS browser-style image
-    description: Shows the article screenshot inside a reusable laptop mockup over the painted banner. Turn off to show the plain image instead.
+    label: 03 · FEATURED CONTENT / IMAGES  |  Use press laptop/browser presentation
+    description: Changes the featured press visual only; article images are edited in Press & Media.
     type: boolean
     default: true
   - name: spotlight_press_background
-    label: Featured content / PRESS painted background
-    description: Background behind the laptop mockup on the homepage. Leave empty to reuse the portrait painted background.
+    label: 03 · FEATURED CONTENT / IMAGES  |  Press painted banner background
+    description: Background behind the laptop mockup in the featured press column.
     type: image
   - name: spotlight_press_laptop_size
-    label: Featured content / PRESS laptop size (%)
-    description: Adjusts the size of the laptop frame and screenshot together. 118 is the intended starting size.
+    label: 03 · FEATURED CONTENT / IMAGES  |  Press laptop scale (%)
+    description: Scales the laptop frame; article screenshot comes from Press & Media, not this setting.
     type: number
     default: 118
   - name: spotlight_press_laptop_vertical
-    label: Featured content / PRESS laptop vertical position (px)
-    description: Moves the laptop and its article screenshot up or down within the painted banner. Default 12.
+    label: 03 · FEATURED CONTENT / IMAGES  |  Press laptop vertical offset (px)
+    description: Moves the laptop up or down inside its cropped image banner.
     type: number
     default: 12
-  - name: spotlight_exhibition_lead_days
-    label: FEATURES / Featured content | Exhibition lead time (days)
-    description: An eligible show joins the homepage this many days before its opening date, then leaves after its end date.
-    type: number
-    default: 60
-  - name: spotlight_press_days
-    label: FEATURES / Featured content | Press duration (days)
-    description: Number of days a new article can appear on the homepage; individual articles may override this.
-    type: number
-    default: 90
-  - name: spotlight_exhibitions_enabled
-    label: FEATURES / Featured content | Include upcoming exhibitions
-    description: If enabled, the next eligible exhibition has first priority on the homepage.
-    type: boolean
-    default: true
-  - name: spotlight_press_enabled
-    label: FEATURES / Featured content | Include recent press
-    description: If enabled, the newest eligible article has second priority on the homepage.
-    type: boolean
-    default: true
-  - name: spotlight_project_heading
-    label: FEATURES / Featured content | Project fallback headline
-    type: string
-    description: Appears only when there is not enough timely content to fill two homepage columns.
-  - name: spotlight_project_description
-    label: FEATURES / Featured content | Project fallback description
-    type: text
-    description: Introductory text in the permanent Project fallback feature.
-  - name: spotlight_project_link_label
-    label: FEATURES / Featured content | Project fallback link text
-    type: string
-  - name: spotlight_press_link_label
-    label: FEATURES / Featured content | Press link text
-    type: string
-    description: Button wording for the automatic homepage press feature.
-  - name: spotlight_event_link_label
-    label: FEATURES / Featured content | Exhibition link text
-    type: string
-  - name: spotlight_portrait_link_label
-    label: FEATURES / Featured content | Portrait link text
-    type: string
   - name: event_band_eyebrow
-    label: HOME EXHIBITIONS BANNER / Small pink heading
+    label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Small pink heading
     type: string
-    description: Large painted banner on the homepage, below the rotating Press and Latest Portrait cards. This text is the fallback when there is no upcoming event; an upcoming event can replace the heading and description automatically.
+    description: Large painted banner on the homepage, below the rotating Press and Latest Portrait cards. This text is the
+      fallback when there is no upcoming event; an upcoming event can replace the heading and description automatically.
   - name: event_band_heading
-    label: HOME EXHIBITIONS BANNER / Large headline
+    label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Large headline
     type: string
-    description: Large white title in the homepage painted Exhibitions banner. An upcoming event may automatically replace it.
+    description: Large heading on the full-width homepage Exhibitions & Talks banner. An upcoming event may automatically
+      replace this text.
   - name: event_band_description
-    label: HOME EXHIBITIONS BANNER / Supporting paragraph
+    label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Supporting paragraph
     type: text
-    description: White paragraph under the large title in the homepage Exhibitions banner. An upcoming event may automatically replace it.
+    description: Paragraph on the full-width homepage Exhibitions & Talks banner. An upcoming event may automatically replace
+      this text.
   - name: event_band_button_label
-    label: HOME EXHIBITIONS BANNER / Button text
+    label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Button text
     type: string
     description: Pink button in the homepage painted Exhibitions banner; it links to the Exhibitions page.
+  - name: paint_background
+    label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Painted banner background image
+    type: image
+    description: Background of the full-width homepage Exhibitions & Talks banner (not the featured exhibition card).
+  - name: exhibitions_home_image
+    label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Additional exhibitions homepage image
+    type: image
+    description: Separate exhibitions image used by other homepage presentation logic; do not confuse with the wide banner
+      background.
   - name: gallery_preview_eyebrow
-    label: Homepage | Portrait gallery small heading
+    label: 05 · EXPLORE PORTRAITS / GALLERY  |  Small pink heading
     type: string
+    description: Homepage portrait gallery section below the Exhibitions & Talks banner.
   - name: gallery_preview_heading
-    label: Homepage | Portrait gallery headline
+    label: 05 · EXPLORE PORTRAITS / GALLERY  |  Large headline
     type: string
+    description: Homepage portrait gallery section below the Exhibitions & Talks banner.
   - name: gallery_preview_link_label
-    label: Homepage | Portrait gallery link label
+    label: 05 · EXPLORE PORTRAITS / GALLERY  |  Gallery link text
     type: string
+    description: Homepage portrait gallery section below the Exhibitions & Talks banner.
   - name: home_press_heading
-    label: Homepage | Lower press section heading
+    label: 06 · PRESS / LOWER HOMEPAGE  |  Lower press section heading
     type: string
     description: Controls the separate In the Press section farther down the homepage, not the rotating press spotlight.
   - name: home_press_link_label
-    label: Homepage | Lower press section link text
+    label: 06 · PRESS / LOWER HOMEPAGE  |  Lower press link text
     type: string
-  - name: exhibitions_home_image
-    label: Exhibitions homepage image (right side)
-    type: image
-    description: Flyer or photo. Image is decorative and not clickable.
-  - name: paint_background
-    label: HOME EXHIBITIONS BANNER / Painted background image
-    type: image
-    description: Large painted banner behind “See the work in person” on the homepage (not the Exhibitions page). Choose a replacement image here. The current image is prefilled in Homepage Design settings.
-  - name: hero_height
-    label: Hero Height
-    type: number
+    description: Additional Press & Media section farther down the homepage; not the rotating feature above.
   - name: intro_background
-    label: Intro Background
+    label: 07 · GENERAL / BACKGROUNDS  |  Intro background color
     type: string
-  - name: hero_eyebrow_rule_width
-    label: Hero small pink divider thickness (px)
-    type: number
+    description: 'Background color for the introductory homepage area; use a CSS color such as #fffdfb.'
 - name: settings_gallery
   label: Portrait Gallery
   type: file
@@ -865,7 +898,7 @@ content:
     description: Press Enter for a desktop line break. On mobile the text wraps naturally.
   - name: hero_image
     label: Page header image (1200 × 400 px)
-    description: Upload a 1200 × 400 image with the artwork on the right and a fade to #eeeeee on the left. Text overlays the left half on desktop.
+    description: Upload a 1200 × 400 image with the artwork on the right and a fade to
     type: image
   - name: hero_mobile_image
     label: Mobile header image (800 × 500 px, optional)
@@ -874,7 +907,8 @@ content:
   - name: body
     label: Page content
     type: rich-text
-    description: Main editorial text. On Exhibitions, existing year-by-year entries live here; add new dated events under Exhibitions and events instead.
+    description: Main editorial text. On Exhibitions, existing year-by-year entries live here; add new dated events under
+      Exhibitions and events instead.
   - name: exhibitions_featured_enabled
     label: Exhibitions page | Show featured right column
     type: boolean
@@ -889,16 +923,17 @@ content:
     type: string
     default: New exhibitions will be announced here.
     description: Shown in the right column until a future event is marked as featured.
-  # The following project sidebar fields are used only by content/pages/the-project.md.
   - name: project_sidebar_enabled
     label: The Project | Show right-hand content column
     type: boolean
     default: true
-    description: Only affects The Project page. Turn off to return to the original full-width editorial layout and press section below.
+    description: Only affects The Project page. Turn off to return to the original full-width editorial layout and press section
+      below.
   - name: project_sidebar_image
     label: The Project | Right column header artwork (optional)
     type: image
-    description: Optional wide painted image at the top of the right column. Independent of the page header and supporting images.
+    description: Optional wide painted image at the top of the right column. Independent of the page header and supporting
+      images.
   - name: project_sidebar_image_alt
     label: The Project | Right column image description
     type: string
@@ -969,7 +1004,7 @@ content:
       value: '700'
   - name: project_press_rule_color
     label: The Project | Article divider color (hex)
-    description: Thin horizontal line between press items. Enter a color such as #d7d7d7.
+    description: Thin horizontal line between press items. Enter a color such as
     type: string
     default: '#d7d7d7'
   - name: project_press_rule_spacing
@@ -981,13 +1016,14 @@ content:
     label: Supporting images alongside page sections
     type: object
     list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty to show no caption.
+    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty to
+      show no caption.
     fields:
     - name: section_heading
       label: Related section heading (exact wording)
       type: string
       required: true
-      description: Match a heading in Page content, without the # marks. For the opening text use the first heading.
+      description: Match a heading in Page content, without the
     - name: image
       label: Supporting image
       type: image
@@ -1014,7 +1050,8 @@ content:
     label: Quotes, callouts & featured statements
     type: object
     list: true
-    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content, matching their order here. Otherwise choose a section and placement.
+    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content, matching
+      their order here. Otherwise choose a section and placement.
     fields:
     - name: style
       label: Style
@@ -1191,7 +1228,8 @@ content:
     label: Feature prominently on Exhibitions page
     type: boolean
     default: false
-    description: Show a tall image-and-details card in the right column while the event is upcoming or underway. It also stays in the left chronological list.
+    description: Show a tall image-and-details card in the right column while the event is upcoming or underway. It also stays
+      in the left chronological list.
   - name: published
     label: Published
     type: boolean
@@ -1199,4 +1237,5 @@ content:
   - name: body
     label: Event description
     type: rich-text
-    description: Full event information displayed in the featured card and historical listing. Do not duplicate an event in the Exhibitions page body.
+    description: Full event information displayed in the featured card and historical listing. Do not duplicate an event in
+      the Exhibitions page body.
