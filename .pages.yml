@@ -310,7 +310,7 @@ content:
     label: Body text color (overrides base text color)
     type: string
   - name: page_title_line_height
-    label: Page title line height (e.g. 1.05)
+    label: 01 · PAGE HEADER | Page title line height (e.g. 1.05)
     type: number
     default: 1.05
     description: Spacing between lines when an interior page title wraps.
@@ -884,7 +884,7 @@ content:
     type: string
     description: Used for the Shop navigation link, not biography purchase buttons.
 - name: pages
-  label: Site pages
+  label: Site pages · Content & Page-Specific Options
   type: collection
   path: content/pages
   filename: '{primary}.md'
@@ -894,131 +894,135 @@ content:
     primary: title
   fields:
   - name: title
-    label: Page title
+    label: 01 · PAGE HEADER | Page title
     type: string
     required: true
   - name: subtitle
-    label: Intro subtitle
+    label: 01 · PAGE HEADER | Intro subtitle
     type: text
     description: Press Enter for a desktop line break. On mobile the text wraps naturally.
   - name: hero_image
-    label: Page header image (1200 × 400 px)
+    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
     description: Upload a 1200 × 400 image with the artwork on the right and a fade to
     type: image
   - name: hero_mobile_image
-    label: Mobile header image (800 × 500 px, optional)
+    label: 01 · PAGE HEADER | Mobile image (optional)
     description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
     type: image
   - name: body
-    label: Page content
+    label: 02 · MAIN CONTENT | Page text
     type: rich-text
     description: Main editorial text. On Exhibitions, existing year-by-year entries live here; add new dated events under
       Exhibitions and events instead.
   - name: exhibitions_featured_enabled
-    label: Exhibitions page | Show featured right column
+    label: 03 · EXHIBITIONS PAGE ONLY | Show featured right column
+    description: Only used on the Exhibitions page. Ignore these controls when editing History or other pages.
     type: boolean
     default: true
     description: Only affects the Exhibitions page. Displays featured upcoming shows as tall graphic cards on the right.
   - name: exhibitions_featured_heading
-    label: Exhibitions page | Right column heading
+    label: 03 · EXHIBITIONS PAGE ONLY | Right column heading
     type: string
     default: Featured & Upcoming
   - name: exhibitions_featured_empty
-    label: Exhibitions page | Message when no featured shows
+    label: 03 · EXHIBITIONS PAGE ONLY | Message when no featured shows
     type: string
     default: New exhibitions will be announced here.
     description: Shown in the right column until a future event is marked as featured.
   - name: project_sidebar_enabled
-    label: The Project | Show right-hand content column
+    label: 04 · THE PROJECT PAGE ONLY | Show right-hand content column
+    description: Only used on The Project page. Ignore all controls marked THE PROJECT when editing History or other pages.
     type: boolean
     default: true
     description: Only affects The Project page. Turn off to return to the original full-width editorial layout and press section
       below.
   - name: project_sidebar_image
-    label: The Project | Right column header artwork (optional)
+    label: 04 · THE PROJECT PAGE ONLY | Right column header artwork (optional)
     type: image
     description: Optional wide painted image at the top of the right column. Independent of the page header and supporting
       images.
   - name: project_sidebar_image_alt
-    label: The Project | Right column image description
+    label: 04 · THE PROJECT PAGE ONLY | Right column image description
     type: string
   - name: project_sidebar_heading
-    label: The Project | Right column heading (optional)
+    label: 04 · THE PROJECT PAGE ONLY | Right column heading (optional)
     type: string
   - name: project_sidebar_body
-    label: The Project | Right column editable text
+    label: 04 · THE PROJECT PAGE ONLY | Right column editable text
     type: rich-text
     description: Ordinary paragraphs, headings, bold, italics and links. Leave blank to show only the press section.
   - name: project_sidebar_callout
-    label: The Project | Right column highlight text (optional)
+    label: 04 · THE PROJECT PAGE ONLY | Right column highlight text (optional)
     type: rich-text
     description: Separate highlighted text block above Press & Media. Leave blank to hide.
   - name: project_sidebar_press_enabled
-    label: The Project | Show Press & Media in right column
+    label: 04 · THE PROJECT PAGE ONLY | Show Press & Media in right column
     type: boolean
     default: true
   - name: project_sidebar_press_heading
-    label: The Project | Press section heading
+    label: 04 · THE PROJECT PAGE ONLY | Press section heading
     type: string
     default: Press & Media
   - name: project_sidebar_press_intro
-    label: The Project | Press introduction (optional)
+    label: 04 · THE PROJECT PAGE ONLY | Press introduction (optional)
     type: rich-text
   - name: project_sidebar_press_limit
-    label: The Project | Number of press items (0 shows all)
+    label: 04 · THE PROJECT PAGE ONLY | Number of press items (0 shows all)
     type: number
     default: 0
     description: Shows newest first. Set to 0 to include every published article.
   - name: project_press_show_images
-    label: The Project | Show press logos / thumbnails
+    label: 04 · THE PROJECT PAGE ONLY | Show press logos / thumbnails
     description: Shows one image per article, prioritizing your uploaded logo, then an article thumbnail or automatic image.
     type: boolean
     default: true
   - name: project_press_image_width
-    label: The Project | Logo / thumbnail width (pixels)
+    label: 04 · THE PROJECT PAGE ONLY | Logo / thumbnail width (pixels)
     type: number
     default: 95
   - name: project_press_title_font
-    label: The Project | Article title font
+    label: 04 · THE PROJECT PAGE ONLY | Article title font
     type: select
     default: DM Sans
     options:
-    - label: Clean sans-serif (DM Sans)
-      value: DM Sans
-    - label: Condensed (Barlow Condensed)
-      value: Barlow Condensed
-    - label: Serif (Georgia)
-      value: Georgia
+      values:
+      - label: Clean sans-serif (DM Sans)
+        value: DM Sans
+      - label: Condensed (Barlow Condensed)
+        value: Barlow Condensed
+      - label: Serif (Georgia)
+        value: Georgia
   - name: project_press_title_size
-    label: The Project | Article title size (pixels)
+    label: 04 · THE PROJECT PAGE ONLY | Article title size (pixels)
     type: number
     default: 19
   - name: project_press_title_weight
-    label: The Project | Article title weight
+    label: 04 · THE PROJECT PAGE ONLY | Article title weight
     description: Semibold is the recommended cleaner default; this changes only article titles, not the Press & Media heading.
     type: select
     default: '600'
     options:
-    - label: Regular
-      value: '400'
-    - label: Medium
-      value: '500'
-    - label: Semibold
-      value: '600'
-    - label: Bold
-      value: '700'
+      values:
+      - label: Regular
+        value: '400'
+      - label: Medium
+        value: '500'
+      - label: Semibold
+        value: '600'
+      - label: Bold
+        value: '700'
   - name: project_press_rule_color
-    label: The Project | Article divider color (hex)
+    label: 04 · THE PROJECT PAGE ONLY | Article divider color (hex)
     description: Thin horizontal line between press items. Enter a color such as
     type: string
     default: '#d7d7d7'
   - name: project_press_rule_spacing
-    label: The Project | Divider spacing (pixels)
+    label: 04 · THE PROJECT PAGE ONLY | Divider spacing (pixels)
     description: Controls the space above and below each press article divider.
     type: number
     default: 18
   - name: supporting_images
-    label: Supporting images alongside page sections
+    label: 05 · PAGE EXTRAS | Supporting images beside sections
     type: object
     list: true
     description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty to
@@ -1052,7 +1056,7 @@ content:
         - label: Full width below section (explicit only)
           value: full
   - name: callouts
-    label: Quotes, callouts & featured statements
+    label: 06 · PAGE EXTRAS | Quotes, callouts & featured statements
     type: object
     list: true
     description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content, matching
