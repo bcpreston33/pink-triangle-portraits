@@ -554,19 +554,31 @@ def render_press_banner(screenshot_path, background_path, slug):
             return Image.open(path).convert('RGBA') if path.is_file() else None
         shot=local_image(screenshot_path)
         if shot is None: return ''
-        frame=Image.open(ROOT/'assets/images/press-laptop-transparent.png').convert('RGBA')
-        # Coordinates refer to the transparent laptop artwork's native 1440x960 canvas.
-        # The visible screen opening is x=49..1244 and begins at y=51.
-        screen=ImageOps.fit(shot,(1195,780),method=Image.Resampling.LANCZOS,centering=(0.5,0.0))
-        laptop=Image.new('RGBA',frame.size,(0,0,0,0))
-        laptop.paste(screen,(49,52))
-        laptop.alpha_composite(frame)
+        # Render a compact, self-contained laptop instead of enlarging/cropping
+        # an external laptop asset. The screen and frame share exact coordinates.
         canvas=Image.new('RGBA',(1200,560),(237,56,140,255))
         bg=local_image(background_path)
-        if bg is not None: canvas.alpha_composite(ImageOps.fit(bg,canvas.size,method=Image.Resampling.LANCZOS))
-        # Match the portrait banner's composition: oversized screen, cropped at bottom.
-        resized=laptop.resize((1180,787),Image.Resampling.LANCZOS)
-        canvas.alpha_composite(resized,(10,32))
+        if bg is not None:
+            canvas.alpha_composite(ImageOps.fit(bg,canvas.size,method=Image.Resampling.LANCZOS))
+        from PIL import ImageDraw, ImageFilter
+        d=ImageDraw.Draw(canvas)
+        # The laptop fits fully within the banner, with breathing room on all sides.
+        x0,y0,x1,y1=210,42,990,503
+        shadow=Image.new('RGBA',canvas.size,(0,0,0,0))
+        sd=ImageDraw.Draw(shadow)
+        sd.rounded_rectangle((x0+8,y0+12,x1+8,y1+12),radius=22,fill=(0,0,0,110))
+        canvas.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(15)))
+        d=ImageDraw.Draw(canvas)
+        d.rounded_rectangle((x0,y0,x1,y1),radius=21,fill='#15171b',outline='#5d6066',width=3)
+        # A subtle screen bezel and top camera; no image extends outside the screen.
+        sx0,sy0,sx1,sy1=x0+23,y0+31,x1-23,y1-20
+        screen=ImageOps.fit(shot,(sx1-sx0,sy1-sy0),method=Image.Resampling.LANCZOS,centering=(0.5,0.0))
+        canvas.alpha_composite(screen,(sx0,sy0))
+        d=ImageDraw.Draw(canvas)
+        d.ellipse((596,53,604,61),fill='#444950')
+        # A narrow base grounds the laptop without dominating the artwork.
+        d.rounded_rectangle((165,501,1035,518),radius=7,fill='#c3c6cb',outline='#5e6268',width=2)
+        d.rounded_rectangle((534,501,666,507),radius=3,fill='#8c9198')
         target=OUT/'assets/generated-press'
         target.mkdir(parents=True,exist_ok=True)
         name=re.sub(r'[^a-z0-9-]+','-',slug.lower()).strip('-') or 'press'
