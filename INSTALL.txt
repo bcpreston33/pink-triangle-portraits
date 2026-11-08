@@ -1,16 +1,18 @@
-Pink Triangle Portraits — Exhibitions Featured + Year Archive
+PINK TRIANGLE PORTRAITS — HOMEPAGE FEATURE DESIGN + CMS LABELS
 
-Replace these three files in GitHub, preserving their paths:
+Upload these 3 replacement files to the same GitHub paths:
+  .pages.yml (hidden file)
   scripts/build.py
   assets/site.css
-  .pages.yml
 
-Pages CMS > Exhibitions and events:
-- Add an event, with its date, optional end date, location, link, image, and description.
-- Published: enabled for a live entry.
-- Feature prominently: enabled for the large featured area; otherwise it appears in the running year list (2027 onward).
-- Upcoming / Past event is determined automatically by event end date.
+On Mac, Command+Shift+Period reveals hidden files.
 
-The existing 2025 and 2026 history remains editable under Site pages > EXHIBITIONS > Page content. The archive shows a thin pink line above each year and smaller year headings.
+No content files need replacing. Existing site settings and entries remain unchanged.
 
-No live site was changed by this package.
+Pages CMS > Homepage Design: search for "Featured content /" to adjust visual banner height, portrait painted background, portrait white frame, shadow, and browser-style press display.
+
+The portrait image is still pulled automatically from the latest portrait. Press uses the saved publication image; the browser-style frame is a graphic treatment, NOT an automatically captured website screenshot.
+
+Labels beginning HERO / and FEATURES / help locate settings in the existing editor without migrating data or changing the editor architecture.
+
+Test on desktop and mobile after deployment.

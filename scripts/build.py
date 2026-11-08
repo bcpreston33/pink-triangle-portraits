@@ -577,8 +577,14 @@ if featured:
 else:
     spotlights.append(spotlight_card('portrait','The portraits','Explore the stories behind the artwork.','/portraits/','','The latest portrait'))
 spotlights.append(spotlight_card('project',home_option('spotlight_project_heading','Portraits to remember. Stories to keep alive.'),home_option('spotlight_project_description','Pink Triangle Portraits is an ongoing art and research project by Bry Sharland, honoring queer people persecuted by the Nazi regime.'),'/the-project/','','The project','','',home_option('spotlight_project_link_label','Learn about the project')))
+# Site-wide visual options for the automatically selected homepage cards.
+spotlight_background=str(home_option('spotlight_portrait_background','/assets/images/painted-background.jpg'))
+spotlight_height=max(110,min(420,int(home_option('spotlight_visual_height',220) or 220)))
+spotlight_border=max(0,min(24,int(home_option('spotlight_portrait_border',9) or 0)))
+spotlight_shadow='1' if home_option('spotlight_portrait_shadow',True) else '0'
+spotlight_browser='1' if home_option('spotlight_press_browser',True) else '0'
 spotlight_markup=''.join(spotlights)
-spotlight_config=(f'data-event-lead="{attr(home_option("spotlight_exhibition_lead_days",60))}" '
+spotlight_config=(f'style="--spotlight-visual-height:{spotlight_height}px;--spotlight-portrait-border:{spotlight_border}px;--spotlight-portrait-background:url({attr(spotlight_background)});" data-portrait-shadow="{spotlight_shadow}" data-press-browser="{spotlight_browser}" data-event-lead="{attr(home_option("spotlight_exhibition_lead_days",60))}" '
                   f'data-press-days="{attr(home_option("spotlight_press_days",90))}" '
                   f'data-press-enabled="{str(home_option("spotlight_press_enabled",True)).lower()}" '
                   f'data-events-enabled="{str(home_option("spotlight_exhibitions_enabled",True)).lower()}"')
@@ -611,7 +617,7 @@ spotlight_script=r"""<script>
  if(selected.length<2 && project)selected.push(project);
  const keep=new Set(selected.map(x=>x.card));
  cards.forEach(card=>{card.hidden=!keep.has(card)});
- selected.forEach(x=>root.appendChild(x.card));
+ selected.forEach((x,i)=>{root.appendChild(x.card);x.card.classList.toggle('spotlight-first',i===0)});
  root.classList.toggle('spotlights-three',selected.length===3);
  root.classList.toggle('spotlights-two',selected.length===2);
  root.classList.add('spotlights-ready');
