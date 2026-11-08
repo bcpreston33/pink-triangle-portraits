@@ -539,7 +539,7 @@ def press_card(item):
             +f'<h3>{title}</h3><div class="rich">{summary}</div>{link}</div>'
             +picture+'</article>')
 press_project=('''<section id="press-media" class="container project-press"><div class="section-head"><div><span class="section-label">In the press</span><h2>Press &amp; Media</h2></div></div><div class="press-list">'''+''.join(map(press_card,press))+'''</div></section>''') if press else ''
-press_home=('''<section class="container home-press"><div class="section-head"><div><span class="section-label">Recognition &amp; coverage</span><h2>{escape(str(setting("home_press_heading","In the Press")))}</h2></div><a class="text-link" href="/the-project/#press-media">{escape(str(setting("home_press_link_label","All press & media")))} →</a></div><div class="press-list">'''+''.join(map(press_card,press[:3]))+'''</div></section>''') if press else ''
+press_home=(f'<section class="container home-press"><div class="section-head"><div><span class="section-label">Recognition &amp; coverage</span><h2>{escape(str(setting("home_press_heading","In the Press")))}</h2></div><a class="text-link" href="/the-project/#press-media">{escape(str(setting("home_press_link_label","All press & media")))} →</a></div><div class="press-list">'+''.join(map(press_card,press[:3]))+'</div></section>') if press else ''
 
 # Homepage spotlight selection is evaluated in the visitor's browser, so dates expire
 # without a scheduled rebuild. CMS entries are the single source of truth.
@@ -570,7 +570,7 @@ for item in press:
     if item.get('homepage_feature',True) is False: continue
     pub=str(item.get('publication') or 'In the press')
     url=str(item.get('url') or '')
-    logo=item.get('logo') or item.get('image') or press_images.get(url,('',''))[0]
+    logo=item.get('homepage_image') or item.get('logo') or item.get('image') or press_images.get(url,('',''))[0]
     spotlights.append(spotlight_card('press',item.get('title','Press feature'),item.get('summary',''),url or '/the-project/#press-media',logo,pub,item['_date'],item.get('homepage_until') or '', str(home_option('spotlight_press_link_label','Read feature')),f'data-days="{attr(item.get("homepage_days") or "")}"'))
 if featured:
     spotlights.append(spotlight_card('portrait',featured.get('name','Latest portrait'),teaser,artwork_link(featured),featured.get('image',''),'The latest portrait','','',str(home_option('spotlight_portrait_link_label','Read their story'))))

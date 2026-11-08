@@ -1,18 +1,16 @@
-PINK TRIANGLE PORTRAITS — HOMEPAGE FEATURE DESIGN + CMS LABELS
+PINK TRIANGLE PORTRAITS — PRESS FIX AND SCREENSHOT
 
-Upload these 3 replacement files to the same GitHub paths:
-  .pages.yml (hidden file)
+Upload these files into the same GitHub folders, replacing existing files where prompted:
   scripts/build.py
-  assets/site.css
+  .pages.yml (hidden file — show hidden files with Command+Shift+Period)
+  content/press/lgbtq-nation-2026.md
+  assets/uploads/LGBTQ-Nation-article-screenshot.png (NEW)
 
-On Mac, Command+Shift+Period reveals hidden files.
+Fixes the raw template expression displayed in the lower homepage Press & Media heading and link.
 
-No content files need replacing. Existing site settings and entries remain unchanged.
+Your supplied screenshot is preselected for the LGBTQ Nation article's HOMEPAGE spotlight.
+In Pages CMS: Press & Media > Remember: They Resisted > Homepage spotlight | Article screenshot.
+The publication logo remains the image for the Project page and lower press list.
+If the screenshot should be changed, upload a replacement through that new CMS field.
 
-Pages CMS > Homepage Design: search for "Featured content /" to adjust visual banner height, portrait painted background, portrait white frame, shadow, and browser-style press display.
-
-The portrait image is still pulled automatically from the latest portrait. Press uses the saved publication image; the browser-style frame is a graphic treatment, NOT an automatically captured website screenshot.
-
-Labels beginning HERO / and FEATURES / help locate settings in the existing editor without migrating data or changing the editor architecture.
-
-Test on desktop and mobile after deployment.
+Automatic features (such as rotating dates and automatic logos) remain automatic; don't manually fill those unless overriding.
