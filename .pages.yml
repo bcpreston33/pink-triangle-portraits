@@ -441,9 +441,23 @@ content:
     default: true
   - name: spotlight_press_browser
     label: Featured content / PRESS browser-style image
-    description: Displays the publication image in a simplified browser-window banner instead of a plain image.
+    description: Shows the article screenshot inside a reusable laptop mockup over the painted banner. Turn off to show the plain image instead.
     type: boolean
     default: true
+  - name: spotlight_press_background
+    label: Featured content / PRESS painted background
+    description: Background behind the laptop mockup on the homepage. Leave empty to reuse the portrait painted background.
+    type: image
+  - name: spotlight_press_laptop_size
+    label: Featured content / PRESS laptop size (%)
+    description: Adjusts the size of the laptop frame and screenshot together. 118 is the intended starting size.
+    type: number
+    default: 118
+  - name: spotlight_press_laptop_vertical
+    label: Featured content / PRESS laptop vertical position (px)
+    description: Moves the laptop and its article screenshot up or down within the painted banner. Default 12.
+    type: number
+    default: 12
   - name: spotlight_exhibition_lead_days
     label: FEATURES / Featured content | Exhibition lead time (days)
     description: An eligible show joins the homepage this many days before its opening date, then leaves after its end date.
