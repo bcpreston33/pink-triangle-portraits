@@ -41,6 +41,18 @@ content:
   - name: link_label
     label: Link text (optional)
     type: string
+  - name: homepage_feature
+    label: Allow this article to appear automatically on homepage
+    type: boolean
+    default: true
+  - name: homepage_days
+    label: Homepage feature duration (days, optional override)
+    type: number
+    description: Leave blank to use the homepage default (90 days).
+  - name: homepage_until
+    label: Keep featured until this date (optional)
+    type: date
+    description: Overrides the automatic expiration date for this article.
   - name: published
     label: Show this item
     type: boolean
@@ -392,6 +404,22 @@ content:
   - name: hero_overlay_opacity
     label: Hero dark overlay opacity (0–95)
     type: number
+  - name: spotlight_exhibition_lead_days
+    label: Homepage | Days before exhibition to feature (default 60)
+    type: number
+    default: 60
+  - name: spotlight_press_days
+    label: Homepage | Press feature duration in days (default 90)
+    type: number
+    default: 90
+  - name: spotlight_exhibitions_enabled
+    label: Homepage | Automatically show upcoming exhibitions
+    type: boolean
+    default: true
+  - name: spotlight_press_enabled
+    label: Homepage | Automatically show recent press
+    type: boolean
+    default: true
   - name: exhibitions_home_image
     label: Exhibitions homepage image (right side)
     type: image
@@ -999,6 +1027,11 @@ content:
   - name: image
     label: Event image
     type: image
+  - name: homepage_feature
+    label: Allow this event to appear automatically on homepage
+    type: boolean
+    default: true
+    description: Automatically shows within the homepage lead time and disappears after the event ends.
   - name: featured
     label: Feature prominently on Exhibitions page
     type: boolean
