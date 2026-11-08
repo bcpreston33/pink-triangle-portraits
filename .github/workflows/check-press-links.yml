@@ -1,0 +1,26 @@
+name: Check press article links (quarterly)
+on:
+  schedule:
+    - cron: '23 12 1 1,4,7,10 *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'PyYAML>=6,<7'
+      - name: Ensure monitoring label exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh label create press-link-check --color D93F8C --description 'Press links that may need updating' --force
+      - name: Check published press links and report confirmed missing pages
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/check_press_links.py
