@@ -24,7 +24,7 @@ if(search){
       if(matches){card.style.removeProperty('display');shown++;}
       else{card.style.setProperty('display','none','important');}
     });
-    if(count)count.textContent=shown+' portrait'+(shown===1?'':'s');
+    if(count)count.textContent=shown+' '+(shown===1?'person':'people');
     if(empty)empty.hidden=shown!==0;
   };
   search.addEventListener('input',update);
@@ -107,4 +107,22 @@ document.querySelectorAll('.artwork-thumbnails').forEach(group=>{
   document.querySelectorAll('.editorial-section-media img').forEach(img=>img.addEventListener('load',schedule));
   if(document.fonts?.ready)document.fonts.ready.then(schedule);
   schedule();
+})();
+
+// Open external website links in a separate tab. Internal and anchor links stay here.
+(function(){
+  document.querySelectorAll('a[href]').forEach(link=>{
+    const href=link.getAttribute('href');
+    if(!href || href.startsWith('#'))return;
+    try{
+      const url=new URL(href,window.location.href);
+      if(!['http:','https:'].includes(url.protocol))return;
+      const host=url.hostname.toLowerCase().replace(/^www\./,'');
+      const local=window.location.hostname.toLowerCase().replace(/^www\./,'');
+      const isInternal=host===local || host==='pinktriangleportraits.com';
+      if(isInternal)return;
+      link.setAttribute('target','_blank');
+      link.setAttribute('rel',[...new Set((link.getAttribute('rel')||'').split(/\s+/).filter(Boolean).concat(['noopener','noreferrer']))].join(' '));
+    }catch(error){/* Leave malformed URLs unchanged. */}
+  });
 })();

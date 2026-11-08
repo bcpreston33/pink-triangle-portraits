@@ -680,3 +680,18 @@ body>footer{
 .portraits-intro.editorial-copy{width:min(960px,calc(100% - 100px));max-width:960px;margin-inline:auto;padding-top:34px;padding-bottom:22px}
 @media(max-width:1050px){.portraits-intro.editorial-copy{width:calc(100% - 64px)}}
 @media(max-width:700px){.portraits-intro.editorial-copy{width:calc(100% - 40px)}}
+
+/* Gallery introduction: use the same left-aligned editorial text column as other pages. */
+.portraits-intro.editorial-copy{
+  width:min(var(--max),calc(100% - 100px));
+  max-width:var(--max);
+  margin-inline:auto;
+  padding-right:calc((100% - clamp(28px,5vw,85px)) * 1 / 2.7 + clamp(28px,5vw,85px));
+  font-family:var(--body-font),sans-serif;
+  font-size:var(--body-size);
+  line-height:var(--body-leading);
+  color:var(--body-color);
+}
+.portraits-intro.editorial-copy p{line-height:inherit;margin-top:0;margin-bottom:var(--paragraph-spacing,28px)}
+@media(max-width:1050px){.portraits-intro.editorial-copy{width:calc(100% - 64px)}}
+@media(max-width:700px){.portraits-intro.editorial-copy{width:calc(100% - 40px);padding-right:0}}
