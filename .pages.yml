@@ -62,6 +62,11 @@ content:
     label: Allow this article to appear automatically on homepage
     type: boolean
     default: true
+  - name: homepage_priority
+    label: Keep this article as the homepage press feature
+    type: boolean
+    default: false
+    description: Pins this article ahead of newer press and keeps it featured past the normal expiration. Only use for one article at a time.
   - name: homepage_days
     label: Homepage feature duration (days, optional override)
     type: number
@@ -521,14 +526,14 @@ content:
     type: image
   - name: spotlight_press_laptop_size
     label: 03 · FEATURED CONTENT / IMAGES  |  Press laptop scale (%)
-    description: Scales the laptop frame; article screenshot comes from Press & Media, not this setting.
+    description: Scales the large laptop over the painted banner; the live article screenshot is edited in Press & Media.
     type: number
-    default: 118
+    default: 145
   - name: spotlight_press_laptop_vertical
     label: 03 · FEATURED CONTENT / IMAGES  |  Press laptop vertical offset (px)
     description: Moves the laptop up or down inside its cropped image banner.
     type: number
-    default: 12
+    default: 0
   - name: event_band_eyebrow
     label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Small pink heading
     type: string
