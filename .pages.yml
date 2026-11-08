@@ -366,95 +366,120 @@ content:
   path: content/settings/homepage.yml
   fields:
   - name: hero_banner_desktop
-    label: Desktop hero artwork (wide)
+    label: HERO / Desktop hero artwork (wide)
     type: image
   - name: hero_banner_mobile
-    label: Mobile hero artwork (narrow)
+    label: HERO / Mobile hero artwork (narrow)
     type: image
   - name: hero_eyebrow
-    label: Hero small line above headline
+    label: HERO / Hero small line above headline
     type: string
   - name: hero_headline
-    label: Hero main headline (Enter for a line break)
+    label: HERO / Hero main headline (Enter for a line break)
     type: text
   - name: hero_tagline
-    label: Hero tagline (Enter for a line break)
+    label: HERO / Hero tagline (Enter for a line break)
     type: text
   - name: hero_button_show
-    label: Show View the Portraits button
+    label: HERO / Show View the Portraits button
     type: boolean
     default: true
   - name: hero_button_text
-    label: First button label
+    label: HERO / First button label
     type: string
   - name: hero_button_url
-    label: First button destination
+    label: HERO / First button destination
     type: string
   - name: hero_button_2_show
-    label: Show Exhibitions button
+    label: HERO / Show Exhibitions button
     type: boolean
     default: true
   - name: hero_button_2_text
-    label: Second button label
+    label: HERO / Second button label
     type: string
   - name: hero_button_2_url
-    label: Second button destination
+    label: HERO / Second button destination
     type: string
   - name: hero_text_width
-    label: Hero text maximum width (px)
+    label: HERO / Hero text maximum width (px)
     type: number
   - name: hero_eyebrow_gap
-    label: Space below small heading (px)
+    label: HERO / Space below small heading (px)
     type: number
   - name: hero_title_gap
-    label: Space below main heading (px)
+    label: HERO / Space below main heading (px)
     type: number
   - name: hero_tagline_gap
-    label: Space below tagline (px)
+    label: HERO / Space below tagline (px)
     type: number
   - name: hero_overlay_opacity
-    label: Hero dark overlay opacity (0–95)
+    label: HERO / Hero dark overlay opacity (0–95)
     type: number
+  - name: spotlight_visual_height
+    label: Featured content / IMAGE AREA height (px)
+    description: Sets the height of image banners above homepage portrait, press and exhibition features. Recommended 220.
+    type: number
+    default: 220
+  - name: spotlight_portrait_background
+    label: Featured content / PORTRAIT painted background
+    description: Wide artwork behind the portrait image. The portrait itself is automatically selected.
+    type: image
+    default: /assets/images/painted-background.jpg
+  - name: spotlight_portrait_border
+    label: Featured content / PORTRAIT white border (px)
+    description: White frame around the featured portrait. Recommended 9.
+    type: number
+    default: 9
+  - name: spotlight_portrait_shadow
+    label: Featured content / PORTRAIT subtle shadow
+    description: Adds a slight shadow behind the white-framed portrait.
+    type: boolean
+    default: true
+  - name: spotlight_press_browser
+    label: Featured content / PRESS browser-style image
+    description: Displays the publication image in a simplified browser-window banner instead of a plain image.
+    type: boolean
+    default: true
   - name: spotlight_exhibition_lead_days
-    label: Featured content | Exhibition lead time (days)
+    label: FEATURES / Featured content | Exhibition lead time (days)
     description: An eligible show joins the homepage this many days before its opening date, then leaves after its end date.
     type: number
     default: 60
   - name: spotlight_press_days
-    label: Featured content | Press duration (days)
+    label: FEATURES / Featured content | Press duration (days)
     description: Number of days a new article can appear on the homepage; individual articles may override this.
     type: number
     default: 90
   - name: spotlight_exhibitions_enabled
-    label: Featured content | Include upcoming exhibitions
+    label: FEATURES / Featured content | Include upcoming exhibitions
     description: If enabled, the next eligible exhibition has first priority on the homepage.
     type: boolean
     default: true
   - name: spotlight_press_enabled
-    label: Featured content | Include recent press
+    label: FEATURES / Featured content | Include recent press
     description: If enabled, the newest eligible article has second priority on the homepage.
     type: boolean
     default: true
   - name: spotlight_project_heading
-    label: Featured content | Project fallback headline
+    label: FEATURES / Featured content | Project fallback headline
     type: string
     description: Appears only when there is not enough timely content to fill two homepage columns.
   - name: spotlight_project_description
-    label: Featured content | Project fallback description
+    label: FEATURES / Featured content | Project fallback description
     type: text
     description: Introductory text in the permanent Project fallback feature.
   - name: spotlight_project_link_label
-    label: Featured content | Project fallback link text
+    label: FEATURES / Featured content | Project fallback link text
     type: string
   - name: spotlight_press_link_label
-    label: Featured content | Press link text
+    label: FEATURES / Featured content | Press link text
     type: string
     description: Button wording for the automatic homepage press feature.
   - name: spotlight_event_link_label
-    label: Featured content | Exhibition link text
+    label: FEATURES / Featured content | Exhibition link text
     type: string
   - name: spotlight_portrait_link_label
-    label: Featured content | Portrait link text
+    label: FEATURES / Featured content | Portrait link text
     type: string
   - name: event_band_eyebrow
     label: Homepage | Exhibition band small heading (when no show is scheduled)
