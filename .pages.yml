@@ -15,17 +15,21 @@ content:
     primary: title
   fields:
   - name: title
-    label: Headline / feature title
+    label: Article headline
+    description: Appears on The Project page and in the automatic homepage press feature.
     type: string
     required: true
   - name: publication
     label: Publication or outlet
+    description: The publisher name shown above the article headline.
     type: string
   - name: date
     label: Publication date
+    description: Used to sort articles and determine when they rotate off the homepage.
     type: date
   - name: summary
     label: Short description
+    description: Appears below the headline and in the homepage feature. Keep it brief.
     type: text
   - name: logo
     label: Publication logo (optional override)
@@ -37,10 +41,16 @@ content:
     description: Used if no custom publication logo is supplied. Leave empty for automatic logo detection.
   - name: url
     label: Link to article / recording
+    description: The external page opened when visitors select this feature.
     type: string
   - name: link_label
     label: Link text (optional)
     type: string
+  - name: hide_image
+    label: Hide image for this article
+    type: boolean
+    default: false
+    description: Hides the logo/thumbnail for this article even when images are enabled on The Project page.
   - name: homepage_feature
     label: Allow this article to appear automatically on homepage
     type: boolean
@@ -54,7 +64,8 @@ content:
     type: date
     description: Overrides the automatic expiration date for this article.
   - name: published
-    label: Show this item
+    label: Publish this press item
+    description: Turn off to hide this item from all public press sections.
     type: boolean
     default: true
 - name: people
@@ -405,21 +416,75 @@ content:
     label: Hero dark overlay opacity (0–95)
     type: number
   - name: spotlight_exhibition_lead_days
-    label: Homepage | Days before exhibition to feature (default 60)
+    label: Featured content | Exhibition lead time (days)
+    description: An eligible show joins the homepage this many days before its opening date, then leaves after its end date.
     type: number
     default: 60
   - name: spotlight_press_days
-    label: Homepage | Press feature duration in days (default 90)
+    label: Featured content | Press duration (days)
+    description: Number of days a new article can appear on the homepage; individual articles may override this.
     type: number
     default: 90
   - name: spotlight_exhibitions_enabled
-    label: Homepage | Automatically show upcoming exhibitions
+    label: Featured content | Include upcoming exhibitions
+    description: If enabled, the next eligible exhibition has first priority on the homepage.
     type: boolean
     default: true
   - name: spotlight_press_enabled
-    label: Homepage | Automatically show recent press
+    label: Featured content | Include recent press
+    description: If enabled, the newest eligible article has second priority on the homepage.
     type: boolean
     default: true
+  - name: spotlight_project_heading
+    label: Featured content | Project fallback headline
+    type: string
+    description: Appears only when there is not enough timely content to fill two homepage columns.
+  - name: spotlight_project_description
+    label: Featured content | Project fallback description
+    type: text
+    description: Introductory text in the permanent Project fallback feature.
+  - name: spotlight_project_link_label
+    label: Featured content | Project fallback link text
+    type: string
+  - name: spotlight_press_link_label
+    label: Featured content | Press link text
+    type: string
+    description: Button wording for the automatic homepage press feature.
+  - name: spotlight_event_link_label
+    label: Featured content | Exhibition link text
+    type: string
+  - name: spotlight_portrait_link_label
+    label: Featured content | Portrait link text
+    type: string
+  - name: event_band_eyebrow
+    label: Homepage | Exhibition band small heading (when no show is scheduled)
+    type: string
+    description: The colored exhibition strip below the rotating features; shown when there is no upcoming event.
+  - name: event_band_heading
+    label: Homepage | Exhibition band headline (when no show is scheduled)
+    type: string
+  - name: event_band_description
+    label: Homepage | Exhibition band description (when no show is scheduled)
+    type: text
+  - name: event_band_button_label
+    label: Homepage | Exhibition band button label
+    type: string
+  - name: gallery_preview_eyebrow
+    label: Homepage | Portrait gallery small heading
+    type: string
+  - name: gallery_preview_heading
+    label: Homepage | Portrait gallery headline
+    type: string
+  - name: gallery_preview_link_label
+    label: Homepage | Portrait gallery link label
+    type: string
+  - name: home_press_heading
+    label: Homepage | Lower press section heading
+    type: string
+    description: Controls the separate In the Press section farther down the homepage, not the rotating press spotlight.
+  - name: home_press_link_label
+    label: Homepage | Lower press section link text
+    type: string
   - name: exhibitions_home_image
     label: Exhibitions homepage image (right side)
     type: image
@@ -763,6 +828,21 @@ content:
   - name: body
     label: Page content
     type: rich-text
+    description: Main editorial text. On Exhibitions, existing year-by-year entries live here; add new dated events under Exhibitions and events instead.
+  - name: exhibitions_featured_enabled
+    label: Exhibitions page | Show featured right column
+    type: boolean
+    default: true
+    description: Only affects the Exhibitions page. Displays featured upcoming shows as tall graphic cards on the right.
+  - name: exhibitions_featured_heading
+    label: Exhibitions page | Right column heading
+    type: string
+    default: Featured & Upcoming
+  - name: exhibitions_featured_empty
+    label: Exhibitions page | Message when no featured shows
+    type: string
+    default: New exhibitions will be announced here.
+    description: Shown in the right column until a future event is marked as featured.
   # The following project sidebar fields are used only by content/pages/the-project.md.
   - name: project_sidebar_enabled
     label: The Project | Show right-hand content column
@@ -805,6 +885,7 @@ content:
     description: Shows newest first. Set to 0 to include every published article.
   - name: project_press_show_images
     label: The Project | Show press logos / thumbnails
+    description: Shows one image per article, prioritizing your uploaded logo, then an article thumbnail or automatic image.
     type: boolean
     default: true
   - name: project_press_image_width
@@ -828,6 +909,7 @@ content:
     default: 19
   - name: project_press_title_weight
     label: The Project | Article title weight
+    description: Semibold is the recommended cleaner default; this changes only article titles, not the Press & Media heading.
     type: select
     default: '600'
     options:
@@ -841,10 +923,12 @@ content:
       value: '700'
   - name: project_press_rule_color
     label: The Project | Article divider color (hex)
+    description: Thin horizontal line between press items. Enter a color such as #d7d7d7.
     type: string
     default: '#d7d7d7'
   - name: project_press_rule_spacing
     label: The Project | Divider spacing (pixels)
+    description: Controls the space above and below each press article divider.
     type: number
     default: 18
   - name: supporting_images
@@ -1011,7 +1095,8 @@ content:
     type: string
     required: true
   - name: date
-    label: Event date
+    label: Event opening / start date
+    description: Required for automatic upcoming/past grouping and homepage promotion.
     type: date
     required: true
   - name: end_date
@@ -1019,14 +1104,38 @@ content:
     type: date
     description: If blank, event is treated as a one-day event. Once this date passes it moves to Previous Exhibitions.
   - name: location
-    label: Location
+    label: Location (short display line)
     type: string
+    description: A short location such as Boston, MA; shown in lists and on the homepage.
+  - name: venue
+    label: Venue / gallery name
+    type: string
+    description: Displayed in the featured event card. Leave blank if the short location is enough.
+  - name: address
+    label: Venue address (optional)
+    type: string
+    description: Street address or full location, displayed below the venue.
+  - name: reception
+    label: Opening reception (optional)
+    type: string
+    description: For example Friday, April 9, 6–8 PM. Shown on the featured card.
+  - name: hours
+    label: Gallery hours (optional)
+    type: string
+    description: Visiting hours for the featured exhibition.
+  - name: featured_order
+    label: Featured display order (lower number first)
+    type: number
+    default: 10
+    description: When multiple shows are featured, lower numbers appear first in the right column.
   - name: link
     label: Event link
     type: string
+    description: External event or venue details; leave blank to link to the Exhibitions page from the homepage.
   - name: image
-    label: Event image
+    label: Exhibition poster or featured image
     type: image
+    description: Used on the Exhibitions featured card and homepage. A tall poster works well.
   - name: homepage_feature
     label: Allow this event to appear automatically on homepage
     type: boolean
@@ -1036,7 +1145,7 @@ content:
     label: Feature prominently on Exhibitions page
     type: boolean
     default: false
-    description: Display this exhibition as a larger featured card above the yearly listings. Uncheck to keep it in the regular year list.
+    description: Show a tall image-and-details card in the right column while the event is upcoming or underway. It also stays in the left chronological list.
   - name: published
     label: Published
     type: boolean
@@ -1044,3 +1153,4 @@ content:
   - name: body
     label: Event description
     type: rich-text
+    description: Full event information displayed in the featured card and historical listing. Do not duplicate an event in the Exhibitions page body.
