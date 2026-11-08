@@ -562,8 +562,8 @@ def render_press_banner(screenshot_path, background_path, slug):
             canvas.alpha_composite(ImageOps.fit(bg,canvas.size,method=Image.Resampling.LANCZOS))
         from PIL import ImageDraw, ImageFilter
         d=ImageDraw.Draw(canvas)
-        # The laptop fits fully within the banner, with breathing room on all sides.
-        x0,y0,x1,y1=210,42,990,503
+        # The laptop extends below the fixed-height banner; the canvas crops it naturally.
+        x0,y0,x1,y1=185,42,1015,705
         shadow=Image.new('RGBA',canvas.size,(0,0,0,0))
         sd=ImageDraw.Draw(shadow)
         sd.rounded_rectangle((x0+8,y0+12,x1+8,y1+12),radius=22,fill=(0,0,0,110))
@@ -576,9 +576,6 @@ def render_press_banner(screenshot_path, background_path, slug):
         canvas.alpha_composite(screen,(sx0,sy0))
         d=ImageDraw.Draw(canvas)
         d.ellipse((596,53,604,61),fill='#444950')
-        # A narrow base grounds the laptop without dominating the artwork.
-        d.rounded_rectangle((165,501,1035,518),radius=7,fill='#c3c6cb',outline='#5e6268',width=2)
-        d.rounded_rectangle((534,501,666,507),radius=3,fill='#8c9198')
         target=OUT/'assets/generated-press'
         target.mkdir(parents=True,exist_ok=True)
         name=re.sub(r'[^a-z0-9-]+','-',slug.lower()).strip('-') or 'press'
