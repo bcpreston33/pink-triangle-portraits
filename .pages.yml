@@ -884,7 +884,7 @@ content:
     type: string
     description: Used for the Shop navigation link, not biography purchase buttons.
 - name: pages
-  label: Site pages · Content & Page-Specific Options
+  label: Site pages · Headers, text and page-specific options
   type: collection
   path: content/pages
   filename: '{primary}.md'
@@ -903,7 +903,7 @@ content:
     description: Press Enter for a desktop line break. On mobile the text wraps naturally.
   - name: hero_image
     label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
-    description: Upload a 1200 × 400 image with the artwork on the right and a fade to
+    description: Upload a 1200 × 400 image with the artwork on the right and a fade toward the text on the left.
     type: image
   - name: hero_mobile_image
     label: 01 · PAGE HEADER | Mobile image (optional)
@@ -912,14 +912,12 @@ content:
   - name: body
     label: 02 · MAIN CONTENT | Page text
     type: rich-text
-    description: Main editorial text. On Exhibitions, existing year-by-year entries live here; add new dated events under
-      Exhibitions and events instead.
+    description: Main page text. On Exhibitions, the year-by-year introduction lives here; create new event cards in Exhibitions and events.
   - name: exhibitions_featured_enabled
     label: 03 · EXHIBITIONS PAGE ONLY | Show featured right column
-    description: Only used on the Exhibitions page. Ignore these controls when editing History or other pages.
     type: boolean
     default: true
-    description: Only affects the Exhibitions page. Displays featured upcoming shows as tall graphic cards on the right.
+    description: Only affects Exhibitions. Shows featured upcoming event cards in the right column; ignore on History and other pages.
   - name: exhibitions_featured_heading
     label: 03 · EXHIBITIONS PAGE ONLY | Right column heading
     type: string
@@ -981,39 +979,33 @@ content:
     type: number
     default: 95
   - name: project_press_title_font
-    label: 04 · THE PROJECT PAGE ONLY | Article title font
+    label: 04 · PROJECT ONLY | Press article headline font (not History)
     type: select
     default: DM Sans
+    description: Changes the small press article titles in the right column of The Project. Has no effect on History.
     options:
       values:
-      - label: Clean sans-serif (DM Sans)
-        value: DM Sans
-      - label: Condensed (Barlow Condensed)
-        value: Barlow Condensed
-      - label: Serif (Georgia)
-        value: Georgia
+      - DM Sans
+      - Barlow Condensed
+      - Georgia
   - name: project_press_title_size
-    label: 04 · THE PROJECT PAGE ONLY | Article title size (pixels)
+    label: 04 · PROJECT ONLY | Press article headline size (not History)
     type: number
     default: 19
   - name: project_press_title_weight
-    label: 04 · THE PROJECT PAGE ONLY | Article title weight
-    description: Semibold is the recommended cleaner default; this changes only article titles, not the Press & Media heading.
+    label: 04 · PROJECT ONLY | Press article headline weight (not History)
+    description: Changes only article headlines in The Project press list. 600 is semibold. Does not affect History.
     type: select
     default: '600'
     options:
       values:
-      - label: Regular
-        value: '400'
-      - label: Medium
-        value: '500'
-      - label: Semibold
-        value: '600'
-      - label: Bold
-        value: '700'
+      - '400'
+      - '500'
+      - '600'
+      - '700'
   - name: project_press_rule_color
     label: 04 · THE PROJECT PAGE ONLY | Article divider color (hex)
-    description: Thin horizontal line between press items. Enter a color such as
+    description: Thin horizontal line between press articles. Example color is #d7d7d7. Only affects The Project page.
     type: string
     default: '#d7d7d7'
   - name: project_press_rule_spacing
