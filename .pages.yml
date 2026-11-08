@@ -2,6 +2,44 @@ media:
   input: assets/uploads
   output: /assets/uploads
 content:
+- name: press
+  label: Press & Media
+  type: collection
+  path: content/press
+  filename: '{primary}.md'
+  view:
+    fields:
+    - title
+    - publication
+    - date
+    primary: title
+  fields:
+  - name: title
+    label: Headline / feature title
+    type: string
+    required: true
+  - name: publication
+    label: Publication or outlet
+    type: string
+  - name: date
+    label: Publication date
+    type: date
+  - name: summary
+    label: Short description
+    type: text
+  - name: image
+    label: Optional article thumbnail
+    type: image
+  - name: url
+    label: Link to article / recording
+    type: string
+  - name: link_label
+    label: Link text (optional)
+    type: string
+  - name: published
+    label: Show this item
+    type: boolean
+    default: true
 - name: people
   label: Portraits & biographies
   type: collection
@@ -309,14 +347,43 @@ content:
     label: Hero small line above headline
     type: string
   - name: hero_headline
-    label: Hero main headline (use a line break for two lines)
+    label: Hero main headline (Enter for a line break)
     type: text
   - name: hero_tagline
-    label: Hero tagline
-    type: string
+    label: Hero tagline (Enter for a line break)
+    type: text
+  - name: hero_button_show
+    label: Show View the Portraits button
+    type: boolean
+    default: true
   - name: hero_button_text
-    label: Hero button text
+    label: First button label
     type: string
+  - name: hero_button_url
+    label: First button destination
+    type: string
+  - name: hero_button_2_show
+    label: Show Exhibitions button
+    type: boolean
+    default: true
+  - name: hero_button_2_text
+    label: Second button label
+    type: string
+  - name: hero_button_2_url
+    label: Second button destination
+    type: string
+  - name: hero_text_width
+    label: Hero text maximum width (px)
+    type: number
+  - name: hero_eyebrow_gap
+    label: Space below small heading (px)
+    type: number
+  - name: hero_title_gap
+    label: Space below main heading (px)
+    type: number
+  - name: hero_tagline_gap
+    label: Space below tagline (px)
+    type: number
   - name: hero_overlay_opacity
     label: Hero dark overlay opacity (0–95)
     type: number
