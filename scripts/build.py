@@ -550,7 +550,7 @@ def spotlight_card(kind, heading, description, link, image='', meta='', start=''
     href=link if str(link).startswith(('/', 'https://', 'http://')) else ''
     action=(f'<a class="text-link" href="{attr(href)}"'+(' target="_blank" rel="noopener noreferrer"' if href.startswith('http') else '')+f'>{escape(label or "Learn more")} →</a>') if href else ''
     return (f'<article class="spotlight-card spotlight-{attr(kind)}" data-kind="{attr(kind)}" data-start="{attr(start)}" data-end="{attr(end)}" {extra}>'
-            +spotlight_picture(image,heading)
+            +(f'<div class="spotlight-image"><div class="press-laptop"><div class="press-laptop-screen">{img(image,heading)}</div><img class="press-laptop-frame" src="/assets/images/press-laptop-transparent.png" alt="" aria-hidden="true"></div></div>' if kind=='press' and image else spotlight_picture(image,heading))
             +f'<div class="spotlight-copy"><span class="section-label">{escape(meta or kind.title())}</span><h2>{escape(str(heading))}</h2>'
             +(f'<p>{escape(str(description))}</p>' if description else '')+action+'</div></article>')
 
@@ -571,7 +571,7 @@ for item in press:
     pub=str(item.get('publication') or 'In the press')
     url=str(item.get('url') or '')
     logo=item.get('homepage_image') or item.get('logo') or item.get('image') or press_images.get(url,('',''))[0]
-    spotlights.append(spotlight_card('press',item.get('title','Press feature'),item.get('summary',''),url or '/the-project/#press-media',logo,pub,item['_date'],item.get('homepage_until') or '', str(home_option('spotlight_press_link_label','Read feature')),f'data-days="{attr(item.get("homepage_days") or "")}"'))
+    spotlights.append(spotlight_card('press',item.get('title','Press feature'),item.get('summary',''),url or '/the-project/#press-media',logo,pub,item['_date'],item.get('homepage_until') or '', str(home_option('spotlight_press_link_label','Read feature')),f'data-days="{attr(item.get("homepage_days") or "")}" data-featured-priority="{str(item.get("homepage_priority",False)).lower()}"'))
 if featured:
     spotlights.append(spotlight_card('portrait',featured.get('name','Latest portrait'),teaser,artwork_link(featured),featured.get('image',''),'The latest portrait','','',str(home_option('spotlight_portrait_link_label','Read their story'))))
 else:
@@ -608,7 +608,7 @@ spotlight_script=r"""<script>
    valid=now<=end && start<=days(num(root.dataset.eventLead,60));sort=-start.getTime();
   } else if(kind==='press' && root.dataset.pressEnabled!=='false' && start){
    const expiry=end||new Date(start.getFullYear(),start.getMonth(),start.getDate()+num(card.dataset.days,num(root.dataset.pressDays,90)));
-   valid=now>=start && now<=expiry;sort=start.getTime();
+   valid=(now>=start && now<=expiry)||card.dataset.featuredPriority==='true';sort=start.getTime()+(card.dataset.featuredPriority==='true'?1e16:0);
   } else if(kind==='portrait'||kind==='project'){valid=true}
   if(valid)candidates.push({card,index,kind,sort});
  });
@@ -627,7 +627,7 @@ spotlight_script=r"""<script>
 })();
 </script>"""
 
-home=f'''<section class="home-hero" style="min-height:{attr(setting('hero_height',500))}px;--hero-darkness:{hero_overlay};{hero_style}"><div class="home-portrait-strip">{hero_picture}</div><div class="home-hero-overlay"><div class="container"><span class="hero-eyebrow">{hero_eyebrow}</span><h1>{hero_heading}</h1><p>{hero_tagline}</p>{hero_actions}</div></div></section><section class="home-intro home-spotlights container"{section_style("intro")}><div class="spotlight-grid" data-spotlights {spotlight_config}>{spotlight_markup}</div></section>{spotlight_script}<section class="event-band"><div class="container event-grid">{event_markup}</div></section><section class="container gallery-preview"{section_style("gallery")}><div class="section-head"><div><span class="section-label">{escape(str(home_option("gallery_preview_eyebrow","Explore the portraits")))}</span><h2>{escape(str(home_option("gallery_preview_heading","Every person has a story.")))}</h2></div><a class="text-link" href="/portraits/">{escape(str(home_option("gallery_preview_link_label","Browse all portraits")))} →</a></div><div class="portrait-grid">{''.join(portrait_card(p) for p in [next(a for a in newest if a['_person_slug']==ps) for ps in dict.fromkeys(a['_person_slug'] for a in newest)][:5])}</div></section>{press_home}'''
+home=f'''<section class="home-hero" style="min-height:{attr(setting('hero_height',500))}px;--hero-darkness:{hero_overlay};{hero_style}"><div class="home-portrait-strip">{hero_picture}</div><div class="home-hero-overlay"><div class="container"><span class="hero-eyebrow">{hero_eyebrow}</span><h1>{hero_heading}</h1><p>{hero_tagline}</p>{hero_actions}</div></div></section><section class="home-intro home-spotlights container"{section_style("intro")}><div class="spotlight-grid" data-spotlights {spotlight_config}>{spotlight_markup}</div></section>{spotlight_script}<section class="event-band" style="background-image:linear-gradient(90deg,rgba(4,28,40,.78),rgba(4,28,40,.12)),url('{attr(setting("paint_background","/assets/images/715931084-background-web.jpg"))}')"><div class="container event-grid">{event_markup}</div></section><section class="container gallery-preview"{section_style("gallery")}><div class="section-head"><div><span class="section-label">{escape(str(home_option("gallery_preview_eyebrow","Explore the portraits")))}</span><h2>{escape(str(home_option("gallery_preview_heading","Every person has a story.")))}</h2></div><a class="text-link" href="/portraits/">{escape(str(home_option("gallery_preview_link_label","Browse all portraits")))} →</a></div><div class="portrait-grid">{''.join(portrait_card(p) for p in [next(a for a in newest if a['_person_slug']==ps) for ps in dict.fromkeys(a['_person_slug'] for a in newest)][:5])}</div></section>{press_home}'''
 write('',page('Home','Home',home))
 
 for route in ['the-project','the-history','about-the-artist','contact','shop']:

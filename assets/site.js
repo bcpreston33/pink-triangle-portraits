@@ -155,3 +155,12 @@ document.querySelectorAll('.press-card-image').forEach(function(image){
     } else { image.closest('.press-card-visual')?.remove(); }
   });
 });
+
+// Replace decorative link arrows with the brand triangle; keep navigation arrows intact.
+document.querySelectorAll('a.text-link, a.button').forEach(link=>{
+  const last=[...link.childNodes].reverse().find(n=>n.nodeType===3 && n.textContent.trim());
+  if(!last)return;
+  if(!/[→↗]\s*$/.test(last.textContent))return;
+  last.textContent=last.textContent.replace(/\s*[→↗]\s*$/,'');
+  const marker=document.createElement('span');marker.className='ptp-link-triangle';marker.setAttribute('aria-hidden','true');link.appendChild(marker);
+});
