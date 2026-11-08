@@ -9,7 +9,7 @@ project_sidebar_press_enabled: true
 project_sidebar_press_heading: Press & Media
 project_sidebar_press_limit: 0
 callouts:
-  - style: quote
+  - style: highlight
     heading: Special Thanks!
     text: >-
       **The Mass Cultural Council**
