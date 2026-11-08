@@ -1,7 +1,13 @@
 hero_banner_desktop: /assets/uploads/PTP-Site-Home2-Header-Monitor.jpg
 hero_eyebrow: ART | HISTORY | QUEER JOY
 hero_headline: PINK TRIANGLE PORTRAITS
-hero_tagline: Giving color and dignity to those who had it stripped away.
+hero_tagline: |-
+  Giving color and dignity to those 
+  who had it stripped away.
+hero_button_show: true
+hero_button_text: VIEW THE PORTRAITS
+hero_button_2_show: true
+hero_button_2_text: EXHIBITIONS & EVENTS
 hero_overlay_opacity: 0
 hero_height: 500
 intro_background: "#fffdfb"
