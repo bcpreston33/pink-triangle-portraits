@@ -8,7 +8,7 @@ callouts:
   - style: highlight
     heading: Special Thanks!
     text: >-
-      The Mass Cultural Council
+      **The Mass Cultural Council**
 
 
       **Dr. Klaus Müller**, for whom we owe a tremendous debt of gratitude for
