@@ -730,6 +730,46 @@ content:
   - name: body
     label: Page content
     type: rich-text
+  # The following project sidebar fields are used only by content/pages/the-project.md.
+  - name: project_sidebar_enabled
+    label: The Project | Show right-hand content column
+    type: boolean
+    default: true
+    description: Only affects The Project page. Turn off to return to the original full-width editorial layout and press section below.
+  - name: project_sidebar_image
+    label: The Project | Right column header artwork (optional)
+    type: image
+    description: Optional wide painted image at the top of the right column. Independent of the page header and supporting images.
+  - name: project_sidebar_image_alt
+    label: The Project | Right column image description
+    type: string
+  - name: project_sidebar_heading
+    label: The Project | Right column heading (optional)
+    type: string
+  - name: project_sidebar_body
+    label: The Project | Right column editable text
+    type: rich-text
+    description: Ordinary paragraphs, headings, bold, italics and links. Leave blank to show only the press section.
+  - name: project_sidebar_callout
+    label: The Project | Right column highlight text (optional)
+    type: rich-text
+    description: Separate highlighted text block above Press & Media. Leave blank to hide.
+  - name: project_sidebar_press_enabled
+    label: The Project | Show Press & Media in right column
+    type: boolean
+    default: true
+  - name: project_sidebar_press_heading
+    label: The Project | Press section heading
+    type: string
+    default: Press & Media
+  - name: project_sidebar_press_intro
+    label: The Project | Press introduction (optional)
+    type: rich-text
+  - name: project_sidebar_press_limit
+    label: The Project | Number of press items (0 shows all)
+    type: number
+    default: 0
+    description: Shows newest first. Set to 0 to include every published article.
   - name: supporting_images
     label: Supporting images alongside page sections
     type: object
