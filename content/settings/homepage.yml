@@ -2,20 +2,31 @@ hero_banner_desktop: /assets/uploads/PTP-Site-Home2-Header-Monitor.jpg
 hero_banner_mobile: /assets/uploads/PTP-Site-Home-Mobile-1.jpg
 hero_eyebrow: ART | HISTORY | QUEER JOY
 hero_headline: PINK TRIANGLE PORTRAITS
-hero_tagline: "Giving color and dignity to those \nwho had it stripped away."
+hero_tagline: |-
+  Giving color and dignity to those 
+  who had it stripped away.
 hero_button_show: true
 hero_button_text: VIEW THE PORTRAITS
 hero_button_2_show: true
 hero_button_2_text: EXHIBITIONS & EVENTS
-hero_overlay_opacity: 0
 hero_height: 500
-intro_background: '#fffdfb'
+hero_overlay_opacity: 0
 hero_eyebrow_rule_width: 10
+spotlight_exhibitions_enabled: true
+spotlight_exhibition_lead_days: 60
+spotlight_press_enabled: true
+spotlight_press_days: 90
+spotlight_visual_height: 220
+spotlight_portrait_background: /assets/images/painted-background.jpg
+spotlight_portrait_border: 9
+spotlight_portrait_shadow: true
 spotlight_press_browser: true
 spotlight_press_laptop_size: 118
 spotlight_press_laptop_vertical: 12
-event_band_eyebrow: 'EXHIBITIONS & TALKS'
-event_band_heading: 'See the work in person'
-event_band_description: 'Explore exhibitions, artist talks, and events featuring Pink Triangle Portraits.'
-event_band_button_label: 'EXHIBITIONS'
-paint_background: '/assets/images/715931084-background-web.jpg'
+event_band_eyebrow: EXHIBITIONS & TALKS
+event_band_heading: See the work in person
+event_band_description: Explore exhibitions, artist talks, and events featuring
+  Pink Triangle Portraits.
+event_band_button_label: EXHIBITIONS
+paint_background: /assets/uploads/PTP-Home-Exhibition-Banner-1.jpg
+intro_background: "#fffdfb"
