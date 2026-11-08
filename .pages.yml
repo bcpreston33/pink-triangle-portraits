@@ -38,7 +38,11 @@ content:
   - name: image
     label: Article thumbnail (optional override)
     type: image
-    description: Used if no custom publication logo is supplied. Leave empty for automatic logo detection.
+    description: Used in the Project page and lower press list if no custom logo is supplied. For a homepage screenshot, use the separate Homepage spotlight field below.
+  - name: homepage_image
+    label: Homepage spotlight | Article screenshot (optional)
+    type: image
+    description: Only the rotating homepage press feature uses this image, inside the browser-style banner. Upload a screenshot of the article here. The Project page and lower press list continue using the publication logo or article thumbnail. Leave empty to use those existing images automatically.
   - name: url
     label: Link to article / recording
     description: The external page opened when visitors select this feature.
