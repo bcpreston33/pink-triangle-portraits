@@ -1,16 +1,1 @@
-PINK TRIANGLE PORTRAITS — PRESS FIX AND SCREENSHOT
-
-Upload these files into the same GitHub folders, replacing existing files where prompted:
-  scripts/build.py
-  .pages.yml (hidden file — show hidden files with Command+Shift+Period)
-  content/press/lgbtq-nation-2026.md
-  assets/uploads/LGBTQ-Nation-article-screenshot.png (NEW)
-
-Fixes the raw template expression displayed in the lower homepage Press & Media heading and link.
-
-Your supplied screenshot is preselected for the LGBTQ Nation article's HOMEPAGE spotlight.
-In Pages CMS: Press & Media > Remember: They Resisted > Homepage spotlight | Article screenshot.
-The publication logo remains the image for the Project page and lower press list.
-If the screenshot should be changed, upload a replacement through that new CMS field.
-
-Automatic features (such as rotating dates and automatic logos) remain automatic; don't manually fill those unless overriding.
+Replace the five listed files in your GitHub repository, preserving folders. IMPORTANT: .pages.yml is hidden in Finder (Command+Shift+Period). The screenshot stays editable under Press & Media > Homepage spotlight | Article screenshot. Homepage Design controls adjust the press painted background, laptop size and vertical position. No changes to feature rotation.

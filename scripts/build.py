@@ -583,8 +583,11 @@ spotlight_height=max(110,min(420,int(home_option('spotlight_visual_height',220) 
 spotlight_border=max(0,min(24,int(home_option('spotlight_portrait_border',9) or 0)))
 spotlight_shadow='1' if home_option('spotlight_portrait_shadow',True) else '0'
 spotlight_browser='1' if home_option('spotlight_press_browser',True) else '0'
+spotlight_laptop_size=max(70,min(190,int(home_option('spotlight_press_laptop_size',118) or 118)))
+spotlight_laptop_vertical=max(-80,min(80,int(home_option('spotlight_press_laptop_vertical',12) or 0)))
+spotlight_press_background=str(home_option('spotlight_press_background',spotlight_background) or spotlight_background)
 spotlight_markup=''.join(spotlights)
-spotlight_config=(f'style="--spotlight-visual-height:{spotlight_height}px;--spotlight-portrait-border:{spotlight_border}px;--spotlight-portrait-background:url({attr(spotlight_background)});" data-portrait-shadow="{spotlight_shadow}" data-press-browser="{spotlight_browser}" data-event-lead="{attr(home_option("spotlight_exhibition_lead_days",60))}" '
+spotlight_config=(f'style="--spotlight-visual-height:{spotlight_height}px;--spotlight-portrait-border:{spotlight_border}px;--spotlight-portrait-background:url({attr(spotlight_background)});--spotlight-press-background:url({attr(spotlight_press_background)});--spotlight-laptop-scale:{spotlight_laptop_size / 100:.2f};--spotlight-laptop-offset:{spotlight_laptop_vertical}px;" data-portrait-shadow="{spotlight_shadow}" data-press-browser="{spotlight_browser}" data-event-lead="{attr(home_option("spotlight_exhibition_lead_days",60))}" '
                   f'data-press-days="{attr(home_option("spotlight_press_days",90))}" '
                   f'data-press-enabled="{str(home_option("spotlight_press_enabled",True)).lower()}" '
                   f'data-events-enabled="{str(home_option("spotlight_exhibitions_enabled",True)).lower()}"')

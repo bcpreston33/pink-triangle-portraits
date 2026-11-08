@@ -913,3 +913,9 @@ body>footer{
 .spotlight-grid .spotlight-copy h2{font-size:clamp(26px,2.65vw,38px);line-height:1.12}
 @media(max-width:900px){.spotlight-grid.spotlights-ready .spotlight-card:nth-child(3){border-left:0;padding-left:0;border-top:1px solid #bacbd0;padding-top:25px;margin-top:25px}}
 @media(max-width:700px){.spotlight-grid.spotlights-ready .spotlight-card,.spotlight-grid.spotlights-ready .spotlight-card:not(.spotlight-first){border-left:0;padding-left:0;padding-right:0}.spotlight-grid.spotlights-ready .spotlight-card:not(.spotlight-first){border-top:1px solid #bacbd0;padding-top:25px;margin-top:0}.spotlight-grid .spotlight-image{height:min(var(--spotlight-visual-height,220px),270px)}}
+
+/* Reusable, transparent laptop frame: the screenshot remains a separate live image. */
+.spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image{background:#e9478c var(--spotlight-press-background) center/cover no-repeat;position:relative;padding:0;isolation:isolate}
+.spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image:before{content:none}
+.spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image:after{content:"";position:absolute;z-index:2;width:calc(91% * var(--spotlight-laptop-scale,1.18));max-width:none;aspect-ratio:1310/880;left:50%;top:calc(7% + var(--spotlight-laptop-offset,12px));transform:translateX(-50%);background:url('/assets/images/press-laptop-frame.png') center top/100% 100% no-repeat;pointer-events:none}
+.spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image img{position:absolute;z-index:1;left:50%;top:calc(7% + var(--spotlight-laptop-offset,12px) + (91vw * 0));transform:translateX(-50%);width:calc(83% * var(--spotlight-laptop-scale,1.18));height:calc(75% * var(--spotlight-laptop-scale,1.18));max-height:none;max-width:none;object-fit:cover;object-position:top center;padding:0;border:0;box-shadow:none;background:white}
