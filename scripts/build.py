@@ -1,7 +1,9 @@
 from pathlib import Path
 from datetime import date, datetime
 from html import escape, unescape
-from urllib.parse import quote
+from urllib.parse import quote, urlparse, urljoin
+from urllib.request import Request, urlopen
+from html.parser import HTMLParser
 import re, shutil, subprocess
 import yaml
 try:
@@ -470,6 +472,45 @@ for f in (ROOT/'content/press').glob('*.md') if (ROOT/'content/press').exists() 
     item['_date']=str(item.get('date') or '')[:10]
     press.append(item)
 press.sort(key=lambda p:p['_date'],reverse=True)
+class _PressMeta(HTMLParser):
+    def __init__(self):
+        super().__init__(); self.image=''; self.logo=''
+    def handle_starttag(self, tag, attrs):
+        a=dict(attrs)
+        if tag=='meta':
+            key=(a.get('property') or a.get('name') or '').lower()
+            if key in ('og:image','twitter:image') and not self.image: self.image=a.get('content','')
+        elif tag=='link':
+            rel=a.get('rel','').lower()
+            if 'apple-touch-icon' in rel or 'icon' in rel:
+                if not self.logo or 'apple-touch-icon' in rel: self.logo=a.get('href','')
+
+def press_auto_image(url):
+    """Best-effort publication icon, with optional article image metadata.
+    No paid services, and failures never interrupt the site build.
+    """
+    parsed=urlparse(url)
+    if parsed.scheme not in ('https','http') or not parsed.hostname: return ('','')
+    host=parsed.hostname
+    icon=f'https://www.google.com/s2/favicons?domain={quote(host)}&sz=128'
+    thumbnail=''
+    try:
+        req=Request(url,headers={'User-Agent':'Mozilla/5.0 (compatible; PTPPressPreview/1.0)'})
+        with urlopen(req,timeout=3) as response:
+            raw=response.read(180000).decode('utf-8','replace')
+            resolved=response.geturl()
+        meta=_PressMeta(); meta.feed(raw)
+        if meta.image: thumbnail=urljoin(resolved,meta.image)
+        if meta.logo: icon=urljoin(resolved,meta.logo)
+    except Exception: pass
+    return (icon,thumbnail)
+
+press_images={}
+for item in press:
+    url=str(item.get('url') or '').strip()
+    if url.startswith(('https://','http://')) and not item.get('logo') and not item.get('image'):
+        press_images[url]=press_auto_image(url)
+
 def press_card(item):
     title=escape(str(item.get('title') or 'Press feature'))
     publication=escape(str(item.get('publication') or ''))
@@ -478,11 +519,24 @@ def press_card(item):
     url=str(item.get('url') or '').strip()
     link=(f'<a class="text-link" href="{attr(url)}" target="_blank" rel="noopener noreferrer">'
           +escape(str(item.get('link_label') or 'Read feature'))+' ↗</a>') if url.startswith(('https://','http://')) else ''
-    picture=img(item['image'],str(item.get('title') or ''),'press-card-image') if item.get('image') else ''
+    # Manual logo > manual thumbnail > automatic publication icon > article metadata thumbnail.
+    logo=str(item.get('logo') or '').strip()
+    thumb=str(item.get('image') or '').strip()
+    auto_icon,auto_thumb=press_images.get(url,('',''))
+    chosen=logo or thumb or auto_icon or auto_thumb
+    fallback=auto_thumb if chosen==auto_icon and auto_thumb and auto_thumb!=auto_icon else ''
+    picture=''
+    if chosen:
+        alt=str(item.get('publication') or item.get('title') or 'Publication')
+        # If a detected publication icon is unavailable, try the article thumbnail.
+        image_html=img(chosen,alt,'press-card-image')
+        if fallback:
+            image_html=image_html.replace(' loading="lazy">',f' data-fallback-src="{attr(fallback)}" loading="lazy">')
+        picture=f'<div class="press-card-visual">{image_html}</div>' 
     return (f'<article class="press-card">'
-            +(f'<div class="press-card-visual">{picture}</div>' if picture else '')
             +f'<div class="press-card-copy"><p class="press-meta">{publication}{" · " if publication and day else ""}{day}</p>'
-            +f'<h3>{title}</h3><div class="rich">{summary}</div>{link}</div></article>')
+            +f'<h3>{title}</h3><div class="rich">{summary}</div>{link}</div>'
+            +picture+'</article>')
 press_project=('''<section id="press-media" class="container project-press"><div class="section-head"><div><span class="section-label">In the press</span><h2>Press &amp; Media</h2></div></div><div class="press-list">'''+''.join(map(press_card,press))+'''</div></section>''') if press else ''
 press_home=('''<section class="container home-press"><div class="section-head"><div><span class="section-label">Recognition &amp; coverage</span><h2>In the Press</h2></div><a class="text-link" href="/the-project/#press-media">All press &amp; media →</a></div><div class="press-list">'''+''.join(map(press_card,press[:3]))+'''</div></section>''') if press else ''
 
@@ -519,7 +573,20 @@ for route in ['the-project','the-history','about-the-artist','contact','shop']:
             if side_body: sidebar_parts.append(f'<div class="project-side-rich rich">{render_md(side_body)}</div>')
             if side_callout: sidebar_parts.append(f'<aside class="project-side-note rich">{render_md(side_callout)}</aside>')
             if show_press and visible_press:
-                sidebar_parts.append(f'<section id="press-media" class="project-side-press"><div class="section-head"><div><span class="section-label">In the press</span><h2>{escape(press_title)}</h2></div></div>'+(f'<div class="rich project-press-intro">{render_md(press_intro)}</div>' if press_intro else '')+'<div class="press-list">'+''.join(map(press_card,visible_press))+'</div></section>')
+                font=str(data.get('project_press_title_font') or 'DM Sans')
+                if font not in ('DM Sans','Barlow Condensed','Georgia'): font='DM Sans'
+                try: title_size=max(14,min(32,int(data.get('project_press_title_size') or 19)))
+                except (TypeError,ValueError): title_size=19
+                try: title_weight=int(data.get('project_press_title_weight') or 600)
+                except (TypeError,ValueError): title_weight=600
+                if title_weight not in (400,500,600,700,800,900): title_weight=600
+                try: image_width=max(55,min(180,int(data.get('project_press_image_width') or 95)))
+                except (TypeError,ValueError): image_width=95
+                try: rule_gap=max(8,min(45,int(data.get('project_press_rule_spacing') or 18)))
+                except (TypeError,ValueError): rule_gap=18
+                rule_color=str(data.get('project_press_rule_color') or '#d7d7d7')
+                if not re.fullmatch(r'#[0-9a-fA-F]{6}',rule_color): rule_color='#d7d7d7'
+                sidebar_parts.append(f'<section id="press-media" class="project-side-press {"press-images-hidden" if data.get("project_press_show_images",True) is False else ""}" style="--press-title-font:{attr(font)};--press-title-size:{title_size}px;--press-title-weight:{title_weight};--press-image-width:{image_width}px;--press-rule-spacing:{rule_gap}px;--press-rule-color:{rule_color}"><div class="section-head"><div><span class="section-label">In the press</span><h2>{escape(press_title)}</h2></div></div>'+(f'<div class="rich project-press-intro">{render_md(press_intro)}</div>' if press_intro else '')+'<div class="press-list">'+''.join(map(press_card,visible_press))+'</div></section>')
             if sidebar_parts:
                 content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''),data.get('hero_mobile_image',''))+f'<div class="container project-two-column"><div class="project-main editorial-with-images rich">{body}</div><aside class="project-sidebar" aria-label="Project features and press">{"".join(sidebar_parts)}</aside></div>'
         else:

@@ -142,3 +142,13 @@ function draw(target,items){target.querySelector('.exhibition-group-items').repl
 draw(upcoming,up.sort((a,b)=>a.dataset.start.localeCompare(b.dataset.start)));draw(current,groups(cur));draw(past,groups(archive));}
 render();document.addEventListener('visibilitychange',()=>{if(!document.hidden)render()});window.addEventListener('focus',render);setInterval(render,60000);
 })();
+
+// Press artwork: one logo/thumbnail; use the article image if its icon fails.
+document.querySelectorAll('.press-card-image').forEach(function(image){
+  image.addEventListener('error',function(){
+    if(image.dataset.fallbackSrc && image.src !== image.dataset.fallbackSrc){
+      image.src=image.dataset.fallbackSrc;
+      image.removeAttribute('data-fallback-src');
+    } else { image.closest('.press-card-visual')?.remove(); }
+  });
+});

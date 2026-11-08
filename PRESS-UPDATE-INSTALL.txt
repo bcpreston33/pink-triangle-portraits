@@ -1,0 +1,36 @@
+PINK TRIANGLE PORTRAITS — PRESS & MEDIA UPDATE
+
+Upload/replace these files in your GitHub repository, keeping their folder paths:
+  scripts/build.py
+  scripts/check_press_links.py (NEW)
+  assets/site.css
+  assets/site.js
+  .pages.yml (HIDDEN FILE)
+  .github/workflows/check-press-links.yml (NEW)
+
+Mac Finder: Command + Shift + Period reveals hidden files such as .pages.yml and .github.
+
+PAGES CMS
+- Press & Media: each entry can have a custom Publication logo and/or Article thumbnail.
+  Custom logo takes priority; then custom thumbnail; otherwise the build tries to
+  identify a publication icon automatically. When available, article metadata
+  provides a thumbnail fallback if the icon cannot load.
+- Site pages > THE PROJECT: control article font, weight, size, logo width,
+  image visibility, and thin divider color/spacing.
+- The default article title is DM Sans semibold 19px; dividers remain thin gray.
+
+LINK MONITORING (NO PAID EMAIL SERVICE)
+- GitHub Actions checks published press URLs four times a year (Jan/Apr/Jul/Oct),
+  plus manually via Actions > Check press article links > Run workflow.
+- Only repeat 404/410 results create GitHub issues; access-blocking 403/429
+  errors are logged but do not trigger false broken-link alerts.
+- In GitHub Settings > Notifications, enable email notifications for issues,
+  and watch the repository for Issues if needed. GitHub sends the email,
+  not the website. Email delivery depends on your GitHub notification settings.
+- A free public GitHub repository normally incurs no Actions usage charges;
+  if your repo is private, verify your plan's included minutes. No paid services
+  are used by this update.
+
+NOTE: Automatic publication logos rely on publication metadata and/or free
+favicon lookup; image availability and quality vary by publication. You can
+always override an image in Pages CMS.
