@@ -4,31 +4,6 @@ subtitle: |-
   Giving color and dignity to those 
   who had it stripped away.
 hero_image: /assets/uploads/PTP-Page-Headers-Project-7.jpg
-callouts:
-  - style: highlight
-    heading: Special Thanks!
-    text: >-
-      **The Mass Cultural Council**
-
-
-      **Dr. Klaus Müller**, for whom we owe a tremendous debt of gratitude for
-      interviewing and sharing the story of survivors, and for his scholarship
-      on this topic, and assistance in finding sources.
-
-
-      **Dr. Anna Hájková**, for directly calling out institutions that erased
-      queer experiences/ testimonies, and championing the experiences of queer
-      women during the holocaust
-
-
-      **Dr. Jake Newsome** and **The Pink Triangle Legacies Project**, for
-      guidance and collaboration.
-
-
-      My husband **Brian**, and our dog **Luna**, for everything.
-    position: after-section
-    layout: side
-    alignment: left
 ---
 ### Introduction
 
@@ -44,3 +19,14 @@ The portraits are based on surviving historical photographs and are accompanied 
 
 The work is ultimately about remembrance, queer joy, and dignity. Through these portraits, Bry hopes viewers will understand the people behind this history and recognize how tenuous hard-won rights can remain, both today and around the world.
 
+### Special Thanks!
+
+**The Mass Cultural Council**
+
+**Dr. Klaus Müller**, for whom we owe a tremendous debt of gratitude for interviewing and sharing the story of survivors, and for his scholarship on this topic, and assistance in finding sources.
+
+**Dr. Anna Hájková**, for directly calling out institutions that erased queer experiences/ testimonies, and championing the experiences of queer women during the holocaust
+
+**Dr. Jake Newsome** and **The Pink Triangle Legacies Project**, for guidance and collaboration.
+
+My husband **Brian**, and our dog **Luna**, for everything.
