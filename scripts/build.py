@@ -794,7 +794,7 @@ featured_color=str(exhibitions_data.get('exhibitions_featured_background') or '#
 # Only allow hex colors in inline CSS; otherwise fall back to safe defaults.
 if not re.fullmatch(r'#[0-9a-fA-F]{6}',follow_color):follow_color='#082d3c'
 if not re.fullmatch(r'#[0-9a-fA-F]{6}',featured_color):featured_color='#fff0f6'
-follow_links=''.join(f'<a class="exhibitions-follow-link" href="{attr(setting(key+"_url"))}" target="_blank" rel="noopener noreferrer"><img src="/assets/images/social-{key}-white.png" alt="" aria-hidden="true"><span>{label}</span></a>' for key,label in [('instagram','Instagram'),('bluesky','Bluesky'),('tiktok','TikTok')] if setting(key+'_url'))
+follow_links=''.join(f'<a class="exhibitions-follow-link" aria-label="{label}" title="{label}" href="{attr(setting(key+"_url"))}" target="_blank" rel="noopener noreferrer"><img src="/assets/images/social-{key}-white.png" alt="" aria-hidden="true"></a>' for key,label in [('instagram','Instagram'),('bluesky','Bluesky'),('tiktok','TikTok')] if setting(key+'_url'))
 follow_card=(f'<section class="exhibitions-follow-card" style="--exhibitions-follow-bg:{attr(follow_color)}"><div class="exhibitions-follow-kicker">PINK TRIANGLE PORTRAITS</div><h2>{follow_title}</h2><div class="exhibitions-follow-accent"></div><p>{follow_text}</p><div class="exhibitions-follow-links">{follow_links}</div></section>') if follow_enabled else ''
 
 exhibition_content=(f'<div class="container exhibitions-editorial rich exhibitions-redesign">'
