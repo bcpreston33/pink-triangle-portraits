@@ -41,7 +41,7 @@ Gallery showing accompanying the stage play *A Pink Triangle*
 [Learn More](https://www.apinktriangle.com/)
 
 **The Gallery Bar**  
-Showcase and talk
+My first in-person full gallery showcase and talk about the project
 
 **American History X Youtube Series**  
 Guest to discuss the pink triangle, it’s history, and my project  
