@@ -1,7 +1,7 @@
-callout_accent: "#ed398b"
+callout_accent: "#E85395"
 callout_quote_rule: 10
 callout_statement_rule: 2
-callout_highlight_background: "#ed398b"
+callout_highlight_background: "#E85395"
 callout_highlight_opacity: 12
 callout_highlight_text_color: "#082d3b"
 callout_highlight_heading_size: 26

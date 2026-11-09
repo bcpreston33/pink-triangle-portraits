@@ -128,8 +128,8 @@ def render_section_images(body, assignments, callouts=None):
     return ''.join(result)+''.join(f'<div class="ptp-callout-text-column">{c}</div>' for c in leftovers if c)
 
 def hex_to_rgba(color, opacity):
-    color=str(color or '#ed398b').strip()
-    if not re.fullmatch(r'#[0-9a-fA-F]{6}',color): color='#ed398b'
+    color=str(color or '#E85395').strip()
+    if not re.fullmatch(r'#[0-9a-fA-F]{6}',color): color='#E85395'
     try: alpha=max(0,min(100,float(opacity)))/100
     except (ValueError,TypeError): alpha=.12
     return f'rgba({int(color[1:3],16)},{int(color[3:5],16)},{int(color[5:7],16)},{alpha:g})'
@@ -177,7 +177,7 @@ def artwork_link(p):
 
 def rule_style(prefix):
     mode=setting(prefix+'_rule_type','solid')
-    color=setting(prefix+'_rule_color','#ed398b')
+    color=setting(prefix+'_rule_color','#E85395')
     end=setting(prefix+'_rule_end','#ff842d')
     return f'linear-gradient(90deg,{color},{end})' if mode=='gradient' else color
 
@@ -215,10 +215,10 @@ def page(title,active,content,desc=''):
     logo=setting('logo','')
     brand=(img(logo,'Pink Triangle Portraits','brand-logo') if logo else '<span class="brand-mark" aria-hidden="true"></span><span>PINK<br>TRIANGLE<br>PORTRAITS</span>')
     variables={
-      'navy':setting('nav_background','#062c3b'),'pink':setting('accent_color','#ed398b'),
-      'ptp-callout-accent':setting('callout_accent','#ed398b'),'ptp-quote-rule':str(setting('callout_quote_rule',10))+'px',
+      'navy':setting('nav_background','#062c3b'),'pink':setting('accent_color','#E85395'),
+      'ptp-callout-accent':setting('callout_accent','#E85395'),'ptp-quote-rule':str(setting('callout_quote_rule',10))+'px',
       'ptp-statement-rule':str(setting('callout_statement_rule',2))+'px',
-      'ptp-highlight-bg':hex_to_rgba(setting('callout_highlight_background','#ed398b'),setting('callout_highlight_opacity',12)),
+      'ptp-highlight-bg':hex_to_rgba(setting('callout_highlight_background','#E85395'),setting('callout_highlight_opacity',12)),
       'ptp-highlight-text':setting('callout_highlight_text_color','#082d3b'),
       'ptp-highlight-heading-size':str(setting('callout_highlight_heading_size',26))+'px',
       'ptp-quote-font':str(setting('callout_quote_font_size',20))+'px',
@@ -230,7 +230,7 @@ def page(title,active,content,desc=''):
       'nav-font':setting('nav_font','Barlow Condensed'),'heading-font':setting('heading_font','Barlow Condensed'),
       'body-font':setting('body_font','DM Sans'),'nav-size':str(setting('nav_font_size',17))+'px',
       'social-icon-gap':str(setting('social_icon_gap',6))+'px','social-icon-mobile-gap':str(setting('social_icon_mobile_gap',5))+'px','interior-rule-width':str(setting('interior_rule_width',10))+'px','research-rule-width':str(setting('research_rule_width',10))+'px','panel-rule-width':str(setting('panel_rule_width',10))+'px','hero-eyebrow-rule-width':str(setting('hero_eyebrow_rule_width',10))+'px','nav-gap':str(setting('nav_gap',22))+'px','logo-width':str(setting('logo_width',190))+'px',
-      'button-bg':setting('button_color','#ed398b'),'button-text':setting('button_text_color','#071f2c'),
+      'button-bg':setting('button_color','#E85395'),'button-text':setting('button_text_color','#071f2c'),
       'callout-rule':rule_style('callout'),'callout-width':str(setting('callout_rule_width',7))+'px',
       'callout-gap':str(setting('callout_gap',20))+'px',
       'divider-rule':rule_style('divider'),'divider-height':str(setting('divider_rule_width',4))+'px',
@@ -238,7 +238,7 @@ def page(title,active,content,desc=''):
       'nav-rule':rule_style('nav'),'nav-rule-width':str(setting('nav_rule_width',10))+'px','footer-rule-width':str(setting('footer_rule_width',10))+'px',
       'paint-image':f'url("{setting("paint_background","/assets/images/715931084-background-web.jpg")}")',
       'paint-opacity':str(max(0,min(100,int(setting('paint_opacity',70))))/100),
-      'brush-primary':setting('brush_accent_color','#ed398b'),
+      'brush-primary':setting('brush_accent_color','#E85395'),
       'brush-secondary':setting('brush_accent_secondary','#ff842d'),
       'gallery-hover-overlay':f'rgba({int(str(setting("gallery_hover_color","#a81864")).lstrip("#")[0:2],16)},{int(str(setting("gallery_hover_color","#a81864")).lstrip("#")[2:4],16)},{int(str(setting("gallery_hover_color","#a81864")).lstrip("#")[4:6],16)},{max(0,min(100,int(setting("gallery_hover_opacity",88))))/100})',
       'display-font':setting('display_font',setting('heading_font','Barlow Condensed')),
@@ -252,14 +252,14 @@ def page(title,active,content,desc=''):
       'bio-quote-style':setting('biography_quote_style','italic'),
       'bio-quote-color':setting('biography_quote_color','#082d3b'),
       'bio-quote-bg':setting('biography_quote_background','#fff0f7'),
-      'bio-quote-rule':setting('biography_quote_rule_color','#ed398b'),
+      'bio-quote-rule':setting('biography_quote_rule_color','#E85395'),
       'bio-quote-rule-width':str(setting('biography_quote_rule_width',5))+'px',
       'bio-quote-padding':str(setting('biography_quote_padding',22))+'px',
       'bio-quote-spacing':str(setting('biography_quote_spacing',28))+'px',
       'bio-name-font':str(setting('bio_name_font','Barlow Condensed')),
       'bio-name-size':str(setting('bio_name_size',62))+'px',
       'bio-name-weight':str(setting('bio_name_weight',900)),
-      'bio-name-color':str(setting('bio_name_color','#ed398b')),
+      'bio-name-color':str(setting('bio_name_color','#E85395')),
       'bio-name-line-height':str(setting('bio_name_line_height',1)),
       'bio-name-letter-spacing':str(setting('bio_name_letter_spacing',0))+'px',
       'bio-name-bottom-gap':str(setting('bio_name_bottom_gap',8))+'px',
@@ -303,7 +303,7 @@ def page(title,active,content,desc=''):
       'heading-color':setting('heading_color',setting('text_color','#082d3b')),
       'section-color':setting('section_color',setting('text_color','#082d3b')),
       'body-color':setting('body_color',setting('text_color','#082d3b')),
-      'label-color':setting('label_color',setting('accent_color','#ed398b')),
+      'label-color':setting('label_color',setting('accent_color','#E85395')),
       'art-color':setting('art_color',setting('text_color','#082d3b')),
       'research-color':setting('research_color',setting('text_color','#082d3b')),
       'research-bg':setting('research_background','#fff0f7'),
@@ -752,7 +752,7 @@ for key,label in [('instagram','Instagram'),('bluesky','Bluesky'),('tiktok','Tik
 qr_gallery='<a class="qr-gallery-button" href="/portraits/">'+escape(str(qr_data.get('gallery_label') or 'Explore the Portrait Gallery'))+'</a>' if qr_data.get('show_gallery',True) else ''
 qr_logo=qr_data.get('logo_image') or setting('logo_image','')
 qr_logo_html=img(qr_logo,'Pink Triangle Portraits logo') if qr_logo else '<div class="qr-wordmark">PINK TRIANGLE<br>PORTRAITS</div>'
-qr_html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="index,follow"><title>Follow Pink Triangle Portraits</title><link rel="stylesheet" href="/assets/site.css"><style>:root{{--qr-accent:{attr(qr_data.get('accent_color') or '#ed398b')};--qr-bg:{attr(qr_data.get('background_color') or '#ffffff')};}}</style></head><body class="qr-landing"><main class="qr-wrap"><a href="/" class="qr-logo-link" aria-label="Visit Pink Triangle Portraits">{qr_logo_html}</a><h1>{escape(str(qr_data.get('heading') or 'Follow the Project'))}</h1><p>{escape(str(qr_data.get('intro') or 'Discover new portraits, stories, exhibitions, and project updates.'))}</p><div class="qr-social-list">{''.join(qr_links)}</div>{qr_gallery}<a class="qr-home" href="/">Visit Pink Triangle Portraits</a></main></body></html>"""
+qr_html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="index,follow"><title>Follow Pink Triangle Portraits</title><link rel="stylesheet" href="/assets/site.css"><style>:root{{--qr-accent:{attr(qr_data.get('accent_color') or '#E85395')};--qr-bg:{attr(qr_data.get('background_color') or '#ffffff')};}}</style></head><body class="qr-landing"><main class="qr-wrap"><a href="/" class="qr-logo-link" aria-label="Visit Pink Triangle Portraits">{qr_logo_html}</a><h1>{escape(str(qr_data.get('heading') or 'Follow the Project'))}</h1><p>{escape(str(qr_data.get('intro') or 'Discover new portraits, stories, exhibitions, and project updates.'))}</p><div class="qr-social-list">{''.join(qr_links)}</div>{qr_gallery}<a class="qr-home" href="/">Visit Pink Triangle Portraits</a></main></body></html>"""
 write('qr',qr_html)
 
 # Date-aware exhibitions: all items are emitted once, then categorized on each visit.

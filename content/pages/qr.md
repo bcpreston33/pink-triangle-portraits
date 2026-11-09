@@ -10,6 +10,6 @@ show_tiktok: true
 tiktok_label: TikTok
 show_gallery: true
 gallery_label: Explore the Portrait Gallery
-accent_color: '#ed398b'
+accent_color: '#E85395'
 background_color: '#ffffff'
 ---
