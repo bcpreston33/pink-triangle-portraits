@@ -1148,3 +1148,11 @@ body>footer{
  }
  .interior-hero--image .interior-header-media picture{display:none!important}
 }
+
+/* Respect per-page mobile art; never show mobile-only art on desktop. */
+@media(min-width:701px){.interior-hero--mobile-only .interior-header-media{display:none!important}}
+@media(max-width:700px){
+ .interior-hero--custom-mobile .interior-header-media{background-image:none!important}
+ .interior-hero--custom-mobile .interior-header-media picture{display:block!important;width:100%!important;height:100%!important}
+ .interior-hero--custom-mobile .interior-header-media img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center bottom!important}
+}

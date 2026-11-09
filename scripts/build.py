@@ -349,7 +349,7 @@ def heading(kicker,title,subtitle='',hero='',hero_mobile=''):
         mobile_source=f'<source media="(max-width:700px)" srcset="{attr(hero_mobile)}">' if hero_mobile else ''
         image_markup=(f'<div class="interior-header-media"><picture>{mobile_source}'
                       f'<img src="{attr(hero or hero_mobile)}" alt="" loading="eager"></picture></div>')
-    banner_class=' interior-hero--image' if image_markup else ''
+    banner_class=(' interior-hero--image'+(' interior-hero--mobile-only' if hero_mobile and not hero else '')+(' interior-hero--custom-mobile' if hero_mobile else '')) if image_markup else ''
     return (f'<section class="interior-hero{banner_class}">{image_markup}'
             f'<div class="container interior-inner"><div class="interior-heading-copy">'
             f'<div class="eyebrow">{escape(kicker)}</div><h1>{escape(title)}</h1>{subtitle_markup}'
