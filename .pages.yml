@@ -2054,7 +2054,7 @@ content:
   - name: callout_accent
     label: Pull quote rule color
     type: string
-    default: '#ed398b'
+    default: '#E85395'
   - name: callout_quote_rule
     label: Pull quote vertical rule (px)
     type: number
@@ -2066,7 +2066,7 @@ content:
   - name: callout_highlight_background
     label: Highlight tint color (hex)
     type: string
-    default: '#ed398b'
+    default: '#E85395'
   - name: callout_highlight_opacity
     label: Highlight tint opacity (percent)
     type: number
