@@ -1,6 +1,7 @@
 ---
 title: CONTACT
 subtitle: Connect with the project.
+hero_mobile_image: /assets/uploads/PTP-Site-Home-Mobile-8.jpg
 contact_form_visible: true
 contact_form_heading: Get in Touch
 contact_intro: Whether you are interested in exhibiting the portraits,
