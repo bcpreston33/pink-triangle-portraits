@@ -16,7 +16,7 @@ display_tracking: 0
 heading_color: "#082d3b"
 section_font: Barlow Condensed
 section_size: 54
-section_weight: 900
+section_weight: 750
 section_color: "#082d3b"
 label_font: Barlow Condensed
 label_size: 18
