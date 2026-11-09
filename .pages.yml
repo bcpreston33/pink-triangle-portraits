@@ -1268,6 +1268,30 @@ content:
     type: string
     default: New exhibitions will be announced here.
     description: Shown in the right column until a future event is marked as featured.
+  - name: exhibitions_featured_background
+    label: 03 · FEATURED & UPCOMING | Background color (hex)
+    type: string
+    default: '#fff0f6'
+    description: Very light pink card background. Enter a six-digit hex color, such as #fff0f6.
+  - name: exhibitions_follow_enabled
+    label: 04 · FOLLOW THE PROJECT | Show social media card
+    type: boolean
+    default: true
+    description: Shows the dark promotional card beneath Featured & Upcoming in the right column.
+  - name: exhibitions_follow_heading
+    label: 04 · FOLLOW THE PROJECT | Card heading
+    type: string
+    default: Follow the Project
+  - name: exhibitions_follow_text
+    label: 04 · FOLLOW THE PROJECT | Card description
+    type: text
+    default: Follow the project for updates on upcoming shows, new portraits, and the incredible stories of queer history behind them.
+    description: Text below the heading. Social media links automatically use the URLs in Site Settings.
+  - name: exhibitions_follow_background
+    label: 04 · FOLLOW THE PROJECT | Background color (hex)
+    type: string
+    default: '#082d3c'
+    description: Dark navy card background. Enter a six-digit hex color, such as #082d3c.
   - name: supporting_images
     label: 05 · PAGE EXTRAS | Supporting images beside sections
     type: object
