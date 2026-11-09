@@ -3,6 +3,7 @@ title: THE HISTORY
 subtitle: |-
   The Pink Triangle, Paragraph 175, 
   and persecution under Nazism.
+hero_image: /assets/uploads/PTP-Page-Headers-History-7.jpg
 callouts:
   - style: statement
     text: |-
