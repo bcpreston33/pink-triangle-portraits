@@ -13,7 +13,7 @@ exhibitions_follow_text: Follow the project for updates on upcoming shows, new
   portraits, and the incredible stories of queer history behind them.
 exhibitions_follow_background: "#082d3c"
 ---
-Bry has had the pleasure of hosting a number of gallery shows and talks about the project, with more coming this year!
+### Bry has had the pleasure of hosting a number of gallery shows and talks about the project, with more coming this year!
 
 ### 2026
 
