@@ -1272,7 +1272,7 @@ content:
     label: 03 · FEATURED & UPCOMING | Background color (hex)
     type: string
     default: '#fff0f6'
-    description: Very light pink card background. Enter a six-digit hex color, such as #fff0f6.
+    description: Very light pink card background. Enter a six-digit hex color, such as
   - name: exhibitions_follow_enabled
     label: 04 · FOLLOW THE PROJECT | Show social media card
     type: boolean
@@ -1285,13 +1285,14 @@ content:
   - name: exhibitions_follow_text
     label: 04 · FOLLOW THE PROJECT | Card description
     type: text
-    default: Follow the project for updates on upcoming shows, new portraits, and the incredible stories of queer history behind them.
+    default: Follow the project for updates on upcoming shows, new portraits, and the incredible stories of queer
+      history behind them.
     description: Text below the heading. Social media links automatically use the URLs in Site Settings.
   - name: exhibitions_follow_background
     label: 04 · FOLLOW THE PROJECT | Background color (hex)
     type: string
     default: '#082d3c'
-    description: Dark navy card background. Enter a six-digit hex color, such as #082d3c.
+    description: Dark navy card background. Enter a six-digit hex color, such as
   - name: supporting_images
     label: 05 · PAGE EXTRAS | Supporting images beside sections
     type: object
@@ -1808,114 +1809,53 @@ content:
     description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image
       is used.
     type: image
-  - name: body
-    label: 02 · MAIN CONTENT | Page text
-    type: rich-text
-    description: Main editable page content. This is the long text shown beneath the page banner.
-  - name: supporting_images
-    label: 05 · PAGE EXTRAS | Supporting images beside sections
-    type: object
-    list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption
-      empty to show no caption.
-    fields:
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      required: true
-      description: Match a heading in Page content, without the
-    - name: image
-      label: Supporting image
-      type: image
-      required: true
-    - name: caption
-      label: Small caption (optional)
-      type: string
-    - name: alt_text
-      label: Image description for accessibility
-      type: string
-    - name: placement
-      label: Image placement
-      type: select
-      default: right
-      options:
-        values:
-        - label: Right column
-          value: right
-        - label: Left column
-          value: left
-        - label: Full width below section (explicit only)
-          value: full
-  - name: callouts
-    label: 06 · PAGE EXTRAS | Quotes, callouts & featured statements
-    type: object
-    list: true
-    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content,
-      matching their order here. Otherwise choose a section and placement.
-    fields:
-    - name: style
-      label: Style
-      type: select
-      default: quote
-      options:
-        values:
-        - label: Pull Quote (10px left rule)
-          value: quote
-        - label: Highlight / Callout
-          value: highlight
-        - label: Featured Statement (thin horizontal rules)
-          value: statement
-    - name: heading
-      label: Optional heading
-      type: string
-    - name: text
-      label: Quote or callout text
-      type: text
-      description: Use **bold**, *italic*, or ***bold italic***. Blank lines create paragraphs.
-      required: true
-    - name: attribution
-      label: Attribution / source (optional)
-      type: string
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      description: Match a heading in Page content. Not needed when using an inline [callout-N] marker.
-    - name: position
-      label: Position within section
-      type: select
-      default: after-heading
-      options:
-        values:
-        - label: Before section
-          value: before-section
-        - label: After heading
-          value: after-heading
-        - label: After section text
-          value: after-section
-    - name: layout
-      label: Layout
-      type: select
-      default: text
-      options:
-        values:
-        - label: Text column
-          value: text
-        - label: Side image area
-          value: side
-        - label: Full width below section (explicit only)
-          value: full
-    - name: alignment
-      label: Text alignment
-      type: select
-      default: left
-      options:
-        values:
-        - label: Left
-          value: left
-        - label: Center
-          value: center
-        - label: Right
-          value: right
+  - name: contact_form_visible
+    label: 02 · CONTACT FORM | Show contact form
+    type: boolean
+    description: Switch the contact form on or off. The form sends submissions through the existing Formspree integration.
+  - name: contact_form_heading
+    label: 02 · CONTACT FORM | Heading
+    type: string
+    description: Heading above the contact form.
+  - name: contact_intro
+    label: 02 · CONTACT FORM | Introductory text
+    type: text
+    description: Paragraph immediately below the heading, above the form.
+  - name: contact_research_visible
+    label: 03 · RESEARCH SIDEBAR | Show research card
+    type: boolean
+  - name: contact_research_heading
+    label: 03 · RESEARCH SIDEBAR | Heading
+    type: string
+  - name: contact_research_text
+    label: 03 · RESEARCH SIDEBAR | Description
+    type: text
+    description: Text in the light pink sidebar card. The Ask About Research link automatically scrolls to the contact
+      form.
+  - name: contact_social_visible
+    label: 04 · FOLLOW SIDEBAR | Show Follow the Project card
+    type: boolean
+  - name: contact_social_heading
+    label: 04 · FOLLOW SIDEBAR | Heading
+    type: string
+  - name: contact_social_text
+    label: 04 · FOLLOW SIDEBAR | Description
+    type: text
+    description: The Instagram, Bluesky, and TikTok links are automatically read from Footer & Social Media settings.
+  - name: contact_card_order
+    label: 05 · SIDEBAR LAYOUT | Card order
+    type: select
+    description: Choose which sidebar card appears first.
+    options:
+      values:
+      - label: Research first
+        value: research_first
+      - label: Follow the Project first
+        value: social_first
+  - name: contact_sidebar_width
+    label: 05 · SIDEBAR LAYOUT | Sidebar width (%)
+    type: number
+    description: 'Percentage of the main content width allocated to the right sidebar. Current value: 35.'
 - name: page_qr
   label: QR page · Page content & design
   type: file
