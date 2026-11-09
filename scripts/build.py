@@ -290,9 +290,9 @@ def page(title,active,content,desc=''):
       'footer-font':setting('footer_font',setting('body_font','DM Sans')),
       'display-size':str(setting('display_size',112))+'px',
       'display-mobile-size':str(setting('display_mobile_size',62))+'px',
-      'responsive-title-min':str(max(40,min(110,float(setting('responsive_title_min',72) or 72))))+'px',
-      'responsive-title-max':str(max(60,min(150,float(setting('responsive_title_max',96) or 96))))+'px',
-      'responsive-mobile-title':str(max(44,min(100,float(setting('responsive_mobile_title',64) or 64))))+'px',
+      'responsive-title-min':str(max(40,min(110,float(setting('responsive_title_min',80) or 80))))+'px',
+      'responsive-title-max':str(max(60,min(150,float(setting('responsive_title_max',112) or 112))))+'px',
+      'responsive-mobile-title':str(max(44,min(100,float(setting('responsive_mobile_title',68) or 68))))+'px',
       'responsive-mobile-paint-height':str(max(30,min(200,float(setting('responsive_mobile_paint_height',85) or 85))))+'px',
       'section-size':str(setting('section_size',54))+'px',
       'body-size':str(setting('body_size',17))+'px',
@@ -833,7 +833,13 @@ write('exhibitions',page('Exhibitions',str(exhibitions_data.get('title') or 'Exh
         exhibitions_data.get('hero_mobile_image',''))+exhibition_content))
 
 search=f'''<section class="container portraits-list"><div class="search-tools"><label for="portrait-search">Search by name</label><input id="portrait-search" type="search" placeholder="Find a portrait…" autocomplete="off"><span id="result-count" aria-live="polite"></span></div><div class="portrait-grid searchable">{cards}</div><p id="empty-search" hidden>No matching portraits.</p></section>'''
-write('portraits',page('The Portraits','The Portraits',heading('The collection','The Portraits','Explore the artwork and the lives behind each portrait.',load(ROOT / 'content/pages/portraits.md').get('hero_image','') if (ROOT / 'content/pages/portraits.md').exists() else '',load(ROOT / 'content/pages/portraits.md').get('hero_mobile_image','') if (ROOT / 'content/pages/portraits.md').exists() else '')+(f'<section class="container editorial-copy portraits-intro rich">{render_md(load(ROOT / "content/pages/portraits.md").get("body"))}</section>' if (ROOT / 'content/pages/portraits.md').exists() else '')+search))
+portraits_page_data=load(ROOT / 'content/pages/portraits.md') if (ROOT / 'content/pages/portraits.md').exists() else {}
+portraits_page_title=str(portraits_page_data.get('title') or 'THE PORTRAITS')
+write('portraits',page(portraits_page_title,portraits_page_title,
+    heading('Pink Triangle Portraits',portraits_page_title,
+        portraits_page_data.get('subtitle','Explore the artwork and the lives behind each portrait.'),
+        portraits_page_data.get('hero_image',''),portraits_page_data.get('hero_mobile_image',''))
+    +(f'<section class="container editorial-copy portraits-intro rich">{render_md(portraits_page_data.get("body"))}</section>' if portraits_page_data.get('body') else '')+search))
 
 person_slugs=list(dict.fromkeys(p['_person_slug'] for p in portraits))
 for i,person_slug in enumerate(person_slugs):

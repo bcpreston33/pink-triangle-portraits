@@ -1115,7 +1115,7 @@ body>footer{
  .interior-hero--image .interior-heading-copy{width:min(58%,660px)!important;max-width:660px!important}
  .interior-hero .interior-heading-copy h1,
  .interior-hero--image .interior-heading-copy h1{
-   font-size:clamp(var(--responsive-title-min,72px),6.8vw,var(--responsive-title-max,96px))!important;
+   font-size:clamp(var(--responsive-title-min,80px),8vw,var(--responsive-title-max,112px))!important;
  }
  .interior-hero--image .interior-header-media img{
    object-fit:cover!important;
@@ -1135,7 +1135,7 @@ body>footer{
  }
  .interior-hero .interior-heading-copy h1,
  .interior-hero--image .interior-heading-copy h1{
-   font-size:clamp(48px,12vw,var(--responsive-mobile-title,64px))!important;
+   font-size:clamp(48px,13vw,var(--responsive-mobile-title,68px))!important;
    line-height:var(--page-title-line-height,1.05)!important;
  }
  .interior-hero--image .interior-header-media{

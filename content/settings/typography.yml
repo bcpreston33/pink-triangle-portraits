@@ -23,7 +23,7 @@ label_size: 18
 label_weight: 800
 label_tracking: 2
 label_color: '#E85395'
-responsive_title_min: 72
-responsive_title_max: 96
-responsive_mobile_title: 64
+responsive_title_min: 80
+responsive_title_max: 112
+responsive_mobile_title: 68
 responsive_mobile_paint_height: 85
