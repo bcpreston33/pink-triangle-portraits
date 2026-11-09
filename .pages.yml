@@ -43,9 +43,9 @@ content:
   - name: homepage_image
     label: Homepage spotlight | Article screenshot (optional)
     type: image
-    description: Only the rotating homepage press feature uses this image, inside the browser-style banner. Upload
-      a screenshot of the article here. The Project page and lower press list continue using the publication logo
-      or article thumbnail. Leave empty to use those existing images automatically.
+    description: Only the rotating homepage press feature uses this image, inside the browser-style banner. Upload a
+      screenshot of the article here. The Project page and lower press list continue using the publication logo or article
+      thumbnail. Leave empty to use those existing images automatically.
   - name: url
     label: Link to article / recording
     description: The external page opened when visitors select this feature.
@@ -66,8 +66,8 @@ content:
     label: Keep this article as the homepage press feature
     type: boolean
     default: false
-    description: Pins this article ahead of newer press and keeps it featured past the normal expiration. Only use
-      for one article at a time.
+    description: Pins this article ahead of newer press and keeps it featured past the normal expiration. Only use for
+      one article at a time.
   - name: homepage_days
     label: Homepage feature duration (days, optional override)
     type: number
@@ -107,8 +107,8 @@ content:
     label: Manually feature this person on homepage (optional)
     type: boolean
     default: false
-    description: Normally the newest edited/published biography appears automatically. Check this to force a person
-      instead; uncheck to return to automatic. If multiple are checked, the most recently edited one wins.
+    description: Normally the newest edited/published biography appears automatically. Check this to force a person instead;
+      uncheck to return to automatic. If multiple are checked, the most recently edited one wins.
   - name: artworks
     label: Paintings (add one or more below)
     type: object
@@ -459,8 +459,8 @@ content:
     default: true
   - name: spotlight_exhibition_lead_days
     label: 02 · FEATURED CONTENT / ROTATION  |  Show exhibitions this many days ahead
-    description: Upcoming events come from Exhibitions and events; this controls how early they become eligible
-      for the homepage.
+    description: Upcoming events come from Exhibitions and events; this controls how early they become eligible for the
+      homepage.
     type: number
     default: 60
   - name: spotlight_press_enabled
@@ -470,8 +470,7 @@ content:
     default: true
   - name: spotlight_press_days
     label: 02 · FEATURED CONTENT / ROTATION  |  Default press feature duration (days)
-    description: Press entries and dates come from Press & Media. Individual article overrides can extend their
-      display.
+    description: Press entries and dates come from Press & Media. Individual article overrides can extend their display.
     type: number
     default: 90
   - name: spotlight_project_heading
@@ -485,8 +484,7 @@ content:
   - name: spotlight_project_link_label
     label: 02 · FEATURED CONTENT / ROTATION  |  Fallback Project link text
     type: string
-    description: 'Below the hero: automatically chosen exhibition, press article, latest portrait, and fallback
-      project.'
+    description: 'Below the hero: automatically chosen exhibition, press article, latest portrait, and fallback project.'
   - name: spotlight_press_link_label
     label: 02 · FEATURED CONTENT / ROTATION  |  Press feature link text
     type: string
@@ -494,13 +492,11 @@ content:
   - name: spotlight_event_link_label
     label: 02 · FEATURED CONTENT / ROTATION  |  Exhibition feature link text
     type: string
-    description: 'Below the hero: automatically chosen exhibition, press article, latest portrait, and fallback
-      project.'
+    description: 'Below the hero: automatically chosen exhibition, press article, latest portrait, and fallback project.'
   - name: spotlight_portrait_link_label
     label: 02 · FEATURED CONTENT / ROTATION  |  Latest portrait link text
     type: string
-    description: 'Below the hero: automatically chosen exhibition, press article, latest portrait, and fallback
-      project.'
+    description: 'Below the hero: automatically chosen exhibition, press article, latest portrait, and fallback project.'
   - name: spotlight_visual_height
     label: 03 · FEATURED CONTENT / IMAGES  |  Feature image/banner height (px)
     description: Sets the height of image banners above homepage portrait, press and exhibition features. Recommended
@@ -533,8 +529,7 @@ content:
     type: image
   - name: spotlight_press_laptop_size
     label: 03 · FEATURED CONTENT / IMAGES  |  Press laptop scale (%)
-    description: Scales the large laptop over the painted banner; the live article screenshot is edited in Press
-      & Media.
+    description: Scales the large laptop over the painted banner; the live article screenshot is edited in Press & Media.
     type: number
     default: 145
   - name: spotlight_press_laptop_vertical
@@ -545,9 +540,8 @@ content:
   - name: event_band_eyebrow
     label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Small pink heading
     type: string
-    description: Large painted banner on the homepage, below the rotating Press and Latest Portrait cards. This
-      text is the fallback when there is no upcoming event; an upcoming event can replace the heading and description
-      automatically.
+    description: Large painted banner on the homepage, below the rotating Press and Latest Portrait cards. This text
+      is the fallback when there is no upcoming event; an upcoming event can replace the heading and description automatically.
   - name: event_band_heading
     label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Large headline
     type: string
@@ -569,8 +563,8 @@ content:
   - name: exhibitions_home_image
     label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Additional exhibitions homepage image
     type: image
-    description: Separate exhibitions image used by other homepage presentation logic; do not confuse with the wide
-      banner background.
+    description: Separate exhibitions image used by other homepage presentation logic; do not confuse with the wide banner
+      background.
   - name: gallery_preview_eyebrow
     label: 05 · EXPLORE PORTRAITS / GALLERY  |  Small pink heading
     type: string
@@ -583,6 +577,18 @@ content:
     label: 05 · EXPLORE PORTRAITS / GALLERY  |  Gallery link text
     type: string
     description: Homepage portrait gallery section below the Exhibitions & Talks banner.
+  - name: gallery_preview_count
+    label: 05 · EXPLORE PORTRAITS / GALLERY  |  Number of portraits (1–12)
+    type: number
+    default: 5
+    description: 'Automatic: show this many distinct people. Defaults to 5. The site uses the date each biography was
+      FIRST added to GitHub, not the person’s historical dates. Rebuilding the site updates the list.'
+  - name: gallery_preview_manual_people
+    label: 05 · EXPLORE PORTRAITS / GALLERY  |  Optional featured people (slugs)
+    type: text
+    description: 'Optional manual override: enter person slugs separated by commas or new lines, in desired order (example:
+      gad-beck). These people appear first; remaining slots fill automatically with newest biographies. Leave blank for
+      fully automatic.'
   - name: home_press_heading
     label: 06 · PRESS / LOWER HOMEPAGE  |  Lower press section heading
     type: string
@@ -927,8 +933,7 @@ content:
     type: image
   - name: hero_mobile_image
     label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image
-      is used.
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
     type: image
   - name: body
     label: 02 · MAIN CONTENT | Page text
@@ -936,15 +941,15 @@ content:
     description: Main editable page content. This is the long text shown beneath the page banner.
   - name: project_sidebar_enabled
     label: 04 · THE PROJECT PAGE ONLY | Show right-hand content column
-    description: Only affects The Project page. Turn off to return to the original full-width editorial layout and
-      press section below.
+    description: Only affects The Project page. Turn off to return to the original full-width editorial layout and press
+      section below.
     type: boolean
     default: true
   - name: project_sidebar_image
     label: 04 · THE PROJECT PAGE ONLY | Right column header artwork (optional)
     type: image
-    description: Optional wide painted image at the top of the right column. Independent of the page header and
-      supporting images.
+    description: Optional wide painted image at the top of the right column. Independent of the page header and supporting
+      images.
   - name: project_sidebar_image_alt
     label: 04 · THE PROJECT PAGE ONLY | Right column image description
     type: string
@@ -1013,8 +1018,8 @@ content:
     label: 05 · PAGE EXTRAS | Supporting images beside sections
     type: object
     list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption
-      empty to show no caption.
+    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty
+      to show no caption.
     fields:
     - name: section_heading
       label: Related section heading (exact wording)
@@ -1132,8 +1137,7 @@ content:
     type: image
   - name: hero_mobile_image
     label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image
-      is used.
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
     type: image
   - name: body
     label: 02 · MAIN CONTENT | Page text
@@ -1143,8 +1147,8 @@ content:
     label: 05 · PAGE EXTRAS | Supporting images beside sections
     type: object
     list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption
-      empty to show no caption.
+    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty
+      to show no caption.
     fields:
     - name: section_heading
       label: Related section heading (exact wording)
@@ -1262,8 +1266,7 @@ content:
     type: image
   - name: hero_mobile_image
     label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image
-      is used.
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
     type: image
   - name: body
     label: 02 · MAIN CONTENT | Page text
@@ -1301,8 +1304,8 @@ content:
   - name: exhibitions_follow_text
     label: 04 · FOLLOW THE PROJECT | Card description
     type: text
-    default: Follow the project for updates on upcoming shows, new portraits, and the incredible stories of queer
-      history behind them.
+    default: Follow the project for updates on upcoming shows, new portraits, and the incredible stories of queer history
+      behind them.
     description: Text below the heading. Social media links automatically use the URLs in Site Settings.
   - name: exhibitions_follow_background
     label: 04 · FOLLOW THE PROJECT | Background color (hex)
@@ -1313,8 +1316,8 @@ content:
     label: 05 · PAGE EXTRAS | Supporting images beside sections
     type: object
     list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption
-      empty to show no caption.
+    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty
+      to show no caption.
     fields:
     - name: section_heading
       label: Related section heading (exact wording)
@@ -1432,8 +1435,7 @@ content:
     type: image
   - name: hero_mobile_image
     label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image
-      is used.
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
     type: image
   - name: body
     label: 02 · MAIN CONTENT | Page text
@@ -1443,8 +1445,8 @@ content:
     label: 05 · PAGE EXTRAS | Supporting images beside sections
     type: object
     list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption
-      empty to show no caption.
+    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty
+      to show no caption.
     fields:
     - name: section_heading
       label: Related section heading (exact wording)
@@ -1562,8 +1564,7 @@ content:
     type: image
   - name: hero_mobile_image
     label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image
-      is used.
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
     type: image
   - name: body
     label: 02 · MAIN CONTENT | Page text
@@ -1573,8 +1574,8 @@ content:
     label: 05 · PAGE EXTRAS | Supporting images beside sections
     type: object
     list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption
-      empty to show no caption.
+    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty
+      to show no caption.
     fields:
     - name: section_heading
       label: Related section heading (exact wording)
@@ -1692,8 +1693,7 @@ content:
     type: image
   - name: hero_mobile_image
     label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image
-      is used.
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
     type: image
   - name: body
     label: 02 · MAIN CONTENT | Page text
@@ -1703,8 +1703,8 @@ content:
     label: 05 · PAGE EXTRAS | Supporting images beside sections
     type: object
     list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption
-      empty to show no caption.
+    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty
+      to show no caption.
     fields:
     - name: section_heading
       label: Related section heading (exact wording)
@@ -1822,8 +1822,7 @@ content:
     type: image
   - name: hero_mobile_image
     label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image
-      is used.
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
     type: image
   - name: contact_form_visible
     label: 02 · CONTACT FORM | Show contact form
@@ -1891,8 +1890,7 @@ content:
     type: image
   - name: hero_mobile_image
     label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image
-      is used.
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
     type: image
   - name: body
     label: 02 · MAIN CONTENT | Page text
@@ -1902,8 +1900,8 @@ content:
     label: 05 · PAGE EXTRAS | Supporting images beside sections
     type: object
     list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption
-      empty to show no caption.
+    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty
+      to show no caption.
     fields:
     - name: section_heading
       label: Related section heading (exact wording)
@@ -2114,8 +2112,8 @@ content:
     label: Feature prominently on Exhibitions page
     type: boolean
     default: false
-    description: Show a tall image-and-details card in the right column while the event is upcoming or underway.
-      It also stays in the left chronological list.
+    description: Show a tall image-and-details card in the right column while the event is upcoming or underway. It also
+      stays in the left chronological list.
   - name: published
     label: Published
     type: boolean
@@ -2123,5 +2121,5 @@ content:
   - name: body
     label: Event description
     type: rich-text
-    description: Full event information displayed in the featured card and historical listing. Do not duplicate
-      an event in the Exhibitions page body.
+    description: Full event information displayed in the featured card and historical listing. Do not duplicate an event
+      in the Exhibitions page body.
