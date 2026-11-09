@@ -1070,3 +1070,13 @@ body>footer{
 .ptp-contact-sidebar .ptp-contact-social .ptp-social-links.exhibitions-follow-links{
   margin-top:0;gap:25px;
 }
+
+/* Portrait navigation: CMS-controlled triangle and hover styling. */
+.bio-editorial-nav a{gap:var(--bio-nav-gap,7px);transition:color .2s ease}
+.bio-editorial-nav a:hover,.bio-editorial-nav a:focus-visible{color:var(--bio-nav-hover-color,#ff842d);text-decoration:none}
+.ptp-triangle{display:inline-block;width:0;height:0;border-top:.30em solid transparent;border-bottom:.30em solid transparent;vertical-align:.04em;transition:filter .2s ease}
+.ptp-triangle-left{border-right:.48em solid var(--bio-nav-triangle-color,#E85395);margin-right:.35em}
+.ptp-triangle-right{border-left:.48em solid var(--bio-nav-triangle-color,#E85395);margin-left:.35em}
+.bio-editorial-nav a:hover .ptp-triangle-left,.bio-editorial-nav a:focus-visible .ptp-triangle-left{border-right-color:var(--bio-nav-triangle-hover-color,#ff842d)}
+.bio-editorial-nav a:hover .ptp-triangle-right,.bio-editorial-nav a:focus-visible .ptp-triangle-right{border-left-color:var(--bio-nav-triangle-hover-color,#ff842d)}
+.portrait-breadcrumb a:hover,.portrait-breadcrumb a:focus-visible{color:var(--orange)}

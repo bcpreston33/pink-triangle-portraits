@@ -283,6 +283,10 @@ def page(title,active,content,desc=''):
       'bio-nav-rule-color':str(setting('bio_nav_rule_color','#a4b1b5')),
       'bio-nav-rule-width':str(setting('bio_nav_rule_width',1))+'px',
       'bio-nav-padding':str(setting('bio_nav_padding',24))+'px',
+      'bio-nav-hover-color':str(setting('bio_nav_hover_color','#ff842d')),
+      'bio-nav-triangle-color':str(setting('bio_nav_triangle_color','#E85395')),
+      'bio-nav-triangle-hover-color':str(setting('bio_nav_triangle_hover_color','#ff842d')),
+      'bio-nav-gap':str(setting('bio_nav_gap',7))+'px',
       'footer-font':setting('footer_font',setting('body_font','DM Sans')),
       'display-size':str(setting('display_size',112))+'px',
       'display-mobile-size':str(setting('display_mobile_size',62))+'px',
@@ -846,7 +850,7 @@ for i,person_slug in enumerate(person_slugs):
         if thanks: research+=f'<div class="research-part"><h2>Special Thanks</h2><div class="rich">{thanks}</div></div>'
         research+='</div></section>'
     left=f'<div class="person-artworks">{main_art}{research}</div>'
-    content=f'''<div class="container portrait-breadcrumb"><a href="/portraits/">← All portraits</a></div><section class="container person-detail">{left}<article class="portrait-bio"><h1>{escape(name)}</h1><p class="years">{escape(str(person.get('years','')))}</p>{artwork_meta}<div class="accent-rule"></div><div class="rich">{bio}</div></article></section><nav class="container prev-next bio-editorial-nav" aria-label="Browse portraits"><a class="bio-nav-previous" href="/people/{prev['_slug']}/"><span class="bio-nav-label">← Previous portrait</span><span class="bio-nav-name">{escape(str(prev.get('name','Previous')))}</span></a><a class="bio-nav-all" href="/portraits/">All Portraits</a><a class="bio-nav-next" href="/people/{nxt['_slug']}/"><span class="bio-nav-label">Next portrait →</span><span class="bio-nav-name">{escape(str(nxt.get('name','Next')))}</span></a></nav>'''
+    content=f'''<div class="container portrait-breadcrumb"><a href="/portraits/"><span class="ptp-triangle ptp-triangle-left" aria-hidden="true"></span> All portraits</a></div><section class="container person-detail">{left}<article class="portrait-bio"><h1>{escape(name)}</h1><p class="years">{escape(str(person.get('years','')))}</p>{artwork_meta}<div class="accent-rule"></div><div class="rich">{bio}</div></article></section><nav class="container prev-next bio-editorial-nav" aria-label="Browse portraits"><a class="bio-nav-previous" href="/people/{prev['_slug']}/"><span class="bio-nav-label"><span class="ptp-triangle ptp-triangle-left" aria-hidden="true"></span> Previous portrait</span><span class="bio-nav-name">{escape(str(prev.get('name','Previous')))}</span></a><a class="bio-nav-all" href="/portraits/">All Portraits</a><a class="bio-nav-next" href="/people/{nxt['_slug']}/"><span class="bio-nav-label">Next portrait <span class="ptp-triangle ptp-triangle-right" aria-hidden="true"></span></span><span class="bio-nav-name">{escape(str(nxt.get('name','Next')))}</span></a></nav>'''
     write('people/'+person_slug,page(name,'The Portraits',content,desc=person.get('summary','')))
 # old portrait routes redirect to shared person page
 for p in portraits:
