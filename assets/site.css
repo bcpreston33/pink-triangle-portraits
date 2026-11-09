@@ -967,3 +967,21 @@ body>footer{
   .exhibitions-editorial.exhibitions-redesign > .exhibitions-columns{grid-template-columns:minmax(0,1fr);gap:24px}
   .exhibitions-redesign .exhibitions-featured>h2{margin-top:0}
 }
+
+
+/* Exhibitions sidebar: distinct editable feature and follow cards. */
+.exhibitions-redesign .exhibitions-sidebar{min-width:0;display:flex;flex-direction:column;gap:28px;padding-top:35px}
+.exhibitions-redesign .exhibitions-featured{background:var(--exhibitions-featured-bg,#fff0f6);padding:clamp(22px,3vw,34px);border-radius:8px}
+.exhibitions-redesign .exhibitions-featured>h2{margin:0 0 18px;line-height:1.08}
+.exhibitions-redesign .exhibitions-featured #exhibitions-featured-empty{margin:0;line-height:1.6}
+.exhibitions-redesign .exhibitions-featured .exhibition-entry.is-featured{border-top-color:#e9cbd8}
+.exhibitions-follow-card{background:var(--exhibitions-follow-bg,#082d3c);color:#fff;padding:clamp(22px,3vw,34px);border-radius:8px;overflow:hidden}
+.exhibitions-follow-kicker{font-size:12px;font-weight:800;letter-spacing:.13em;color:#ff78b4;margin-bottom:14px}
+.exhibitions-follow-card h2{color:#fff!important;margin:0 0 16px;font-size:clamp(28px,3vw,40px);line-height:1.04}
+.exhibitions-follow-accent{height:4px;width:76px;background:#f5338e;margin-bottom:22px}
+.exhibitions-follow-card p{color:#fff;line-height:1.65;margin:0 0 24px}
+.exhibitions-follow-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.exhibitions-follow-link{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;min-width:0;padding:15px 5px 12px;border:1px solid rgba(255,255,255,.24);border-radius:6px;color:#fff!important;text-decoration:none!important;font-size:11px;font-weight:700;transition:background .2s}
+.exhibitions-follow-link:hover,.exhibitions-follow-link:focus-visible{background:rgba(255,255,255,.13)}
+.exhibitions-follow-link img{width:27px;height:27px;object-fit:contain}
+@media(max-width:800px){.exhibitions-redesign .exhibitions-sidebar{padding-top:0;gap:22px}}

@@ -1,5 +1,10 @@
 ---
 title: EXHIBITIONS
+exhibitions_featured_background: "#fff0f6"
+exhibitions_follow_enabled: true
+exhibitions_follow_heading: Follow the Project
+exhibitions_follow_text: Follow the project for updates on upcoming shows, new portraits, and the incredible stories of queer history behind them.
+exhibitions_follow_background: "#082d3c"
 subtitle: |-
   Shows, talks, and conversations 
   about the project.

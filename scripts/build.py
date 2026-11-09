@@ -758,7 +758,11 @@ write('qr',qr_html)
 # Date-aware exhibitions: all items are emitted once, then categorized on each visit.
 exhibitions_file=ROOT/'content/pages/exhibitions.md'
 exhibitions_data=load(exhibitions_file) if exhibitions_file.exists() else {}
-exhibitions_html=render_md(exhibitions_data.get('body',''))
+# The legacy Follow the project block is rendered as a designed sidebar card,
+# not as a narrow continuation of the historical exhibition list.
+exhibitions_body=str(exhibitions_data.get('body') or '')
+exhibitions_body=re.sub(r'(?ims)^#{2,4}\s+Follow the project\s*$.*?(?=^#{2,4}\s+|\Z)', '', exhibitions_body).rstrip()
+exhibitions_html=render_md(exhibitions_body)
 year_heading=re.compile(r'<h([2-4])>\s*(20\d{2})\s*</h\1>',re.I)
 match_years=list(year_heading.finditer(exhibitions_html))
 intro_html=exhibitions_html[:match_years[0].start()] if match_years else exhibitions_html
@@ -782,14 +786,25 @@ legacy_html=''.join(f'<section class="exhibition-legacy-year" data-year="{y}"><d
 featured_enabled=exhibitions_data.get('exhibitions_featured_enabled',True) is not False
 featured_heading=escape(str(exhibitions_data.get('exhibitions_featured_heading') or 'Featured & Upcoming'))
 featured_empty=escape(str(exhibitions_data.get('exhibitions_featured_empty') or 'New exhibitions will be announced here.'))
+follow_enabled=exhibitions_data.get('exhibitions_follow_enabled',True) is not False
+follow_title=escape(str(exhibitions_data.get('exhibitions_follow_heading') or 'Follow the Project'))
+follow_text=escape(str(exhibitions_data.get('exhibitions_follow_text') or 'Follow the project for updates on upcoming shows, new portraits, and the incredible stories of queer history behind them.'))
+follow_color=str(exhibitions_data.get('exhibitions_follow_background') or '#082d3c')
+featured_color=str(exhibitions_data.get('exhibitions_featured_background') or '#fff0f6')
+# Only allow hex colors in inline CSS; otherwise fall back to safe defaults.
+if not re.fullmatch(r'#[0-9a-fA-F]{6}',follow_color):follow_color='#082d3c'
+if not re.fullmatch(r'#[0-9a-fA-F]{6}',featured_color):featured_color='#fff0f6'
+follow_links=''.join(f'<a class="exhibitions-follow-link" href="{attr(setting(key+"_url"))}" target="_blank" rel="noopener noreferrer"><img src="/assets/images/social-{key}-white.png" alt="" aria-hidden="true"><span>{label}</span></a>' for key,label in [('instagram','Instagram'),('bluesky','Bluesky'),('tiktok','TikTok')] if setting(key+'_url'))
+follow_card=(f'<section class="exhibitions-follow-card" style="--exhibitions-follow-bg:{attr(follow_color)}"><div class="exhibitions-follow-kicker">PINK TRIANGLE PORTRAITS</div><h2>{follow_title}</h2><div class="exhibitions-follow-accent"></div><p>{follow_text}</p><div class="exhibitions-follow-links">{follow_links}</div></section>') if follow_enabled else ''
+
 exhibition_content=(f'<div class="container exhibitions-editorial rich exhibitions-redesign">'
     +(f'<div class="exhibitions-intro">{intro_html}</div>' if intro_html.strip() else '')
-    +f'<div class="exhibitions-columns{"" if featured_enabled else " exhibitions-no-sidebar"}">'
+    +f'<div class="exhibitions-columns{"" if (featured_enabled or follow_enabled) else " exhibitions-no-sidebar"}">'
     +'<div class="exhibitions-history">'
     +'<section id="exhibitions-upcoming" class="exhibition-group" hidden><h2>Upcoming Exhibitions</h2><div class="exhibition-group-items"></div></section>'
     +'<section id="exhibitions-current" class="exhibition-group" hidden><div class="exhibition-group-items"></div></section>'
     +'<section id="exhibitions-past" class="exhibition-group" hidden><h2>Past Exhibitions</h2><div class="exhibition-group-items"></div></section></div>'
-    +(f'<aside class="exhibitions-featured"><h2>{featured_heading}</h2><div id="exhibitions-featured-list"></div><p id="exhibitions-featured-empty">{featured_empty}</p></aside>' if featured_enabled else '')
+    +(f'<aside class="exhibitions-sidebar"><section class="exhibitions-featured" style="--exhibitions-featured-bg:{attr(featured_color)}"><h2>{featured_heading}</h2><div id="exhibitions-featured-list"></div><p id="exhibitions-featured-empty">{featured_empty}</p></section>{follow_card}</aside>' if featured_enabled else (f'<aside class="exhibitions-sidebar">{follow_card}</aside>' if follow_enabled else ''))
     +'</div><div id="exhibition-event-source" hidden>'+''.join(event_items)+'</div>'
     +'<div id="exhibition-legacy-source" hidden>'+legacy_html+'</div></div>')
 write('exhibitions',page('Exhibitions',str(exhibitions_data.get('title') or 'Exhibitions'),
