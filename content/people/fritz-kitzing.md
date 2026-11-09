@@ -9,10 +9,11 @@ artworks:
     published: true
     display_order: 10
     gallery_thumbnail: /assets/uploads/Fritz-Kitzing-LR.jpg
-sources: Special thanks to
-  [@pinktrianglelegacies](https://www.instagram.com/pinktrianglelegacies/) for
-  providing additional information on Fritz. Please check out their Instagram
-  and website to learn more about their incredible work.
+sources: Special thanks to @pinktrianglelegacies for providing additional
+  information on Fritz. Please check out their
+  [Instagram](https://www.instagram.com/pinktrianglelegacies/) and
+  [website](https://www.pinktrianglelegacies.org/) to learn more about their
+  incredible work.
 ---
 Born on December 28, 1905, Fritz Kitzing was a bookkeeper who moved to Berlin in their twenties. As someone who wore both men’s and women’s clothing, they faced frequent harassment from both society and the police. Unlike most of the world around them, Fritz’s family was accepting.
 
