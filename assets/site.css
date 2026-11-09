@@ -1156,3 +1156,53 @@ body>footer{
  .interior-hero--custom-mobile .interior-header-media picture{display:block!important;width:100%!important;height:100%!important}
  .interior-hero--custom-mobile .interior-header-media img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center bottom!important}
 }
+
+/* Per-page mobile art is a complete composition, not a crop source.
+   This overrides the legacy 85px generic strip and the original picture hiding. */
+@media(max-width:700px){
+  .interior-hero.interior-hero--custom-mobile{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    height:auto!important;
+    min-height:0!important;
+  }
+  .interior-hero--custom-mobile .interior-inner{
+    order:0!important;
+    flex:none!important;
+  }
+  .interior-hero--custom-mobile .interior-header-media{
+    order:1!important;
+    position:relative!important;
+    inset:auto!important;
+    width:100%!important;
+    height:auto!important;
+    aspect-ratio:auto!important;
+    overflow:visible!important;
+    background:none!important;
+    margin:0!important;
+  }
+  .interior-hero--custom-mobile .interior-header-media picture{
+    display:block!important;
+    width:100%!important;
+    height:auto!important;
+  }
+  .interior-hero--custom-mobile .interior-header-media img{
+    display:block!important;
+    width:100%!important;
+    height:auto!important;
+    max-width:none!important;
+    aspect-ratio:auto!important;
+    object-fit:contain!important;
+    object-position:center center!important;
+  }
+}
+
+/* A mobile-only upload must not create an empty 400px desktop image hero. */
+@media(min-width:701px){
+  .interior-hero.interior-hero--mobile-only{
+    height:auto!important;
+    min-height:0!important;
+  }
+  .interior-hero--mobile-only .interior-header-media{display:none!important}
+}
