@@ -1,13 +1,17 @@
 ---
 title: EXHIBITIONS
-exhibitions_featured_background: "#fff0f6"
-exhibitions_follow_enabled: true
-exhibitions_follow_heading: Follow the Project
-exhibitions_follow_text: Follow the project for updates on upcoming shows, new portraits, and the incredible stories of queer history behind them.
-exhibitions_follow_background: "#082d3c"
 subtitle: |-
   Shows, talks, and conversations 
   about the project.
+exhibitions_featured_enabled: true
+exhibitions_featured_heading: Featured & Upcoming
+exhibitions_featured_empty: New exhibitions will be announced here.
+exhibitions_featured_background: "#fff0f6"
+exhibitions_follow_enabled: true
+exhibitions_follow_heading: Follow the Project
+exhibitions_follow_text: Follow the project for updates on upcoming shows, new
+  portraits, and the incredible stories of queer history behind them.
+exhibitions_follow_background: "#082d3c"
 ---
 Bry has had the pleasure of hosting a number of gallery shows and talks about the project, with more coming this year!
 
@@ -54,12 +58,3 @@ Guest to discuss the pink triangle, it’s history, and my project
 **Pink Triangle Legacies Project Board Member**  
 Founding board member, 5-year term  
 [Learn More](https://www.pinktrianglelegacies.org/team)
-
-### Follow the project
-
-Follow the project for updates on upcoming shows, new portraits, and the incredible stories of queer history behind them.
-
-[Instagram](https://www.instagram.com/pinktriangleportraits/) · [Bluesky](https://bsky.app/profile/pinktriangleart.bsky.social) · [TikTok](https://www.tiktok.com/@pinktriangleportraits)
-
----
-
