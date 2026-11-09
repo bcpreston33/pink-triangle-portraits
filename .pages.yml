@@ -335,17 +335,17 @@ content:
   - name: responsive_title_min
     label: 02 · RESPONSIVE PAGE BANNERS | Minimum desktop/tablet title size (px)
     type: number
-    default: 72
+    default: 80
     description: Keeps interior page titles readable while the banner image crops independently. Applies above 700px.
   - name: responsive_title_max
     label: 02 · RESPONSIVE PAGE BANNERS | Maximum desktop title size (px)
     type: number
-    default: 96
+    default: 112
     description: Upper limit for interior page title size on wide monitors.
   - name: responsive_mobile_title
     label: 02 · RESPONSIVE PAGE BANNERS | Mobile title size (px)
     type: number
-    default: 64
+    default: 68
     description: Maximum title size on phones. The title automatically fits smaller phone widths.
   - name: responsive_mobile_paint_height
     label: 02 · RESPONSIVE PAGE BANNERS | Mobile painted border height (px)
