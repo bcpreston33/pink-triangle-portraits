@@ -1040,3 +1040,33 @@ body>footer{
 .ptp-contact-sidebar .ptp-social-links.exhibitions-follow-links a:focus-visible{
   outline:2px solid #fff;outline-offset:3px
 }
+
+/* Shared Follow the Project card hierarchy: Exhibitions and Contact */
+.exhibitions-follow-card,
+.ptp-contact-sidebar .ptp-contact-social.exhibitions-follow-card{
+  background:#082d3c;color:#fff;border:0;border-radius:0;box-shadow:none;
+  padding:clamp(22px,3vw,34px);
+}
+.exhibitions-follow-card .exhibitions-follow-kicker,
+.ptp-contact-sidebar .ptp-contact-social .exhibitions-follow-kicker{
+  color:#fff;font-size:12px;font-weight:800;letter-spacing:.13em;
+  line-height:1.35;margin:0 0 14px;
+}
+.exhibitions-follow-card h2,
+.ptp-contact-sidebar .ptp-contact-social.exhibitions-follow-card h2{
+  color:#E85395!important;font-size:clamp(28px,3vw,40px);
+  line-height:1.04;margin:0!important;
+}
+.exhibitions-follow-card .exhibitions-follow-accent,
+.ptp-contact-sidebar .ptp-contact-social .exhibitions-follow-accent{
+  display:block;width:76px;height:4px;background:#E85395;
+  margin:18px 0 18px;
+}
+.exhibitions-follow-card p,
+.ptp-contact-sidebar .ptp-contact-social.exhibitions-follow-card .rich p{
+  color:#fff;line-height:1.65;margin:0 0 24px;
+}
+.exhibitions-follow-card .exhibitions-follow-links,
+.ptp-contact-sidebar .ptp-contact-social .ptp-social-links.exhibitions-follow-links{
+  margin-top:0;gap:25px;
+}

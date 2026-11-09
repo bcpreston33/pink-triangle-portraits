@@ -725,13 +725,15 @@ for route in ['the-project','the-history','about-the-artist','contact','shop']:
     if route == 'contact':
         def contact_show(key): return data.get(key, True) is not False
         def contact_box(kind, title, body, extra=''):
+            if kind == 'social':
+                return f'<aside class="ptp-contact-{kind} exhibitions-follow-card" aria-label="{attr(title)}"><div class="exhibitions-follow-kicker">PINK TRIANGLE PORTRAITS</div><h2>{escape(title)}</h2><div class="exhibitions-follow-accent"></div><div class="rich">{render_md(body)}</div>{extra}</aside>'
             return f'<aside class="ptp-contact-{kind}" aria-label="{attr(title)}"><h2>{escape(title)}</h2><div class="rich">{render_md(body)}</div>{extra}</aside>'
         contact_cards=[]
         if contact_show('contact_research_visible'):
             contact_cards.append(contact_box('research',data.get('contact_research_heading') or 'Looking for Historical Sources?',data.get('contact_research_text') or 'Bry may be able to help with research.', '<a class="text-link" href="#ptp-contact-title">Ask about research →</a>'))
         if contact_show('contact_social_visible'):
             socials=''.join(f'<a class="exhibitions-follow-link" aria-label="{escape(k.title())}" title="{escape(k.title())}" href="{attr(setting(k+"_url"))}" target="_blank" rel="noopener noreferrer"><img src="/assets/images/social-{k}-white.png" alt="" aria-hidden="true"></a>' for k in ('instagram','bluesky','tiktok') if setting(k+'_url'))
-            contact_cards.append(contact_box('social',data.get('contact_social_heading') or 'Follow the Project',data.get('contact_social_text') or '',f'<div class="exhibitions-follow-accent"></div><div class="ptp-social-links exhibitions-follow-links">{socials}</div>'))
+            contact_cards.append(contact_box('social',data.get('contact_social_heading') or 'Follow the Project',data.get('contact_social_text') or '',f'<div class="ptp-social-links exhibitions-follow-links">{socials}</div>'))
         if data.get('contact_card_order') == 'social_first': contact_cards.reverse()
         intro=render_md(data.get('contact_intro') or 'For exhibition inquiries, collaborations, support, or questions about the project, please use the form below.')
         form_title=escape(str(data.get('contact_form_heading') or 'Get in Touch'))
