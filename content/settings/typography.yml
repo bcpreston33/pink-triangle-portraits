@@ -5,7 +5,7 @@ body_weight: 400
 body_leading: 1.5
 paragraph_spacing: 15
 section_heading_spacing: 45
-body_color: "#082d3b"
+body_color: '#082d3b'
 page_title_line_height: 1.05
 page_tagline_line_height: 1
 display_font: Barlow Condensed
@@ -13,13 +13,17 @@ display_size: 112
 display_mobile_size: 62
 display_weight: 900
 display_tracking: 0
-heading_color: "#082d3b"
+heading_color: '#082d3b'
 section_font: Barlow Condensed
 section_size: 54
 section_weight: 900
-section_color: "#082d3b"
+section_color: '#082d3b'
 label_font: Barlow Condensed
 label_size: 18
 label_weight: 800
 label_tracking: 2
-label_color: "#E85395"
+label_color: '#E85395'
+responsive_title_min: 72
+responsive_title_max: 96
+responsive_mobile_title: 64
+responsive_mobile_paint_height: 85
