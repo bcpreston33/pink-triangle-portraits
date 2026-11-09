@@ -1,6 +1,7 @@
 ---
 title: THE ARTIST
 subtitle: Bry Sharland
+hero_image: /assets/uploads/PTP-Page-Headers-Artist.jpg
 supporting_images:
   - section_heading: Meet Bry Sharland
     image: /assets/uploads/Artist-Meet-Bry.jpg
