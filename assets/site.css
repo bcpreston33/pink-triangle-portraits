@@ -946,3 +946,24 @@ body>footer{
 /* Composited press spotlight: one image, already containing background, laptop and screenshot. */
 .spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image{background:none!important;padding:0!important;display:block!important;overflow:hidden}
 .spotlight-grid[data-press-browser="1"] .spotlight-press .spotlight-image>img{display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;object-position:center top;background:none;border:0;padding:0;box-shadow:none}
+
+/* Exhibitions: full-width two-column editorial layout.
+   Override the older one-column max-width rule on direct children. */
+.exhibitions-editorial.exhibitions-redesign > .exhibitions-columns{
+  width:100%;
+  max-width:none;
+  display:grid;
+  grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr);
+  gap:clamp(32px,5vw,76px);
+  align-items:start;
+}
+.exhibitions-redesign .exhibitions-history,
+.exhibitions-redesign .exhibitions-featured{min-width:0;max-width:none}
+.exhibitions-redesign .exhibitions-intro{max-width:920px}
+.exhibitions-redesign .exhibitions-featured>h2{margin-top:36px}
+.exhibitions-editorial.exhibitions-redesign > .exhibitions-columns.exhibitions-no-sidebar{display:block}
+.exhibitions-editorial.exhibitions-redesign > .exhibitions-columns.exhibitions-no-sidebar > .exhibitions-history{max-width:920px}
+@media(max-width:800px){
+  .exhibitions-editorial.exhibitions-redesign > .exhibitions-columns{grid-template-columns:minmax(0,1fr);gap:24px}
+  .exhibitions-redesign .exhibitions-featured>h2{margin-top:0}
+}
