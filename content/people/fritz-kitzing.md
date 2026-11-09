@@ -9,7 +9,7 @@ artworks:
     published: true
     display_order: 10
     gallery_thumbnail: /assets/uploads/Fritz-Kitzing-LR.jpg
-sources: Special thanks to @pinktrianglelegacies for providing additional
+sources: Special thanks to Pink Triangle Legacies for providing additional
   information on Fritz. Please check out their
   [Instagram](https://www.instagram.com/pinktrianglelegacies/) and
   [website](https://www.pinktrianglelegacies.org/) to learn more about their
