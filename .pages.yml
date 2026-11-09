@@ -698,28 +698,44 @@ content:
     label: Biography divider | Space below (px)
     type: number
   - name: bio_nav_font
-    label: Previous / Next navigation | Font
+    label: 07 · PORTRAIT NAV | Previous / Next navigation | Font
     type: select
     options:
       values: *id001
   - name: bio_nav_size
-    label: Previous / Next navigation | Name size (px)
+    label: 07 · PORTRAIT NAV | Previous / Next navigation | Name size (px)
     type: number
   - name: bio_nav_label_size
-    label: Previous / Next navigation | Label size (px)
+    label: 07 · PORTRAIT NAV | Previous / Next navigation | Label size (px)
     type: number
   - name: bio_nav_color
-    label: Previous / Next navigation | Color (hex)
+    label: 07 · PORTRAIT NAV | Previous / Next navigation | Color (hex)
     type: string
   - name: bio_nav_rule_color
-    label: Previous / Next navigation | Rule color (hex)
+    label: 07 · PORTRAIT NAV | Previous / Next navigation | Rule color (hex)
     type: string
   - name: bio_nav_rule_width
-    label: Previous / Next navigation | Rule thickness (px)
+    label: 07 · PORTRAIT NAV | Previous / Next navigation | Rule thickness (px)
     type: number
   - name: bio_nav_padding
-    label: Previous / Next navigation | Vertical padding (px)
+    label: 07 · PORTRAIT NAV | Previous / Next navigation | Vertical padding (px)
     type: number
+  - name: bio_nav_hover_color
+    label: 07 · PORTRAIT NAV | Link hover color (hex)
+    type: string
+    description: 'Hover color for previous, next and All Portraits links. Default #ff842d.'
+  - name: bio_nav_triangle_color
+    label: 07 · PORTRAIT NAV | Triangle color (hex)
+    type: string
+    description: 'Solid left and right triangles. Default #E85395.'
+  - name: bio_nav_triangle_hover_color
+    label: 07 · PORTRAIT NAV | Triangle hover color (hex)
+    type: string
+    description: 'Default #ff842d.'
+  - name: bio_nav_gap
+    label: 07 · PORTRAIT NAV | Gap between label and name (px)
+    type: number
+    description: Default 7.
   - name: art_font
     label: Artwork information font
     type: select
