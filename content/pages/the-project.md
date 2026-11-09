@@ -4,10 +4,18 @@ subtitle: |-
   Giving color and dignity to those 
   who had it stripped away.
 hero_image: /assets/uploads/PTP-Page-Headers-Project-7.jpg
+hero_mobile_image: /assets/uploads/PTP-Site-Home-Mobile-2.jpg
 project_sidebar_enabled: true
 project_sidebar_press_enabled: true
 project_sidebar_press_heading: Press & Media
 project_sidebar_press_limit: 0
+project_press_show_images: true
+project_press_image_width: 95
+project_press_title_font: DM Sans
+project_press_title_size: 19
+project_press_title_weight: "600"
+project_press_rule_color: "#d7d7d7"
+project_press_rule_spacing: 18
 callouts:
   - style: highlight
     heading: Special Thanks!
