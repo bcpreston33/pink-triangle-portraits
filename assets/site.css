@@ -1002,3 +1002,41 @@ body>footer{
 .exhibitions-follow-link img{filter:none;filter:brightness(0) saturate(100%) invert(47%) sepia(53%) saturate(1320%) hue-rotate(297deg) brightness(96%) contrast(89%)}
 .exhibitions-follow-link:hover img,.exhibitions-follow-link:focus-visible img{filter:brightness(0) saturate(100%) invert(62%) sepia(85%) saturate(2521%) hue-rotate(341deg) brightness(103%) contrast(102%)}
 .exhibitions-follow-link:hover,.exhibitions-follow-link:focus-visible{opacity:1}
+
+
+/* Contact sidebar uses the established Exhibitions card treatment. */
+.ptp-contact-sidebar .ptp-contact-research,
+.ptp-contact-sidebar .ptp-contact-social{
+  border:0;border-radius:0;box-shadow:none;
+  padding:clamp(22px,3vw,34px);
+}
+.ptp-contact-sidebar .ptp-contact-research{background:#fff0f6;color:var(--ink)}
+.ptp-contact-sidebar .ptp-contact-social{background:#082d3c;color:#fff}
+.ptp-contact-sidebar .ptp-contact-social h2,
+.ptp-contact-sidebar .ptp-contact-social .rich,
+.ptp-contact-sidebar .ptp-contact-social .rich p{color:#fff}
+.ptp-contact-sidebar .ptp-contact-social .exhibitions-follow-accent{margin-top:4px}
+.ptp-contact-sidebar .ptp-social-links.exhibitions-follow-links{
+  display:flex;flex-wrap:wrap;align-items:center;gap:25px;margin-top:24px
+}
+.ptp-contact-sidebar .ptp-social-links.exhibitions-follow-links a.exhibitions-follow-link{
+  display:inline-flex;width:48px;height:48px;min-width:48px;
+  align-items:center;justify-content:center;padding:4px;
+  border:0;border-radius:0;background:transparent;color:var(--pink);
+  text-decoration:none;transition:transform .18s ease
+}
+.ptp-contact-sidebar .ptp-social-links.exhibitions-follow-links a.exhibitions-follow-link:hover,
+.ptp-contact-sidebar .ptp-social-links.exhibitions-follow-links a.exhibitions-follow-link:focus-visible{
+  background:transparent;transform:translateY(-3px)
+}
+.ptp-contact-sidebar .ptp-social-links.exhibitions-follow-links img{
+  display:block;width:38px;height:38px;object-fit:contain;
+  filter:brightness(0) saturate(100%) invert(47%) sepia(53%) saturate(1320%) hue-rotate(297deg) brightness(96%) contrast(89%)
+}
+.ptp-contact-sidebar .ptp-social-links.exhibitions-follow-links a:hover img,
+.ptp-contact-sidebar .ptp-social-links.exhibitions-follow-links a:focus-visible img{
+  filter:brightness(0) saturate(100%) invert(62%) sepia(85%) saturate(2521%) hue-rotate(341deg) brightness(103%) contrast(102%)
+}
+.ptp-contact-sidebar .ptp-social-links.exhibitions-follow-links a:focus-visible{
+  outline:2px solid #fff;outline-offset:3px
+}
