@@ -1080,3 +1080,30 @@ body>footer{
 .bio-editorial-nav a:hover .ptp-triangle-left,.bio-editorial-nav a:focus-visible .ptp-triangle-left{border-right-color:var(--bio-nav-triangle-hover-color,#ff842d)}
 .bio-editorial-nav a:hover .ptp-triangle-right,.bio-editorial-nav a:focus-visible .ptp-triangle-right{border-left-color:var(--bio-nav-triangle-hover-color,#ff842d)}
 .portrait-breadcrumb a:hover,.portrait-breadcrumb a:focus-visible{color:var(--orange)}
+
+
+/* Homepage consistency: all sections share the standard container width. */
+.home-intro.home-spotlights.container{display:block;grid-template-columns:none;gap:0;padding-inline:0}
+.home-spotlights .spotlight-grid{width:100%;min-width:0;grid-template-columns:repeat(2,minmax(0,1fr))}
+.home-spotlights .spotlight-grid.spotlights-three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.home-spotlights .spotlight-grid.spotlights-ready .spotlight-card,
+.home-spotlights .spotlight-grid.spotlights-ready .spotlight-card.spotlight-first{min-width:0;padding:0 28px;border-left:1px solid #bacbd0}
+.home-spotlights .spotlight-grid.spotlights-ready .spotlight-card.spotlight-first{padding-left:0;border-left:0}
+.home-spotlights .spotlight-grid.spotlights-ready .spotlight-card:last-child{padding-right:0}
+.home-press .press-list{max-width:none;width:100%}
+.home-press .press-card{width:100%}
+.home-gallery-grid{grid-template-columns:repeat(var(--home-gallery-columns,5),minmax(0,1fr))}
+@media(max-width:900px){
+ .home-spotlights .spotlight-grid.spotlights-three{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .home-spotlights .spotlight-grid.spotlights-ready .spotlight-card:nth-child(3){grid-column:1/-1;border-left:0;padding:25px 0 0;margin-top:25px;border-top:1px solid #bacbd0}
+ .home-gallery-grid{grid-template-columns:repeat(min(4,var(--home-gallery-columns,5)),minmax(0,1fr))}
+}
+@media(max-width:700px){
+ .home-spotlights .spotlight-grid,.home-spotlights .spotlight-grid.spotlights-three{grid-template-columns:1fr}
+ .home-spotlights .spotlight-grid.spotlights-ready .spotlight-card,
+ .home-spotlights .spotlight-grid.spotlights-ready .spotlight-card.spotlight-first,
+ .home-spotlights .spotlight-grid.spotlights-ready .spotlight-card:last-child,
+ .home-spotlights .spotlight-grid.spotlights-ready .spotlight-card:nth-child(3){grid-column:auto;border-left:0;padding:25px 0 0;margin:0;border-top:1px solid #bacbd0}
+ .home-spotlights .spotlight-grid.spotlights-ready .spotlight-card.spotlight-first{border-top:0;padding-top:0}
+ .home-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}

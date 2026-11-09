@@ -23,9 +23,10 @@ spotlight_press_laptop_size: 145
 spotlight_press_laptop_vertical: 0
 event_band_eyebrow: EXHIBITIONS & TALKS
 event_band_heading: See the work in person
-event_band_description: Explore exhibitions, artist talks, and events featuring Pink
-  Triangle Portraits.
+event_band_description: Explore exhibitions, artist talks, and events featuring Pink Triangle Portraits.
 event_band_button_label: EXHIBITIONS
 paint_background: /assets/uploads/PTP-Home-Exhibition-Banner-1.jpg
 intro_background: '#fffdfb'
 spotlight_press_background: /assets/images/painted-background.jpg
+gallery_preview_count: 5
+gallery_preview_manual_people: ''
