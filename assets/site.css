@@ -1166,7 +1166,7 @@ body>footer{
  .interior-hero--custom-mobile .interior-inner{
   order:0!important;position:relative!important;z-index:1!important;
   width:calc(100% - 40px)!important;max-width:none!important;
-  margin:0 auto!important;padding:25px 0 12px!important;
+  margin:0 auto!important;padding:25px 0 6px!important;
   background:#eee!important;pointer-events:auto!important
  }
  .interior-hero--custom-mobile .interior-header-media{
@@ -1211,3 +1211,14 @@ body>footer{
 .qr-landing .qr-site-header .qr-logo-link img{display:block;width:auto;max-width:185px;max-height:72px;object-fit:contain}
 .qr-landing .qr-site-header .qr-wordmark{color:#fff;font-size:27px}
 .qr-landing .qr-wrap{padding-top:42px}
+
+/* Mobile interior headers: center live headings and tighten the art transition.
+   Only page banners are affected; desktop and body copy are unchanged. */
+@media(max-width:700px){
+ .interior-hero .interior-inner,
+ .interior-hero .interior-heading-copy{ text-align:center!important; }
+ .interior-hero .interior-heading-copy .eyebrow,
+ .interior-hero .interior-heading-copy h1,
+ .interior-hero .interior-heading-copy p{ text-align:center!important; margin-left:auto!important; margin-right:auto!important; }
+ .interior-hero--custom-mobile .interior-inner{ padding-bottom:6px!important; }
+}
