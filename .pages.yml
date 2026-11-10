@@ -32,7 +32,7 @@ content:
     description: Appears below the headline and in the homepage feature. Keep it brief.
     type: text
   - name: logo
-    label: Publication logo (optional override)
+    label: 01 · BRAND IDENTITY | Logo
     type: image
     description: Preferred over thumbnails and automatic logos. Leave empty to use automatic detection.
   - name: image
@@ -154,31 +154,31 @@ content:
     label: Logo
     type: image
   - name: logo_width
-    label: Logo Width
+    label: 01 · BRAND IDENTITY | Logo Width
     type: number
   - name: favicon
-    label: Favicon (square PNG recommended)
+    label: 01 · BRAND IDENTITY | Favicon (square PNG recommended)
     type: image
   - name: accent_color
-    label: Accent Color
+    label: 02 · PROJECT COLORS | Accent Color
     type: string
   - name: text_color
-    label: Base text color (fallback)
+    label: 02 · PROJECT COLORS | Base text color (fallback)
     type: string
   - name: page_background
-    label: Page Background
+    label: 02 · PROJECT COLORS | Page Background
     type: string
   - name: button_color
-    label: Button Color
+    label: 02 · PROJECT COLORS | Button Color
     type: string
   - name: button_text_color
-    label: Button Text Color
+    label: 02 · PROJECT COLORS | Button Text Color
     type: string
   - name: content_width
-    label: Content Width
+    label: 03 · PAGE WIDTH & SPACING | Content Width
     type: number
   - name: section_spacing
-    label: Section Spacing
+    label: 03 · PAGE WIDTH & SPACING | Section Spacing
     type: number
 - name: settings_header
   label: Header & Navigation
@@ -186,7 +186,7 @@ content:
   path: content/settings/header.yml
   fields:
   - name: navigation
-    label: Navigation menu items
+    label: 01 · NAVIGATION LINKS | Navigation menu items
     type: object
     list: true
     fields:
@@ -197,18 +197,18 @@ content:
       label: Link
       type: string
   - name: interior_header_height
-    label: Desktop page header height (px)
+    label: 02 · HEADER SIZE & COLORS | Desktop page header height (px)
     type: number
     default: 350
     description: Height of interior page headers with artwork. Try 300, 350, or 400. Mobile adjusts automatically.
   - name: nav_background
-    label: Nav Background
+    label: 02 · HEADER SIZE & COLORS | Nav Background
     type: string
   - name: nav_text_color
-    label: Nav Text Color
+    label: 02 · HEADER SIZE & COLORS | Nav Text Color
     type: string
   - name: nav_font
-    label: Nav Font
+    label: 03 · NAVIGATION TYPOGRAPHY | Nav Font
     type: select
     options:
       values: &id001
@@ -239,40 +239,40 @@ content:
       - Barlow
       - Archivo
   - name: nav_font_size
-    label: Nav Font Size
+    label: 03 · NAVIGATION TYPOGRAPHY | Nav Font Size
     type: number
     description: Size of menu links, not the main page title.
   - name: nav_weight
-    label: Navigation weight (400–900)
+    label: 03 · NAVIGATION TYPOGRAPHY | Navigation weight (400–900)
     type: number
   - name: nav_tracking
-    label: Navigation letter spacing (px)
+    label: 03 · NAVIGATION TYPOGRAPHY | Navigation letter spacing (px)
     type: number
   - name: nav_gap
-    label: Nav Gap
+    label: 04 · NAVIGATION SPACING & RULE | Nav Gap
     type: number
   - name: nav_rule_type
-    label: Navigation bottom rule type
+    label: 04 · NAVIGATION SPACING & RULE | Navigation bottom rule type
     type: select
     options:
       values:
       - solid
       - gradient
   - name: nav_rule_color
-    label: Navigation rule start color
+    label: 04 · NAVIGATION SPACING & RULE | Navigation rule start color
     type: string
   - name: nav_rule_end
-    label: Navigation rule end color
+    label: 04 · NAVIGATION SPACING & RULE | Navigation rule end color
     type: string
   - name: nav_rule_width
-    label: Navigation rule thickness
+    label: 04 · NAVIGATION SPACING & RULE | Navigation rule thickness
     type: number
   - name: social_icon_gap
-    label: Social icon spacing (px)
+    label: 05 · SOCIAL ICON SPACING | Social icon spacing (px)
     type: number
     description: Space between icons in both header and footer.
   - name: social_icon_mobile_gap
-    label: Social icon spacing on small screens (px)
+    label: 05 · SOCIAL ICON SPACING | Social icon spacing on small screens (px)
     type: number
 - name: settings_typography
   label: Typography
@@ -610,6 +610,11 @@ content:
     description: 'Optional manual override: enter person slugs separated by commas or new lines, in desired order (example:
       gad-beck). These people appear first; remaining slots fill automatically with newest biographies. Leave blank for
       fully automatic.'
+  - name: gallery_preview_background
+    label: '05 · EXPLORE PORTRAITS / GALLERY  |  Section background color (hex)'
+    type: string
+    default: '#FCEEF4'
+    description: 'Full-width pale pink behind the homepage portraits. Default #FCEEF4. Use #fffdfb for white. Does not affect the main Portrait Gallery page.'
   - name: home_press_heading
     label: 06 · PRESS / LOWER HOMEPAGE  |  Lower press section heading
     type: string
@@ -628,14 +633,14 @@ content:
   path: content/settings/gallery.yml
   fields:
   - name: gallery_background
-    label: Gallery Background
+    label: 01 · GALLERY LAYOUT | Gallery Background
     type: string
   - name: gallery_spacing
-    label: Gallery spacing (px, horizontal and vertical)
+    label: 01 · GALLERY LAYOUT | Gallery spacing (px, horizontal and vertical)
     type: number
     default: 22
   - name: gallery_sort
-    label: Gallery Sort
+    label: 01 · GALLERY LAYOUT | Gallery Sort
     type: select
     options:
       values:
@@ -644,14 +649,14 @@ content:
       - alphabetical
       - random
   - name: gallery_hover_color
-    label: Portrait rollover overlay color (hex)
+    label: 02 · PORTRAIT HOVER | Portrait rollover overlay color (hex)
     type: string
   - name: gallery_hover_opacity
-    label: Gallery Hover Opacity (0 to 100)
+    label: 02 · PORTRAIT HOVER | Gallery Hover Opacity (0 to 100)
     type: number
     description: 0 = transparent; 100 = fully solid. Try 88.
   - name: gallery_hover_text
-    label: Portrait rollover name color (hex)
+    label: 02 · PORTRAIT HOVER | Portrait rollover name color (hex)
     type: string
 - name: settings_biography
   label: Biography Pages
@@ -914,37 +919,37 @@ content:
   path: content/settings/footer.yml
   fields:
   - name: footer_rule_width
-    label: Footer top rule thickness (px)
+    label: 01 · FOOTER STYLE | Footer top rule thickness (px)
     type: number
     description: Full-width decorative rule above the footer. Default 10 px.
   - name: footer_font
-    label: Footer font
+    label: 01 · FOOTER STYLE | Footer font
     type: select
     options:
       values: *id001
   - name: footer_size
-    label: Footer size (px)
+    label: 01 · FOOTER STYLE | Footer size (px)
     type: number
   - name: footer_color
-    label: Footer color (hex)
+    label: 01 · FOOTER STYLE | Footer color (hex)
     type: string
   - name: social_nav_enabled
-    label: Show social icons in navigation
+    label: 02 · SOCIAL ICON VISIBILITY | Show social icons in navigation
     type: boolean
   - name: social_footer_enabled
-    label: Show social icons in footer
+    label: 02 · SOCIAL ICON VISIBILITY | Show social icons in footer
     type: boolean
   - name: instagram_url
-    label: Instagram profile URL
+    label: 03 · SOCIAL LINKS | Instagram profile URL
     type: string
   - name: bluesky_url
-    label: Bluesky profile URL
+    label: 03 · SOCIAL LINKS | Bluesky profile URL
     type: string
   - name: tiktok_url
-    label: TikTok profile URL (optional)
+    label: 03 · SOCIAL LINKS | TikTok profile URL (optional)
     type: string
   - name: shop_url
-    label: Shop Url
+    label: 04 · SHOP LINK | Shop Url
     type: string
     description: Used for the Shop navigation link, not biography purchase buttons.
 - name: page_the_project
@@ -1972,43 +1977,43 @@ content:
   path: content/settings/callouts.yml
   fields:
   - name: callout_accent
-    label: Pull quote rule color
+    label: 01 · QUOTE & STATEMENT RULES | Pull quote rule color
     type: string
     default: '#E85395'
   - name: callout_quote_rule
-    label: Pull quote vertical rule (px)
+    label: 01 · QUOTE & STATEMENT RULES | Pull quote vertical rule (px)
     type: number
     default: 10
   - name: callout_statement_rule
-    label: Featured statement horizontal rule (px)
+    label: 01 · QUOTE & STATEMENT RULES | Featured statement horizontal rule (px)
     type: number
     default: 2
   - name: callout_highlight_background
-    label: Highlight tint color (hex)
+    label: 02 · HIGHLIGHT BOX | Highlight tint color (hex)
     type: string
     default: '#E85395'
   - name: callout_highlight_opacity
-    label: Highlight tint opacity (percent)
+    label: 02 · HIGHLIGHT BOX | Highlight tint opacity (percent)
     type: number
     default: 12
   - name: callout_highlight_text_color
-    label: Highlight text and heading color
+    label: 02 · HIGHLIGHT BOX | Highlight text and heading color
     type: string
     default: '#082d3b'
   - name: callout_highlight_heading_size
-    label: Highlight heading size (px)
+    label: 02 · HIGHLIGHT BOX | Highlight heading size (px)
     type: number
     default: 26
   - name: callout_quote_font_size
-    label: Pull quote text size (px)
+    label: 03 · TYPOGRAPHY & SPACING | Pull quote text size (px)
     type: number
     default: 20
   - name: callout_statement_font_size
-    label: Featured statement text size (px)
+    label: 03 · TYPOGRAPHY & SPACING | Featured statement text size (px)
     type: number
     default: 21
   - name: callout_spacing
-    label: Callout vertical spacing (px)
+    label: 03 · TYPOGRAPHY & SPACING | Callout vertical spacing (px)
     type: number
     default: 26
 - name: events
