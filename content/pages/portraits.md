@@ -1,8 +1,7 @@
 ---
 title: THE PORTRAITS
 subtitle: |-
-  Stories of queer lives, 
-  resistance, 
+  Stories of queer lives, resistance, 
   and remembrance.
 hero_image: /assets/uploads/PTP-Page-Headers-Project-2.jpg
 hero_mobile_image: /assets/uploads/PTP-Site-Home-Mobile-6.jpg
