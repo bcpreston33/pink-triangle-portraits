@@ -9,9 +9,9 @@ artworks:
     published: true
     display_order: 10
     gallery_thumbnail: /assets/images/gallery-thumbnails/alfred-ledermann.jpg
-sources: "***We remember Alfred Ledermann and Wilhelm Zitschka.*
-  ++[https://www.stolpersteine-homosexuelle.de/alfred-ledermann](https://www.st\
-  olpersteine-homosexuelle.de/alfred-ledermann)++**"
+sources: |-
+  *We remember Alfred Ledermann and Wilhelm Zitschka*  
+  [https://www.stolpersteine-homosexuelle.de/alfred-ledermann](https://www.stolpersteine-homosexuelle.de/alfred-ledermann)
 ---
 Alfred Ledermann, born August 26, 1921 in Langenberg, was the youngest of 4 children. His father, a railway worker, divorced his wife and remarried in 1932. Alfred did not have a good relationship with his stepmother. He was jailed at age 18 in 1939 for 5 months for being gay. He was forced into a labor camp which was intended to “cure” him. After four weeks, Alfred escaped the Nazi camp. He was tried in absentia, and wanted posters were put out to attempt to capture him. 
 
