@@ -1,6 +1,7 @@
 ---
 title: CONTACT
 subtitle: Connect with the project.
+hero_image: /assets/uploads/PTP-Page-Headers-Contact.jpg
 hero_mobile_image: /assets/uploads/PTP-Site-Home-Mobile-16.jpg
 contact_form_visible: true
 contact_form_heading: Get in Touch
