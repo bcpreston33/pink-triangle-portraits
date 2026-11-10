@@ -4,7 +4,7 @@ subtitle: |-
   Stories of queer lives, resistance, 
   and remembrance.
 hero_image: /assets/uploads/PTP-Page-Headers-Project-2.jpg
-hero_mobile_image: /assets/uploads/PTP-Site-Home-Mobile-6.jpg
+hero_mobile_image: /assets/uploads/PTP-Site-Home-Mobile-11.jpg
 ---
 The portraits are based on surviving historical photographs and are accompanied by researched information about the individual depicted. By focusing on individual people rather than statistics alone, the project seeks to encourage viewers to stop, look, and contemplate the lives of those who came before them.
 
