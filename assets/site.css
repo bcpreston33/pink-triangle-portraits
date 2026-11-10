@@ -1228,3 +1228,8 @@ body>footer{
 .bio-editorial-nav .bio-nav-next .ptp-triangle-right{position:absolute;left:calc(100% + 9px);top:.31em;margin:0}
 .bio-editorial-nav .bio-nav-name{font-size:var(--bio-nav-size,17px);letter-spacing:var(--bio-nav-name-letter-spacing,.5px);line-height:1.1}
 @media(max-width:600px){.bio-editorial-nav .bio-nav-name{font-size:clamp(14px,3.8vw,var(--bio-nav-size,17px))}}
+
+/* 2026-11 homepage portraits: full-bleed tinted section, content remains aligned to site grid. */
+.home-gallery-band{width:100%;background:#FCEEF4}
+.home-gallery-band .gallery-preview{padding-top:65px;padding-bottom:68px}
+@media(max-width:700px){.home-gallery-band .gallery-preview{padding-top:46px;padding-bottom:52px}}

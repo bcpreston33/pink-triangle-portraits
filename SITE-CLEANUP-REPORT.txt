@@ -1,0 +1,43 @@
+PINK TRIANGLE PORTRAITS | SITE CLEANUP REVIEW | NOVEMBER 10, 2026
+
+COMPLETED IN THIS UPDATE
+- Homepage: Explore the Portraits now sits on a full-browser-width pale pink (#FCEEF4) band, with the same centered content alignment as before. Reduced excess vertical padding. Press below stays white.
+- Pages CMS: New 05 · EXPLORE PORTRAITS / GALLERY | Section background color (hex) setting. Saved value prefilled to #FCEEF4.
+- Pages CMS: Clear numbered prefixes added to Branding & Global, Header & Navigation, Portrait Gallery, Footer & Social Media, and Page Design | Callouts & Quotes. Field IDs and existing content remain unchanged.
+- Existing Homepage Design and page-specific editors already have numbered field groups; these were preserved.
+- Checked YAML syntax and site build. Build completed with 66 artworks, 61 people and 0 events.
+
+CONTROL MAP / WHERE TO EDIT
+- Branding & Global: identity, main project colors, width and spacing
+- Header & Navigation: menu, navigation typography, rules and social spacing
+- Typography: general fonts and headings
+- Homepage Design: hero, rotating features, feature imagery, exhibition banner, portrait preview, lower press, backgrounds
+- Portrait Gallery: full gallery layout, ordering, rollover
+- Biography Pages: individual biography page styling and previous/next navigation
+- Rules & Dividers: site decorative rules
+- Footer & Social Media: footer style, social visibility, URLs, shop URL
+- The Project / History / Exhibitions / Artist / Portraits / Shop / Contact: page-specific content
+- QR page: separate mobile landing page
+- Page Design | Callouts & Quotes: shared callout styling
+- Press & Media / Portraits & biographies / Exhibitions and events: collections that supply automatic site content
+
+AUTOMATIC VS MANUAL
+- Homepage portrait preview: automatically selects newest biographies (based on stored ranking); manual people list overrides the first slots. Number of portraits and tint are manually adjustable in Homepage Design.
+- Homepage press/exhibition features: automatic according to their settings and the relevant Press & Media / Exhibitions collections. Press entries can pin an article and upload their own logo or screenshot.
+- Site layout and typography: controlled by settings files; content editors do not necessarily change layout.
+
+ISSUES OBSERVED / NOT AUTOMATICALLY REWRITTEN
+- assets/site.css has accumulated many historical override rules and !important declarations. This is real maintenance debt. Bulk removal without a browser-based visual regression check could break mobile banners, biographies, QR page and other previously fixed layouts, so it was intentionally left in place.
+- Legacy content/settings/site.yml is still loaded first as a fallback, with individual settings files overriding matching keys. Deleting it without a complete key audit could change fallback defaults.
+- Many old INSTALL and README variants exist at repository root. They were not deleted because this update package only changes live site files. Archive older instructions after checking they are no longer needed.
+- Pages CMS may not offer collapsible section headings in the current flat object editor. Numbered label prefixes are the safe organizational approach without changing the underlying data format.
+- Some design values in CSS still use older fixed pinks for decorative gradients. This update does not replace all of those because some may be intentional paint effects. Main project pink remains #E85395.
+- Live browser appearance and Pages CMS save interaction were not tested; only static generation and YAML validation were checked.
+
+INSTALLATION
+Replace exactly these four repository files:
+  .pages.yml  (hidden file, show hidden files in Finder with Command+Shift+.)
+  assets/site.css
+  scripts/build.py
+  content/settings/homepage.yml
+Wait for the GitHub/Cloudflare deployment, then refresh the homepage and Pages CMS.
