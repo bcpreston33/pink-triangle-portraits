@@ -518,7 +518,7 @@ body>footer{
   .editorial-with-images .ptp-callout-text-column{width:100%;}
   .editorial-with-images .ptp-callout--quote .ptp-callout-text{font-size:min(var(--ptp-quote-font,20px),5vw);}
   .editorial-with-images .ptp-callout--statement .ptp-callout-text{font-size:min(var(--ptp-statement-font,21px),5vw);}
-  .desktop-subtitle-break{display:none;}
+  .desktop-subtitle-break{display:initial;}
 }
 
 /* Exhibitions: CMS-managed year headings, editorial text-column archive. */
