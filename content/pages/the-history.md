@@ -24,9 +24,9 @@ supporting_images:
   - section_heading: Treatment in Concentration Camps and Prisons
     image: /assets/uploads/concentration camp.jpg
     caption: A portion of the bodies found by U.S. troops at Nordhausen
-      concentration camp.
+      concentration camp
     alt_text: A portion of the bodies found by U.S. troops at Nordhausen
-      concentration camp.
+      concentration camp
     placement: right
   - section_heading: Who Were They?
     image: /assets/uploads/Albrechtbecker,1930.jpg
@@ -37,6 +37,11 @@ supporting_images:
     image: /assets/uploads/Heinz-Fleischer-sketch.jpg
     caption: Sketch of Heinz Fleischer by Bry Sharland
     alt_text: Sketch of Heinz Fleischer by Bry Sharland
+    placement: right
+  - section_heading: Using Art in the Culture of Remembrance
+    image: /assets/uploads/walleitner-art.jpg
+    caption: Examples of two prints by Hugo Walleitner
+    alt_text: Examples of two prints by Hugo Walleitner
     placement: right
 callouts:
   - style: statement
