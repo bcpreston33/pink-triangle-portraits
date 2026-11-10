@@ -251,7 +251,7 @@ def page(title,active,content,desc=''):
       'bio-quote-weight':str(setting('biography_quote_weight','500')),
       'bio-quote-style':setting('biography_quote_style','italic'),
       'bio-quote-color':setting('biography_quote_color','#082d3b'),
-      'bio-quote-bg':setting('biography_quote_background','#fff0f7'),
+      'bio-quote-bg':(str(setting('biography_quote_background','') or '').strip() or 'transparent'),
       'bio-quote-rule':setting('biography_quote_rule_color','#E85395'),
       'bio-quote-rule-width':str(setting('biography_quote_rule_width',5))+'px',
       'bio-quote-padding':str(setting('biography_quote_padding',22))+'px',
