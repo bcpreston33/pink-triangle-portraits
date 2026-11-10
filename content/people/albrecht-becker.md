@@ -15,7 +15,11 @@ artworks:
     published: true
     display_order: 10
 ---
-Albrecht Becker was born November 14, 1906. His persecution began when the Gestapo discovered a photo of him in the possession of a gay friend. Brought in for questioning, he responded with defiant courage, declaring: "Everybody knows I’m a homosexual!" Even in the face of unimaginable danger, he refused to deny who he was. For this, he was sentenced to three years in Nürnberg prison.
+Albrecht Becker was born November 14, 1906. His persecution began when the Gestapo discovered a photo of him in the possession of a gay friend. Brought in for questioning, he responded with defiant courage, declaring:
+
+>  ***"Everybody knows I’m a homosexual!"*** 
+
+Even in the face of unimaginable danger, he refused to deny who he was. For this, he was sentenced to three years in Nürnberg prison.
 
 After the war, Albrecht rebuilt his life as a photographer and actor. He began modifying his body, something I believe was his way of coping with his trauma, a way to reclaim ownership over himself after so much had been taken.
 
