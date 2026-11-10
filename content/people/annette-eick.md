@@ -10,8 +10,6 @@ artworks:
     display_order: 10
     gallery_thumbnail: /assets/uploads/Annette-Eick-LR.jpg
 ---
-As we continue our Pride Month celebration of those who bravely spoke out, today we honor Annette Eick, a Jewish lesbian who escaped Nazi persecution at its height.
-
 Annette grew up in Berlin, where she experienced the freedom of being an out lesbian during the Weimar Republic. But as the Nazis rose to power, that freedom was ripped away. By 1938, she was desperate to escape Germany but couldn't secure the necessary clearance to leave.
 
 Her narrow escape came when she was hiding on a farm sheltering Jewish youth trying to emigrate to Palestine. When the Nazis raided the farm, she fled on her bicycle, barely avoiding capture. As she rode, an unbelievable stroke of luck found her, the postman saw her and called out that he had a love letter for her. It was from Ditt, a lesbian friend she always remembered as looking like Marlene Dietrich. Ditt had escaped to England and secured an immigration permit for Annette.
