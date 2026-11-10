@@ -57,7 +57,7 @@ callouts:
 
 The Weimar Republic was the period between WWI and 1933, when the Nazis seized power. 
 During this time, Germany, and especially Berlin, was the gay capital of the world, having over 100 gay bars, clubs, restaurants, and dozens of publications and magazines. You could find spaces that catered to lesbians, gay men, artists and musicians, drag queens, anyone. Arrests for being gay were rare, especially in cities.
-Dr. Magnus Hirschfeld ran the Institute for Sexual Sciences, where queer people could receive health care, trans people could get gender affirming care and even a transvestitenschein (passes that prevented the police from harassing non gender conforming people) and it was home to the world’s largest scientific library on queer studies. The Nazi’s first book burning was the destruction of this institute in 1933.
+Dr. Magnus Hirschfeld ran the Institute for Sexual Sciences, where queer people could receive health care, trans people could get gender affirming care and even a ***transvestitenschein*** (passes that prevented the police from harassing non gender conforming people) and it was home to the world’s largest scientific library on queer studies. The Nazi’s first book burning was the destruction of this institute in 1933.
 
 ### Paragraph 175 & 175a
 
@@ -67,13 +67,13 @@ Paragraph 175 was the anti gay sodomy law adopted by Germany in 1871. It was ver
 
 It started as a Nazi symbol for queer men to wear in prisons and concentration camps and was for a long time seen as a symbol of shame. That started to change in the 70s as gay liberation activists were looking for symbols to express their desire for freedom and legal recognition. Pretty soon it became one of the most well known symbols of gay pride.
 
-In the 80s it became very well known because of the silence=death campaign to raise awareness about AIDS. *They accidentally put the triangle upside down, not knowing that it was worn the other way around originally.*
+In the 80s it became very well known because of the **silence=death** campaign to raise awareness about AIDS. *They accidentally put the triangle upside down, not knowing that it was worn the other way around originally.*
 
 ### Treatment in Concentration Camps and Prisons
 
 The queer capital of the world came crumbling down once the Third Reich began. Arrests under Paragraph 175 spiked, and in the mid 30’s queer people were some of the very first people sent to concentration camps, as well as political dissidents. 
 
-While lesbians were not also directly targeted in the same way, they were considered morally reprehensible by not adding to the German birthrate and many were arrested and sent to camps as well, usually labelled as “asocial.” Their entire social world and culture was destroyed, and in Austria, there was an anti lesbian law called paragraph 129
+While lesbians were not also directly targeted in the same way, they were considered morally reprehensible by not adding to the German birthrate and many were arrested and sent to camps as well, usually labelled as ***“asocial.”*** Their entire social world and culture was destroyed, and in Austria, there was an anti lesbian law called paragraph 129
 
 Some of the most sadistic and terrible treatments were reserved for gay prisoners in concentration camps. Torture, mutilation, medical experimentation, and castration were common. They could be fed to German shepherds, strung up on poles like a crucifixion, being used for target practice, and sexual abuse by guards and Kapos was prevalent.  
 
@@ -81,7 +81,7 @@ When death certificates were sent to families, they usually had the lie of heart
 
 ### Who Were They?
 
-Many cities in Germany created anti-gay task forces that hunted down queer people and their networks of friends.  The world’s most gay-friendly country had turned into a fascist nightmare.
+Many cities in Germany created anti-gay task forces that hunted down queer people and their networks of friends. The world’s most gay-friendly country had turned into a fascist nightmare.
 
 Gender non-conforming and trans people would still be charged with crimes, such as “disturbing the peace”
 Lesbians could be charged as asocial. Paragraph 129 in Austria was an anti-lesbian law that was used to arrest queer women. A simple denunciation by a neighbor was all it took for many queer women to be investigated and arrested.
