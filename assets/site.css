@@ -1217,3 +1217,14 @@ body>footer{
  .bio-editorial-nav .bio-nav-all{font-size:clamp(16px,4.5vw,var(--bio-nav-label-size,21px))}
  .bio-editorial-nav .bio-nav-name{font-size:clamp(13px,3.5vw,var(--bio-nav-size,15px))}
 }
+
+/* Portrait navigation: tight two-line hierarchy; triangles outside the text edges. */
+.bio-editorial-nav .bio-nav-previous,
+.bio-editorial-nav .bio-nav-next{position:relative;gap:var(--bio-nav-gap,3px)}
+.bio-editorial-nav .bio-nav-previous{padding-left:20px}
+.bio-editorial-nav .bio-nav-next{padding-right:20px}
+.bio-editorial-nav .bio-nav-label{position:relative;display:block;line-height:1.05}
+.bio-editorial-nav .bio-nav-previous .ptp-triangle-left{position:absolute;right:calc(100% + 9px);top:.31em;margin:0}
+.bio-editorial-nav .bio-nav-next .ptp-triangle-right{position:absolute;left:calc(100% + 9px);top:.31em;margin:0}
+.bio-editorial-nav .bio-nav-name{font-size:var(--bio-nav-size,17px);letter-spacing:var(--bio-nav-name-letter-spacing,.5px);line-height:1.1}
+@media(max-width:600px){.bio-editorial-nav .bio-nav-name{font-size:clamp(14px,3.8vw,var(--bio-nav-size,17px))}}

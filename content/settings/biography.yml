@@ -19,7 +19,7 @@ bio_rule_width: 2
 bio_rule_top_gap: 20
 bio_rule_bottom_gap: 20
 bio_nav_font: DM Sans
-bio_nav_size: 15
+bio_nav_size: 17
 bio_nav_label_size: 21
 bio_nav_label_weight: 600
 bio_nav_name_weight: 800
@@ -53,3 +53,6 @@ callout_rule_width: 10
 callout_gap: 20
 research_rule_width: 10
 panel_rule_width: 10
+
+bio_nav_gap: 3
+bio_nav_name_letter_spacing: 0.5
