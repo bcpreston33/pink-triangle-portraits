@@ -16,6 +16,11 @@ supporting_images:
     caption: '"Down with §175" Poster from a movement demanding its deletion from law'
     alt_text: '"Down with §175" Poster from a movement demanding its deletion from law'
     placement: right
+  - section_heading: The Pink Triangle
+    image: /assets/uploads/pink triangles.jpg
+    caption: an example of a pink triangle on prisoners
+    alt_text: an example of a pink triangle on prisoners
+    placement: right
 callouts:
   - style: statement
     text: |-
