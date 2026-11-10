@@ -67,7 +67,7 @@ Paragraph 175 was the anti gay sodomy law adopted by Germany in 1871. It was ver
 
 It started as a Nazi symbol for queer men to wear in prisons and concentration camps and was for a long time seen as a symbol of shame. That started to change in the 70s as gay liberation activists were looking for symbols to express their desire for freedom and legal recognition. Pretty soon it became one of the most well known symbols of gay pride.
 
-In the 80s it became very well known because of the silence=death campaign to raise awareness about AIDS. They accidentally put the triangle upside down, not knowing that it was worn the other way around originally.
+In the 80s it became very well known because of the silence=death campaign to raise awareness about AIDS. *They accidentally put the triangle upside down, not knowing that it was worn the other way around originally.*
 
 ### Treatment in Concentration Camps and Prisons
 
