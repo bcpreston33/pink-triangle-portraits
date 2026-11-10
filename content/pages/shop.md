@@ -1,7 +1,7 @@
 ---
 title: THE SHOP
 subtitle: Support the project
-hero_image: /assets/uploads/PTP-Page-Headers-Shop.jpg
+hero_image: /assets/uploads/PTP-Page-Headers-Shop-1.jpg
 hero_mobile_image: /assets/uploads/PTP-Site-Home-Mobile-16.jpg
 ---
 ### Supporting the Project
