@@ -11,6 +11,11 @@ supporting_images:
     caption: Magnus Hirschfeld, head of The Institute for Sexual Sciences
     alt_text: Magnus Hirschfeld, head of The Institute for Sexual Sciences
     placement: right
+  - section_heading: Paragraph 175 & 175a
+    image: /assets/uploads/Paragraph_175 Poster.jpg
+    caption: '"Down with §175" Poster from a movement demanding its deletion from law'
+    alt_text: '"Down with §175" Poster from a movement demanding its deletion from law'
+    placement: right
 callouts:
   - style: statement
     text: |-
