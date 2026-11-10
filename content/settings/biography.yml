@@ -20,6 +20,7 @@ bio_rule_top_gap: 20
 bio_rule_bottom_gap: 20
 bio_nav_font: DM Sans
 bio_nav_size: 17
+bio_nav_name_letter_spacing: 0.5
 bio_nav_label_size: 21
 bio_nav_label_weight: 600
 bio_nav_name_weight: 800
@@ -27,12 +28,13 @@ bio_nav_color: "#E85395"
 bio_nav_rule_color: "#a4b1b5"
 bio_nav_rule_width: 0
 bio_nav_padding: 24
+bio_nav_gap: 3
 art_font: Barlow Condensed
 art_title_size: 28
 art_details_size: 17
 art_color: "#082d3b"
-biography_quote_font: DM Sans
-biography_quote_size: 22
+biography_quote_font: Caveat
+biography_quote_size: 18
 biography_quote_weight: "500"
 biography_quote_style: italic
 biography_quote_color: "#082d3b"
@@ -53,6 +55,3 @@ callout_rule_width: 10
 callout_gap: 20
 research_rule_width: 10
 panel_rule_width: 10
-
-bio_nav_gap: 3
-bio_nav_name_letter_spacing: 0.5
