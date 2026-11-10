@@ -1,5 +1,5 @@
 ---
-name: Gad Beck
+name: Gerhard "Gad" Beck
 years: June 30, 1923 - June 24, 2012
 homepage_override: false
 artworks:
