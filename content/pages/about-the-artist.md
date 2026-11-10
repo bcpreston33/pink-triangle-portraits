@@ -26,6 +26,13 @@ supporting_images:
     alt_text: My original notebook where I would write down names I found and do
       small studies and sketches
     placement: right
+callouts:
+  - style: highlight
+    heading: Beyond Pink Triangle Portraits
+    text: Explore some of Bry’s other artwork
+    position: after-section
+    layout: text
+    alignment: left
 ---
 ### Meet Bry Sharland
 
@@ -59,6 +66,4 @@ Eventually I found this to be too demoralizing and depressing, and the project c
 
 No more camp uniforms, ever! I began to show my subjects as real, in color, queer people as they should have been. I want to celebrate their lives for who they were, not just what dark things that happened to them.
 
-## Beyond Pink Triangle Portraits
-
-[Explore Bry’s other artwork](https://brysharland.com/)
+[callout-1]
