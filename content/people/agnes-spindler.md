@@ -10,9 +10,9 @@ artworks:
     display_order: 10
     gallery_thumbnail: /assets/images/gallery-thumbnails/agnes-spindler.jpg
 sources: |-
-  **Bernd Grünheid, "Agnes Spindler" ++[https://www.rosawinkel.kulturring.berlin/?biografie=agnes-spindler](https://www.rosawinkel.kulturring.berlin/?biografie=agnes-spindler)++**
+  Bernd Grünheid, "Agnes Spindler" [https://www.rosawinkel.kulturring.berlin/?biografie=agnes-spindler](https://www.rosawinkel.kulturring.berlin/?biografie=agnes-spindler)
 
-  **Landesarchiv Berlin Ar. Br. Rep. 030-02-05 Nr. 855, Polizeiakte Agnes Spindler**
+  Landesarchiv Berlin Ar. Br. Rep. 030-02-05 Nr. 855, Polizeiakte Agnes Spindler
 ---
 Agnes Spindler was born on June 17, 1904 in Berlin. She lived her truth, dressing as she wished and living with her partner. Even as a child, Agnes liked to wear boys’ clothing. She knew she was a lesbian by the time she was a teenager, but sadly her first major relationship ended when he girlfriend died.
 
