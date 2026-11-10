@@ -732,6 +732,10 @@ content:
   - name: bio_nav_size
     label: 07 · PORTRAIT NAV | Person name | Size (px)
     type: number
+  - name: bio_nav_name_letter_spacing
+    label: 07 · PORTRAIT NAV | Person name | Letter spacing (px)
+    type: number
+    description: Space between letters in the person names. Default 0.5.
   - name: bio_nav_label_size
     label: 07 · PORTRAIT NAV | Previous / Next / All Portraits | Size (px)
     type: number
@@ -770,7 +774,7 @@ content:
   - name: bio_nav_gap
     label: 07 · PORTRAIT NAV | Gap between label and name (px)
     type: number
-    description: Default 7.
+    description: Default 3 for tighter spacing between navigation label and name.
   - name: art_font
     label: Artwork information font
     type: select
