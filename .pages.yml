@@ -830,8 +830,9 @@ content:
     label: Biography quote | Text color (hex)
     type: string
   - name: biography_quote_background
-    label: Biography quote | Background color (hex)
+    label: Biography quote | Background color (hex, optional)
     type: string
+    description: Leave blank for a transparent background. Enter a hex color such as #FFF0F7 to add a background.
   - name: biography_quote_rule_color
     label: Biography quote | Left rule color (hex)
     type: string
