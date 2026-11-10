@@ -3,6 +3,7 @@ title: EXHIBITIONS
 subtitle: |-
   Shows, talks, and conversations 
   about the project.
+hero_image: /assets/uploads/PTP-Page-Headers-Exhibitions.jpg
 hero_mobile_image: /assets/uploads/PTP-Site-Home-Mobile-16.jpg
 exhibitions_featured_enabled: true
 exhibitions_featured_heading: Featured & Upcoming
