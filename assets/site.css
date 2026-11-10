@@ -1109,78 +1109,66 @@ body>footer{
 }
 
 
-/* Responsive interior header: page-specific mobile artwork always wins. */
+/* Unified responsive interior banners. Desktop keeps its original layout. */
 @media(min-width:701px){
  .interior-hero--image .interior-heading-copy{width:min(58%,660px)!important;max-width:660px!important}
  .interior-hero .interior-heading-copy h1{font-size:clamp(var(--responsive-title-min,80px),8vw,var(--responsive-title-max,112px))!important}
  .interior-hero--mobile-only .interior-header-media{display:none!important}
+ .interior-hero.interior-hero--mobile-only{height:auto!important;min-height:0!important}
 }
-@media(max-width:700px){
- .interior-hero.interior-hero--image{
-  display:flex!important;flex-direction:column!important;align-items:stretch!important;
-  height:auto!important;min-height:0!important;background:#eee!important;
- }
- .interior-hero--image .interior-inner{
-  order:0!important;position:relative!important;width:calc(100% - 40px)!important;
-  padding:30px 0 32px!important;flex:none!important
- }
- .interior-hero--image .interior-heading-copy{width:100%!important;max-width:none!important}
- .interior-hero .interior-heading-copy h1{
-  font-size:clamp(48px,13vw,var(--responsive-mobile-title,68px))!important;
-  line-height:var(--page-title-line-height,1.05)!important
- }
- .interior-hero--image .interior-header-media{
-  order:1!important;position:relative!important;inset:auto!important;
-  display:block!important;width:100%!important;height:auto!important;
-  margin:0!important;aspect-ratio:auto!important;overflow:visible!important;
-  background:none!important;flex:none!important
- }
- .interior-hero--image .interior-header-media picture,
- .interior-hero--image .interior-header-media img{
-  display:block!important;width:100%!important;height:auto!important;
-  max-width:100%!important;aspect-ratio:auto!important
- }
- .interior-hero--image .interior-header-media img{object-fit:contain!important;object-position:center!important}
- .interior-hero--image:not(.interior-hero--custom-mobile) .interior-header-media{
-  height:var(--responsive-mobile-paint-height,85px)!important;overflow:hidden!important;
-  background:url('/assets/images/painted-background.jpg') center 65% / cover no-repeat!important
- }
- .interior-hero--image:not(.interior-hero--custom-mobile) .interior-header-media picture{display:none!important}
-}
-/* A mobile-only upload must not create an empty 400px desktop image hero. */
-@media(min-width:701px){
-  .interior-hero.interior-hero--mobile-only{
-    height:auto!important;
-    min-height:0!important;
-  }
-  .interior-hero--mobile-only .interior-header-media{display:none!important}
-}
-
-/* Mobile: CMS-uploaded 800 x 250 painted border sits BELOW live text.
-   No overlap, no fixed strip crop, and no artificial background. */
+/* On mobile, the CMS mobile image becomes a full-bleed 800x350 background.
+   Text remains editable live HTML and vertically centered. */
 @media(max-width:700px){
  .interior-hero.interior-hero--image.interior-hero--custom-mobile{
-  display:flex!important;flex-direction:column!important;
-  height:auto!important;min-height:0!important;background:#eee!important
- }
- .interior-hero--custom-mobile .interior-inner{
-  order:0!important;position:relative!important;z-index:1!important;
-  width:calc(100% - 40px)!important;max-width:none!important;
-  margin:0 auto!important;padding:25px 0 6px!important;
-  background:#eee!important;pointer-events:auto!important
+  position:relative!important;isolation:isolate!important;
+  display:flex!important;flex-direction:row!important;align-items:center!important;
+  height:auto!important;min-height:350px!important;
+  background:#092b39!important;overflow:hidden!important;
  }
  .interior-hero--custom-mobile .interior-header-media{
-  order:1!important;position:relative!important;inset:auto!important;
-  width:100%!important;height:auto!important;min-height:0!important;
-  aspect-ratio:auto!important;margin:0!important;overflow:hidden!important;
-  background:none!important;flex:none!important
+  position:absolute!important;inset:0!important;z-index:0!important;
+  display:block!important;width:100%!important;height:100%!important;
+  min-height:0!important;aspect-ratio:auto!important;
+  margin:0!important;overflow:hidden!important;background:none!important;
  }
  .interior-hero--custom-mobile .interior-header-media picture,
  .interior-hero--custom-mobile .interior-header-media img{
-  display:block!important;width:100%!important;height:auto!important;
-  max-width:100%!important;aspect-ratio:auto!important;
-  object-fit:contain!important
+  display:block!important;width:100%!important;height:100%!important;
+  max-width:none!important;aspect-ratio:auto!important;
  }
+ .interior-hero--custom-mobile .interior-header-media img{
+  object-fit:cover!important;object-position:center center!important;
+ }
+ .interior-hero--custom-mobile::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(4,29,42,.66) 0%,rgba(4,29,42,.38) 72%,rgba(4,29,42,.26) 100%);
+ }
+ .interior-hero--custom-mobile .interior-inner{
+  position:relative!important;z-index:2!important;order:0!important;
+  width:calc(100% - 40px)!important;max-width:none!important;
+  margin:0 auto!important;padding:32px 0!important;
+  background:transparent!important;flex:none!important;
+ }
+ .interior-hero--custom-mobile .interior-heading-copy{
+  width:100%!important;max-width:none!important;text-align:left!important;
+ }
+ .interior-hero--custom-mobile .interior-heading-copy .eyebrow,
+ .interior-hero--custom-mobile .interior-heading-copy h1,
+ .interior-hero--custom-mobile .interior-heading-copy p{
+  color:#fff!important;text-align:left!important;text-shadow:none!important;
+ }
+ .interior-hero--custom-mobile .interior-heading-copy h1{
+  font-size:clamp(48px,13vw,var(--responsive-mobile-title,68px))!important;
+  line-height:var(--page-title-line-height,1.05)!important;
+ }
+ /* Pages without a CMS mobile upload retain the original generic strip. */
+ .interior-hero--image:not(.interior-hero--custom-mobile) .interior-header-media{
+  position:relative!important;inset:auto!important;order:1!important;
+  display:block!important;width:100%!important;
+  height:var(--responsive-mobile-paint-height,85px)!important;
+  overflow:hidden!important;background:url('/assets/images/painted-background.jpg') center 65% / cover no-repeat!important;
+ }
+ .interior-hero--image:not(.interior-hero--custom-mobile) .interior-header-media picture{display:none!important}
 }
 
 /* QR-only standalone landing page, intentionally outside main navigation. */
@@ -1211,14 +1199,3 @@ body>footer{
 .qr-landing .qr-site-header .qr-logo-link img{display:block;width:auto;max-width:185px;max-height:72px;object-fit:contain}
 .qr-landing .qr-site-header .qr-wordmark{color:#fff;font-size:27px}
 .qr-landing .qr-wrap{padding-top:42px}
-
-/* Mobile interior headers: center live headings and tighten the art transition.
-   Only page banners are affected; desktop and body copy are unchanged. */
-@media(max-width:700px){
- .interior-hero .interior-inner,
- .interior-hero .interior-heading-copy{ text-align:center!important; }
- .interior-hero .interior-heading-copy .eyebrow,
- .interior-hero .interior-heading-copy h1,
- .interior-hero .interior-heading-copy p{ text-align:center!important; margin-left:auto!important; margin-right:auto!important; }
- .interior-hero--custom-mobile .interior-inner{ padding-bottom:6px!important; }
-}
