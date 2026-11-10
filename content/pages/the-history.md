@@ -28,6 +28,11 @@ supporting_images:
     alt_text: A portion of the bodies found by U.S. troops at Nordhausen
       concentration camp.
     placement: right
+  - section_heading: Who Were They?
+    image: /assets/uploads/Albrechtbecker,1930.jpg
+    caption: Albrecht Becker, 1930
+    alt_text: Albrecht Becker, 1930
+    placement: right
 callouts:
   - style: statement
     text: |-
