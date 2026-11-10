@@ -4,7 +4,7 @@ subtitle: |-
   The Pink Triangle, Paragraph 175, 
   and persecution under Nazism.
 hero_image: /assets/uploads/PTP-Page-Headers-History-7.jpg
-hero_mobile_image: /assets/uploads/PTP-Site-Home-Mobile-10.jpg
+hero_mobile_image: /assets/uploads/PTP-Site-Home-Mobile-11.jpg
 callouts:
   - style: statement
     text: |-
