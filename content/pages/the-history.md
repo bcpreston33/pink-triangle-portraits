@@ -33,6 +33,11 @@ supporting_images:
     caption: Albrecht Becker, 1930
     alt_text: Albrecht Becker, 1930
     placement: right
+  - section_heading: Liberation was for Others
+    image: /assets/uploads/Heinz-Fleischer-sketch.jpg
+    caption: Sketch of Heinz Fleischer by Bry Sharland
+    alt_text: Sketch of Heinz Fleischer by Bry Sharland
+    placement: right
 callouts:
   - style: statement
     text: |-
