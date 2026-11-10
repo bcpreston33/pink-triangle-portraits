@@ -4,7 +4,7 @@ subtitle: |-
   Giving color and dignity to those 
   who had it stripped away.
 hero_image: /assets/uploads/PTP-Page-Headers-Project-7.jpg
-hero_mobile_image: /assets/uploads/PTP-Site-Home-Mobile-12.jpg
+hero_mobile_image: /assets/uploads/PTP-Site-Home-Mobile-15.jpg
 project_sidebar_enabled: true
 project_sidebar_press_enabled: true
 project_sidebar_press_heading: Press & Media
