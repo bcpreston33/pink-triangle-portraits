@@ -21,6 +21,13 @@ supporting_images:
     caption: an example of a pink triangle on prisoners
     alt_text: an example of a pink triangle on prisoners
     placement: right
+  - section_heading: Treatment in Concentration Camps and Prisons
+    image: /assets/uploads/concentration camp.jpg
+    caption: A portion of the bodies found by U.S. troops at Nordhausen
+      concentration camp.
+    alt_text: A portion of the bodies found by U.S. troops at Nordhausen
+      concentration camp.
+    placement: right
 callouts:
   - style: statement
     text: |-
