@@ -1155,3 +1155,52 @@ body>footer{
   }
   .interior-hero--mobile-only .interior-header-media{display:none!important}
 }
+
+/* Mobile uploaded artwork is a full hero background, not a separate block.
+   Use the image's natural aspect ratio to size the header, and overlay live CMS text. */
+@media (max-width:700px){
+ .interior-hero.interior-hero--image.interior-hero--custom-mobile{
+   display:grid!important;
+   grid-template-columns:minmax(0,1fr)!important;
+   grid-template-rows:auto!important;
+   align-items:start!important;
+   background:#eee!important;
+   height:auto!important;
+   min-height:0!important;
+ }
+ .interior-hero--custom-mobile .interior-header-media{
+   grid-column:1!important;
+   grid-row:1!important;
+   order:0!important;
+   position:relative!important;
+   inset:auto!important;
+   width:100%!important;
+   height:auto!important;
+   min-height:0!important;
+   margin:0!important;
+   overflow:hidden!important;
+   background:none!important;
+ }
+ .interior-hero--custom-mobile .interior-header-media picture,
+ .interior-hero--custom-mobile .interior-header-media img{
+   display:block!important;
+   width:100%!important;
+   height:auto!important;
+   max-width:100%!important;
+   object-fit:contain!important;
+ }
+ .interior-hero--custom-mobile .interior-inner{
+   grid-column:1!important;
+   grid-row:1!important;
+   order:1!important;
+   z-index:2!important;
+   position:relative!important;
+   width:calc(100% - 40px)!important;
+   max-width:none!important;
+   margin-inline:auto!important;
+   padding:25px 0 25px!important;
+   background:transparent!important;
+   pointer-events:none;
+ }
+ .interior-hero--custom-mobile .interior-inner a{pointer-events:auto}
+}
