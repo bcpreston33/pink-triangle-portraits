@@ -1204,3 +1204,10 @@ body>footer{
 .qr-landing .qr-home:hover{border-color:var(--orange);color:#ba5019}
 .qr-landing .qr-footer-rule{height:7px;margin:32px 0 0;background:linear-gradient(90deg,var(--qr-accent,#E85395),var(--orange))}
 @media(max-width:380px){.qr-landing .qr-social-list{gap:7px}.qr-landing .qr-social-button{padding:16px 3px 12px}.qr-landing .qr-social-button img{width:43px;height:43px}.qr-landing .qr-social-button span{font-size:16px}}
+
+/* QR header uses the real site logo and the same dark teal / pink rule as navigation. */
+.qr-landing .qr-site-header{background:var(--navy,#062c3b);border-bottom:10px solid var(--qr-accent,#E85395);display:flex;justify-content:center;align-items:center;min-height:98px;padding:12px 20px}
+.qr-landing .qr-site-header .qr-logo-link{display:inline-flex;align-items:center;justify-content:center;min-height:0;margin:0;padding:0}
+.qr-landing .qr-site-header .qr-logo-link img{display:block;width:auto;max-width:185px;max-height:72px;object-fit:contain}
+.qr-landing .qr-site-header .qr-wordmark{color:#fff;font-size:27px}
+.qr-landing .qr-wrap{padding-top:42px}
