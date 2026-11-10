@@ -5,6 +5,12 @@ subtitle: |-
   and persecution under Nazism.
 hero_image: /assets/uploads/PTP-Page-Headers-History-7.jpg
 hero_mobile_image: /assets/uploads/PTP-Site-Home-Mobile-16.jpg
+supporting_images:
+  - section_heading: Sexual Liberation in Post-WWI Germany
+    image: /assets/uploads/Magnus_Hirschfeld_(1928).jpg
+    caption: Magnus Hirschfeld, head of The Institute for Sexual Sciences
+    alt_text: Magnus Hirschfeld, head of The Institute for Sexual Sciences
+    placement: right
 callouts:
   - style: statement
     text: |-
