@@ -730,11 +730,19 @@ content:
     options:
       values: *id001
   - name: bio_nav_size
-    label: 07 · PORTRAIT NAV | Previous / Next navigation | Name size (px)
+    label: 07 · PORTRAIT NAV | Person name | Size (px)
     type: number
   - name: bio_nav_label_size
-    label: 07 · PORTRAIT NAV | Previous / Next navigation | Label size (px)
+    label: 07 · PORTRAIT NAV | Previous / Next / All Portraits | Size (px)
     type: number
+  - name: bio_nav_label_weight
+    label: 07 · PORTRAIT NAV | Previous / Next / All Portraits | Font weight (400–900)
+    type: number
+    description: Medium or semibold recommended (600).
+  - name: bio_nav_name_weight
+    label: 07 · PORTRAIT NAV | Person name | Font weight (400–900)
+    type: number
+    description: Bold or extra bold recommended (800).
   - name: bio_nav_color
     label: 07 · PORTRAIT NAV | Previous / Next navigation | Color (hex)
     type: string
