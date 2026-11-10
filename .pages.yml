@@ -1905,7 +1905,7 @@ content:
   - name: logo_image
     label: 01 · BRANDING | Logo image (optional)
     type: image
-    description: If empty, automatically uses the global site logo. Recommended a dark logo on a light background.
+    description: If empty, automatically uses the actual website logo from Header & Navigation. Use a light/white logo suitable for the dark teal header.
   - name: heading
     label: 02 · MAIN COPY | Main heading
     type: string
