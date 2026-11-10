@@ -1199,3 +1199,21 @@ body>footer{
 .qr-landing .qr-site-header .qr-logo-link img{display:block;width:auto;max-width:185px;max-height:72px;object-fit:contain}
 .qr-landing .qr-site-header .qr-wordmark{color:#fff;font-size:27px}
 .qr-landing .qr-wrap{padding-top:42px}
+
+/* Portrait navigation hierarchy: larger lighter directions, smaller bold names. */
+.bio-editorial-nav .bio-nav-label,
+.bio-editorial-nav .bio-nav-all{
+ font-size:var(--bio-nav-label-size,21px);
+ font-weight:var(--bio-nav-label-weight,600);
+ opacity:1;line-height:1.1;letter-spacing:.035em;
+}
+.bio-editorial-nav .bio-nav-name{
+ font-size:var(--bio-nav-size,15px);
+ font-weight:var(--bio-nav-name-weight,800);
+ line-height:1.25;
+}
+@media(max-width:600px){
+ .bio-editorial-nav .bio-nav-label,
+ .bio-editorial-nav .bio-nav-all{font-size:clamp(16px,4.5vw,var(--bio-nav-label-size,21px))}
+ .bio-editorial-nav .bio-nav-name{font-size:clamp(13px,3.5vw,var(--bio-nav-size,15px))}
+}

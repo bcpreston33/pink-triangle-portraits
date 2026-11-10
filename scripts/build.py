@@ -279,6 +279,8 @@ def page(title,active,content,desc=''):
       'bio-nav-font':str(setting('bio_nav_font','DM Sans')),
       'bio-nav-size':str(setting('bio_nav_size',20))+'px',
       'bio-nav-label-size':str(setting('bio_nav_label_size',12))+'px',
+      'bio-nav-label-weight':str(setting('bio_nav_label_weight',600)),
+      'bio-nav-name-weight':str(setting('bio_nav_name_weight',800)),
       'bio-nav-color':str(setting('bio_nav_color','#082d3b')),
       'bio-nav-rule-color':str(setting('bio_nav_rule_color','#a4b1b5')),
       'bio-nav-rule-width':str(setting('bio_nav_rule_width',1))+'px',
