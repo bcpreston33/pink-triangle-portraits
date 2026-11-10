@@ -1893,134 +1893,67 @@ content:
     type: number
     description: 'Percentage of the main content width allocated to the right sidebar. Current value: 35.'
 - name: page_qr
-  label: QR page · Page content & design
+  label: QR page · Mobile landing page
   type: file
   path: content/pages/qr.md
   fields:
   - name: title
-    label: 01 · PAGE HEADER | Page title
+    label: 01 · PAGE SETTINGS | Internal page name
     type: string
     required: true
-  - name: subtitle
-    label: 01 · PAGE HEADER | Intro subtitle
+    description: Used for identifying this entry in the CMS. The public QR page shows the heading below.
+  - name: logo_image
+    label: 01 · BRANDING | Logo image (optional)
+    type: image
+    description: If empty, automatically uses the global site logo. Recommended a dark logo on a light background.
+  - name: heading
+    label: 02 · MAIN COPY | Main heading
+    type: string
+    description: Large pink heading displayed on the QR page.
+  - name: intro
+    label: 02 · MAIN COPY | Introduction
     type: text
-    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
-  - name: hero_image
-    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
-    description: Desktop page banner image. Recommended 1200 × 400 px. This changes only this page.
-    type: image
-  - name: hero_mobile_image
-    label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
-    type: image
-  - name: body
-    label: 02 · MAIN CONTENT | Page text
-    type: rich-text
-    description: Main editable page content. This is the long text shown beneath the page banner.
-  - name: supporting_images
-    label: 05 · PAGE EXTRAS | Supporting images beside sections
-    type: object
-    list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty
-      to show no caption.
-    fields:
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      required: true
-      description: Match a heading in Page content, without the
-    - name: image
-      label: Supporting image
-      type: image
-      required: true
-    - name: caption
-      label: Small caption (optional)
-      type: string
-    - name: alt_text
-      label: Image description for accessibility
-      type: string
-    - name: placement
-      label: Image placement
-      type: select
-      default: right
-      options:
-        values:
-        - label: Right column
-          value: right
-        - label: Left column
-          value: left
-        - label: Full width below section (explicit only)
-          value: full
-  - name: callouts
-    label: 06 · PAGE EXTRAS | Quotes, callouts & featured statements
-    type: object
-    list: true
-    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content,
-      matching their order here. Otherwise choose a section and placement.
-    fields:
-    - name: style
-      label: Style
-      type: select
-      default: quote
-      options:
-        values:
-        - label: Pull Quote (10px left rule)
-          value: quote
-        - label: Highlight / Callout
-          value: highlight
-        - label: Featured Statement (thin horizontal rules)
-          value: statement
-    - name: heading
-      label: Optional heading
-      type: string
-    - name: text
-      label: Quote or callout text
-      type: text
-      description: Use **bold**, *italic*, or ***bold italic***. Blank lines create paragraphs.
-      required: true
-    - name: attribution
-      label: Attribution / source (optional)
-      type: string
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      description: Match a heading in Page content. Not needed when using an inline [callout-N] marker.
-    - name: position
-      label: Position within section
-      type: select
-      default: after-heading
-      options:
-        values:
-        - label: Before section
-          value: before-section
-        - label: After heading
-          value: after-heading
-        - label: After section text
-          value: after-section
-    - name: layout
-      label: Layout
-      type: select
-      default: text
-      options:
-        values:
-        - label: Text column
-          value: text
-        - label: Side image area
-          value: side
-        - label: Full width below section (explicit only)
-          value: full
-    - name: alignment
-      label: Text alignment
-      type: select
-      default: left
-      options:
-        values:
-        - label: Left
-          value: left
-        - label: Center
-          value: center
-        - label: Right
-          value: right
+    description: Short text under the main heading.
+  - name: show_instagram
+    label: 03 · SOCIAL LINKS | Show Instagram
+    type: boolean
+    default: true
+  - name: instagram_label
+    label: 03 · SOCIAL LINKS | Instagram label
+    type: string
+  - name: show_bluesky
+    label: 03 · SOCIAL LINKS | Show Bluesky
+    type: boolean
+    default: true
+  - name: bluesky_label
+    label: 03 · SOCIAL LINKS | Bluesky label
+    type: string
+  - name: show_tiktok
+    label: 03 · SOCIAL LINKS | Show TikTok
+    type: boolean
+    default: true
+  - name: tiktok_label
+    label: 03 · SOCIAL LINKS | TikTok label
+    type: string
+  - name: show_gallery
+    label: 04 · ADDITIONAL LINKS | Show portrait gallery button
+    type: boolean
+    default: true
+  - name: gallery_label
+    label: 04 · ADDITIONAL LINKS | Gallery button text
+    type: string
+  - name: home_label
+    label: 04 · ADDITIONAL LINKS | Main website button text
+    type: string
+    description: Button links to the homepage automatically.
+  - name: accent_color
+    label: 05 · APPEARANCE | Accent color (hex)
+    type: string
+    description: 'Project pink: #E85395. Controls heading and button color.'
+  - name: background_color
+    label: 05 · APPEARANCE | Page background color (hex)
+    type: string
+    description: 'Default: #ffffff.'
 - name: settings_callouts
   label: Page Design | Callouts & Quotes
   type: file
