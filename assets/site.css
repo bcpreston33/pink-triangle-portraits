@@ -1233,3 +1233,21 @@ body>footer{
 .home-gallery-band{width:100%;background:#FCEEF4}
 .home-gallery-band .gallery-preview{padding-top:65px;padding-bottom:68px}
 @media(max-width:700px){.home-gallery-band .gallery-preview{padding-top:46px;padding-bottom:52px}}
+
+/* Biography quotes: full text-column width, consistent CMS font size, compact vertical padding. */
+.person-detail .portrait-bio .rich blockquote{
+  display:block;
+  width:100%;
+  max-width:none;
+  margin-left:0;
+  margin-right:0;
+  font-size:var(--bio-quote-size);
+  padding:calc(var(--bio-quote-padding) * .5) var(--bio-quote-padding);
+  border-left-width:var(--bio-quote-rule-width)!important;
+}
+@media(max-width:700px){
+  .person-detail .portrait-bio .rich blockquote{
+    font-size:var(--bio-quote-size);
+    padding:calc(var(--bio-quote-padding) * .5) var(--bio-quote-padding);
+  }
+}
