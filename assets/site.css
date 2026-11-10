@@ -1166,7 +1166,7 @@ body>footer{
  .interior-hero--custom-mobile .interior-inner{
   order:0!important;position:relative!important;z-index:1!important;
   width:calc(100% - 40px)!important;max-width:none!important;
-  margin:0 auto!important;padding:25px 0 24px!important;
+  margin:0 auto!important;padding:25px 0 12px!important;
   background:#eee!important;pointer-events:auto!important
  }
  .interior-hero--custom-mobile .interior-header-media{
@@ -1182,3 +1182,25 @@ body>footer{
   object-fit:contain!important
  }
 }
+
+/* QR-only standalone landing page, intentionally outside main navigation. */
+.qr-landing{min-height:100vh;background:var(--qr-bg,#fffdfb);color:var(--ink);font-family:'DM Sans',Arial,sans-serif}
+.qr-landing .qr-wrap{width:min(100% - 40px,540px);margin:0 auto;padding:42px 0 60px;text-align:center}
+.qr-landing .qr-logo-link{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;min-height:78px;margin-bottom:25px}
+.qr-landing .qr-logo-link img{width:auto;max-width:220px;max-height:95px;object-fit:contain}
+.qr-landing .qr-wordmark{font:900 36px/.9 'Barlow Condensed',Impact,sans-serif;color:var(--navy);text-transform:uppercase}
+.qr-landing h1{font:900 clamp(48px,11vw,76px)/.95 'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;color:var(--qr-accent,#E85395);margin:0 0 18px}
+.qr-landing .qr-intro{font-size:17px;line-height:1.55;max-width:430px;margin:0 auto 30px}
+.qr-landing .qr-social-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 26px}
+.qr-landing .qr-social-button{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px 6px 15px;text-decoration:none;background:var(--navy);color:#fff;border-bottom:4px solid var(--qr-accent,#E85395);transition:background .2s,border-color .2s}
+.qr-landing .qr-social-button:hover,.qr-landing .qr-social-button:focus-visible{background:#16475a;border-color:var(--orange)}
+.qr-landing .qr-social-button img{display:block;width:52px;height:52px;object-fit:contain;opacity:1}
+.qr-landing .qr-social-button span{font:800 18px 'Barlow Condensed',Impact,sans-serif;letter-spacing:.025em}
+.qr-landing .qr-social-button .qr-arrow{display:none}
+.qr-landing .qr-gallery-button,.qr-landing .qr-home{display:block;padding:15px 16px;text-decoration:none;font:800 20px 'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;letter-spacing:.035em}
+.qr-landing .qr-gallery-button{background:var(--qr-accent,#E85395);color:var(--navy);margin-bottom:12px}
+.qr-landing .qr-gallery-button:hover{background:var(--orange)}
+.qr-landing .qr-home{border:2px solid var(--navy);color:var(--navy)}
+.qr-landing .qr-home:hover{border-color:var(--orange);color:#ba5019}
+.qr-landing .qr-footer-rule{height:7px;margin:32px 0 0;background:linear-gradient(90deg,var(--qr-accent,#E85395),var(--orange))}
+@media(max-width:380px){.qr-landing .qr-social-list{gap:7px}.qr-landing .qr-social-button{padding:16px 3px 12px}.qr-landing .qr-social-button img{width:43px;height:43px}.qr-landing .qr-social-button span{font-size:16px}}

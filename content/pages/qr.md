@@ -10,6 +10,7 @@ show_tiktok: true
 tiktok_label: TikTok
 show_gallery: true
 gallery_label: Explore the Portrait Gallery
+home_label: Visit Pink Triangle Portraits
 accent_color: '#E85395'
 background_color: '#ffffff'
 ---
