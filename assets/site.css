@@ -1109,95 +1109,44 @@ body>footer{
 }
 
 
-/* Responsive interior banners: independent typography and artwork.
-   Mobile intentionally shows a shallow painted edge, not a full hero photo. */
+/* Responsive interior header: page-specific mobile artwork always wins. */
 @media(min-width:701px){
  .interior-hero--image .interior-heading-copy{width:min(58%,660px)!important;max-width:660px!important}
- .interior-hero .interior-heading-copy h1,
- .interior-hero--image .interior-heading-copy h1{
-   font-size:clamp(var(--responsive-title-min,80px),8vw,var(--responsive-title-max,112px))!important;
- }
- .interior-hero--image .interior-header-media img{
-   object-fit:cover!important;
- }
-}
-@media(min-width:701px) and (max-width:1100px){
- .interior-hero--image .interior-heading-copy{width:60%!important}
+ .interior-hero .interior-heading-copy h1{font-size:clamp(var(--responsive-title-min,80px),8vw,var(--responsive-title-max,112px))!important}
+ .interior-hero--mobile-only .interior-header-media{display:none!important}
 }
 @media(max-width:700px){
  .interior-hero.interior-hero--image{
-   display:block!important;height:auto!important;min-height:0!important;
-   background:#eeeeee!important;
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;
+  height:auto!important;min-height:0!important;background:#eee!important;
  }
  .interior-hero--image .interior-inner{
-   width:calc(100% - 40px)!important;
-   padding:30px 0 32px!important;
+  order:0!important;position:relative!important;width:calc(100% - 40px)!important;
+  padding:30px 0 32px!important;flex:none!important
  }
- .interior-hero .interior-heading-copy h1,
- .interior-hero--image .interior-heading-copy h1{
-   font-size:clamp(48px,13vw,var(--responsive-mobile-title,68px))!important;
-   line-height:var(--page-title-line-height,1.05)!important;
+ .interior-hero--image .interior-heading-copy{width:100%!important;max-width:none!important}
+ .interior-hero .interior-heading-copy h1{
+  font-size:clamp(48px,13vw,var(--responsive-mobile-title,68px))!important;
+  line-height:var(--page-title-line-height,1.05)!important
  }
  .interior-hero--image .interior-header-media{
-   position:relative!important;inset:auto!important;
-   display:block!important;width:100%!important;
-   height:var(--responsive-mobile-paint-height,85px)!important;
-   aspect-ratio:auto!important;overflow:hidden!important;
-   background-image:url('/assets/images/painted-background.jpg');
-   background-size:cover;background-position:center 65%;
+  order:1!important;position:relative!important;inset:auto!important;
+  display:block!important;width:100%!important;height:auto!important;
+  margin:0!important;aspect-ratio:auto!important;overflow:visible!important;
+  background:none!important;flex:none!important
  }
- .interior-hero--image .interior-header-media picture{display:none!important}
+ .interior-hero--image .interior-header-media picture,
+ .interior-hero--image .interior-header-media img{
+  display:block!important;width:100%!important;height:auto!important;
+  max-width:100%!important;aspect-ratio:auto!important
+ }
+ .interior-hero--image .interior-header-media img{object-fit:contain!important;object-position:center!important}
+ .interior-hero--image:not(.interior-hero--custom-mobile) .interior-header-media{
+  height:var(--responsive-mobile-paint-height,85px)!important;overflow:hidden!important;
+  background:url('/assets/images/painted-background.jpg') center 65% / cover no-repeat!important
+ }
+ .interior-hero--image:not(.interior-hero--custom-mobile) .interior-header-media picture{display:none!important}
 }
-
-/* Respect per-page mobile art; never show mobile-only art on desktop. */
-@media(min-width:701px){.interior-hero--mobile-only .interior-header-media{display:none!important}}
-@media(max-width:700px){
- .interior-hero--custom-mobile .interior-header-media{background-image:none!important}
- .interior-hero--custom-mobile .interior-header-media picture{display:block!important;width:100%!important;height:100%!important}
- .interior-hero--custom-mobile .interior-header-media img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center bottom!important}
-}
-
-/* Per-page mobile art is a complete composition, not a crop source.
-   This overrides the legacy 85px generic strip and the original picture hiding. */
-@media(max-width:700px){
-  .interior-hero.interior-hero--custom-mobile{
-    display:flex!important;
-    flex-direction:column!important;
-    align-items:stretch!important;
-    height:auto!important;
-    min-height:0!important;
-  }
-  .interior-hero--custom-mobile .interior-inner{
-    order:0!important;
-    flex:none!important;
-  }
-  .interior-hero--custom-mobile .interior-header-media{
-    order:1!important;
-    position:relative!important;
-    inset:auto!important;
-    width:100%!important;
-    height:auto!important;
-    aspect-ratio:auto!important;
-    overflow:visible!important;
-    background:none!important;
-    margin:0!important;
-  }
-  .interior-hero--custom-mobile .interior-header-media picture{
-    display:block!important;
-    width:100%!important;
-    height:auto!important;
-  }
-  .interior-hero--custom-mobile .interior-header-media img{
-    display:block!important;
-    width:100%!important;
-    height:auto!important;
-    max-width:none!important;
-    aspect-ratio:auto!important;
-    object-fit:contain!important;
-    object-position:center center!important;
-  }
-}
-
 /* A mobile-only upload must not create an empty 400px desktop image hero. */
 @media(min-width:701px){
   .interior-hero.interior-hero--mobile-only{
