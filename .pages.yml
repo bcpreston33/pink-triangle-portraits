@@ -103,11 +103,15 @@ content:
     label: Homepage teaser (100–200 characters)
     type: text
     description: Short text shown when this person is the latest portrait. Keep to about 100–200 characters.
+  - name: featured_at
+    label: Portrait added date (automatic)
+    description: Set automatically for new biographies. Determines the newest portrait on the homepage; leave existing dates unchanged when editing.
+    type: date
   - name: homepage_override
     label: Manually feature this person on homepage (optional)
     type: boolean
     default: false
-    description: Normally the newest edited/published biography appears automatically. Check this to force a person instead;
+    description: Normally the most recently added biography appears automatically. Check this to force a person instead;
       uncheck to return to automatic. If multiple are checked, the most recently edited one wins.
   - name: artworks
     label: Paintings (add one or more below)
@@ -602,8 +606,7 @@ content:
     label: 05 · EXPLORE PORTRAITS / GALLERY  |  Number of portraits (1–12)
     type: number
     default: 5
-    description: 'Automatic: show this many distinct people. Defaults to 5. The site uses the date each biography was
-      FIRST added to GitHub, not the person’s historical dates. Rebuilding the site updates the list.'
+    description: 'Automatic: show this many distinct people. Defaults to 5. The site uses the portrait added date saved with each biography, falling back to Git history for older entries.'
   - name: gallery_preview_manual_people
     label: 05 · EXPLORE PORTRAITS / GALLERY  |  Optional featured people (slugs)
     type: text
