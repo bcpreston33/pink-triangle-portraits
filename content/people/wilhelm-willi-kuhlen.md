@@ -10,8 +10,9 @@ artworks:
     display_order: 10
     gallery_thumbnail: /assets/uploads/Wilhelm-Kuhlen-LR.jpg
 sources: |-
-  ***We remember August Zgorzelski, Willi Kühlen and his brother Otto Kühlen.***  
-  **[https://www.stolpersteine-homosexuelle.de/wilhelm-kuehlen](https://www.stolpersteine-homosexuelle.de/wilhelm-kuehlen)**
+  *We remember August Zgorzelski, Willi Kühlen and his brother Otto Kühlen.*
+
+  [https://www.stolpersteine-homosexuelle.de/wilhelm-kuehlen](https://www.stolpersteine-homosexuelle.de/wilhelm-kuehlen)
 ---
 Willi Kühlen was born on June 12, 1912, in Mönchengladbach, Willi was a salesman who later pursued a career as an artist. His life was tragically shaped by the persecution of gay men under the Nazi regime.
 
