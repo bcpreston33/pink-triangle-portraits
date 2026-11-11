@@ -112,7 +112,7 @@ content:
     type: boolean
     default: false
     description: Normally the most recently added biography appears automatically. Check this to force a person instead;
-      uncheck to return to automatic. If multiple are checked, the most recently edited one wins.
+      uncheck to return to automatic. If multiple are checked, the newest portrait-added date wins.
   - name: artworks
     label: Paintings (add one or more below)
     type: object
@@ -606,7 +606,7 @@ content:
     label: 05 · EXPLORE PORTRAITS / GALLERY  |  Number of portraits (1–12)
     type: number
     default: 5
-    description: 'Automatic: show this many distinct people. Defaults to 5. The site uses the portrait added date saved with each biography, falling back to Git history for older entries.'
+    description: 'Automatic: show this many distinct people. Defaults to 5. The site uses the portrait added date saved with each biography, with undated legacy entries listed afterward.'
   - name: gallery_preview_manual_people
     label: 05 · EXPLORE PORTRAITS / GALLERY  |  Optional featured people (slugs)
     type: text
