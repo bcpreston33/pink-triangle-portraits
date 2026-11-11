@@ -1,14 +1,14 @@
 ---
 name: Rudolf Käbisch
 years: March 9, 1921 - Unknown
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/rudolf-kabisch.jpg
-  medium: Polychromos Colored Pencils
-  dimensions: 9" x 12"
-  published: true
-  display_order: 10
-  gallery_thumbnail: /assets/images/gallery-thumbnails/rudolf-kabisch.jpg
-sources: ''
+  - image: /assets/images/portraits/rudolf-kabisch.jpg
+    medium: Polychromos Colored Pencils
+    dimensions: 9" x 12"
+    published: true
+    display_order: 10
+    gallery_thumbnail: /assets/images/gallery-thumbnails/rudolf-kabisch.jpg
 ---
 Rudolf Käbisch was born March 9, 1921, in Schöneberg, Germany. When he was just 18 years old, he was arrested. This happened on November 16, 1939, during the height of Nazi persecution of queer people. His crime was having sex with an officer from a steamship who was on vacation in Berlin.
 
