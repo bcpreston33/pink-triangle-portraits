@@ -9,6 +9,11 @@ artworks:
     published: true
     display_order: 10
     gallery_thumbnail: /assets/uploads/Julius-Schafer-LR-1.jpg
+  - image: /assets/uploads/Julius Schafer 2 LR.jpg
+    medium: Oil Pastels
+    dimensions: 9" x 12"
+    published: true
+    display_order: 100
 special_thanks: "Thanks to the extraordinary research of **Davide Napolitano**,
   I have a story for someone who I had no information on before. "
 ---
