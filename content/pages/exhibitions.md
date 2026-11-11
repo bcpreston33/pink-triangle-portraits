@@ -58,5 +58,5 @@ Guest to discuss the pink triangle, it’s history, and my project
 [Listen Here](https://www.am950radio.com/33526-2/) • [Watch Here](https://www.youtube.com/watch?v=Mryx9Cy6sj8)
 
 **Pink Triangle Legacies Project Board Member**  
-Founding board member, 5-year term  
+Founding board member, Secretary  
 [Learn More](https://www.pinktrianglelegacies.org/team)
