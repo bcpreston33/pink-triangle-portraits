@@ -15,7 +15,7 @@ artworks:
     published: true
     display_order: 10
 ---
-Heinz "Saddie" Dörmer's appearance in the documentary Paragraph 175 had a profound effect on me. To me, he embodies the broken life of gay victims of the Holocaust, a reminder of both the atrocities committed and the lingering injustice they endured.
+Heinz "Saddie" Dörmer's appearance in the documentary *Paragraph 175* had a profound effect on me. To me, he embodies the broken life of gay victims of the Holocaust, a reminder of both the atrocities committed and the lingering injustice they endured.
 
 He spent ten years in concentration camps and prisons. Many pink triangle prisoners were not freed when the Allies liberated the camps; instead, they were forced to complete their Nazi-imposed sentences in prison after the war.
 
