@@ -1,14 +1,18 @@
 ---
 name: Heinz Fleischer
 years: September 12, 1905 - Unknown
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/heinz-fleischer.jpg
-  medium: Acrylic on Canvas
-  dimensions: 16" x 16"
-  published: true
-  display_order: 10
-  gallery_thumbnail: /assets/images/gallery-thumbnails/heinz-fleischer.jpg
-sources: ''
+  - image: /assets/images/portraits/heinz-fleischer.jpg
+    medium: Acrylic on Canvas
+    dimensions: 16" x 16"
+    published: true
+    display_order: 10
+    gallery_thumbnail: /assets/images/gallery-thumbnails/heinz-fleischer.jpg
+sources: |-
+  *Paragraph 175*. documentary. 2000
+
+  [kmlink.net](http://kmlink.net)  Klaus Mueller.
 ---
 Heinz Fleischer was born on September 12, 1905, in Minden, Germany. Heinz bravely shared his story in the documentary Paragraph 175. Though he waited until the age of 92 to speak publicly about his horrific experiences, he chose to keep his last name abbreviated at the time to maintain some anonymity.
 
