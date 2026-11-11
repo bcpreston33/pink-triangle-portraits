@@ -137,20 +137,18 @@ def hex_to_rgba(color, opacity):
 def attr(value): return escape(str(value or ''),quote=True)
 def slug(value): return re.sub(r'[^a-z0-9]+','-',str(value).lower()).strip('-')
 def person_modified(slug_id):
-    """Stable publication order: saved CMS date, then Git creation/last edit."""
+    """Deterministic portrait publication order, independent of Git history.
+
+    Older biographies without a saved date are treated as legacy entries.
+    Their order is stable and they cannot outrank newly published portraits.
+    """
     record=people.get(slug_id,{}) if 'people' in globals() else {}
     explicit=str(record.get('featured_at') or '')[:10]
     if re.fullmatch(r'\d{4}-\d{2}-\d{2}',explicit):
-        try:return int(datetime.strptime(explicit,'%Y-%m-%d').timestamp())
-        except ValueError:pass
-    path=f'content/people/{slug_id}.md'
-    for args in (['git','log','--diff-filter=A','-1','--format=%ct','--',path],
-                 ['git','log','-1','--format=%ct','--',path]):
         try:
-            result=subprocess.run(args,cwd=ROOT,capture_output=True,text=True,timeout=8)
-            if result.returncode==0 and result.stdout.strip().isdigit():
-                return int(result.stdout.strip())
-        except (OSError,subprocess.TimeoutExpired): pass
+            return datetime.strptime(explicit,'%Y-%m-%d').date().toordinal()
+        except ValueError:
+            print(f'WARNING: invalid portrait added date for {slug_id}: {explicit}')
     return 0
 
 def date_key(v):
@@ -394,8 +392,8 @@ for folder in ['artwork','portraits']:
         p['name']=people[p['_person_slug']].get('name',p.get('name','Untitled'))
         portraits.append(p)
 portraits=gallery_sort(portraits)
-# Featured person: explicit override first; otherwise newest CMS publication date.
-# Git history is used for legacy records without a saved date.
+# Featured person: explicit override first; otherwise newest saved CMS publication date.
+# Undated legacy records have stable alphabetical fallback, never Git timestamps.
 newest=sorted(portraits,key=lambda p:p['_date'],reverse=True)
 unique_people=list(dict.fromkeys(p['_person_slug'] for p in portraits))
 ranked_people=sorted(unique_people,key=lambda ps:(person_modified(ps),ps),reverse=True)
@@ -686,7 +684,7 @@ spotlight_script=r"""<script>
 })();
 </script>"""
 
-# Homepage gallery: newest biographies by original Git addition date (not artwork historical date).
+# Homepage gallery: newest biographies by saved publication date (not Git history).
 # Optional manual list is ordered first, with newest biographies filling any remaining slots.
 gallery_count=max(1,min(12,int(home_option('gallery_preview_count',5) or 5)))
 gallery_manual=[slug(v.strip()) for v in re.split(r'[,\n]+',str(home_option('gallery_preview_manual_people','') or '')) if v.strip()]
