@@ -1,0 +1,39 @@
+name: Date new biographies for homepage rotation
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/people/**'
+permissions:
+  contents: write
+jobs:
+  stamp:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Stamp newly added biography records
+        shell: bash
+        run: |
+          python - <<'PYCODE'
+          import subprocess, pathlib, datetime, re
+          names=subprocess.check_output(['git','diff','--diff-filter=A','--name-only','HEAD^','HEAD','--','content/people'],text=True).splitlines()
+          today=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d')
+          for name in names:
+              path=pathlib.Path(name)
+              if path.suffix!='.md' or not path.exists(): continue
+              data=path.read_text(encoding='utf-8')
+              if not data.startswith('---\n') or re.search(r'^featured_at:',data,re.M):continue
+              path.write_text(data.replace('---\n','---\nfeatured_at: '+today+'\n',1),encoding='utf-8')
+          PYCODE
+      - name: Commit saved publication dates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/people
+          if ! git diff --cached --quiet; then
+            git commit -m "Automatically date new biographies"
+            git push
+          fi
