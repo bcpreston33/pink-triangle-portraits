@@ -83,8 +83,8 @@ When death certificates were sent to families, they usually had the lie of heart
 
 Many cities in Germany created anti-gay task forces that hunted down queer people and their networks of friends. The world’s most gay-friendly country had turned into a fascist nightmare.
 
-Gender non-conforming and trans people would still be charged with crimes, such as “disturbing the peace”
-Lesbians could be charged as asocial. Paragraph 129 in Austria was an anti-lesbian law that was used to arrest queer women. A simple denunciation by a neighbor was all it took for many queer women to be investigated and arrested.
+Gender non-conforming and trans people would still be charged with crimes, such as “disturbing the peace”  
+Lesbians could be charged as asocial. Paragraph 129 in Austria was an anti-gay law that was also used to arrest queer women. A simple denunciation by a neighbor was all it took for many queer women to be investigated and arrested.
 
 100,000 queer men were arrested during the Nazi era. 50,000 of them were imprisoned. A huge number of these arrests were made because of denunciations from the public. Inspired by Nazi rhetoric that demonized queer people as a danger to society, people turned in family members, co-workers, friends, neighbors, tenants, and employees at massive rates. 
 
