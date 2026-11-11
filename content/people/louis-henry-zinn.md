@@ -1,13 +1,30 @@
 ---
 name: Louis Henry Zinn
 years: November 18, 1870 - January 21, 1938
+homepage_override: false
 artworks:
-- image: /assets/images/portraits/louis-henry-zinn.jpg
-  medium: Prismacolor Colored Pencils on Strathmore Paper
-  dimensions: 9" x 12"
-  published: true
-  display_order: 10
-  gallery_thumbnail: /assets/images/gallery-thumbnails/louis-henry-zinn.jpg
-sources: ''
+  - image: /assets/images/portraits/louis-henry-zinn.jpg
+    medium: Prismacolor Colored Pencils on Strathmore Paper
+    dimensions: 9" x 12"
+    published: true
+    display_order: 10
+    gallery_thumbnail: /assets/images/gallery-thumbnails/louis-henry-zinn.jpg
+sources: >-
+  Yad Vashem Photo Archives
+
+
+  Susan E. Tifft / Alex S. James, *The Trust: The Private and Strong Family
+  Behind The New York Times*, Boston/New York/London 1999
+special_thanks: "Thanks to researcher Marina Heller of the Jewish Museum
+  Franconia in Fürth, and some additional research I have uncovered, I have more
+  information about Louis Henry Zinn. "
 ---
-Louis Henry Zinn was born November 18, 1870 in San Francisco, CA to German Jewish parents Clementine (Löwensohn) Zinn and Heinrich Zinn. He had two sisters, Irma and Rosy. Louis was a distant cousin of The New York Times editor Arthur Sulzberger. When he was a boy, his parents returned to Germany for health reasons, and his father died when Louis was just 4 years old. At the outbreak of World War I, he was forced to choose between his American citizenship and German heritage. He gave up his American citizenship in order to stay with his family, but he did not join the German Army. After the war, Henry ran the family’s toy factory in Nürnberg (Nuremberg.) People who knew him described him as full of life and artistic. He loved to give his niece and nephew (nieces Thea Irene Nathan/Elizabeth Apt and unknown) detailed toy steam engines and magnetic ducks for the bathtub where the ducklings would stay in a row behind the mother. His home was described as elegant, and he would often have American visitors. He owned valuable etchings and woodcuts, even one that was possibly an Albrecht Dürer. Louis was gay, and In the summer of 1936, he was arrested for this. He was simply flirting with a man. He was sentenced to seven years in prison. Most of his family had been rescued by his American cousins at The New York Times, but sadly Louis’ passport was cancelled due to his imprisonment. The reason for his arrest was also covered up within the family. The editor in Chief of the New York Times himself was alerted to the situation, but was convinced not to intervene even though he had contacts in Berlin, due to the persuasion of Louis’ brother in law to not “antagonize the Nazis.” No effort was made to save Louis due to this homophobia, despite the fact that nearly all his cousins had been secreted away to America. There is a conflict in my sources here, as one states that both his sisters had died in 1936, while the other states he was released from prison in 1937 and was weeping at his other sisters’ house around Christmastime due to a sister dying of ill health. This source also states his surviving sister, brother-in-law, and their young daughter were planning to escape Fürth, Germany and described Louis as “a broken man.” Due to the detail in this source, I am inclined to believe one sister was indeed alive at the end of 1937. All hope of escape being gone, Louis took his own life in his home on January 21, 1938.
+Louis was born November 18, 1870 in San Francisco, CA to German Jewish parents Clementine (Löwensohn) Zinn and Heinrich Zinn. He had two sisters, Irma and Rosy. Louis was a distant cousin of The New York Times editor Arthur Sulzberger. When he was a boy, his parents returned to Germany for health reasons, and his father died when Louis was just 4 years old. 
+
+At the outbreak of World War I, he was forced to choose between his American citizenship and German heritage. He gave up his American citizenship in order to stay with his family, but he did not join the German Army. After the war, Henry ran the family’s toy factory in Nürnberg (Nuremberg.)  People who knew him described him as full of life and artistic. He loved to give his niece and nephew (nieces Thea Irene Nathan/Elizabeth Apt and unknown) detailed toy steam engines and magnetic ducks for the bathtub where the ducklings would stay in a row behind the mother. His home was described as elegant, and he would often have American visitors. He owned valuable etchings and woodcuts, even one that was possibly an Albrecht Dürer. 
+
+Louis was gay, and In the summer of 1936, he was arrested for this. He was simply flirting with a man and was sentenced to seven years in prison. Most of his family had been rescued by his American cousins at The New York Times, but sadly Louis’ passport was cancelled due to his imprisonment. The reason for his arrest was also covered up within the family. The editor in Chief of the New York Times himself was alerted to the situation, but was convinced not to intervene even though he had contacts in Berlin, due to the persuasion of Louis’ brother in law to not “antagonize the Nazis.” No effort was made to save Louis due to this homophobia, despite the fact that nearly all his cousins had been secreted away to America. 
+
+There is a conflict in my sources here, as one states that both his sisters had died in 1936, while the other states he was released from prison in 1937 and was weeping at his other sisters’ house around Christmastime due to a sister dying of ill health. This source also states his surviving sister, brother-in-law, and their young daughter were planning to escape Fürth, Germany and described Louis as “a broken man.” Due to the detail in this source, I am inclined to believe one sister was indeed alive at the end of 1937. All hope of escape being gone, Louis took his own life in his home on January 21, 1938.
+
+Louis appeared in a Nazi propaganda album titled *"Jewish Criminals"* that was presented to Gauleiter Julius Streicher by the head of the Nuerenberg police in 1938.
