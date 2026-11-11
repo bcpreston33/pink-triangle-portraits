@@ -73,7 +73,7 @@ In the 80s it became very well known because of the **silence=death** campaign t
 
 The queer capital of the world came crumbling down once the Third Reich began. Arrests under Paragraph 175 spiked, and in the mid 30’s queer people were some of the very first people sent to concentration camps, as well as political dissidents. 
 
-While lesbians were not also directly targeted in the same way, they were considered morally reprehensible by not adding to the German birthrate and many were arrested and sent to camps as well, usually labelled as ***“asocial.”*** Their entire social world and culture was destroyed, and in Austria, there was an anti lesbian law called paragraph 129
+While lesbians were not also directly targeted in the same way, they were considered morally reprehensible by not adding to the German birthrate and many were arrested and sent to camps as well, usually labelled as ***“asocial.”*** Their entire social world and culture was destroyed, and in Austria, the anti-gay law called paragraph 129 also applied to queer women.
 
 Some of the most sadistic and terrible treatments were reserved for gay prisoners in concentration camps. Torture, mutilation, medical experimentation, and castration were common. They could be fed to German shepherds, strung up on poles like a crucifixion, being used for target practice, and sexual abuse by guards and Kapos was prevalent.  
 
