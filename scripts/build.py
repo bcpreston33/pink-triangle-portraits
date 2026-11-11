@@ -137,14 +137,20 @@ def hex_to_rgba(color, opacity):
 def attr(value): return escape(str(value or ''),quote=True)
 def slug(value): return re.sub(r'[^a-z0-9]+','-',str(value).lower()).strip('-')
 def person_modified(slug_id):
-    """Git commit time when this biography file was first added (stable across edits)."""
+    """Stable publication order: saved CMS date, then Git creation/last edit."""
+    record=people.get(slug_id,{}) if 'people' in globals() else {}
+    explicit=str(record.get('featured_at') or '')[:10]
+    if re.fullmatch(r'\d{4}-\d{2}-\d{2}',explicit):
+        try:return int(datetime.strptime(explicit,'%Y-%m-%d').timestamp())
+        except ValueError:pass
     path=f'content/people/{slug_id}.md'
-    try:
-        result=subprocess.run(['git','log','--diff-filter=A','--format=%ct','--',path],cwd=ROOT,capture_output=True,text=True,timeout=8)
-        if result.returncode==0 and result.stdout.strip():
-            stamps=[int(v) for v in result.stdout.split() if v.isdigit()]
-            if stamps:return min(stamps)
-    except (OSError,subprocess.TimeoutExpired): pass
+    for args in (['git','log','--diff-filter=A','-1','--format=%ct','--',path],
+                 ['git','log','-1','--format=%ct','--',path]):
+        try:
+            result=subprocess.run(args,cwd=ROOT,capture_output=True,text=True,timeout=8)
+            if result.returncode==0 and result.stdout.strip().isdigit():
+                return int(result.stdout.strip())
+        except (OSError,subprocess.TimeoutExpired): pass
     return 0
 
 def date_key(v):
@@ -388,9 +394,8 @@ for folder in ['artwork','portraits']:
         p['name']=people[p['_person_slug']].get('name',p.get('name','Untitled'))
         portraits.append(p)
 portraits=gallery_sort(portraits)
-# Featured person: explicit person-level override first; otherwise newest created
-# biography record. A batch import commits many records at once, so the tie-break
-# is deterministic and can be replaced using the override checkbox.
+# Featured person: explicit override first; otherwise newest CMS publication date.
+# Git history is used for legacy records without a saved date.
 newest=sorted(portraits,key=lambda p:p['_date'],reverse=True)
 unique_people=list(dict.fromkeys(p['_person_slug'] for p in portraits))
 ranked_people=sorted(unique_people,key=lambda ps:(person_modified(ps),ps),reverse=True)
