@@ -425,6 +425,9 @@ for f in (ROOT/'content/events').glob('*.md'):
     if e.get('published') is False: continue
     e['_date']=date_key(e.get('date'))
     e['_end']=date_key(e.get('end_date')) or e['_date']
+    if not e['_date'] or e['_end'] < e['_date']:
+        print(f'WARNING: Skipping event with invalid start/end dates: {f.name}')
+        continue
     events.append(e)
 events.sort(key=lambda e:e['_date'])
 today=date.today().isoformat()
@@ -438,14 +441,22 @@ def event_card(e,large=False):
     if e.get('link'): details+=f'<p><a class="text-link" href="{attr(e["link"])}">Event details ↗</a></p>'
     return f'<article class="event-card{" event-card-featured" if large else ""}">{image_markup}{details}</div></article>'
 
-if next_event:
-    ev=next_event
-    event_text=f'<span class="section-label">Upcoming exhibition or talk</span><h2>{escape(str(ev.get("title","")))}</h2><p>{escape(ev["_date"])} · {escape(str(ev.get("location","")))}</p>'
-else:
-    event_text=f'<span class="section-label">{escape(str(setting("event_band_eyebrow","Exhibitions & talks")))}</span><h2>{escape(str(setting("event_band_heading","See the work in person")))}</h2><p>{escape(str(setting("event_band_description","Explore exhibitions, artist talks, and events featuring Pink Triangle Portraits.")))}</p>'
-exhibition_home_image=setting('exhibitions_home_image','') or (next_event or {}).get('image','')
+# The banner is selected in the browser, so it expires and changes without rebuilding.
+# Store every published event as a candidate; the existing generic banner remains fallback.
+exhibition_home_image=setting('exhibitions_home_image','')
+def event_banner_candidate(e):
+    picture=e.get('image') or exhibition_home_image
+    return (f'<div class="event-band-candidate" data-start="{attr(e["_date"])}" data-end="{attr(e["_end"])}" hidden>'
+            +f'<span class="section-label">Upcoming exhibition or talk</span><h2>{escape(str(e.get("title","")))}</h2>'
+            +f'<p>{escape(e["_date"])} · {escape(str(e.get("location","")))}</p>'
+            +f'<span data-event-image="{attr(picture)}" hidden></span></div>')
+event_text=(f'<div id="event-band-default"><span class="section-label">{escape(str(setting("event_band_eyebrow","Exhibitions & talks")))}</span>'
+            +f'<h2>{escape(str(setting("event_band_heading","See the work in person")))}</h2>'
+            +f'<p>{escape(str(setting("event_band_description","Explore exhibitions, artist talks, and events featuring Pink Triangle Portraits.")))}</p></div>'
+            +'<div id="event-band-active"></div>'
+            +'<div id="event-band-candidates" hidden>'+''.join(event_banner_candidate(e) for e in events)+'</div>')
 event_markup=f'<div class="event-band-copy">{event_text}<a class="button" href="/exhibitions/">{escape(str(setting("event_band_button_label","Exhibitions")))} →</a></div>'
-if exhibition_home_image: event_markup+=f'<div class="event-band-visual">{img(exhibition_home_image,"Exhibitions and talks")}</div>'
+event_markup+=f'<div class="event-band-visual" id="event-band-visual">{img(exhibition_home_image,"Exhibitions and talks") if exhibition_home_image else ""}</div>'
 
 hero_desktop=setting('hero_banner_desktop','') or setting('hero_banner','')
 hero_mobile=setting('hero_banner_mobile','')
@@ -694,7 +705,8 @@ for ps in gallery_manual+ranked_people:
         gallery_ranked.append(ps)
 gallery_selected=[next(a for a in portraits if a['_person_slug']==ps) for ps in gallery_ranked[:gallery_count]]
 
-home=f'''<section class="home-hero" style="min-height:{attr(setting('hero_height',500))}px;--hero-darkness:{hero_overlay};{hero_style}"><div class="home-portrait-strip">{hero_picture}</div><div class="home-hero-overlay"><div class="container"><span class="hero-eyebrow">{hero_eyebrow}</span><h1>{hero_heading}</h1><p>{hero_tagline}</p>{hero_actions}</div></div></section><section class="home-intro home-spotlights container"{section_style("intro")}><div class="spotlight-grid" data-spotlights {spotlight_config}>{spotlight_markup}</div></section>{spotlight_script}<section class="event-band" style="background-image:linear-gradient(90deg,rgba(4,28,40,.78),rgba(4,28,40,.12)),url('{attr(setting("paint_background","/assets/images/715931084-background-web.jpg"))}')"><div class="container event-grid">{event_markup}</div></section><section class="home-gallery-band" style="background-color:{attr(home_option("gallery_preview_background","#FCEEF4"))}"><div class="container gallery-preview"><div class="section-head"><div><span class="section-label">{escape(str(home_option("gallery_preview_eyebrow","Explore the portraits")))}</span><h2>{escape(str(home_option("gallery_preview_heading","Every person has a story.")))}</h2></div><a class="text-link" href="/portraits/">{escape(str(home_option("gallery_preview_link_label","Browse all portraits")))} →</a></div><div class="portrait-grid home-gallery-grid" style="--home-gallery-columns:{min(gallery_count,5)}">{''.join(portrait_card(p) for p in gallery_selected)}</div></div></section>{press_home}'''
+event_banner_script="<script>\n(function(){\nconst active=document.getElementById('event-band-active'),fallback=document.getElementById('event-band-default'),visual=document.getElementById('event-band-visual');\nif(!active||!fallback||!visual)return;\nconst candidates=[...document.querySelectorAll('#event-band-candidates .event-band-candidate')];\nconst defaultVisual=visual.innerHTML;\nfunction today(){const p=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());const get=k=>p.find(v=>v.type===k).value;return get('year')+'-'+get('month')+'-'+get('day')}\nfunction update(){const day=today();const next=candidates.filter(c=>c.dataset.end>=day).sort((a,b)=>a.dataset.start.localeCompare(b.dataset.start))[0];\nactive.replaceChildren();fallback.hidden=!!next;\nif(next){const copy=next.cloneNode(true);copy.hidden=false;copy.querySelector('[data-event-image]')?.remove();active.append(copy);const src=next.querySelector('[data-event-image]')?.dataset.eventImage;visual.replaceChildren();if(src){const im=document.createElement('img');im.src=src;im.alt='Exhibitions and talks';visual.append(im)}}else{visual.innerHTML=defaultVisual}\nvisual.hidden=!visual.querySelector('img');}\nupdate();document.addEventListener('visibilitychange',()=>{if(!document.hidden)update()});window.addEventListener('focus',update);setInterval(update,60000);\n})();\n</script>"
+home=f'''<section class="home-hero" style="min-height:{attr(setting('hero_height',500))}px;--hero-darkness:{hero_overlay};{hero_style}"><div class="home-portrait-strip">{hero_picture}</div><div class="home-hero-overlay"><div class="container"><span class="hero-eyebrow">{hero_eyebrow}</span><h1>{hero_heading}</h1><p>{hero_tagline}</p>{hero_actions}</div></div></section><section class="home-intro home-spotlights container"{section_style("intro")}><div class="spotlight-grid" data-spotlights {spotlight_config}>{spotlight_markup}</div></section>{spotlight_script}<section class="event-band" style="background-image:linear-gradient(90deg,rgba(4,28,40,.78),rgba(4,28,40,.12)),url('{attr(setting("paint_background","/assets/images/715931084-background-web.jpg"))}')"><div class="container event-grid">{event_markup}</div></section>{event_banner_script}<section class="home-gallery-band" style="background-color:{attr(home_option("gallery_preview_background","#FCEEF4"))}"><div class="container gallery-preview"><div class="section-head"><div><span class="section-label">{escape(str(home_option("gallery_preview_eyebrow","Explore the portraits")))}</span><h2>{escape(str(home_option("gallery_preview_heading","Every person has a story.")))}</h2></div><a class="text-link" href="/portraits/">{escape(str(home_option("gallery_preview_link_label","Browse all portraits")))} →</a></div><div class="portrait-grid home-gallery-grid" style="--home-gallery-columns:{min(gallery_count,5)}">{''.join(portrait_card(p) for p in gallery_selected)}</div></div></section>{press_home}'''
 write('',page('Home','Home',home))
 
 for route in ['the-project','the-history','about-the-artist','contact','shop']:

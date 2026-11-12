@@ -135,7 +135,7 @@ const events=[...source.querySelectorAll('.exhibition-entry')],old=[...legacy.qu
 function today(){const p=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());const get=k=>p.find(v=>v.type===k).value;return get('year')+'-'+get('month')+'-'+get('day')}
 function render(){const day=today(),yr=Number(day.slice(0,4)),up=[],cur=new Map(),archive=new Map();
 function add(map,y,item){if(!map.has(y))map.set(y,[]);map.get(y).push(item)}
-events.forEach(item=>{const y=Number(item.dataset.year);if(item.dataset.end>=day){item.classList.add('is-upcoming');up.push(item)}else{item.classList.remove('is-upcoming');add(y===yr?cur:archive,y,item)}});
+events.forEach(item=>{const y=Number(item.dataset.year);if(item.dataset.end<day){item.classList.remove('is-upcoming');add(archive,y,item)}else if(item.dataset.start<=day){item.classList.remove('is-upcoming');add(cur,y,item)}else{item.classList.add('is-upcoming');up.push(item)}});
 old.forEach(item=>{const y=Number(item.dataset.year);add(y===yr?cur:archive,y,item)});
 function groups(map){return [...map.keys()].sort((a,b)=>b-a).map(y=>{const section=document.createElement('section');section.className='exhibition-year-list';const h=document.createElement('h3');h.textContent=y;section.append(h,...map.get(y));return section})}
 function draw(target,items){target.querySelector('.exhibition-group-items').replaceChildren(...items);target.hidden=!items.length}
