@@ -2046,8 +2046,10 @@ content:
         value: exhibition
       - label: Gallery Exhibition + Talk/Reception
         value: exhibition_talk
+      - label: Online / Media Appearance
+        value: online
     default: talk
-    description: Choose one of Bry's four event formats. For talks, use the event date and time. For exhibitions, add an end date. Only use the separate reception/talk fields when an exhibition includes one.
+    description: Choose a format. Talk and presentation are one-day events. Gallery shows use an end date. Online appearances use the release date and media links, without a venue or time.
   - name: body
     label: Short event description
     type: rich-text
@@ -2057,9 +2059,9 @@ content:
     type: date
     description: Required for new events. Historical archive entries can use a year instead.
   - name: end_date
-    label: Exhibition closing date (gallery shows only)
+    label: Exhibition closing date (ONLY for gallery shows)
     type: date
-    description: Leave empty for a one-day talk. Use for longer gallery exhibitions.
+    description: Leave BLANK for talks, presentations, and online appearances. Only fill for gallery exhibitions; must be on or after the opening date.
   - name: event_time
     label: Talk / presentation start time
     type: string
@@ -2069,35 +2071,35 @@ content:
     type: string
     description: For example 2:00 PM.
   - name: venue
-    label: 03 · LOCATION | Venue name
+    label: 03 · LOCATION (in-person only) | Venue name
     type: string
   - name: address
-    label: Venue street address
+    label: Venue street address (in-person only)
     type: string
   - name: location
     label: Location fallback (optional)
     type: string
     description: Used only if no street address is supplied. Existing events retain this value.
   - name: reception_date
-    label: 04 · GALLERY WITH TALK/RECEPTION | Special event date
+    label: 04 · GALLERY + RECEPTION ONLY | Additional talk/reception date
     type: date
     description: Only for an additional talk or reception DURING a gallery exhibition. Leave blank otherwise.
   - name: reception
-    label: Special event type / reception label
+    label: Additional talk/reception label (gallery + talk only)
     type: string
     description: For example Opening reception, Artist talk, or Artist talk and reception. Leave blank if none.
   - name: artist_talk_time
-    label: Special event start time
+    label: Additional talk/reception start time (gallery + talk only)
     type: string
     description: For example 6:00 PM. Only for a gallery with an additional talk/reception.
   - name: special_end_time
-    label: Special event end time (optional)
+    label: Additional talk/reception end time (optional)
     type: string
   - name: hours
-    label: Gallery visiting hours (optional)
+    label: Gallery visiting hours (gallery shows only)
     type: string
   - name: image
-    label: 05 · MEDIA | Event flyer / image
+    label: 05 · IMAGE & LINKS | Event flyer / image
     type: image
     description: Shown beside upcoming event details. Visitors can click to view the full-size flyer.
   - name: learn_more_url
@@ -2122,7 +2124,7 @@ content:
     default: true
     description: Automatically promotes upcoming events, then removes them when finished.
   - name: archive_only
-    label: 07 · HISTORICAL / ADVANCED | Historical year-only entry
+    label: 07 · HISTORICAL / ADVANCED (older records only) | Historical year-only entry
     type: boolean
     default: false
     description: Use for older talks and shows when the exact date is unknown.
@@ -2150,6 +2152,6 @@ content:
     type: number
     default: 10
   - name: artist_talk_date
-    label: Legacy artist talk date (avoid for new events)
+    label: LEGACY ONLY · Old artist talk date (do not use)
     type: date
-    description: Retained for existing records. Use Special event date instead.
+    description: Retained for compatibility. Do not fill this field for new events.
