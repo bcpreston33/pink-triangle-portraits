@@ -2038,13 +2038,42 @@ content:
     required: true
   - name: date
     label: Event opening / start date
-    description: Required for automatic upcoming/past grouping and homepage promotion.
+    description: Required for new events. Historical migrated entries use the archive year instead.
     type: date
-    required: true
   - name: end_date
     label: Event end date (optional)
     type: date
     description: If blank, event is treated as a one-day event. Once this date passes it moves to Previous Exhibitions.
+  - name: archive_only
+    label: Historical entry only (no exact date known)
+    type: boolean
+    default: false
+    description: Use for older exhibitions, talks, and podcasts when only the year is known. These appear directly in the historical year list.
+  - name: archive_year
+    label: Historical listing year
+    type: number
+    description: Only for historical entries without an exact date. The year heading is generated automatically.
+  - name: archive_order
+    label: Historical listing order (lower first)
+    type: number
+    description: Keeps migrated entries in their original order within each year.
+  - name: listing_title
+    label: Historical listing title (optional)
+    type: string
+    description: Short heading used after the event finishes. Defaults to Event name.
+  - name: listing_description
+    label: Historical listing description (one sentence)
+    type: string
+    description: Brief description used in the year-by-year list. If blank, uses the event location.
+  - name: learn_more_url
+    label: Learn More link (optional)
+    type: string
+  - name: watch_url
+    label: Watch Here link (optional)
+    type: string
+  - name: listen_url
+    label: Listen Here link (optional)
+    type: string
   - name: location
     label: Location (short display line)
     type: string
