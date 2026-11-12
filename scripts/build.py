@@ -529,6 +529,44 @@ for f in (ROOT/'content/press').glob('*.md') if (ROOT/'content/press').exists() 
     item['_date']=str(item.get('date') or '')[:10]
     press.append(item)
 press.sort(key=lambda p:p['_date'],reverse=True)
+def press_rank(item):
+    try: return int(item.get('feature_order') or 100)
+    except (ValueError,TypeError): return 100
+
+def selected_press(flag, maximum):
+    chosen=[p for p in press if p.get(flag, False) is True]
+    chosen.sort(key=lambda p:(press_rank(p), -int(p['_date'].replace('-','') or '0')))
+    return chosen[:maximum]
+
+def project_press_groups(items):
+    # Existing records without this new switch remain eligible, preserving their current presentation.
+    featured=[p for p in items if p.get('project_feature', True) is not False]
+    featured.sort(key=lambda p:(press_rank(p), -int(p['_date'].replace('-','') or '0')))
+    main=featured[:4]
+    remainder=[p for p in items if p not in main]
+    return main,remainder
+
+def press_compact(item):
+    title=escape(str(item.get('title') or 'Press feature'))
+    publication=escape(str(item.get('publication') or ''))
+    day=escape(str(item.get('_date') or ''))
+    url=str(item.get('url') or '').strip()
+    label=escape(str(item.get('link_label') or 'View coverage'))
+    link=(f'<a href="{attr(url)}" target="_blank" rel="noopener noreferrer">{label} ↗</a>' if url.startswith(('https://','http://')) else '')
+    return f'<article class="press-compact"><div><p class="press-meta">{publication}{" · " if publication and day else ""}{day}</p><h3>{title}</h3></div>{link}</article>'
+
+def press_section(items):
+    main,other=project_press_groups(items)
+    featured_html='<div class="press-list press-featured-list">'+''.join(map(press_card,main))+'</div>'
+    if not other: return featured_html
+    first=other[:10]
+    more=other[10:]
+    archive='<div class="press-compact-list">'+''.join(map(press_compact,first))+'</div>'
+    if more:
+        archive+=('<details class="press-more"><summary>Show more coverage ('+str(len(more))+')</summary>'
+                  +'<div class="press-compact-list">'+''.join(map(press_compact,more))+'</div></details>')
+    return featured_html+'<div class="press-archive"><h3 class="press-archive-heading">More Coverage</h3>'+archive+'</div>'
+
 class _PressMeta(HTMLParser):
     def __init__(self):
         super().__init__(); self.image=''; self.logo=''
@@ -595,8 +633,8 @@ def press_card(item):
             +f'<div class="press-card-copy"><p class="press-meta">{publication}{" · " if publication and day else ""}{day}</p>'
             +f'<h3>{title}</h3><div class="rich">{summary}</div>{link}</div>'
             +picture+'</article>')
-press_project=('''<section id="press-media" class="container project-press"><div class="section-head"><div><span class="section-label">In the press</span><h2>Press &amp; Media</h2></div></div><div class="press-list">'''+''.join(map(press_card,press))+'''</div></section>''') if press else ''
-press_home=(f'<section class="container home-press"><div class="section-head"><div><span class="section-label">Recognition &amp; coverage</span><h2>{escape(str(setting("home_press_heading","In the Press")))}</h2></div><a class="text-link" href="/the-project/#press-media">{escape(str(setting("home_press_link_label","All press & media")))} →</a></div><div class="press-list">'+''.join(map(press_card,press[:3]))+'</div></section>') if press else ''
+press_project=('''<section id="press-media" class="container project-press"><div class="section-head"><div><span class="section-label">In the press</span><h2>Press &amp; Media</h2></div></div><div class="press-list">'''+''.join(map(press_card,project_press_groups(press)[0]))+'''</div>'''+('<div class="press-archive"><h3 class="press-archive-heading">More Coverage</h3>'+''.join(map(press_compact,project_press_groups(press)[1]))+'</div>' if project_press_groups(press)[1] else '')+'''</section>''') if press else ''
+press_home=(f'<section class="container home-press"><div class="section-head"><div><span class="section-label">Recognition &amp; coverage</span><h2>{escape(str(setting("home_press_heading","In the Press")))}</h2></div><a class="text-link" href="/the-project/#press-media">{escape(str(setting("home_press_link_label","All press & media")))} →</a></div><div class="press-list">'+''.join(map(press_card,selected_press('homepage_feature',3)))+'</div></section>') if selected_press('homepage_feature',3) else ''
 
 # Homepage spotlight selection is evaluated in the visitor's browser, so dates expire
 # without a scheduled rebuild. CMS entries are the single source of truth.
@@ -791,7 +829,7 @@ for route in ['the-project','the-history','about-the-artist','contact','shop']:
                 except (TypeError,ValueError): rule_gap=18
                 rule_color=str(data.get('project_press_rule_color') or '#d7d7d7')
                 if not re.fullmatch(r'#[0-9a-fA-F]{6}',rule_color): rule_color='#d7d7d7'
-                sidebar_parts.append(f'<section id="press-media" class="project-side-press {"press-images-hidden" if data.get("project_press_show_images",True) is False else ""}" style="--press-title-font:{attr(font)};--press-title-size:{title_size}px;--press-title-weight:{title_weight};--press-image-width:{image_width}px;--press-rule-spacing:{rule_gap}px;--press-rule-color:{rule_color}"><div class="section-head"><div><span class="section-label">In the press</span><h2>{escape(press_title)}</h2></div></div>'+(f'<div class="rich project-press-intro">{render_md(press_intro)}</div>' if press_intro else '')+'<div class="press-list">'+''.join(map(press_card,visible_press))+'</div></section>')
+                sidebar_parts.append(f'<section id="press-media" class="project-side-press {"press-images-hidden" if data.get("project_press_show_images",True) is False else ""}" style="--press-title-font:{attr(font)};--press-title-size:{title_size}px;--press-title-weight:{title_weight};--press-image-width:{image_width}px;--press-rule-spacing:{rule_gap}px;--press-rule-color:{rule_color}"><div class="section-head"><div><span class="section-label">In the press</span><h2>{escape(press_title)}</h2></div></div>'+(f'<div class="rich project-press-intro">{render_md(press_intro)}</div>' if press_intro else '')+press_section(visible_press)+'</section>')
             if sidebar_parts:
                 content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''),data.get('hero_mobile_image',''))+f'<div class="container project-two-column"><div class="project-main editorial-with-images rich">{body}</div><aside class="project-sidebar" aria-label="Project features and press">{"".join(sidebar_parts)}</aside></div>'
         else:
