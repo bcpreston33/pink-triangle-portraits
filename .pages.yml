@@ -58,35 +58,15 @@ content:
     type: boolean
     default: false
     description: Hides the logo/thumbnail for this article even when images are enabled on The Project page.
-  - name: project_feature
-    label: Feature as a large article on The Project page
-    type: boolean
-    default: true
-    description: Up to four selected articles appear as large cards in the right column. All other coverage remains in the compact archive.
-  - name: feature_order
-    label: Featured display order (1 first, 2 second, etc.)
-    type: number
-    default: 100
-    description: Applies to the large Project cards and the lower homepage Press section. Lower numbers come first.
-  - name: homepage_feature
-    label: Show in the three Press cards at the bottom of the homepage
+  - name: press_pin
+    label: Pin this article above newer coverage (optional)
     type: boolean
     default: false
-    description: Up to three selected articles are displayed, ordered by Featured display order. Independent of the rotating homepage spotlight.
-  - name: homepage_priority
-    label: Keep this article as the homepage press feature
-    type: boolean
-    default: false
-    description: Pins this article ahead of newer press and keeps it featured past the normal expiration. Only use for
-      one article at a time.
+    description: Normally all coverage sorts newest first. Turn on only for a major article you want to keep ahead of newer stories on The Project page and the homepage. A pinned article also stays in the temporary top homepage feature.
   - name: homepage_days
-    label: Homepage feature duration (days, optional override)
+    label: Top homepage feature duration (days, optional)
     type: number
-    description: Leave blank to use the homepage default (90 days).
-  - name: homepage_until
-    label: Keep featured until this date (optional, YYYY-MM-DD)
-    type: string
-    description: Leave blank for automatic expiration. If needed, enter YYYY-MM-DD (for example, 2027-01-07). This is a text field to prevent empty dates from auto-filling.
+    description: Leave blank to use the default of 30 days from publication. Applies to the temporary top homepage feature only.
   - name: published
     label: Publish this press item
     description: Turn off to hide this item from all public press sections.
@@ -506,9 +486,9 @@ content:
     default: true
   - name: spotlight_press_days
     label: 02 · FEATURED CONTENT / ROTATION  |  Default press feature duration (days)
-    description: Press entries and dates come from Press & Media. Individual article overrides can extend their display.
+    description: Press entries and dates come from Press & Media. New press receives 30 days by default. The optional per-article duration can override this.
     type: number
-    default: 90
+    default: 30
   - name: spotlight_project_heading
     label: 02 · FEATURED CONTENT / ROTATION  |  Fallback Project headline
     type: string
