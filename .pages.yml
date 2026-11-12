@@ -2069,6 +2069,36 @@ content:
     label: Gallery hours (optional)
     type: string
     description: Visiting hours for the featured exhibition.
+  - name: event_type
+    label: 01 · EVENT INFORMATION | Event type
+    type: select
+    options:
+    - label: Exhibition / Gallery Show
+      value: exhibition
+    - label: Artist Talk / Presentation
+      value: talk
+    - label: Other Event
+      value: other
+    default: exhibition
+    description: Select the type of event. All schedule fields below are optional except the start date.
+  - name: event_time
+    label: 02 · EVENT SCHEDULE | Event time (one-day talk)
+    type: string
+    description: For example 12:00 PM. Use for a one-day talk or presentation.
+  - name: reception_date
+    label: Reception date (optional)
+    type: date
+    description: For gallery shows with an opening reception on a different date.
+  - name: artist_talk_date
+    label: Additional artist talk date (optional)
+    type: date
+  - name: artist_talk_time
+    label: Additional artist talk time (optional)
+    type: string
+  - name: homepage_description
+    label: Homepage short description (optional)
+    type: string
+    description: One sentence about the show or talk. If blank, uses the historical description or event description.
   - name: archive_only
     label: 03 · HISTORICAL ARCHIVE | Historical entry only (no exact date known)
     type: boolean
@@ -2107,7 +2137,7 @@ content:
   - name: image
     label: Exhibition poster or featured image
     type: image
-    description: Used on the Exhibitions featured card and homepage. A tall poster works well.
+    description: Shown alongside upcoming/current events on the Exhibitions page only. The homepage uses the shared exhibition photograph.
   - name: homepage_feature
     label: 05 · HOMEPAGE & FEATURED DISPLAY | Allow this event to appear automatically on homepage
     type: boolean
