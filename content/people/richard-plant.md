@@ -1,10 +1,10 @@
 ---
 name: Richard Plant
-featured_at: 2026-11-11
 years: July 22, 1910- March 10, 1998
-homepage_teaser: "Writer, Richard Plant, was instrumental in getting info about
-  this history to the world. He wrote The Pink Triangle: The Nazi War Against
-  Homosexuals and showed a history that was denied . "
+homepage_teaser: 'Writer, Richard Plant, was instrumental in getting info about
+  this history to the world. He wrote "The Pink Triangle: The Nazi War Against
+  Homosexuals" and showed a history that was denied . '
+featured_at: 2026-11-11
 homepage_override: false
 artworks:
   - image: /assets/uploads/Richard Plant LR.jpg
