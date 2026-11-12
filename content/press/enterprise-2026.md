@@ -7,6 +7,8 @@ summary: Local coverage of the Pink Triangle Portraits exhibition at Bridgewater
 logo: /assets/uploads/enterprise logo.webp
 url: https://www.enterprisenews.com/story/news/local/2026/01/05/pink-triangle-portraits-at-bridgewater-public-library-through-january/87976528007/
 hide_image: false
+project_feature: false
+feature_order: 100
 homepage_feature: false
 homepage_priority: false
 homepage_until: 2026-11-09
