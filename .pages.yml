@@ -2037,14 +2037,15 @@ content:
     label: Event type
     type: select
     options:
-    - label: Artist Talk
-      value: talk
-    - label: Talk & Presentation
-      value: presentation
-    - label: Gallery Exhibition
-      value: exhibition
-    - label: Gallery Exhibition + Talk/Reception
-      value: exhibition_talk
+      values:
+      - label: Artist Talk
+        value: talk
+      - label: Talk & Presentation
+        value: presentation
+      - label: Gallery Exhibition
+        value: exhibition
+      - label: Gallery Exhibition + Talk/Reception
+        value: exhibition_talk
     default: talk
     description: Choose one of Bry's four event formats. For talks, use the event date and time. For exhibitions, add an end date. Only use the separate reception/talk fields when an exhibition includes one.
   - name: body
