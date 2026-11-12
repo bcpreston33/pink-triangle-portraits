@@ -58,10 +58,21 @@ content:
     type: boolean
     default: false
     description: Hides the logo/thumbnail for this article even when images are enabled on The Project page.
-  - name: homepage_feature
-    label: Allow this article to appear automatically on homepage
+  - name: project_feature
+    label: Feature as a large article on The Project page
     type: boolean
     default: true
+    description: Up to four selected articles appear as large cards in the right column. All other coverage remains in the compact archive.
+  - name: feature_order
+    label: Featured display order (1 first, 2 second, etc.)
+    type: number
+    default: 100
+    description: Applies to the large Project cards and the lower homepage Press section. Lower numbers come first.
+  - name: homepage_feature
+    label: Show in the three Press cards at the bottom of the homepage
+    type: boolean
+    default: false
+    description: Up to three selected articles are displayed, ordered by Featured display order. Independent of the rotating homepage spotlight.
   - name: homepage_priority
     label: Keep this article as the homepage press feature
     type: boolean
