@@ -434,9 +434,15 @@ for f in (ROOT/'content/events').glob('*.md'):
         events.append(e)
         continue
     e['_date']=date_key(e.get('date'))
-    e['_end']=date_key(e.get('end_date')) or e['_date']
-    if not e['_date'] or e['_end'] < e['_date']:
-        print(f'WARNING: Skipping event with invalid start/end dates: {f.name}')
+    # Closing dates apply ONLY to gallery exhibitions. Stale dates in talk/online
+    # records must never cause an event to disappear from the public site.
+    kind=str(e.get('event_type') or 'talk')
+    closing=date_key(e.get('end_date')) if kind in ('exhibition','exhibition_talk','gallery-talk') else ''
+    e['_end']=closing if closing and closing >= e['_date'] else e['_date']
+    if closing and closing < e['_date']:
+        print(f'WARNING: {f.name}: closing date precedes opening; using opening date instead')
+    if not e['_date']:
+        print(f'WARNING: Skipping event with missing/invalid start date: {f.name}')
         continue
     events.append(e)
 events.sort(key=lambda e:e['_date'])
@@ -661,7 +667,7 @@ for e in events:
     start=e['_date'][:10]; end=e['_end'][:10]
     if not start or not end: continue
     event_date=readable_date(start)+(' – '+readable_date(end) if end!=start else '')
-    event_time=e.get('event_time') or (e.get('reception') if e.get('event_type')=='talk' else '')
+    event_time='' if e.get('event_type')=='online' else (e.get('event_time') or (e.get('reception') if e.get('event_type')=='talk' else ''))
     event_address=e.get('address') or e.get('location') or ''
     detail_html=(f'<p class="spotlight-event-date"><strong>{escape(event_date)}</strong>'+(f' · <strong>{escape(str(event_time))}</strong>' if event_time else '')+'</p>'
                  +(f'<p class="spotlight-event-address"><strong>{escape(str(event_address))}</strong></p>' if event_address else ''))
@@ -854,6 +860,8 @@ for e in events:
     if not e['_date']:continue
     start=e['_date']; end=max(e['_end'],start)
     photo=(f'<a href="{attr(e["image"])}" target="_blank" rel="noopener noreferrer" title="View full-size event flyer" aria-label="View full-size flyer for {attr(e.get("title","event"))}">'+img(e.get('image'),e.get('title',''),'event-cover')+'</a>') if e.get('image') else ''
+    if e.get('event_type')=='online':
+        e=dict(e); e['venue']=''; e['address']=''; e['location']=''; e['event_time']=''; e['event_end_time']=''; e['hours']=''
     if e.get('event_time') and e.get('event_end_time'):
         e=dict(e); e['event_time']=str(e['event_time'])+' – '+str(e['event_end_time'])
     body=(f'<span class="section-label">{escape(readable_date(start))}'+(f' – {escape(readable_date(end))}' if end[:10]!=start[:10] else '')+'</span>'
