@@ -13,7 +13,7 @@ hero_eyebrow_rule_width: 10
 spotlight_exhibitions_enabled: true
 spotlight_exhibition_lead_days: 60
 spotlight_press_enabled: true
-spotlight_press_days: 90
+spotlight_press_days: 30
 spotlight_visual_height: 220
 spotlight_portrait_background: /assets/images/painted-background.jpg
 spotlight_portrait_border: 9

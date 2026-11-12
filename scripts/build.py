@@ -529,22 +529,13 @@ for f in (ROOT/'content/press').glob('*.md') if (ROOT/'content/press').exists() 
     item['_date']=str(item.get('date') or '')[:10]
     press.append(item)
 press.sort(key=lambda p:p['_date'],reverse=True)
-def press_rank(item):
-    try: return int(item.get('feature_order') or 100)
-    except (ValueError,TypeError): return 100
-
-def selected_press(flag, maximum):
-    chosen=[p for p in press if p.get(flag, False) is True]
-    chosen.sort(key=lambda p:(press_rank(p), -int(p['_date'].replace('-','') or '0')))
-    return chosen[:maximum]
+def press_auto_rank(item):
+    # Explicit editorial pin first; otherwise newest publication date first.
+    return (item.get('press_pin', False) is True, item['_date'], str(item.get('title') or ''))
 
 def project_press_groups(items):
-    # Existing records without this new switch remain eligible, preserving their current presentation.
-    featured=[p for p in items if p.get('project_feature', True) is not False]
-    featured.sort(key=lambda p:(press_rank(p), -int(p['_date'].replace('-','') or '0')))
-    main=featured[:4]
-    remainder=[p for p in items if p not in main]
-    return main,remainder
+    ordered=sorted(items,key=press_auto_rank,reverse=True)
+    return ordered[:3],ordered[3:]
 
 def press_compact(item):
     title=escape(str(item.get('title') or 'Press feature'))
@@ -634,7 +625,7 @@ def press_card(item):
             +f'<h3>{title}</h3><div class="rich">{summary}</div>{link}</div>'
             +picture+'</article>')
 press_project=('''<section id="press-media" class="container project-press"><div class="section-head"><div><span class="section-label">In the press</span><h2>Press &amp; Media</h2></div></div><div class="press-list">'''+''.join(map(press_card,project_press_groups(press)[0]))+'''</div>'''+('<div class="press-archive"><h3 class="press-archive-heading">More Coverage</h3>'+''.join(map(press_compact,project_press_groups(press)[1]))+'</div>' if project_press_groups(press)[1] else '')+'''</section>''') if press else ''
-press_home=(f'<section class="container home-press"><div class="section-head"><div><span class="section-label">Recognition &amp; coverage</span><h2>{escape(str(setting("home_press_heading","In the Press")))}</h2></div><a class="text-link" href="/the-project/#press-media">{escape(str(setting("home_press_link_label","All press & media")))} →</a></div><div class="press-list">'+''.join(map(press_card,selected_press('homepage_feature',3)))+'</div></section>') if selected_press('homepage_feature',3) else ''
+press_home=(f'<section class="container home-press"><div class="section-head"><div><span class="section-label">Recognition &amp; coverage</span><h2>{escape(str(setting("home_press_heading","In the Press")))}</h2></div><a class="text-link" href="/the-project/#press-media">{escape(str(setting("home_press_link_label","All press & media")))} →</a></div><div class="press-list">'+''.join(map(press_card,sorted(press,key=press_auto_rank,reverse=True)[:3]))+'</div></section>') if press else ''
 
 # Homepage spotlight selection is evaluated in the visitor's browser, so dates expire
 # without a scheduled rebuild. CMS entries are the single source of truth.
@@ -712,11 +703,11 @@ for e in events:
     event_description=e.get('homepage_description') or e.get('listing_description') or re.sub(r'\s+',' ',re.sub(r'<[^>]+>',' ',render_md(e.get('body','')))).strip()
     spotlights.append(spotlight_card('exhibition',e.get('title','Exhibition'),event_description,e.get('link') or '/exhibitions/','/assets/images/exhibits-home.jpg', 'Exhibitions & Events',start,end,str(home_option('spotlight_event_link_label','Event details')),detail_html=detail_html))
 for item in press:
-    if item.get('homepage_feature',True) is False: continue
+    if item.get('spotlight_disabled',False) is True: continue
     pub=str(item.get('publication') or 'In the press')
     url=str(item.get('url') or '')
     logo=item.get('homepage_image') or item.get('logo') or item.get('image') or press_images.get(url,('',''))[0]
-    spotlights.append(spotlight_card('press',item.get('title','Press feature'),item.get('summary',''),url or '/the-project/#press-media',logo,pub,item['_date'],item.get('homepage_until') or '', str(home_option('spotlight_press_link_label','Read feature')),f'data-days="{attr(item.get("homepage_days") or "")}" data-featured-priority="{str(item.get("homepage_priority",False)).lower()}"'))
+    spotlights.append(spotlight_card('press',item.get('title','Press feature'),item.get('summary',''),url or '/the-project/#press-media',logo,pub,item['_date'],'', str(home_option('spotlight_press_link_label','Read feature')),f'data-days="{attr(item.get("homepage_days") or "")}" data-featured-priority="{str(item.get("homepage_priority",False)).lower()}"'))
 if featured:
     spotlights.append(spotlight_card('portrait',featured.get('name','Latest portrait'),teaser,artwork_link(featured),featured.get('image',''),'The latest portrait','','',str(home_option('spotlight_portrait_link_label','Read their story'))))
 else:
@@ -733,7 +724,7 @@ spotlight_laptop_vertical=max(-80,min(80,int(home_option('spotlight_press_laptop
 spotlight_press_background=str(home_option('spotlight_press_background',spotlight_background) or spotlight_background)
 spotlight_markup=''.join(spotlights)
 spotlight_config=(f'style="--spotlight-visual-height:{spotlight_height}px;--spotlight-portrait-border:{spotlight_border}px;--spotlight-portrait-background:url({attr(spotlight_background)});--spotlight-press-background:url({attr(spotlight_press_background)});--spotlight-laptop-scale:{spotlight_laptop_size / 100:.2f};--spotlight-laptop-offset:{spotlight_laptop_vertical}px;" data-portrait-shadow="{spotlight_shadow}" data-press-browser="{spotlight_browser}" data-event-lead="{attr(home_option("spotlight_exhibition_lead_days",60))}" '
-                  f'data-press-days="{attr(home_option("spotlight_press_days",90))}" '
+                  f'data-press-days="{attr(home_option("spotlight_press_days",30))}" '
                   f'data-press-enabled="{str(home_option("spotlight_press_enabled",True)).lower()}" '
                   f'data-events-enabled="{str(home_option("spotlight_exhibitions_enabled",True)).lower()}"')
 # The browser chooses 2 or 3 eligible cards; the portrait is always included.
@@ -752,7 +743,7 @@ spotlight_script=r"""<script>
   if(kind==='exhibition' && root.dataset.eventsEnabled!=='false' && start && end){
    valid=now<=end && start<=days(num(root.dataset.eventLead,60));sort=-start.getTime();
   } else if(kind==='press' && root.dataset.pressEnabled!=='false' && start){
-   const expiry=end||new Date(start.getFullYear(),start.getMonth(),start.getDate()+num(card.dataset.days,num(root.dataset.pressDays,90)));
+   const expiry=end||new Date(start.getFullYear(),start.getMonth(),start.getDate()+num(card.dataset.days,num(root.dataset.pressDays,30)));
    valid=(now>=start && now<=expiry)||card.dataset.featuredPriority==='true';sort=start.getTime()+(card.dataset.featuredPriority==='true'?1e16:0);
   } else if(kind==='portrait'||kind==='project'){valid=true}
   if(valid)candidates.push({card,index,kind,sort});
@@ -809,7 +800,8 @@ for route in ['the-project','the-history','about-the-artist','contact','shop']:
             press_limit=data.get('project_sidebar_press_limit',0)
             try: press_limit=max(0,min(30,int(press_limit or 0)))
             except (TypeError,ValueError): press_limit=0
-            visible_press=press[:press_limit] if press_limit else press
+            visible_press=sorted(press,key=press_auto_rank,reverse=True)
+            if press_limit: visible_press=visible_press[:press_limit]
             sidebar_parts=[]
             if side_image: sidebar_parts.append(f'<div class="project-side-art">{img(side_image,str(data.get("project_sidebar_image_alt") or "Abstract painted artwork"))}</div>')
             if side_heading: sidebar_parts.append(f'<h2 class="project-side-heading">{escape(side_heading)}</h2>')
