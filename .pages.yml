@@ -84,9 +84,9 @@ content:
     type: number
     description: Leave blank to use the homepage default (90 days).
   - name: homepage_until
-    label: Keep featured until this date (optional)
-    type: date
-    description: Overrides the automatic expiration date for this article.
+    label: Keep featured until this date (optional, YYYY-MM-DD)
+    type: string
+    description: Leave blank for automatic expiration. If needed, enter YYYY-MM-DD (for example, 2027-01-07). This is a text field to prevent empty dates from auto-filling.
   - name: published
     label: Publish this press item
     description: Turn off to hide this item from all public press sections.
