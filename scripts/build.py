@@ -707,7 +707,7 @@ for item in press:
     pub=str(item.get('publication') or 'In the press')
     url=str(item.get('url') or '')
     logo=item.get('homepage_image') or item.get('logo') or item.get('image') or press_images.get(url,('',''))[0]
-    spotlights.append(spotlight_card('press',item.get('title','Press feature'),item.get('summary',''),url or '/the-project/#press-media',logo,pub,item['_date'],'', str(home_option('spotlight_press_link_label','Read feature')),f'data-days="{attr(item.get("homepage_days") or "")}" data-featured-priority="{str(item.get("homepage_priority",False)).lower()}"'))
+    spotlights.append(spotlight_card('press',item.get('title','Press feature'),item.get('summary',''),url or '/the-project/#press-media',logo,pub,item['_date'],'', str(home_option('spotlight_press_link_label','Read feature')),f'data-days="{attr(item.get("homepage_days") or "")}" data-featured-priority="{str(item.get("press_pin",False) is True).lower()}"'))
 if featured:
     spotlights.append(spotlight_card('portrait',featured.get('name','Latest portrait'),teaser,artwork_link(featured),featured.get('image',''),'The latest portrait','','',str(home_option('spotlight_portrait_link_label','Read their story'))))
 else:
