@@ -1262,3 +1262,17 @@ body>footer{
 .exhibitions-history .exhibition-entry:not(.is-upcoming){border:0;padding:0;margin:0 0 24px}
 .exhibition-year-list{margin-bottom:36px}
 .exhibition-year-list h3{margin-bottom:22px}
+
+/* Exhibition display corrections, 2026-11-12 */
+.spotlight-grid .spotlight-exhibition .spotlight-image{padding:0;overflow:hidden}
+.spotlight-grid .spotlight-exhibition .spotlight-image img{display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;object-position:center}
+.spotlight-exhibition .spotlight-event-date strong,.spotlight-exhibition .spotlight-event-address strong{font-weight:700}
+.exhibitions-history .exhibition-entry.is-upcoming{display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,0.65fr);gap:22px;align-items:start}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-image{display:block!important}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-image img{width:100%;height:auto;max-height:410px;object-fit:contain;object-position:top left}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy h3{margin:5px 0 10px}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy .event-detail{margin:3px 0;line-height:1.4}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy .event-address{margin:0 0 9px;line-height:1.4}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy .rich{margin-top:10px}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy .rich p{margin:0 0 8px;line-height:1.5}
+@media(max-width:700px){.exhibitions-history .exhibition-entry.is-upcoming{display:flex;flex-direction:column}.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-image{width:100%}}

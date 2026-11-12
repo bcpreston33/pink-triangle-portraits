@@ -628,6 +628,14 @@ def render_press_banner(screenshot_path, background_path, slug):
         print(f'Warning: could not compose press banner {slug}: {exc}')
         return ''
 
+def readable_date(value):
+    try:
+        from datetime import date
+        d=date.fromisoformat(str(value)[:10])
+        return f"{d.strftime('%B')} {d.day}, {d.year}"
+    except (ValueError, TypeError):
+        return str(value or '')
+
 def spotlight_picture(path, alt):
     return f'<div class="spotlight-image">{img(path, alt)}</div>' if path else ''
 
@@ -650,11 +658,11 @@ for e in events:
     if e.get('homepage_feature',True) is False: continue
     start=e['_date'][:10]; end=e['_end'][:10]
     if not start or not end: continue
-    event_date=start+(' – '+end if end!=start else '')
+    event_date=readable_date(start)+(' – '+readable_date(end) if end!=start else '')
     event_time=e.get('event_time') or (e.get('reception') if e.get('event_type')=='talk' else '')
     event_address=e.get('address') or e.get('location') or ''
-    detail_html=(f'<p class="spotlight-event-date">{escape(event_date)}'+(f' · {escape(str(event_time))}' if event_time else '')+'</p>'
-                 +(f'<p class="spotlight-event-address">{escape(str(event_address))}</p>' if event_address else ''))
+    detail_html=(f'<p class="spotlight-event-date"><strong>{escape(event_date)}</strong>'+(f' · {escape(str(event_time))}' if event_time else '')+'</p>'
+                 +(f'<p class="spotlight-event-address"><strong>{escape(str(event_address))}</strong></p>' if event_address else ''))
     event_description=e.get('homepage_description') or e.get('listing_description') or re.sub(r'\s+',' ',re.sub(r'<[^>]+>',' ',render_md(e.get('body','')))).strip()
     spotlights.append(spotlight_card('exhibition',e.get('title','Exhibition'),event_description,e.get('link') or '/exhibitions/','/assets/images/exhibits-home.jpg', 'Exhibitions & Events',start,end,str(home_option('spotlight_event_link_label','Event details')),detail_html=detail_html))
 for item in press:
@@ -844,12 +852,12 @@ for e in events:
     if not e['_date']:continue
     start=e['_date']; end=max(e['_end'],start)
     photo=img(e.get('image'),e.get('title',''),'event-cover') if e.get('image') else ''
-    body=(f'<span class="section-label">{escape(start)}'+(f' – {escape(end)}' if end!=start else '')+'</span>'
+    body=(f'<span class="section-label">{escape(readable_date(start))}'+(f' – {escape(readable_date(end))}' if end[:10]!=start[:10] else '')+'</span>'
          +f'<h3>{escape(str(e.get("title","")))}</h3>'
          +''.join(f'<p class="event-detail"><strong>{label}:</strong> {escape(str(e.get(field)))}</p>' for field,label in [('venue','Venue')] if e.get(field))
-         +(f'<p class="event-detail event-address">{escape(str(e.get("address")))}</p>' if e.get('address') else '')
+         +(f'<p class="event-detail event-address">{escape(str(e.get("address")))}</p>' if e.get('address') else (f'<p class="event-detail event-address">{escape(str(e.get("location")))}</p>' if e.get('location') and e.get('venue') else ''))
          +''.join(f'<p class="event-detail"><strong>{label}:</strong> {escape(str(e.get(field)))}</p>' for field,label in [('event_time','Time'),('reception','Opening reception'),('reception_date','Reception date'),('artist_talk_date','Artist talk date'),('artist_talk_time','Artist talk time'),('hours','Gallery hours')] if e.get(field))
-         +(f'<p class="event-detail">{escape(str(e.get("location","")))}</p>' if e.get('location') and not e.get('address') else '')
+         +(f'<p class="event-detail">{escape(str(e.get("location","")))}</p>' if e.get('location') and not e.get('address') and not e.get('venue') else '')
          +f'<div class="rich">{render_md(e.get("body"))}</div>'
          +(f'<p><a class="text-link" href="{attr(e["link"])}">Event details ↗</a></p>' if e.get('link') else ''))
     listing_title=str(e.get('listing_title') or e.get('title') or '')
