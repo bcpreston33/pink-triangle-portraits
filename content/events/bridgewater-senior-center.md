@@ -5,7 +5,6 @@ end_date: 2027-01-07
 location: 10 Wally Krueger Way, Bridgewater, MA
 venue: Bridgewater Senior Center
 event_time: 12:00 PM
-reception_date: 2026-11-12
 artist_talk_date: 2026-11-12
 archive_only: false
 image: /assets/uploads/PTP Show Flyer - BSC.jpg
