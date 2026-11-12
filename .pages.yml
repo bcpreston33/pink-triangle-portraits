@@ -2026,103 +2026,81 @@ content:
   path: content/events
   filename: '{primary}.md'
   view:
-    fields:
-    - title
-    - date
-    - published
+    fields: [title, date, published]
     primary: title
   fields:
   - name: title
-    label: 01 · EVENT INFORMATION | Event name
+    label: 01 · EVENT | Title
     type: string
     required: true
-  - name: date
-    label: Event opening / start date
-    description: Required for new events. Historical migrated entries use the archive year instead.
-    type: date
-  - name: end_date
-    label: Event end date (optional)
-    type: date
-    description: If blank, event is treated as a one-day event. Once this date passes it moves to Previous Exhibitions.
-  - name: location
-    label: Location (short display line)
-    type: string
-    description: A short location such as Boston, MA; shown in lists and on the homepage.
-  - name: venue
-    label: Venue / gallery name
-    type: string
-    description: Displayed in the featured event card. Leave blank if the short location is enough.
-  - name: address
-    label: Venue address (optional)
-    type: string
-    description: Street address or full location, displayed below the venue.
-  - name: body
-    label: Event description
-    type: rich-text
-    description: Full event information displayed in the featured card and historical listing. Do not duplicate
-      an event in the Exhibitions page body.
-  - name: reception
-    label: 02 · EXHIBITION DETAILS | Opening reception (optional)
-    type: string
-    description: For example Friday, April 9, 6–8 PM. Shown on the featured card.
-  - name: hours
-    label: Gallery hours (optional)
-    type: string
-    description: Visiting hours for the featured exhibition.
   - name: event_type
-    label: 01 · EVENT INFORMATION | Event type
+    label: Event type
     type: select
     options:
-    - label: Exhibition / Gallery Show
-      value: exhibition
-    - label: Artist Talk / Presentation
+    - label: Artist Talk
       value: talk
-    - label: Other Event
-      value: other
-    default: exhibition
-    description: Select the type of event. All schedule fields below are optional except the start date.
+    - label: Talk & Presentation
+      value: presentation
+    - label: Gallery Exhibition
+      value: exhibition
+    - label: Gallery Exhibition + Talk/Reception
+      value: exhibition_talk
+    default: talk
+    description: Choose one of Bry's four event formats. For talks, use the event date and time. For exhibitions, add an end date. Only use the separate reception/talk fields when an exhibition includes one.
+  - name: body
+    label: Short event description
+    type: rich-text
+    description: A sentence or two describing the event. Also used in the event listing.
+  - name: date
+    label: 02 · SCHEDULE | Event date / exhibition opening
+    type: date
+    description: Required for new events. Historical archive entries can use a year instead.
+  - name: end_date
+    label: Exhibition closing date (gallery shows only)
+    type: date
+    description: Leave empty for a one-day talk. Use for longer gallery exhibitions.
   - name: event_time
-    label: 02 · EVENT SCHEDULE | Event time (one-day talk)
+    label: Talk / presentation start time
     type: string
-    description: For example 12:00 PM. Use for a one-day talk or presentation.
+    description: For example 12:00 PM. For a one-day event; leave blank for a gallery-only exhibition.
+  - name: event_end_time
+    label: Talk / presentation end time (optional)
+    type: string
+    description: For example 2:00 PM.
+  - name: venue
+    label: 03 · LOCATION | Venue name
+    type: string
+  - name: address
+    label: Venue street address
+    type: string
+  - name: location
+    label: Location fallback (optional)
+    type: string
+    description: Used only if no street address is supplied. Existing events retain this value.
   - name: reception_date
-    label: Reception date (optional)
+    label: 04 · GALLERY WITH TALK/RECEPTION | Special event date
     type: date
-    description: For gallery shows with an opening reception on a different date.
-  - name: artist_talk_date
-    label: Additional artist talk date (optional)
-    type: date
+    description: Only for an additional talk or reception DURING a gallery exhibition. Leave blank otherwise.
+  - name: reception
+    label: Special event type / reception label
+    type: string
+    description: For example Opening reception, Artist talk, or Artist talk and reception. Leave blank if none.
   - name: artist_talk_time
-    label: Additional artist talk time (optional)
+    label: Special event start time
     type: string
-  - name: homepage_description
-    label: Homepage short description (optional)
+    description: For example 6:00 PM. Only for a gallery with an additional talk/reception.
+  - name: special_end_time
+    label: Special event end time (optional)
     type: string
-    description: One sentence about the show or talk. If blank, uses the historical description or event description.
-  - name: archive_only
-    label: 03 · HISTORICAL ARCHIVE | Historical entry only (no exact date known)
-    type: boolean
-    default: false
-    description: Use for older exhibitions, talks, and podcasts when only the year is known. These appear directly
-      in the historical year list.
-  - name: archive_year
-    label: Historical listing year
-    type: number
-    description: Only for historical entries without an exact date. The year heading is generated automatically.
-  - name: archive_order
-    label: Historical listing order (lower first)
-    type: number
-    description: Keeps migrated entries in their original order within each year.
-  - name: listing_title
-    label: Historical listing title (optional)
+  - name: hours
+    label: Gallery visiting hours (optional)
     type: string
-    description: Short heading used after the event finishes. Defaults to Event name.
-  - name: listing_description
-    label: Historical listing description (one sentence)
-    type: string
-    description: Brief description used in the year-by-year list. If blank, uses the event location.
+  - name: image
+    label: 05 · MEDIA | Event flyer / image
+    type: image
+    description: Shown beside upcoming event details. Visitors can click to view the full-size flyer.
   - name: learn_more_url
-    label: 04 · LINKS & MEDIA | Learn More link (optional)
+    label: Learn More link (optional)
     type: string
   - name: watch_url
     label: Watch Here link (optional)
@@ -2131,30 +2109,46 @@ content:
     label: Listen Here link (optional)
     type: string
   - name: link
-    label: Event link
+    label: Other event link (optional)
     type: string
-    description: External event or venue details; leave blank to link to the Exhibitions page from the homepage.
-  - name: image
-    label: Exhibition poster or featured image
-    type: image
-    description: Shown alongside upcoming/current events on the Exhibitions page only. The homepage uses the shared exhibition photograph.
-  - name: homepage_feature
-    label: 05 · HOMEPAGE & FEATURED DISPLAY | Allow this event to appear automatically on homepage
-    type: boolean
-    default: true
-    description: Automatically shows within the homepage lead time and disappears after the event ends.
-  - name: featured
-    label: Feature prominently on Exhibitions page
-    type: boolean
-    default: false
-    description: Show a tall image-and-details card in the right column while the event is upcoming or underway.
-      It also stays in the left chronological list.
-  - name: featured_order
-    label: Featured display order (lower number first)
-    type: number
-    default: 10
-    description: When multiple shows are featured, lower numbers appear first in the right column.
   - name: published
     label: 06 · PUBLISHING | Published
     type: boolean
     default: true
+  - name: homepage_feature
+    label: Show automatically on homepage
+    type: boolean
+    default: true
+    description: Automatically promotes upcoming events, then removes them when finished.
+  - name: archive_only
+    label: 07 · HISTORICAL / ADVANCED | Historical year-only entry
+    type: boolean
+    default: false
+    description: Use for older talks and shows when the exact date is unknown.
+  - name: archive_year
+    label: Historical year (year-only entries)
+    type: number
+  - name: archive_order
+    label: Historical order (lower first)
+    type: number
+  - name: listing_title
+    label: Archive listing title override (optional)
+    type: string
+  - name: listing_description
+    label: Archive listing description override (optional)
+    type: string
+  - name: homepage_description
+    label: Homepage description override (optional)
+    type: string
+  - name: featured
+    label: Legacy featured setting (no longer needed)
+    type: boolean
+    default: false
+  - name: featured_order
+    label: Legacy featured order (no longer needed)
+    type: number
+    default: 10
+  - name: artist_talk_date
+    label: Legacy artist talk date (avoid for new events)
+    type: date
+    description: Retained for existing records. Use Special event date instead.
