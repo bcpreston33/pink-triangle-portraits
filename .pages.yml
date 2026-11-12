@@ -2033,7 +2033,7 @@ content:
     primary: title
   fields:
   - name: title
-    label: Event name
+    label: 01 · EVENT INFORMATION | Event name
     type: string
     required: true
   - name: date
@@ -2044,11 +2044,37 @@ content:
     label: Event end date (optional)
     type: date
     description: If blank, event is treated as a one-day event. Once this date passes it moves to Previous Exhibitions.
+  - name: location
+    label: Location (short display line)
+    type: string
+    description: A short location such as Boston, MA; shown in lists and on the homepage.
+  - name: venue
+    label: Venue / gallery name
+    type: string
+    description: Displayed in the featured event card. Leave blank if the short location is enough.
+  - name: address
+    label: Venue address (optional)
+    type: string
+    description: Street address or full location, displayed below the venue.
+  - name: body
+    label: Event description
+    type: rich-text
+    description: Full event information displayed in the featured card and historical listing. Do not duplicate
+      an event in the Exhibitions page body.
+  - name: reception
+    label: 02 · EXHIBITION DETAILS | Opening reception (optional)
+    type: string
+    description: For example Friday, April 9, 6–8 PM. Shown on the featured card.
+  - name: hours
+    label: Gallery hours (optional)
+    type: string
+    description: Visiting hours for the featured exhibition.
   - name: archive_only
-    label: Historical entry only (no exact date known)
+    label: 03 · HISTORICAL ARCHIVE | Historical entry only (no exact date known)
     type: boolean
     default: false
-    description: Use for older exhibitions, talks, and podcasts when only the year is known. These appear directly in the historical year list.
+    description: Use for older exhibitions, talks, and podcasts when only the year is known. These appear directly
+      in the historical year list.
   - name: archive_year
     label: Historical listing year
     type: number
@@ -2066,7 +2092,7 @@ content:
     type: string
     description: Brief description used in the year-by-year list. If blank, uses the event location.
   - name: learn_more_url
-    label: Learn More link (optional)
+    label: 04 · LINKS & MEDIA | Learn More link (optional)
     type: string
   - name: watch_url
     label: Watch Here link (optional)
@@ -2074,31 +2100,6 @@ content:
   - name: listen_url
     label: Listen Here link (optional)
     type: string
-  - name: location
-    label: Location (short display line)
-    type: string
-    description: A short location such as Boston, MA; shown in lists and on the homepage.
-  - name: venue
-    label: Venue / gallery name
-    type: string
-    description: Displayed in the featured event card. Leave blank if the short location is enough.
-  - name: address
-    label: Venue address (optional)
-    type: string
-    description: Street address or full location, displayed below the venue.
-  - name: reception
-    label: Opening reception (optional)
-    type: string
-    description: For example Friday, April 9, 6–8 PM. Shown on the featured card.
-  - name: hours
-    label: Gallery hours (optional)
-    type: string
-    description: Visiting hours for the featured exhibition.
-  - name: featured_order
-    label: Featured display order (lower number first)
-    type: number
-    default: 10
-    description: When multiple shows are featured, lower numbers appear first in the right column.
   - name: link
     label: Event link
     type: string
@@ -2108,7 +2109,7 @@ content:
     type: image
     description: Used on the Exhibitions featured card and homepage. A tall poster works well.
   - name: homepage_feature
-    label: Allow this event to appear automatically on homepage
+    label: 05 · HOMEPAGE & FEATURED DISPLAY | Allow this event to appear automatically on homepage
     type: boolean
     default: true
     description: Automatically shows within the homepage lead time and disappears after the event ends.
@@ -2116,14 +2117,14 @@ content:
     label: Feature prominently on Exhibitions page
     type: boolean
     default: false
-    description: Show a tall image-and-details card in the right column while the event is upcoming or underway. It also
-      stays in the left chronological list.
+    description: Show a tall image-and-details card in the right column while the event is upcoming or underway.
+      It also stays in the left chronological list.
+  - name: featured_order
+    label: Featured display order (lower number first)
+    type: number
+    default: 10
+    description: When multiple shows are featured, lower numbers appear first in the right column.
   - name: published
-    label: Published
+    label: 06 · PUBLISHING | Published
     type: boolean
     default: true
-  - name: body
-    label: Event description
-    type: rich-text
-    description: Full event information displayed in the featured card and historical listing. Do not duplicate an event
-      in the Exhibitions page body.
