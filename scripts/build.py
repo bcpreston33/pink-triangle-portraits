@@ -423,6 +423,16 @@ events=[]
 for f in (ROOT/'content/events').glob('*.md'):
     e=load(f)
     if e.get('published') is False: continue
+    if e.get('archive_only'):
+        try: e['_archive_year']=int(e.get('archive_year') or 0)
+        except (TypeError,ValueError): e['_archive_year']=0
+        if not 1900 <= e['_archive_year'] <= 2200:
+            print(f'WARNING: Skipping historical entry with invalid year: {f.name}')
+            continue
+        e['_date']=''
+        e['_end']=''
+        events.append(e)
+        continue
     e['_date']=date_key(e.get('date'))
     e['_end']=date_key(e.get('end_date')) or e['_date']
     if not e['_date'] or e['_end'] < e['_date']:
@@ -431,8 +441,8 @@ for f in (ROOT/'content/events').glob('*.md'):
     events.append(e)
 events.sort(key=lambda e:e['_date'])
 today=date.today().isoformat()
-upcoming=sorted([e for e in events if e['_end']>=today],key=lambda e:e['_date'])
-past=sorted([e for e in events if e['_end']<today],key=lambda e:e['_date'],reverse=True)
+upcoming=sorted([e for e in events if not e.get('archive_only') and e['_end']>=today],key=lambda e:e['_date'])
+past=sorted([e for e in events if not e.get('archive_only') and e['_end']<today],key=lambda e:e['_date'],reverse=True)
 next_event=upcoming[0] if upcoming else None
 
 def event_card(e,large=False):
@@ -454,7 +464,7 @@ event_text=(f'<div id="event-band-default"><span class="section-label">{escape(s
             +f'<h2>{escape(str(setting("event_band_heading","See the work in person")))}</h2>'
             +f'<p>{escape(str(setting("event_band_description","Explore exhibitions, artist talks, and events featuring Pink Triangle Portraits.")))}</p></div>'
             +'<div id="event-band-active"></div>'
-            +'<div id="event-band-candidates" hidden>'+''.join(event_banner_candidate(e) for e in events)+'</div>')
+            +'<div id="event-band-candidates" hidden>'+''.join(event_banner_candidate(e) for e in events if not e.get('archive_only'))+'</div>')
 event_markup=f'<div class="event-band-copy">{event_text}<a class="button" href="/exhibitions/">{escape(str(setting("event_band_button_label","Exhibitions")))} →</a></div>'
 event_markup+=f'<div class="event-band-visual" id="event-band-visual">{img(exhibition_home_image,"Exhibitions and talks") if exhibition_home_image else ""}</div>'
 
@@ -810,6 +820,14 @@ for i,m in enumerate(match_years):
     legacy.append((int(m.group(2)),exhibitions_html[m.end():end]))
 event_items=[]
 for e in events:
+    if e.get('archive_only'):
+        year=str(e['_archive_year'])
+        title=str(e.get('listing_title') or e.get('title') or '')
+        description=str(e.get('listing_description') or '')
+        links=' • '.join(f'<a href="{attr(e[field])}">{label}</a>' for field,label in [('learn_more_url','Learn More'),('watch_url','Watch Here'),('listen_url','Listen Here')] if e.get(field))
+        body=f'<strong>{escape(title)}</strong>'+(f'<p>{render_md(description).removeprefix("<p>").removesuffix("</p>")}</p>' if description else '')+(f'<p>{links}</p>' if links else '')
+        event_items.append(f'<article class="exhibition-archive-item" data-start="{year}-01-01" data-end="{year}-12-31" data-year="{year}" data-archive="true" data-order="{attr(e.get("archive_order",999))}">{body}</article>')
+        continue
     if not e['_date']:continue
     start=e['_date']; end=max(e['_end'],start)
     photo=img(e.get('image'),e.get('title',''),'event-cover') if e.get('image') else ''
@@ -819,7 +837,12 @@ for e in events:
          +(f'<p>{escape(str(e.get("location","")))}</p>' if e.get('location') else '')
          +f'<div class="rich">{render_md(e.get("body"))}</div>'
          +(f'<p><a class="text-link" href="{attr(e["link"])}">Event details ↗</a></p>' if e.get('link') else ''))
-    event_items.append(f'<article class="exhibition-entry" data-start="{attr(start)}" data-end="{attr(end)}" data-year="{attr(start[:4])}" data-featured="{str(e.get('featured',False)).lower()}" data-order="{attr(e.get('featured_order',10))}"><div class="exhibition-entry-copy">{body}</div><div class="exhibition-entry-image">{photo}</div></article>')
+    listing_title=str(e.get('listing_title') or e.get('title') or '')
+    listing_description=str(e.get('listing_description') or e.get('location') or '')
+    listing_links=' • '.join(f'<a href="{attr(e[field])}">{label}</a>' for field,label in [('learn_more_url','Learn More'),('watch_url','Watch Here'),('listen_url','Listen Here')] if e.get(field))
+    if not listing_links and e.get('link'):listing_links=f'<a href="{attr(e["link"])}">Learn More</a>'
+    archive_markup=f'<div class="exhibition-archive-copy"><strong>{escape(listing_title)}</strong>'+(f'<p>{render_md(listing_description).removeprefix("<p>").removesuffix("</p>")}</p>' if listing_description else '')+(f'<p>{listing_links}</p>' if listing_links else '')+'</div>'
+    event_items.append(f'<article class="exhibition-entry" data-start="{attr(start)}" data-end="{attr(end)}" data-year="{attr(start[:4])}" data-featured="{str(e.get('featured',False)).lower()}" data-order="{attr(e.get('featured_order',10))}"><div class="exhibition-entry-copy">{body}</div>{archive_markup}<div class="exhibition-entry-image">{photo}</div></article>')
 legacy_html=''.join(f'<section class="exhibition-legacy-year" data-year="{y}"><div>{body}</div></section>' for y,body in legacy)
 featured_enabled=exhibitions_data.get('exhibitions_featured_enabled',True) is not False
 featured_heading=escape(str(exhibitions_data.get('exhibitions_featured_heading') or 'Featured & Upcoming'))

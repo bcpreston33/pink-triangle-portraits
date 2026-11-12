@@ -1,0 +1,9 @@
+Pink Triangle Portraits Exhibitions update
+
+Upload these files to the matching paths in GitHub, replacing existing files. Do not upload the ZIP itself or the full website.
+
+This update migrates the existing 2025/2026 historical listings to 11 new CMS records, preserving their text and links, and removes the duplicated manual listings from the Exhibitions page body. It unpublishes the temporary test event.
+
+After deployment: verify 2026 and 2025 lists, homepage Scene Magazine and Richard Plant. New events with dates flow to the appropriate year after they end. Historical records without exact dates use the archive-only switch and year.
+
+IMPORTANT: Upload all files in this ZIP together; if you upload the page-body change without the new event records, old listings disappear until deployment completes.

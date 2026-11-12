@@ -6,6 +6,6 @@ location: Location to be announced
 featured_order: 10
 homepage_feature: true
 featured: false
-published: true
+published: false
 ---
 This is a sample event entry. Set published to true when ready.
