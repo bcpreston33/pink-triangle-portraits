@@ -31,3 +31,5 @@ spotlight_press_background: /assets/images/painted-background.jpg
 gallery_preview_count: 5
 gallery_preview_manual_people: ''
 gallery_preview_background: '#FCEEF4'
+
+exhibitions_home_image: /assets/images/exhibits-home.jpg

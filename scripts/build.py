@@ -455,11 +455,18 @@ def event_card(e,large=False):
 # Store every published event as a candidate; the existing generic banner remains fallback.
 exhibition_home_image=setting('exhibitions_home_image','')
 def event_banner_candidate(e):
-    picture=e.get('image') or exhibition_home_image
+    picture=exhibition_home_image
+    date_text=e['_date'] + (' – '+e['_end'] if e['_end']!=e['_date'] else '')
+    timing=e.get('event_time') or (e.get('reception') if e.get('event_type') in ('talk','presentation') else '')
+    desc=e.get('homepage_description') or e.get('listing_description') or re.sub(r'\s+',' ',re.sub(r'<[^>]+>',' ',render_md(e.get('body','')))).strip()
+    address=e.get('address') or e.get('location') or ''
     return (f'<div class="event-band-candidate" data-start="{attr(e["_date"])}" data-end="{attr(e["_end"])}" hidden>'
-            +f'<span class="section-label">Upcoming exhibition or talk</span><h2>{escape(str(e.get("title","")))}</h2>'
-            +f'<p>{escape(e["_date"])} · {escape(str(e.get("location","")))}</p>'
+            +f'<span class="section-label">Exhibitions &amp; events</span><h2>{escape(str(e.get("title","")))}</h2>'
+            +f'<p class="event-band-date">{escape(date_text)}'+(f' · {escape(str(timing))}' if timing else '')+'</p>'
+            +(f'<p class="event-band-address">{escape(str(address))}</p>' if address else '')
+            +(f'<p class="event-band-description">{escape(str(desc))}</p>' if desc else '')
             +f'<span data-event-image="{attr(picture)}" hidden></span></div>')
+
 event_text=(f'<div id="event-band-default"><span class="section-label">{escape(str(setting("event_band_eyebrow","Exhibitions & talks")))}</span>'
             +f'<h2>{escape(str(setting("event_band_heading","See the work in person")))}</h2>'
             +f'<p>{escape(str(setting("event_band_description","Explore exhibitions, artist talks, and events featuring Pink Triangle Portraits.")))}</p></div>'
@@ -624,13 +631,13 @@ def render_press_banner(screenshot_path, background_path, slug):
 def spotlight_picture(path, alt):
     return f'<div class="spotlight-image">{img(path, alt)}</div>' if path else ''
 
-def spotlight_card(kind, heading, description, link, image='', meta='', start='', end='', label='', extra=''):
+def spotlight_card(kind, heading, description, link, image='', meta='', start='', end='', label='', extra='', detail_html=''):
     href=link if str(link).startswith(('/', 'https://', 'http://')) else ''
     action=(f'<a class="text-link" href="{attr(href)}"'+(' target="_blank" rel="noopener noreferrer"' if href.startswith('http') else '')+f'>{escape(label or "Learn more")} →</a>') if href else ''
     return (f'<article class="spotlight-card spotlight-{attr(kind)}" data-kind="{attr(kind)}" data-start="{attr(start)}" data-end="{attr(end)}" {extra}>'
             +(spotlight_picture(render_press_banner(image, str(home_option('spotlight_press_background',home_option('spotlight_portrait_background','/assets/images/painted-background.jpg'))),heading) or image,heading) if kind=='press' and image else spotlight_picture(image,heading))
             +f'<div class="spotlight-copy"><span class="section-label">{escape(meta or kind.title())}</span><h2>{escape(str(heading))}</h2>'
-            +(f'<p>{escape(str(description))}</p>' if description else '')+action+'</div></article>')
+            +detail_html+(f'<p>{escape(str(description))}</p>' if description else '')+action+'</div></article>')
 
 home_design=yaml.safe_load((ROOT/'content/settings/homepage.yml').read_text(encoding='utf-8')) or {} if (ROOT/'content/settings/homepage.yml').exists() else {}
 def home_option(key, default):
@@ -643,7 +650,13 @@ for e in events:
     if e.get('homepage_feature',True) is False: continue
     start=e['_date'][:10]; end=e['_end'][:10]
     if not start or not end: continue
-    spotlights.append(spotlight_card('exhibition',e.get('title','Exhibition'),e.get('location',''),e.get('link') or '/exhibitions/',e.get('image',''), 'Exhibitions & Events',start,end,str(home_option('spotlight_event_link_label','Event details'))))
+    event_date=start+(' – '+end if end!=start else '')
+    event_time=e.get('event_time') or (e.get('reception') if e.get('event_type')=='talk' else '')
+    event_address=e.get('address') or e.get('location') or ''
+    detail_html=(f'<p class="spotlight-event-date">{escape(event_date)}'+(f' · {escape(str(event_time))}' if event_time else '')+'</p>'
+                 +(f'<p class="spotlight-event-address">{escape(str(event_address))}</p>' if event_address else ''))
+    event_description=e.get('homepage_description') or e.get('listing_description') or re.sub(r'\s+',' ',re.sub(r'<[^>]+>',' ',render_md(e.get('body','')))).strip()
+    spotlights.append(spotlight_card('exhibition',e.get('title','Exhibition'),event_description,e.get('link') or '/exhibitions/','/assets/images/exhibits-home.jpg', 'Exhibitions & Events',start,end,str(home_option('spotlight_event_link_label','Event details')),detail_html=detail_html))
 for item in press:
     if item.get('homepage_feature',True) is False: continue
     pub=str(item.get('publication') or 'In the press')
@@ -833,8 +846,10 @@ for e in events:
     photo=img(e.get('image'),e.get('title',''),'event-cover') if e.get('image') else ''
     body=(f'<span class="section-label">{escape(start)}'+(f' – {escape(end)}' if end!=start else '')+'</span>'
          +f'<h3>{escape(str(e.get("title","")))}</h3>'
-         +''.join(f'<p class="event-detail"><strong>{label}:</strong> {escape(str(e.get(field)))}</p>' for field,label in [('venue','Venue'),('address','Address'),('reception','Opening reception'),('hours','Gallery hours')] if e.get(field))
-         +(f'<p>{escape(str(e.get("location","")))}</p>' if e.get('location') else '')
+         +''.join(f'<p class="event-detail"><strong>{label}:</strong> {escape(str(e.get(field)))}</p>' for field,label in [('venue','Venue')] if e.get(field))
+         +(f'<p class="event-detail event-address">{escape(str(e.get("address")))}</p>' if e.get('address') else '')
+         +''.join(f'<p class="event-detail"><strong>{label}:</strong> {escape(str(e.get(field)))}</p>' for field,label in [('event_time','Time'),('reception','Opening reception'),('reception_date','Reception date'),('artist_talk_date','Artist talk date'),('artist_talk_time','Artist talk time'),('hours','Gallery hours')] if e.get(field))
+         +(f'<p class="event-detail">{escape(str(e.get("location","")))}</p>' if e.get('location') and not e.get('address') else '')
          +f'<div class="rich">{render_md(e.get("body"))}</div>'
          +(f'<p><a class="text-link" href="{attr(e["link"])}">Event details ↗</a></p>' if e.get('link') else ''))
     listing_title=str(e.get('listing_title') or e.get('title') or '')
@@ -844,7 +859,7 @@ for e in events:
     archive_markup=f'<div class="exhibition-archive-copy"><strong>{escape(listing_title)}</strong>'+(f'<p>{render_md(listing_description).removeprefix("<p>").removesuffix("</p>")}</p>' if listing_description else '')+(f'<p>{listing_links}</p>' if listing_links else '')+'</div>'
     event_items.append(f'<article class="exhibition-entry" data-start="{attr(start)}" data-end="{attr(end)}" data-year="{attr(start[:4])}" data-featured="{str(e.get('featured',False)).lower()}" data-order="{attr(e.get('featured_order',10))}"><div class="exhibition-entry-copy">{body}</div>{archive_markup}<div class="exhibition-entry-image">{photo}</div></article>')
 legacy_html=''.join(f'<section class="exhibition-legacy-year" data-year="{y}"><div>{body}</div></section>' for y,body in legacy)
-featured_enabled=exhibitions_data.get('exhibitions_featured_enabled',True) is not False
+featured_enabled=False  # The chronological upcoming section replaces the redundant sidebar feature
 featured_heading=escape(str(exhibitions_data.get('exhibitions_featured_heading') or 'Featured & Upcoming'))
 featured_empty=escape(str(exhibitions_data.get('exhibitions_featured_empty') or 'New exhibitions will be announced here.'))
 follow_enabled=exhibitions_data.get('exhibitions_follow_enabled',True) is not False
