@@ -127,23 +127,101 @@ document.querySelectorAll('.artwork-thumbnails').forEach(group=>{
   });
 })();
 
-/* Exhibition positions update automatically in America/New_York time. */
+/* Automatically organize exhibitions by date and merge CMS archive entries with legacy copy. */
 (function(){
-const source=document.getElementById('exhibition-event-source'),legacy=document.getElementById('exhibition-legacy-source');if(!source||!legacy)return;
-const upcoming=document.getElementById('exhibitions-upcoming'),current=document.getElementById('exhibitions-current'),past=document.getElementById('exhibitions-past');
-const events=[...source.querySelectorAll('.exhibition-entry')],old=[...legacy.querySelectorAll('.exhibition-legacy-year')];
-function today(){const p=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());const get=k=>p.find(v=>v.type===k).value;return get('year')+'-'+get('month')+'-'+get('day')}
-function render(){const day=today(),yr=Number(day.slice(0,4)),up=[],cur=new Map(),archive=new Map();
-function add(map,y,item){if(!map.has(y))map.set(y,[]);map.get(y).push(item)}
-events.forEach(item=>{const y=Number(item.dataset.year);if(item.dataset.archive==='true'){add(y===yr?cur:archive,y,item);return}if(item.dataset.end<day){item.classList.remove('is-upcoming');add(y===yr?cur:archive,y,item)}else if(item.dataset.start<=day){item.classList.remove('is-upcoming');add(cur,y,item)}else{item.classList.add('is-upcoming');up.push(item)}});
-old.forEach(item=>{const y=Number(item.dataset.year);add(y===yr?cur:archive,y,item)});
-function groups(map){return [...map.keys()].sort((a,b)=>b-a).map(y=>{const section=document.createElement('section');section.className='exhibition-year-list';const h=document.createElement('h3');h.textContent=y;section.append(h,...map.get(y).sort((a,b)=>Number(a.dataset.order||999)-Number(b.dataset.order||999)));return section})}
-function draw(target,items){target.querySelector('.exhibition-group-items').replaceChildren(...items);target.hidden=!items.length}
-draw(upcoming,up.sort((a,b)=>a.dataset.start.localeCompare(b.dataset.start)));draw(current,groups(cur));draw(past,groups(archive));
-const featuredList=document.getElementById('exhibitions-featured-list'),featuredEmpty=document.getElementById('exhibitions-featured-empty');
-if(featuredList){const featured=events.filter(item=>item.dataset.archive!=='true'&&item.dataset.featured==='true'&&item.dataset.end>=day).sort((a,b)=>(Number(a.dataset.order)||10)-(Number(b.dataset.order)||10)||a.dataset.start.localeCompare(b.dataset.start));featuredList.replaceChildren(...featured.map(item=>{const clone=item.cloneNode(true);clone.removeAttribute('data-featured');clone.classList.add('is-featured');return clone}));if(featuredEmpty)featuredEmpty.hidden=featured.length>0;}
-}
-render();document.addEventListener('visibilitychange',()=>{if(!document.hidden)render()});window.addEventListener('focus',render);setInterval(render,60000);
+  const source=document.getElementById('exhibition-event-source');
+  const legacy=document.getElementById('exhibition-legacy-source');
+  if(!source||!legacy)return;
+  const upcoming=document.getElementById('exhibitions-upcoming');
+  const current=document.getElementById('exhibitions-current');
+  const past=document.getElementById('exhibitions-past');
+  if(!upcoming||!current||!past)return;
+
+  // Both standard events and archive-only records are emitted by build.py.
+  const events=[...source.querySelectorAll('.exhibition-entry, .exhibition-archive-item')];
+  const old=[...legacy.querySelectorAll('.exhibition-legacy-year')];
+  function today(){
+    const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+    const get=type=>parts.find(part=>part.type===type).value;
+    return get('year')+'-'+get('month')+'-'+get('day');
+  }
+  const validYear=y=>Number.isInteger(y)&&y>=1900&&y<=2200;
+  function render(){
+    const day=today(),year=Number(day.slice(0,4));
+    const upcomingItems=[],byYear=new Map();
+    function add(y,node,order,sourceRank){
+      if(!validYear(y))return;
+      if(!byYear.has(y))byYear.set(y,[]);
+      byYear.get(y).push({node,order,sourceRank});
+    }
+    // Existing hand-written exhibition copy is preserved in its original order.
+    old.forEach(group=>{
+      const y=Number(group.dataset.year);
+      if(!validYear(y))return;
+      const wrapper=group.querySelector('div')||group;
+      // The original copy is kept together, with no extra year heading.
+      const content=document.createElement('div');
+      content.className='exhibition-legacy-copy';
+      content.innerHTML=wrapper.innerHTML;
+      add(y,content,0,0);
+    });
+    events.forEach((item,index)=>{
+      const y=Number(item.dataset.year);
+      if(!validYear(y))return;
+      const isArchive=item.dataset.archive==='true';
+      const start=item.dataset.start||'';
+      const end=item.dataset.end||start;
+      if(!isArchive && end>=day){
+        item.classList.toggle('is-upcoming',start>day);
+        if(start>day){upcomingItems.push(item);return;}
+      }
+      // Past standard events use their short archive title, description, and links.
+      item.classList.toggle('is-archived',isArchive||end<day);
+      item.classList.remove('is-upcoming');
+      const order=Number(item.dataset.order);
+      add(y,item,Number.isFinite(order)?order:999,1);
+    });
+    function yearSections(years){
+      return years.sort((a,b)=>b-a).map(y=>{
+        const section=document.createElement('section');
+        section.className='exhibition-year-list';
+        const heading=document.createElement('h3');
+        heading.textContent=String(y);
+        section.appendChild(heading);
+        const entries=byYear.get(y).sort((a,b)=>a.sourceRank-b.sourceRank||a.order-b.order);
+        entries.forEach(entry=>section.appendChild(entry.node));
+        return section;
+      });
+    }
+    function draw(target,nodes){
+      const container=target.querySelector('.exhibition-group-items');
+      if(!container)return;
+      container.replaceChildren(...nodes);
+      target.hidden=nodes.length===0;
+    }
+    upcomingItems.sort((a,b)=>(a.dataset.start||'').localeCompare(b.dataset.start||''));
+    draw(upcoming,upcomingItems);
+    const years=[...byYear.keys()];
+    draw(current,yearSections(years.filter(y=>y===year)));
+    draw(past,yearSections(years.filter(y=>y!==year)));
+    const featuredList=document.getElementById('exhibitions-featured-list');
+    const featuredEmpty=document.getElementById('exhibitions-featured-empty');
+    if(featuredList){
+      const featured=events.filter(item=>item.classList.contains('exhibition-entry')&&item.dataset.featured==='true'&&(item.dataset.end||'')>=day)
+        .sort((a,b)=>(Number(a.dataset.order)||10)-(Number(b.dataset.order)||10)||(a.dataset.start||'').localeCompare(b.dataset.start||''));
+      featuredList.replaceChildren(...featured.map(item=>{
+        const clone=item.cloneNode(true);
+        clone.removeAttribute('data-featured');
+        clone.classList.add('is-featured');
+        return clone;
+      }));
+      if(featuredEmpty)featuredEmpty.hidden=featured.length>0;
+    }
+  }
+  render();
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)render();});
+  window.addEventListener('focus',render);
+  setInterval(render,60000);
 })();
 
 // Press artwork: one logo/thumbnail; use the article image if its icon fails.
