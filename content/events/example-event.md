@@ -3,6 +3,7 @@ title: TEST - Automatic Archive
 date: 2026-11-01
 end_date: 2026-11-05
 archive_only: false
+listing_description: Testing automatic event archiving.
 location: Test Location
 featured_order: 10
 homepage_feature: false
