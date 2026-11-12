@@ -1,11 +1,12 @@
 ---
-title: TEST - Automatic Event
+title: TEST - Automatic Archive
 date: 2026-11-01
 end_date: 2026-11-05
-location: Location to be announced
+archive_only: false
+location: Test Location
 featured_order: 10
-homepage_feature: true
+homepage_feature: false
 featured: false
-published: false
+published: true
 ---
-This is a sample event entry. Set published to true when ready.
+Testing automatic event archiving.
