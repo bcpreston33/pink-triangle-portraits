@@ -1,7 +1,7 @@
 ---
 title: TEST - Automatic Event
-date: 2026-11-20
-end_date: 2026-11-22
+date: 2026-11-01
+end_date: 2026-11-05
 location: Location to be announced
 featured_order: 10
 homepage_feature: true
