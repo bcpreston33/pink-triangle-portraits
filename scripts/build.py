@@ -454,10 +454,19 @@ def event_card(e,large=False):
 # The banner is selected in the browser, so it expires and changes without rebuilding.
 # Store every published event as a candidate; the existing generic banner remains fallback.
 exhibition_home_image=setting('exhibitions_home_image','')
+def readable_date(value):
+    try:
+        from datetime import date
+        d=date.fromisoformat(str(value)[:10])
+        return f"{d.strftime('%B')} {d.day}, {d.year}"
+    except (ValueError, TypeError):
+        return str(value or '')
+
 def event_banner_candidate(e):
     picture=exhibition_home_image
-    date_text=e['_date'] + (' – '+e['_end'] if e['_end']!=e['_date'] else '')
+    date_text=readable_date(e['_date']) + (' – '+readable_date(e['_end']) if e['_end']!=e['_date'] else '')
     timing=e.get('event_time') or (e.get('reception') if e.get('event_type') in ('talk','presentation') else '')
+    if timing and e.get('event_end_time'): timing=str(timing)+' – '+str(e['event_end_time'])
     desc=e.get('homepage_description') or e.get('listing_description') or re.sub(r'\s+',' ',re.sub(r'<[^>]+>',' ',render_md(e.get('body','')))).strip()
     address=e.get('address') or e.get('location') or ''
     return (f'<div class="event-band-candidate" data-start="{attr(e["_date"])}" data-end="{attr(e["_end"])}" hidden>'
@@ -628,13 +637,6 @@ def render_press_banner(screenshot_path, background_path, slug):
         print(f'Warning: could not compose press banner {slug}: {exc}')
         return ''
 
-def readable_date(value):
-    try:
-        from datetime import date
-        d=date.fromisoformat(str(value)[:10])
-        return f"{d.strftime('%B')} {d.day}, {d.year}"
-    except (ValueError, TypeError):
-        return str(value or '')
 
 def spotlight_picture(path, alt):
     return f'<div class="spotlight-image">{img(path, alt)}</div>' if path else ''
@@ -851,12 +853,16 @@ for e in events:
         continue
     if not e['_date']:continue
     start=e['_date']; end=max(e['_end'],start)
-    photo=img(e.get('image'),e.get('title',''),'event-cover') if e.get('image') else ''
+    photo=(f'<a href="{attr(e["image"])}" target="_blank" rel="noopener noreferrer" title="View full-size event flyer" aria-label="View full-size flyer for {attr(e.get("title","event"))}">'+img(e.get('image'),e.get('title',''),'event-cover')+'</a>') if e.get('image') else ''
+    if e.get('event_time') and e.get('event_end_time'):
+        e=dict(e); e['event_time']=str(e['event_time'])+' – '+str(e['event_end_time'])
     body=(f'<span class="section-label">{escape(readable_date(start))}'+(f' – {escape(readable_date(end))}' if end[:10]!=start[:10] else '')+'</span>'
          +f'<h3>{escape(str(e.get("title","")))}</h3>'
          +''.join(f'<p class="event-detail"><strong>{label}:</strong> {escape(str(e.get(field)))}</p>' for field,label in [('venue','Venue')] if e.get(field))
          +(f'<p class="event-detail event-address">{escape(str(e.get("address")))}</p>' if e.get('address') else (f'<p class="event-detail event-address">{escape(str(e.get("location")))}</p>' if e.get('location') and e.get('venue') else ''))
-         +''.join(f'<p class="event-detail"><strong>{label}:</strong> {escape(str(e.get(field)))}</p>' for field,label in [('event_time','Time'),('reception','Opening reception'),('reception_date','Reception date'),('artist_talk_date','Artist talk date'),('artist_talk_time','Artist talk time'),('hours','Gallery hours')] if e.get(field))
+         +''.join(f'<p class="event-detail"><strong>{label}:</strong> {escape(str(e.get(field)))}</p>' for field,label in [('event_time','Time'),('hours','Gallery hours')] if e.get(field))
+         +(f'<p class="event-detail"><strong>Special event:</strong> {escape(str(e.get("reception") or "Artist talk"))} · {escape(readable_date(e.get("reception_date") or e.get("artist_talk_date")))}'+(f' · {escape(str(e.get("artist_talk_time")))}' if e.get('artist_talk_time') else '')+(f' – {escape(str(e.get("special_end_time")))}' if e.get('special_end_time') else '')+'</p>' if e.get('event_type') in ('exhibition_talk','gallery-talk') and (e.get('reception_date') or e.get('artist_talk_date')) else '')
+         +(f'<p class="event-detail"><strong>Time:</strong> {escape(str(e.get("event_end_time")))}</p>' if e.get('event_end_time') and not e.get('event_time') else '')
          +(f'<p class="event-detail">{escape(str(e.get("location","")))}</p>' if e.get('location') and not e.get('address') and not e.get('venue') else '')
          +f'<div class="rich">{render_md(e.get("body"))}</div>'
          +(f'<p><a class="text-link" href="{attr(e["link"])}">Event details ↗</a></p>' if e.get('link') else ''))

@@ -1276,3 +1276,15 @@ body>footer{
 .exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy .rich{margin-top:10px}
 .exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy .rich p{margin:0 0 8px;line-height:1.5}
 @media(max-width:700px){.exhibitions-history .exhibition-entry.is-upcoming{display:flex;flex-direction:column}.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-image{width:100%}}
+
+/* Event cards: compact copy, proportional clickable flyer */
+.exhibitions-history .exhibition-entry.is-upcoming{grid-template-columns:minmax(0,1fr) minmax(140px,0.56fr);gap:20px;padding:20px 0 28px}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-image{align-self:start}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-image img{max-height:300px;max-width:100%;object-fit:contain;object-position:top center}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy .event-detail{margin:2px 0;line-height:1.35}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy .event-address{margin:0 0 5px;line-height:1.35}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy .rich{margin-top:7px}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy h3{margin:3px 0 7px}
+.exhibition-entry-image a{display:block;cursor:zoom-in}
+.event-band-date,.event-band-address{font-weight:700}
+@media(max-width:700px){.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-image{max-width:220px}}
