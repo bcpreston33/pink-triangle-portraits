@@ -10,6 +10,7 @@ homepage_image: /assets/uploads/LGBTQ-Nation-article-screenshot.png
 url: https://www.lgbtqnation.com/2026/10/remember-they-resisted-the-artist-painting-bold-bright-portraits-of-every-queer/
 hide_image: false
 homepage_feature: true
-homepage_priority: false
+homepage_priority: true
+homepage_until: 2026-11-12
 published: true
 ---
