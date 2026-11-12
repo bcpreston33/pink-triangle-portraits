@@ -1,9 +1,11 @@
 ---
-title: Example exhibition (replace me)
-date: 2027-01-27
+title: TEST - Automatic Event
+date: 2026-11-20
+end_date: 2026-11-22
 location: Location to be announced
-link: ''
-image: ''
-published: false
+featured_order: 10
+homepage_feature: true
+featured: false
+published: true
 ---
 This is a sample event entry. Set published to true when ready.
