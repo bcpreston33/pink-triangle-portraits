@@ -2060,8 +2060,8 @@ content:
     description: Required for new events. Historical archive entries can use a year instead.
   - name: end_date
     label: Exhibition closing date (ONLY for gallery shows)
-    type: date
-    description: Leave BLANK for talks, presentations, and online appearances. Only fill for gallery exhibitions; must be on or after the opening date.
+    type: string
+    description: Enter YYYY-MM-DD, or leave blank. Leave BLANK for talks, presentations, and online appearances. Only fill for gallery exhibitions; must be on or after the opening date.
   - name: event_time
     label: Talk / presentation start time
     type: string
@@ -2082,8 +2082,8 @@ content:
     description: Used only if no street address is supplied. Existing events retain this value.
   - name: reception_date
     label: 04 · GALLERY + RECEPTION ONLY | Additional talk/reception date
-    type: date
-    description: Only for an additional talk or reception DURING a gallery exhibition. Leave blank otherwise.
+    type: string
+    description: Enter YYYY-MM-DD, or leave blank. Only for an additional talk or reception DURING a gallery exhibition. Leave blank otherwise.
   - name: reception
     label: Additional talk/reception label (gallery + talk only)
     type: string
@@ -2153,5 +2153,5 @@ content:
     default: 10
   - name: artist_talk_date
     label: LEGACY ONLY · Old artist talk date (do not use)
-    type: date
-    description: Retained for compatibility. Do not fill this field for new events.
+    type: string
+    description: Enter YYYY-MM-DD, or leave blank. Retained for compatibility. Do not fill this field for new events.
