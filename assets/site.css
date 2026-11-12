@@ -1288,3 +1288,20 @@ body>footer{
 .exhibition-entry-image a{display:block;cursor:zoom-in}
 .event-band-date,.event-band-address{font-weight:700}
 @media(max-width:700px){.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-image{max-width:220px}}
+
+
+/* November 2026 event spacing refinement */
+/* Homepage: compact date/address/description without inheriting global paragraph margins. */
+.spotlight-grid .spotlight-exhibition .spotlight-copy .spotlight-event-date,
+.spotlight-grid .spotlight-exhibition .spotlight-copy .spotlight-event-address,
+.spotlight-grid .spotlight-exhibition .spotlight-copy > p{margin-top:0;margin-bottom:9px;line-height:1.45}
+.spotlight-grid .spotlight-exhibition .spotlight-copy .spotlight-event-date{margin-top:13px;margin-bottom:8px}
+.spotlight-grid .spotlight-exhibition .spotlight-copy .spotlight-event-address{margin-bottom:10px}
+.spotlight-grid .spotlight-exhibition .spotlight-copy .spotlight-event-date strong{font-weight:700}
+/* Exhibitions: keep venue/address joined; add modest separation before time and description. */
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy .event-detail{margin:9px 0 0;line-height:1.4}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy .event-detail:has(+ .event-address){margin-bottom:0}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy .event-address{margin-top:1px;margin-bottom:13px;line-height:1.4}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy .event-address + .event-detail{margin-top:0}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy .rich{margin-top:14px}
+.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-copy .rich p{margin:0 0 9px;line-height:1.5}

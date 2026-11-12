@@ -663,7 +663,7 @@ for e in events:
     event_date=readable_date(start)+(' – '+readable_date(end) if end!=start else '')
     event_time=e.get('event_time') or (e.get('reception') if e.get('event_type')=='talk' else '')
     event_address=e.get('address') or e.get('location') or ''
-    detail_html=(f'<p class="spotlight-event-date"><strong>{escape(event_date)}</strong>'+(f' · {escape(str(event_time))}' if event_time else '')+'</p>'
+    detail_html=(f'<p class="spotlight-event-date"><strong>{escape(event_date)}</strong>'+(f' · <strong>{escape(str(event_time))}</strong>' if event_time else '')+'</p>'
                  +(f'<p class="spotlight-event-address"><strong>{escape(str(event_address))}</strong></p>' if event_address else ''))
     event_description=e.get('homepage_description') or e.get('listing_description') or re.sub(r'\s+',' ',re.sub(r'<[^>]+>',' ',render_md(e.get('body','')))).strip()
     spotlights.append(spotlight_card('exhibition',e.get('title','Exhibition'),event_description,e.get('link') or '/exhibitions/','/assets/images/exhibits-home.jpg', 'Exhibitions & Events',start,end,str(home_option('spotlight_event_link_label','Event details')),detail_html=detail_html))

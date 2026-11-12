@@ -1,7 +1,6 @@
 ---
 title: Bridgewater Senior Center
 date: 2027-01-07
-end_date: 2027-01-07
 location: 10 Wally Krueger Way, Bridgewater, MA
 venue: Bridgewater Senior Center
 event_type: presentation
