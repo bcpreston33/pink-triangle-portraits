@@ -8,8 +8,7 @@ summary: An in-depth feature about Bry Sharland and the stories behind Pink
 logo: /assets/uploads/scene mag logo.jpg
 url: https://www.scenemag.co.uk/they-survived-the-nazis-history-tried-to-forget-them-the-artist-bringing-queer-holocaust-victims-back-to-life/
 hide_image: false
-homepage_feature: false
+homepage_feature: true
 homepage_priority: false
-homepage_until: 2026-11-09
 published: true
 ---
