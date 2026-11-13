@@ -2,6 +2,76 @@ media:
   input: assets/uploads
   output: /assets/uploads
 content:
+- name: people
+  label: Portraits & Biographies
+  type: collection
+  path: content/people
+  filename: '{primary}.md'
+  view:
+    fields:
+    - name
+    - years
+    primary: name
+  fields:
+  - name: name
+    label: 01 · PERSON DETAILS | Person name
+    type: string
+    required: true
+    description: 'Section: Person Details. These controls change this part of the website; leave existing values unchanged unless you want to adjust its appearance.'
+  - name: years
+    label: 01 · PERSON DETAILS | Life dates
+    type: string
+  - name: body
+    label: 01 · PERSON DETAILS | Biography
+    type: rich-text
+  - name: artworks
+    label: 02 · ARTWORK | Paintings (add one or more below)
+    type: object
+    list: true
+    fields:
+    - name: image
+      label: Artwork image
+      type: image
+      required: true
+    - name: medium
+      label: Materials
+      type: string
+    - name: dimensions
+      label: Size
+      type: string
+    - name: published
+      label: Published
+      type: boolean
+      default: true
+    - name: display_order
+      label: Gallery position (lower numbers first)
+      type: number
+      default: 100
+    - name: gallery_thumbnail
+      label: Gallery thumbnail (optional square image)
+      type: image
+      description: Used only in the Portraits gallery. Leave empty to use the artwork image.
+    description: 'Section: Artwork. These controls change this part of the website; leave existing values unchanged unless you want to adjust its appearance.'
+  - name: homepage_teaser
+    label: 03 · HOMEPAGE | Homepage teaser (100–200 characters)
+    type: text
+    description: Short text shown when this person is the latest portrait. Keep to about 100–200 characters.
+  - name: featured_at
+    label: 03 · HOMEPAGE | Portrait added date (automatic)
+    description: Set automatically for new biographies. Determines the newest portrait on the homepage; leave existing dates unchanged when editing.
+    type: date
+  - name: homepage_override
+    label: 03 · HOMEPAGE | Manually feature this person on homepage (optional)
+    type: boolean
+    default: false
+    description: Normally the most recently added biography appears automatically. Check this to force a person instead; uncheck to return to automatic. If multiple are checked, the newest portrait-added date wins.
+  - name: sources
+    label: 04 · SOURCES | Further reading & sources
+    type: rich-text
+    description: 'Section: Sources. These controls change this part of the website; leave existing values unchanged unless you want to adjust its appearance.'
+  - name: special_thanks
+    label: 04 · SOURCES | Special thanks & acknowledgments
+    type: rich-text
 - name: press
   label: Press & Media
   type: collection
@@ -31,6 +101,13 @@ content:
     label: 01 · ARTICLE DETAILS | Short description
     description: Appears below the headline and in the homepage feature. Keep it brief.
     type: text
+  - name: url
+    label: 01 · ARTICLE DETAILS | Link to article / recording
+    description: The external page opened when visitors select this feature.
+    type: string
+  - name: link_label
+    label: 01 · ARTICLE DETAILS | Link text (optional)
+    type: string
   - name: logo
     label: 02 · IMAGES | Publication logo (optional)
     type: image
@@ -38,110 +115,1199 @@ content:
   - name: image
     label: 02 · IMAGES | Article thumbnail (optional)
     type: image
-    description: Used in the Project page and lower press list if no custom logo is supplied. For a homepage screenshot,
-      use the separate Homepage spotlight field below.
+    description: Used in the Project page and lower press list if no custom logo is supplied. For a homepage screenshot, use the separate Homepage spotlight field below.
   - name: homepage_image
     label: 02 · IMAGES | Homepage article screenshot (optional)
     type: image
-    description: Only the rotating homepage press feature uses this image, inside the browser-style banner. Upload a
-      screenshot of the article here. The Project page and lower press list continue using the publication logo or article
-      thumbnail. Leave empty to use those existing images automatically.
-  - name: url
-    label: 03 · LINKS | Link to article / recording
-    description: The external page opened when visitors select this feature.
-    type: string
-  - name: link_label
-    label: 03 · LINKS | Link text (optional)
-    type: string
+    description: Only the rotating homepage press feature uses this image, inside the browser-style banner. Upload a screenshot of the article here. The Project page and lower press list continue using the publication logo or article thumbnail. Leave empty to use those existing images automatically.
   - name: hide_image
-    label: 04 · DISPLAY & PUBLISHING | Hide image for this article
+    label: 02 · IMAGES | Hide image for this article
     type: boolean
     default: false
     description: Hides the logo/thumbnail for this article even when images are enabled on The Project page.
   - name: press_pin
-    label: 04 · DISPLAY & PUBLISHING | Pin this article above newer coverage (optional)
+    label: 03 · HOMEPAGE & PUBLISHING | Pin this article above newer coverage (optional)
     type: boolean
     default: false
     description: Normally all coverage sorts newest first. Turn on only for a major article you want to keep ahead of newer stories on The Project page and the homepage. A pinned article also stays in the temporary top homepage feature.
   - name: homepage_days
-    label: 04 · DISPLAY & PUBLISHING | Top homepage feature duration (days, optional)
+    label: 03 · HOMEPAGE & PUBLISHING | Top homepage feature duration (days, optional)
     type: number
     description: Leave blank to use the default of 30 days from publication. Applies to the temporary top homepage feature only.
   - name: published
-    label: 04 · DISPLAY & PUBLISHING | Publish this press item
+    label: 03 · HOMEPAGE & PUBLISHING | Publish this press item
     description: Turn off to hide this item from all public press sections.
     type: boolean
     default: true
-- name: people
-  label: Portraits & biographies
+- name: events
+  label: Exhibitions & Talks
   type: collection
-  path: content/people
+  path: content/events
   filename: '{primary}.md'
   view:
-    fields:
-    - name
-    - years
-    primary: name
+    fields: [title, date, published]
+    primary: title
   fields:
-  - name: name
-    label: 01 · PERSON & HOMEPAGE | Person name
+  - name: title
+    label: 01 · EVENT DETAILS | Title
     type: string
     required: true
-  - name: years
-    label: 01 · PERSON & HOMEPAGE | Life dates
+    description: 'Section: Event Details. These controls change this part of the website; leave existing values unchanged unless you want to adjust its appearance.'
+  - name: event_type
+    label: 01 · EVENT DETAILS | Event type
+    type: select
+    options:
+      values:
+      - label: Artist Talk
+        value: talk
+      - label: Talk & Presentation
+        value: presentation
+      - label: Gallery Exhibition
+        value: exhibition
+      - label: Gallery Exhibition + Talk/Reception
+        value: exhibition_talk
+      - label: Online / Media Appearance
+        value: online
+    default: talk
+    description: Choose a format. Talk and presentation are one-day events. Gallery shows use an end date. Online appearances use the release date and media links, without a venue or time.
+  - name: body
+    label: 01 · EVENT DETAILS | Short event description
+    type: rich-text
+    description: A sentence or two describing the event. Also used in the event listing.
+  - name: venue
+    label: 01 · EVENT DETAILS | Venue name
     type: string
-  - name: homepage_teaser
-    label: 01 · PERSON & HOMEPAGE | Homepage teaser (100–200 characters)
-    type: text
-    description: Short text shown when this person is the latest portrait. Keep to about 100–200 characters.
-  - name: featured_at
-    label: 01 · PERSON & HOMEPAGE | Portrait added date (automatic)
-    description: Set automatically for new biographies. Determines the newest portrait on the homepage; leave existing dates unchanged when editing.
+  - name: address
+    label: 01 · EVENT DETAILS | Venue street address (in-person only)
+    type: string
+  - name: location
+    label: 01 · EVENT DETAILS | Location fallback (optional)
+    type: string
+    description: Used only if no street address is supplied. Existing events retain this value.
+  - name: date
+    label: 02 · DATES & TIMES | Event date / exhibition opening
     type: date
-  - name: homepage_override
-    label: 01 · PERSON & HOMEPAGE | Manually feature this person on homepage (optional)
+    description: Required for new events. Historical archive entries can use a year instead.
+  - name: end_date
+    label: 02 · DATES & TIMES | Exhibition closing date (ONLY for gallery shows)
+    type: string
+    description: Enter YYYY-MM-DD, or leave blank. Leave BLANK for talks, presentations, and online appearances. Only fill for gallery exhibitions; must be on or after the opening date.
+  - name: event_time
+    label: 02 · DATES & TIMES | Talk / presentation start time
+    type: string
+    description: For example 12:00 PM. For a one-day event; leave blank for a gallery-only exhibition.
+  - name: event_end_time
+    label: 02 · DATES & TIMES | Talk / presentation end time (optional)
+    type: string
+    description: For example 2:00 PM.
+  - name: reception_date
+    label: 02 · DATES & TIMES | Additional talk/reception date
+    type: string
+    description: Enter YYYY-MM-DD, or leave blank. Only for an additional talk or reception DURING a gallery exhibition. Leave blank otherwise.
+  - name: reception
+    label: 02 · DATES & TIMES | Additional talk/reception label (gallery + talk only)
+    type: string
+    description: For example Opening reception, Artist talk, or Artist talk and reception. Leave blank if none.
+  - name: artist_talk_date
+    label: 02 · DATES & TIMES | LEGACY ONLY · Old artist talk date (do not use)
+    type: string
+    description: Enter YYYY-MM-DD, or leave blank. Retained for compatibility. Do not fill this field for new events.
+  - name: artist_talk_time
+    label: 02 · DATES & TIMES | Additional talk/reception start time (gallery + talk only)
+    type: string
+    description: For example 6:00 PM. Only for a gallery with an additional talk/reception.
+  - name: special_end_time
+    label: 02 · DATES & TIMES | Additional talk/reception end time (optional)
+    type: string
+  - name: hours
+    label: 02 · DATES & TIMES | Gallery visiting hours (gallery shows only)
+    type: string
+  - name: image
+    label: 03 · IMAGE & LINKS | Event flyer / image
+    type: image
+    description: Shown beside upcoming event details. Visitors can click to view the full-size flyer.
+  - name: learn_more_url
+    label: 03 · IMAGE & LINKS | Learn More link (optional)
+    type: string
+  - name: watch_url
+    label: 03 · IMAGE & LINKS | Watch Here link (optional)
+    type: string
+  - name: listen_url
+    label: 03 · IMAGE & LINKS | Listen Here link (optional)
+    type: string
+  - name: link
+    label: 03 · IMAGE & LINKS | Other event link (optional)
+    type: string
+  - name: published
+    label: 04 · DISPLAY & HOMEPAGE | Published
+    type: boolean
+    default: true
+    description: 'Section: Display & Homepage. These controls change this part of the website; leave existing values unchanged unless you want to adjust its appearance.'
+  - name: homepage_feature
+    label: 04 · DISPLAY & HOMEPAGE | Show automatically on homepage
+    type: boolean
+    default: true
+    description: Automatically promotes upcoming events, then removes them when finished.
+  - name: featured
+    label: 04 · DISPLAY & HOMEPAGE | Legacy featured setting (no longer needed)
     type: boolean
     default: false
-    description: Normally the most recently added biography appears automatically. Check this to force a person instead;
-      uncheck to return to automatic. If multiple are checked, the newest portrait-added date wins.
-  - name: artworks
-    label: 02 · ARTWORK & BIOGRAPHY | Paintings (add one or more below)
+  - name: featured_order
+    label: 04 · DISPLAY & HOMEPAGE | Legacy featured order (no longer needed)
+    type: number
+    default: 10
+  - name: listing_title
+    label: 04 · DISPLAY & HOMEPAGE | Archive listing title override (optional)
+    type: string
+  - name: listing_description
+    label: 04 · DISPLAY & HOMEPAGE | Archive listing description override (optional)
+    type: string
+  - name: homepage_description
+    label: 04 · DISPLAY & HOMEPAGE | Homepage description override (optional)
+    type: string
+  - name: archive_only
+    label: 05 · ARCHIVE SETTINGS | Historical year-only entry
+    type: boolean
+    default: false
+    description: Use for older talks and shows when the exact date is unknown.
+  - name: archive_year
+    label: 05 · ARCHIVE SETTINGS | Historical year (year-only entries)
+    type: number
+  - name: archive_order
+    label: 05 · ARCHIVE SETTINGS | Historical order (lower first)
+    type: number
+- name: page_the_project
+  label: The Project
+  type: file
+  path: content/pages/the-project.md
+  fields:
+  - name: title
+    label: 01 · PAGE HEADER | Page title
+    type: string
+    required: true
+  - name: subtitle
+    label: 01 · PAGE HEADER | Intro subtitle
+    type: text
+    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
+  - name: hero_image
+    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
+    description: Desktop page banner image. Recommended 1200 × 400 px. This changes only this page.
+    type: image
+  - name: hero_mobile_image
+    label: 01 · PAGE HEADER | Mobile image (optional)
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
+    type: image
+  - name: body
+    label: 02 · MAIN CONTENT | Page text
+    type: rich-text
+    description: Main editable page content. This is the long text shown beneath the page banner.
+  - name: project_sidebar_enabled
+    label: 04 · THE PROJECT PAGE ONLY | Show right-hand content column
+    description: Only affects The Project page. Turn off to return to the original full-width editorial layout and press section below.
+    type: boolean
+    default: true
+  - name: project_sidebar_image
+    label: 04 · THE PROJECT PAGE ONLY | Right column header artwork (optional)
+    type: image
+    description: Optional wide painted image at the top of the right column. Independent of the page header and supporting images.
+  - name: project_sidebar_image_alt
+    label: 04 · THE PROJECT PAGE ONLY | Right column image description
+    type: string
+  - name: project_sidebar_heading
+    label: 04 · THE PROJECT PAGE ONLY | Right column heading (optional)
+    type: string
+  - name: project_sidebar_body
+    label: 04 · THE PROJECT PAGE ONLY | Right column editable text
+    type: rich-text
+    description: Ordinary paragraphs, headings, bold, italics and links. Leave blank to show only the press section.
+  - name: project_sidebar_callout
+    label: 04 · THE PROJECT PAGE ONLY | Right column highlight text (optional)
+    type: rich-text
+    description: Separate highlighted text block above Press & Media. Leave blank to hide.
+  - name: project_sidebar_press_enabled
+    label: 04 · THE PROJECT PAGE ONLY | Show Press & Media in right column
+    type: boolean
+    default: true
+  - name: project_sidebar_press_heading
+    label: 04 · THE PROJECT PAGE ONLY | Press section heading
+    type: string
+    default: Press & Media
+  - name: project_sidebar_press_intro
+    label: 04 · THE PROJECT PAGE ONLY | Press introduction (optional)
+    type: rich-text
+  - name: project_sidebar_press_limit
+    label: 04 · THE PROJECT PAGE ONLY | Number of press items (0 shows all)
+    type: number
+    default: 0
+    description: Shows newest first. Set to 0 to include every published article.
+  - name: project_press_show_images
+    label: 04 · THE PROJECT PAGE ONLY | Show press logos / thumbnails
+    description: Shows one image per article, prioritizing your uploaded logo, then an article thumbnail or automatic image.
+    type: boolean
+    default: true
+  - name: project_press_image_width
+    label: 04 · THE PROJECT PAGE ONLY | Logo / thumbnail width (pixels)
+    type: number
+    default: 95
+  - name: project_press_title_font
+    label: 04 · PROJECT ONLY | Press article headline font (not History)
+    type: string
+    default: DM Sans
+    description: Press article headline font on The Project only. Enter DM Sans, Barlow Condensed, or Georgia.
+  - name: project_press_title_size
+    label: 04 · PROJECT ONLY | Press article headline size (not History)
+    type: number
+    default: 19
+  - name: project_press_title_weight
+    label: 04 · PROJECT ONLY | Press article headline weight (not History)
+    description: 'Press article headline weight on The Project only: 400, 500, 600, or 700.'
+    type: string
+    default: '600'
+  - name: project_press_rule_color
+    label: 04 · THE PROJECT PAGE ONLY | Article divider color (hex)
+    description: Thin horizontal line between press articles. Example color is
+    type: string
+    default: '#d7d7d7'
+  - name: project_press_rule_spacing
+    label: 04 · THE PROJECT PAGE ONLY | Divider spacing (pixels)
+    description: Controls the space above and below each press article divider.
+    type: number
+    default: 18
+  - name: supporting_images
+    label: 05 · PAGE EXTRAS | Supporting images beside sections
     type: object
     list: true
+    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty to show no caption.
     fields:
+    - name: section_heading
+      label: Related section heading (exact wording)
+      type: string
+      required: true
+      description: Match a heading in Page content, without the
     - name: image
-      label: Artwork image
+      label: Supporting image
       type: image
       required: true
-    - name: medium
-      label: Materials
+    - name: caption
+      label: Small caption (optional)
       type: string
-    - name: dimensions
-      label: Size
+    - name: alt_text
+      label: Image description for accessibility
       type: string
-    - name: published
-      label: Published
+    - name: placement
+      label: Image placement
+      type: select
+      default: right
+      options:
+        values:
+        - label: Right column
+          value: right
+        - label: Left column
+          value: left
+        - label: Full width below section (explicit only)
+          value: full
+  - name: callouts
+    label: 06 · PAGE EXTRAS | Quotes, callouts & featured statements
+    type: object
+    list: true
+    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content, matching their order here. Otherwise choose a section and placement.
+    fields:
+    - name: style
+      label: Style
+      type: select
+      default: quote
+      options:
+        values:
+        - label: Pull Quote (10px left rule)
+          value: quote
+        - label: Highlight / Callout
+          value: highlight
+        - label: Featured Statement (thin horizontal rules)
+          value: statement
+    - name: heading
+      label: Optional heading
+      type: string
+    - name: text
+      label: Quote or callout text
+      type: text
+      description: Use **bold**, *italic*, or ***bold italic***. Blank lines create paragraphs.
+      required: true
+    - name: attribution
+      label: Attribution / source (optional)
+      type: string
+    - name: section_heading
+      label: Related section heading (exact wording)
+      type: string
+      description: Match a heading in Page content. Not needed when using an inline [callout-N] marker.
+    - name: position
+      label: Position within section
+      type: select
+      default: after-heading
+      options:
+        values:
+        - label: Before section
+          value: before-section
+        - label: After heading
+          value: after-heading
+        - label: After section text
+          value: after-section
+    - name: layout
+      label: Layout
+      type: select
+      default: text
+      options:
+        values:
+        - label: Text column
+          value: text
+        - label: Side image area
+          value: side
+        - label: Full width below section (explicit only)
+          value: full
+    - name: alignment
+      label: Text alignment
+      type: select
+      default: left
+      options:
+        values:
+        - label: Left
+          value: left
+        - label: Center
+          value: center
+        - label: Right
+          value: right
+- name: page_the_history
+  label: The History
+  type: file
+  path: content/pages/the-history.md
+  fields:
+  - name: title
+    label: 01 · PAGE HEADER | Page title
+    type: string
+    required: true
+  - name: subtitle
+    label: 01 · PAGE HEADER | Intro subtitle
+    type: text
+    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
+  - name: hero_image
+    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
+    description: Desktop page banner image. Recommended 1200 × 400 px. This changes only this page.
+    type: image
+  - name: hero_mobile_image
+    label: 01 · PAGE HEADER | Mobile image (optional)
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
+    type: image
+  - name: body
+    label: 02 · MAIN CONTENT | Page text
+    type: rich-text
+    description: Main editable page content. This is the long text shown beneath the page banner.
+  - name: supporting_images
+    label: 05 · PAGE EXTRAS | Supporting images beside sections
+    type: object
+    list: true
+    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty to show no caption.
+    fields:
+    - name: section_heading
+      label: Related section heading (exact wording)
+      type: string
+      required: true
+      description: Match a heading in Page content, without the
+    - name: image
+      label: Supporting image
+      type: image
+      required: true
+    - name: caption
+      label: Small caption (optional)
+      type: string
+    - name: alt_text
+      label: Image description for accessibility
+      type: string
+    - name: placement
+      label: Image placement
+      type: select
+      default: right
+      options:
+        values:
+        - label: Right column
+          value: right
+        - label: Left column
+          value: left
+        - label: Full width below section (explicit only)
+          value: full
+  - name: callouts
+    label: 06 · PAGE EXTRAS | Quotes, callouts & featured statements
+    type: object
+    list: true
+    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content, matching their order here. Otherwise choose a section and placement.
+    fields:
+    - name: style
+      label: Style
+      type: select
+      default: quote
+      options:
+        values:
+        - label: Pull Quote (10px left rule)
+          value: quote
+        - label: Highlight / Callout
+          value: highlight
+        - label: Featured Statement (thin horizontal rules)
+          value: statement
+    - name: heading
+      label: Optional heading
+      type: string
+    - name: text
+      label: Quote or callout text
+      type: text
+      description: Use **bold**, *italic*, or ***bold italic***. Blank lines create paragraphs.
+      required: true
+    - name: attribution
+      label: Attribution / source (optional)
+      type: string
+    - name: section_heading
+      label: Related section heading (exact wording)
+      type: string
+      description: Match a heading in Page content. Not needed when using an inline [callout-N] marker.
+    - name: position
+      label: Position within section
+      type: select
+      default: after-heading
+      options:
+        values:
+        - label: Before section
+          value: before-section
+        - label: After heading
+          value: after-heading
+        - label: After section text
+          value: after-section
+    - name: layout
+      label: Layout
+      type: select
+      default: text
+      options:
+        values:
+        - label: Text column
+          value: text
+        - label: Side image area
+          value: side
+        - label: Full width below section (explicit only)
+          value: full
+    - name: alignment
+      label: Text alignment
+      type: select
+      default: left
+      options:
+        values:
+        - label: Left
+          value: left
+        - label: Center
+          value: center
+        - label: Right
+          value: right
+- name: page_exhibitions
+  label: Exhibitions
+  type: file
+  path: content/pages/exhibitions.md
+  fields:
+  - name: title
+    label: 01 · PAGE HEADER | Page title
+    type: string
+    required: true
+  - name: subtitle
+    label: 01 · PAGE HEADER | Intro subtitle
+    type: text
+    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
+  - name: hero_image
+    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
+    description: Desktop page banner image. Recommended 1200 × 400 px. This changes only this page.
+    type: image
+  - name: hero_mobile_image
+    label: 01 · PAGE HEADER | Mobile image (optional)
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
+    type: image
+  - name: body
+    label: 02 · MAIN CONTENT | Page text
+    type: rich-text
+    description: Main editable page content. This is the long text shown beneath the page banner.
+  - name: exhibitions_featured_enabled
+    label: 03 · EXHIBITIONS PAGE ONLY | Show featured right column
+    type: boolean
+    default: true
+    description: Only affects Exhibitions. Shows featured upcoming event cards in the right column; ignore on History and other pages.
+  - name: exhibitions_featured_heading
+    label: 03 · EXHIBITIONS PAGE ONLY | Right column heading
+    type: string
+    default: Featured & Upcoming
+  - name: exhibitions_featured_empty
+    label: 03 · EXHIBITIONS PAGE ONLY | Message when no featured shows
+    type: string
+    default: New exhibitions will be announced here.
+    description: Shown in the right column until a future event is marked as featured.
+  - name: exhibitions_featured_background
+    label: 03 · FEATURED & UPCOMING | Background color (hex)
+    type: string
+    default: '#fff0f6'
+    description: Very light pink card background. Enter a six-digit hex color, such as
+  - name: exhibitions_follow_enabled
+    label: 04 · FOLLOW THE PROJECT | Show social media card
+    type: boolean
+    default: true
+    description: Shows the dark promotional card beneath Featured & Upcoming in the right column.
+  - name: exhibitions_follow_heading
+    label: 04 · FOLLOW THE PROJECT | Card heading
+    type: string
+    default: Follow the Project
+  - name: exhibitions_follow_text
+    label: 04 · FOLLOW THE PROJECT | Card description
+    type: text
+    default: Follow the project for updates on upcoming shows, new portraits, and the incredible stories of queer history behind them.
+    description: Text below the heading. Social media links automatically use the URLs in Site Settings.
+  - name: exhibitions_follow_background
+    label: 04 · FOLLOW THE PROJECT | Background color (hex)
+    type: string
+    default: '#082d3c'
+    description: Dark navy card background. Enter a six-digit hex color, such as
+  - name: supporting_images
+    label: 05 · PAGE EXTRAS | Supporting images beside sections
+    type: object
+    list: true
+    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty to show no caption.
+    fields:
+    - name: section_heading
+      label: Related section heading (exact wording)
+      type: string
+      required: true
+      description: Match a heading in Page content, without the
+    - name: image
+      label: Supporting image
+      type: image
+      required: true
+    - name: caption
+      label: Small caption (optional)
+      type: string
+    - name: alt_text
+      label: Image description for accessibility
+      type: string
+    - name: placement
+      label: Image placement
+      type: select
+      default: right
+      options:
+        values:
+        - label: Right column
+          value: right
+        - label: Left column
+          value: left
+        - label: Full width below section (explicit only)
+          value: full
+  - name: callouts
+    label: 06 · PAGE EXTRAS | Quotes, callouts & featured statements
+    type: object
+    list: true
+    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content, matching their order here. Otherwise choose a section and placement.
+    fields:
+    - name: style
+      label: Style
+      type: select
+      default: quote
+      options:
+        values:
+        - label: Pull Quote (10px left rule)
+          value: quote
+        - label: Highlight / Callout
+          value: highlight
+        - label: Featured Statement (thin horizontal rules)
+          value: statement
+    - name: heading
+      label: Optional heading
+      type: string
+    - name: text
+      label: Quote or callout text
+      type: text
+      description: Use **bold**, *italic*, or ***bold italic***. Blank lines create paragraphs.
+      required: true
+    - name: attribution
+      label: Attribution / source (optional)
+      type: string
+    - name: section_heading
+      label: Related section heading (exact wording)
+      type: string
+      description: Match a heading in Page content. Not needed when using an inline [callout-N] marker.
+    - name: position
+      label: Position within section
+      type: select
+      default: after-heading
+      options:
+        values:
+        - label: Before section
+          value: before-section
+        - label: After heading
+          value: after-heading
+        - label: After section text
+          value: after-section
+    - name: layout
+      label: Layout
+      type: select
+      default: text
+      options:
+        values:
+        - label: Text column
+          value: text
+        - label: Side image area
+          value: side
+        - label: Full width below section (explicit only)
+          value: full
+    - name: alignment
+      label: Text alignment
+      type: select
+      default: left
+      options:
+        values:
+        - label: Left
+          value: left
+        - label: Center
+          value: center
+        - label: Right
+          value: right
+- name: page_about_the_artist
+  label: The Artist
+  type: file
+  path: content/pages/about-the-artist.md
+  fields:
+  - name: title
+    label: 01 · PAGE HEADER | Page title
+    type: string
+    required: true
+  - name: subtitle
+    label: 01 · PAGE HEADER | Intro subtitle
+    type: text
+    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
+  - name: hero_image
+    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
+    description: Desktop page banner image. Recommended 1200 × 400 px. This changes only this page.
+    type: image
+  - name: hero_mobile_image
+    label: 01 · PAGE HEADER | Mobile image (optional)
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
+    type: image
+  - name: body
+    label: 02 · MAIN CONTENT | Page text
+    type: rich-text
+    description: Main editable page content. This is the long text shown beneath the page banner.
+  - name: supporting_images
+    label: 05 · PAGE EXTRAS | Supporting images beside sections
+    type: object
+    list: true
+    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty to show no caption.
+    fields:
+    - name: section_heading
+      label: Related section heading (exact wording)
+      type: string
+      required: true
+      description: Match a heading in Page content, without the
+    - name: image
+      label: Supporting image
+      type: image
+      required: true
+    - name: caption
+      label: Small caption (optional)
+      type: string
+    - name: alt_text
+      label: Image description for accessibility
+      type: string
+    - name: placement
+      label: Image placement
+      type: select
+      default: right
+      options:
+        values:
+        - label: Right column
+          value: right
+        - label: Left column
+          value: left
+        - label: Full width below section (explicit only)
+          value: full
+  - name: callouts
+    label: 06 · PAGE EXTRAS | Quotes, callouts & featured statements
+    type: object
+    list: true
+    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content, matching their order here. Otherwise choose a section and placement.
+    fields:
+    - name: style
+      label: Style
+      type: select
+      default: quote
+      options:
+        values:
+        - label: Pull Quote (10px left rule)
+          value: quote
+        - label: Highlight / Callout
+          value: highlight
+        - label: Featured Statement (thin horizontal rules)
+          value: statement
+    - name: heading
+      label: Optional heading
+      type: string
+    - name: text
+      label: Quote or callout text
+      type: text
+      description: Use **bold**, *italic*, or ***bold italic***. Blank lines create paragraphs.
+      required: true
+    - name: attribution
+      label: Attribution / source (optional)
+      type: string
+    - name: section_heading
+      label: Related section heading (exact wording)
+      type: string
+      description: Match a heading in Page content. Not needed when using an inline [callout-N] marker.
+    - name: position
+      label: Position within section
+      type: select
+      default: after-heading
+      options:
+        values:
+        - label: Before section
+          value: before-section
+        - label: After heading
+          value: after-heading
+        - label: After section text
+          value: after-section
+    - name: layout
+      label: Layout
+      type: select
+      default: text
+      options:
+        values:
+        - label: Text column
+          value: text
+        - label: Side image area
+          value: side
+        - label: Full width below section (explicit only)
+          value: full
+    - name: alignment
+      label: Text alignment
+      type: select
+      default: left
+      options:
+        values:
+        - label: Left
+          value: left
+        - label: Center
+          value: center
+        - label: Right
+          value: right
+- name: page_portraits
+  label: The Portraits
+  type: file
+  path: content/pages/portraits.md
+  fields:
+  - name: title
+    label: 01 · PAGE HEADER | Page title
+    type: string
+    required: true
+  - name: subtitle
+    label: 01 · PAGE HEADER | Intro subtitle
+    type: text
+    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
+  - name: hero_image
+    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
+    description: Desktop page banner image. Recommended 1200 × 400 px. This changes only this page.
+    type: image
+  - name: hero_mobile_image
+    label: 01 · PAGE HEADER | Mobile image (optional)
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
+    type: image
+  - name: body
+    label: 02 · MAIN CONTENT | Page text
+    type: rich-text
+    description: Main editable page content. This is the long text shown beneath the page banner.
+  - name: supporting_images
+    label: 05 · PAGE EXTRAS | Supporting images beside sections
+    type: object
+    list: true
+    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty to show no caption.
+    fields:
+    - name: section_heading
+      label: Related section heading (exact wording)
+      type: string
+      required: true
+      description: Match a heading in Page content, without the
+    - name: image
+      label: Supporting image
+      type: image
+      required: true
+    - name: caption
+      label: Small caption (optional)
+      type: string
+    - name: alt_text
+      label: Image description for accessibility
+      type: string
+    - name: placement
+      label: Image placement
+      type: select
+      default: right
+      options:
+        values:
+        - label: Right column
+          value: right
+        - label: Left column
+          value: left
+        - label: Full width below section (explicit only)
+          value: full
+  - name: callouts
+    label: 06 · PAGE EXTRAS | Quotes, callouts & featured statements
+    type: object
+    list: true
+    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content, matching their order here. Otherwise choose a section and placement.
+    fields:
+    - name: style
+      label: Style
+      type: select
+      default: quote
+      options:
+        values:
+        - label: Pull Quote (10px left rule)
+          value: quote
+        - label: Highlight / Callout
+          value: highlight
+        - label: Featured Statement (thin horizontal rules)
+          value: statement
+    - name: heading
+      label: Optional heading
+      type: string
+    - name: text
+      label: Quote or callout text
+      type: text
+      description: Use **bold**, *italic*, or ***bold italic***. Blank lines create paragraphs.
+      required: true
+    - name: attribution
+      label: Attribution / source (optional)
+      type: string
+    - name: section_heading
+      label: Related section heading (exact wording)
+      type: string
+      description: Match a heading in Page content. Not needed when using an inline [callout-N] marker.
+    - name: position
+      label: Position within section
+      type: select
+      default: after-heading
+      options:
+        values:
+        - label: Before section
+          value: before-section
+        - label: After heading
+          value: after-heading
+        - label: After section text
+          value: after-section
+    - name: layout
+      label: Layout
+      type: select
+      default: text
+      options:
+        values:
+        - label: Text column
+          value: text
+        - label: Side image area
+          value: side
+        - label: Full width below section (explicit only)
+          value: full
+    - name: alignment
+      label: Text alignment
+      type: select
+      default: left
+      options:
+        values:
+        - label: Left
+          value: left
+        - label: Center
+          value: center
+        - label: Right
+          value: right
+- name: page_shop
+  label: The Shop
+  type: file
+  path: content/pages/shop.md
+  fields:
+  - name: title
+    label: 01 · PAGE HEADER | Page title
+    type: string
+    required: true
+  - name: subtitle
+    label: 01 · PAGE HEADER | Intro subtitle
+    type: text
+    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
+  - name: hero_image
+    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
+    description: Desktop page banner image. Recommended 1200 × 400 px. This changes only this page.
+    type: image
+  - name: hero_mobile_image
+    label: 01 · PAGE HEADER | Mobile image (optional)
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
+    type: image
+  - name: body
+    label: 02 · MAIN CONTENT | Page text
+    type: rich-text
+    description: Main editable page content. This is the long text shown beneath the page banner.
+  - name: shop_card
+    label: 03 · SHOP FEATURE | Online store card (right column)
+    type: object
+    description: Image-free pink shop card beside Supporting the Project. All fields are prefilled with the live defaults.
+    fields:
+    - name: enabled
+      label: Show shop card
       type: boolean
       default: true
-    - name: display_order
-      label: Gallery position (lower numbers first)
-      type: number
-      default: 100
-    - name: gallery_thumbnail
-      label: Gallery thumbnail (optional square image)
+    - name: heading
+      label: Large heading
+      type: string
+      default: EXPLORE THE ARTWORK
+    - name: description
+      label: Supporting line
+      type: string
+      default: Signed, limited-edition portrait prints
+    - name: button_label
+      label: Button label
+      type: string
+      default: VISIT THE SHOP
+    - name: url
+      label: Square store URL
+      type: string
+      default: https://pinktriangleportraits.square.site/
+    - name: background_color
+      label: Card background color (hex)
+      type: string
+      default: '#E85395'
+  - name: supporting_images
+    label: 05 · PAGE EXTRAS | Supporting images beside sections
+    type: object
+    list: true
+    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty to show no caption.
+    fields:
+    - name: section_heading
+      label: Related section heading (exact wording)
+      type: string
+      required: true
+      description: Match a heading in Page content, without the
+    - name: image
+      label: Supporting image
       type: image
-      description: Used only in the Portraits gallery. Leave empty to use the artwork image.
-  - name: body
-    label: 02 · ARTWORK & BIOGRAPHY | Biography
-    type: rich-text
-  - name: sources
-    label: 02 · ARTWORK & BIOGRAPHY | Further reading & sources
-    type: rich-text
-  - name: special_thanks
-    label: 02 · ARTWORK & BIOGRAPHY | Special thanks & acknowledgments
-    type: rich-text
+      required: true
+    - name: caption
+      label: Small caption (optional)
+      type: string
+    - name: alt_text
+      label: Image description for accessibility
+      type: string
+    - name: placement
+      label: Image placement
+      type: select
+      default: right
+      options:
+        values:
+        - label: Right column
+          value: right
+        - label: Left column
+          value: left
+        - label: Full width below section (explicit only)
+          value: full
+  - name: callouts
+    label: 06 · PAGE EXTRAS | Quotes, callouts & featured statements
+    type: object
+    list: true
+    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content, matching their order here. Otherwise choose a section and placement.
+    fields:
+    - name: style
+      label: Style
+      type: select
+      default: quote
+      options:
+        values:
+        - label: Pull Quote (10px left rule)
+          value: quote
+        - label: Highlight / Callout
+          value: highlight
+        - label: Featured Statement (thin horizontal rules)
+          value: statement
+    - name: heading
+      label: Optional heading
+      type: string
+    - name: text
+      label: Quote or callout text
+      type: text
+      description: Use **bold**, *italic*, or ***bold italic***. Blank lines create paragraphs.
+      required: true
+    - name: attribution
+      label: Attribution / source (optional)
+      type: string
+    - name: section_heading
+      label: Related section heading (exact wording)
+      type: string
+      description: Match a heading in Page content. Not needed when using an inline [callout-N] marker.
+    - name: position
+      label: Position within section
+      type: select
+      default: after-heading
+      options:
+        values:
+        - label: Before section
+          value: before-section
+        - label: After heading
+          value: after-heading
+        - label: After section text
+          value: after-section
+    - name: layout
+      label: Layout
+      type: select
+      default: text
+      options:
+        values:
+        - label: Text column
+          value: text
+        - label: Side image area
+          value: side
+        - label: Full width below section (explicit only)
+          value: full
+    - name: alignment
+      label: Text alignment
+      type: select
+      default: left
+      options:
+        values:
+        - label: Left
+          value: left
+        - label: Center
+          value: center
+        - label: Right
+          value: right
+- name: page_contact
+  label: Contact
+  type: file
+  path: content/pages/contact.md
+  fields:
+  - name: title
+    label: 01 · PAGE HEADER | Page title
+    type: string
+    required: true
+  - name: subtitle
+    label: 01 · PAGE HEADER | Intro subtitle
+    type: text
+    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
+  - name: hero_image
+    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
+    description: Desktop page banner image. Recommended 1200 × 400 px. This changes only this page.
+    type: image
+  - name: hero_mobile_image
+    label: 01 · PAGE HEADER | Mobile image (optional)
+    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
+    type: image
+  - name: contact_form_visible
+    label: 02 · CONTACT FORM | Show contact form
+    type: boolean
+    description: Switch the contact form on or off. The form sends submissions through the existing Formspree integration.
+  - name: contact_form_heading
+    label: 02 · CONTACT FORM | Heading
+    type: string
+    description: Heading above the contact form.
+  - name: contact_intro
+    label: 02 · CONTACT FORM | Introductory text
+    type: text
+    description: Paragraph immediately below the heading, above the form.
+  - name: contact_research_visible
+    label: 03 · RESEARCH SIDEBAR | Show research card
+    type: boolean
+  - name: contact_research_heading
+    label: 03 · RESEARCH SIDEBAR | Heading
+    type: string
+  - name: contact_research_text
+    label: 03 · RESEARCH SIDEBAR | Description
+    type: text
+    description: Text in the light pink sidebar card. The Ask About Research link automatically scrolls to the contact form.
+  - name: contact_social_visible
+    label: 04 · FOLLOW SIDEBAR | Show Follow the Project card
+    type: boolean
+  - name: contact_social_heading
+    label: 04 · FOLLOW SIDEBAR | Heading
+    type: string
+  - name: contact_social_text
+    label: 04 · FOLLOW SIDEBAR | Description
+    type: text
+    description: The Instagram, Bluesky, and TikTok links are automatically read from Footer & Social Media settings.
+  - name: contact_card_order
+    label: 05 · SIDEBAR LAYOUT | Card order
+    type: select
+    description: Choose which sidebar card appears first.
+    options:
+      values:
+      - label: Research first
+        value: research_first
+      - label: Follow the Project first
+        value: social_first
+  - name: contact_sidebar_width
+    label: 05 · SIDEBAR LAYOUT | Sidebar width (%)
+    type: number
+    description: 'Percentage of the main content width allocated to the right sidebar. Current value: 35.'
+- name: page_qr
+  label: QR Landing Page
+  type: file
+  path: content/pages/qr.md
+  fields:
+  - name: title
+    label: 01 · PAGE SETTINGS | Internal page name
+    type: string
+    required: true
+    description: Used for identifying this entry in the CMS. The public QR page shows the heading below.
+  - name: logo_image
+    label: 01 · BRANDING | Logo image (optional)
+    type: image
+    description: If empty, automatically uses the actual website logo from Header & Navigation. Use a light/white logo suitable for the dark teal header.
+  - name: heading
+    label: 02 · MAIN COPY | Main heading
+    type: string
+    description: Large pink heading displayed on the QR page.
+  - name: intro
+    label: 02 · MAIN COPY | Introduction
+    type: text
+    description: Short text under the main heading.
+  - name: show_instagram
+    label: 03 · SOCIAL LINKS | Show Instagram
+    type: boolean
+    default: true
+  - name: instagram_label
+    label: 03 · SOCIAL LINKS | Instagram label
+    type: string
+  - name: show_bluesky
+    label: 03 · SOCIAL LINKS | Show Bluesky
+    type: boolean
+    default: true
+  - name: bluesky_label
+    label: 03 · SOCIAL LINKS | Bluesky label
+    type: string
+  - name: show_tiktok
+    label: 03 · SOCIAL LINKS | Show TikTok
+    type: boolean
+    default: true
+  - name: tiktok_label
+    label: 03 · SOCIAL LINKS | TikTok label
+    type: string
+  - name: show_gallery
+    label: 04 · ADDITIONAL LINKS | Show portrait gallery button
+    type: boolean
+    default: true
+  - name: gallery_label
+    label: 04 · ADDITIONAL LINKS | Gallery button text
+    type: string
+  - name: home_label
+    label: 04 · ADDITIONAL LINKS | Main website button text
+    type: string
+    description: Button links to the homepage automatically.
+  - name: accent_color
+    label: 05 · APPEARANCE | Accent color (hex)
+    type: string
+    description: 'Project pink: #E85395. Controls heading and button color.'
+  - name: background_color
+    label: 05 · APPEARANCE | Page background color (hex)
+    type: string
+    description: 'Default: #ffffff.'
 - name: settings_global
-  label: Branding & Global
+  label: 01 · Branding & Global
   type: file
   path: content/settings/global.yml
   fields:
@@ -176,7 +1342,7 @@ content:
     label: 03 · PAGE WIDTH & SPACING | Section Spacing
     type: number
 - name: settings_header
-  label: Header & Navigation
+  label: 02 · Header & Navigation
   type: file
   path: content/settings/header.yml
   fields:
@@ -270,7 +1436,7 @@ content:
     label: 05 · SOCIAL ICON SPACING | Social icon spacing on small screens (px)
     type: number
 - name: settings_typography
-  label: Typography
+  label: 03 · Typography
   type: file
   path: content/settings/typography.yml
   fields:
@@ -346,8 +1512,7 @@ content:
     label: 02 · RESPONSIVE PAGE BANNERS | Mobile painted border height (px)
     type: number
     default: 85
-    description: Height of the shallow painted strip beneath the text. Mobile page banner photos are intentionally hidden;
-      desktop banners remain unchanged.
+    description: Height of the shallow painted strip beneath the text. Mobile page banner photos are intentionally hidden; desktop banners remain unchanged.
   - name: display_weight
     label: Page headings weight (400–900)
     type: number
@@ -357,6 +1522,7 @@ content:
   - name: heading_color
     label: Page headings color (hex)
     type: string
+    description: 'Enter a six-digit hex color, for example #E85395. Keep the existing value to preserve the current design.'
   - name: section_font
     label: Section headings font
     type: select
@@ -372,6 +1538,7 @@ content:
   - name: section_color
     label: Section headings color (hex)
     type: string
+    description: 'Enter a six-digit hex color, for example #E85395. Keep the existing value to preserve the current design.'
   - name: label_font
     label: Small labels font
     type: select
@@ -389,240 +1556,233 @@ content:
   - name: label_color
     label: Small labels color (hex)
     type: string
+    description: 'Enter a six-digit hex color, for example #E85395. Keep the existing value to preserve the current design.'
 - name: settings_homepage
-  label: Homepage Design · 7 labeled sections
+  label: 04 · Homepage Design
   type: file
   path: content/settings/homepage.yml
   fields:
   - name: hero_banner_desktop
-    label: 01 · HERO / MAIN HEADER  |  Desktop hero background image
+    label: 01 · HERO CONTENT | Desktop hero background image
     type: image
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_banner_mobile
-    label: 01 · HERO / MAIN HEADER  |  Mobile hero background image
+    label: 01 · HERO CONTENT | Mobile hero background image
     type: image
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_eyebrow
-    label: 01 · HERO / MAIN HEADER  |  Small heading above hero title
+    label: 01 · HERO CONTENT | Small heading above hero title
     type: string
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_headline
-    label: 01 · HERO / MAIN HEADER  |  Main hero title
+    label: 01 · HERO CONTENT | Main hero title
     type: text
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_tagline
-    label: 01 · HERO / MAIN HEADER  |  Hero tagline
+    label: 01 · HERO CONTENT | Hero tagline
     type: text
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_button_show
-    label: 01 · HERO / MAIN HEADER  |  Show first hero button
+    label: 01 · HERO CONTENT | Show first hero button
     type: boolean
     default: true
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_button_text
-    label: 01 · HERO / MAIN HEADER  |  First button text
+    label: 01 · HERO CONTENT | First button text
     type: string
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_button_url
-    label: 01 · HERO / MAIN HEADER  |  First button link
+    label: 01 · HERO CONTENT | First button link
     type: string
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_button_2_show
-    label: 01 · HERO / MAIN HEADER  |  Show second hero button
+    label: 01 · HERO CONTENT | Show second hero button
     type: boolean
     default: true
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_button_2_text
-    label: 01 · HERO / MAIN HEADER  |  Second button text
+    label: 01 · HERO CONTENT | Second button text
     type: string
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_button_2_url
-    label: 01 · HERO / MAIN HEADER  |  Second button link
+    label: 01 · HERO CONTENT | Second button link
     type: string
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_height
-    label: 01 · HERO / MAIN HEADER  |  Hero height (px)
+    label: 02 · HERO LAYOUT | Hero height (px)
     type: number
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_text_width
-    label: 01 · HERO / MAIN HEADER  |  Hero text maximum width (px)
+    label: 02 · HERO LAYOUT | Hero text maximum width (px)
     type: number
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_eyebrow_gap
-    label: 01 · HERO / MAIN HEADER  |  Space after small heading (px)
+    label: 02 · HERO LAYOUT | Space after small heading (px)
     type: number
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_title_gap
-    label: 01 · HERO / MAIN HEADER  |  Space after main title (px)
+    label: 02 · HERO LAYOUT | Space after main title (px)
     type: number
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_tagline_gap
-    label: 01 · HERO / MAIN HEADER  |  Space after tagline (px)
+    label: 02 · HERO LAYOUT | Space after tagline (px)
     type: number
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_overlay_opacity
-    label: 01 · HERO / MAIN HEADER  |  Dark overlay opacity (0–95)
+    label: 02 · HERO LAYOUT | Dark overlay opacity (0–95)
     type: number
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: hero_eyebrow_rule_width
-    label: 01 · HERO / MAIN HEADER  |  Small pink rule thickness (px)
+    label: 02 · HERO LAYOUT | Small pink rule thickness (px)
     type: number
     description: 'Top of homepage: main artwork, headline, tagline, buttons, and their layout.'
   - name: spotlight_exhibitions_enabled
-    label: 02 · FEATURED CONTENT / ROTATION  |  Include upcoming exhibitions automatically
+    label: 03 · AUTOMATIC SPOTLIGHTS | Include upcoming exhibitions automatically
     description: If enabled, the next eligible exhibition has first priority on the homepage.
     type: boolean
     default: true
   - name: spotlight_exhibition_lead_days
-    label: 02 · FEATURED CONTENT / ROTATION  |  Show exhibitions this many days ahead
-    description: Upcoming events come from Exhibitions and events; this controls how early they become eligible for the
-      homepage.
+    label: 03 · AUTOMATIC SPOTLIGHTS | Show exhibitions this many days ahead
+    description: Upcoming events come from Exhibitions and events; this controls how early they become eligible for the homepage.
     type: number
     default: 60
   - name: spotlight_press_enabled
-    label: 02 · FEATURED CONTENT / ROTATION  |  Include recent press automatically
+    label: 03 · AUTOMATIC SPOTLIGHTS | Include recent press automatically
     description: If enabled, the newest eligible article has second priority on the homepage.
     type: boolean
     default: true
   - name: spotlight_press_days
-    label: 02 · FEATURED CONTENT / ROTATION  |  Default press feature duration (days)
+    label: 03 · AUTOMATIC SPOTLIGHTS | Default press feature duration (days)
     description: Press entries and dates come from Press & Media. New press receives 30 days by default. The optional per-article duration can override this.
     type: number
     default: 30
   - name: spotlight_project_heading
-    label: 02 · FEATURED CONTENT / ROTATION  |  Fallback Project headline
+    label: 03 · AUTOMATIC SPOTLIGHTS | Fallback Project headline
     type: string
     description: Shown only when the Project fallback is selected by the automatic feature rotation.
   - name: spotlight_project_description
-    label: 02 · FEATURED CONTENT / ROTATION  |  Fallback Project description
+    label: 03 · AUTOMATIC SPOTLIGHTS | Fallback Project description
     type: text
     description: Shown only when the Project fallback is selected.
   - name: spotlight_project_link_label
-    label: 02 · FEATURED CONTENT / ROTATION  |  Fallback Project link text
+    label: 03 · AUTOMATIC SPOTLIGHTS | Fallback Project link text
     type: string
     description: 'Below the hero: automatically chosen exhibition, press article, latest portrait, and fallback project.'
   - name: spotlight_press_link_label
-    label: 02 · FEATURED CONTENT / ROTATION  |  Press feature link text
+    label: 03 · AUTOMATIC SPOTLIGHTS | Press feature link text
     type: string
     description: Button wording for the automatic homepage press feature.
   - name: spotlight_event_link_label
-    label: 02 · FEATURED CONTENT / ROTATION  |  Exhibition feature link text
+    label: 03 · AUTOMATIC SPOTLIGHTS | Exhibition feature link text
     type: string
     description: 'Below the hero: automatically chosen exhibition, press article, latest portrait, and fallback project.'
   - name: spotlight_portrait_link_label
-    label: 02 · FEATURED CONTENT / ROTATION  |  Latest portrait link text
+    label: 03 · AUTOMATIC SPOTLIGHTS | Latest portrait link text
     type: string
     description: 'Below the hero: automatically chosen exhibition, press article, latest portrait, and fallback project.'
   - name: spotlight_visual_height
-    label: 03 · FEATURED CONTENT / IMAGES  |  Feature image/banner height (px)
-    description: Sets the height of image banners above homepage portrait, press and exhibition features. Recommended
-      220.
+    label: 03 · AUTOMATIC SPOTLIGHTS | Feature image/banner height (px)
+    description: Sets the height of image banners above homepage portrait, press and exhibition features. Recommended 220.
     type: number
     default: 220
   - name: spotlight_portrait_background
-    label: 03 · FEATURED CONTENT / IMAGES  |  Portrait painted banner background
+    label: 03 · AUTOMATIC SPOTLIGHTS | Portrait painted banner background
     description: Background behind the newest portrait; the portrait itself is chosen automatically.
     type: image
     default: /assets/images/painted-background.jpg
   - name: spotlight_portrait_border
-    label: 03 · FEATURED CONTENT / IMAGES  |  Portrait white frame width (px)
+    label: 03 · AUTOMATIC SPOTLIGHTS | Portrait white frame width (px)
     description: White frame around the featured portrait. Recommended 9.
     type: number
     default: 9
   - name: spotlight_portrait_shadow
-    label: 03 · FEATURED CONTENT / IMAGES  |  Show portrait shadow
+    label: 03 · AUTOMATIC SPOTLIGHTS | Show portrait shadow
     description: Adds a slight shadow behind the white-framed portrait.
     type: boolean
     default: true
   - name: spotlight_press_browser
-    label: 03 · FEATURED CONTENT / IMAGES  |  Use press laptop/browser presentation
+    label: 03 · AUTOMATIC SPOTLIGHTS | Use press laptop/browser presentation
     description: Changes the featured press visual only; article images are edited in Press & Media.
     type: boolean
     default: true
   - name: spotlight_press_background
-    label: 03 · FEATURED CONTENT / IMAGES  |  Press painted banner background
+    label: 03 · AUTOMATIC SPOTLIGHTS | Press painted banner background
     description: Background behind the laptop mockup in the featured press column.
     type: image
   - name: spotlight_press_laptop_size
-    label: 03 · FEATURED CONTENT / IMAGES  |  Press laptop scale (%)
+    label: 03 · AUTOMATIC SPOTLIGHTS | Press laptop scale (%)
     description: Scales the large laptop over the painted banner; the live article screenshot is edited in Press & Media.
     type: number
     default: 145
   - name: spotlight_press_laptop_vertical
-    label: 03 · FEATURED CONTENT / IMAGES  |  Press laptop vertical offset (px)
+    label: 03 · AUTOMATIC SPOTLIGHTS | Press laptop vertical offset (px)
     description: Moves the laptop up or down inside its cropped image banner.
     type: number
     default: 0
   - name: event_band_eyebrow
-    label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Small pink heading
+    label: 04 · EXHIBITIONS BAND | Small pink heading
     type: string
-    description: Large painted banner on the homepage, below the rotating Press and Latest Portrait cards. This text
-      is the fallback when there is no upcoming event; an upcoming event can replace the heading and description automatically.
+    description: Large painted banner on the homepage, below the rotating Press and Latest Portrait cards. This text is the fallback when there is no upcoming event; an upcoming event can replace the heading and description automatically.
   - name: event_band_heading
-    label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Large headline
+    label: 04 · EXHIBITIONS BAND | Large headline
     type: string
-    description: Large heading on the full-width homepage Exhibitions & Talks banner. An upcoming event may automatically
-      replace this text.
+    description: Large heading on the full-width homepage Exhibitions & Talks banner. An upcoming event may automatically replace this text.
   - name: event_band_description
-    label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Supporting paragraph
+    label: 04 · EXHIBITIONS BAND | Supporting paragraph
     type: text
-    description: Paragraph on the full-width homepage Exhibitions & Talks banner. An upcoming event may automatically
-      replace this text.
+    description: Paragraph on the full-width homepage Exhibitions & Talks banner. An upcoming event may automatically replace this text.
   - name: event_band_button_label
-    label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Button text
+    label: 04 · EXHIBITIONS BAND | Button text
     type: string
     description: Pink button in the homepage painted Exhibitions banner; it links to the Exhibitions page.
-  - name: paint_background
-    label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Painted banner background image
-    type: image
-    description: Background of the full-width homepage Exhibitions & Talks banner (not the featured exhibition card).
   - name: exhibitions_home_image
-    label: 04 · EXHIBITIONS & TALKS / WIDE BANNER  |  Additional exhibitions homepage image
+    label: 04 · EXHIBITIONS BAND | Additional exhibitions homepage image
     type: image
-    description: Separate exhibitions image used by other homepage presentation logic; do not confuse with the wide banner
-      background.
+    description: Separate exhibitions image used by other homepage presentation logic; do not confuse with the wide banner background.
   - name: gallery_preview_eyebrow
-    label: 05 · EXPLORE PORTRAITS / GALLERY  |  Small pink heading
+    label: 05 · PORTRAIT PREVIEW | Small pink heading
     type: string
     description: Homepage portrait gallery section below the Exhibitions & Talks banner.
   - name: gallery_preview_heading
-    label: 05 · EXPLORE PORTRAITS / GALLERY  |  Large headline
+    label: 05 · PORTRAIT PREVIEW | Large headline
     type: string
     description: Homepage portrait gallery section below the Exhibitions & Talks banner.
   - name: gallery_preview_link_label
-    label: 05 · EXPLORE PORTRAITS / GALLERY  |  Gallery link text
+    label: 05 · PORTRAIT PREVIEW | Gallery link text
     type: string
     description: Homepage portrait gallery section below the Exhibitions & Talks banner.
   - name: gallery_preview_count
-    label: 05 · EXPLORE PORTRAITS / GALLERY  |  Number of portraits (1–12)
+    label: 05 · PORTRAIT PREVIEW | Number of portraits (1–12)
     type: number
     default: 5
     description: 'Automatic: show this many distinct people. Defaults to 5. The site uses the portrait added date saved with each biography, with undated legacy entries listed afterward.'
   - name: gallery_preview_manual_people
-    label: 05 · EXPLORE PORTRAITS / GALLERY  |  Optional featured people (slugs)
+    label: 05 · PORTRAIT PREVIEW | Optional featured people (slugs)
     type: text
-    description: 'Optional manual override: enter person slugs separated by commas or new lines, in desired order (example:
-      gad-beck). These people appear first; remaining slots fill automatically with newest biographies. Leave blank for
-      fully automatic.'
+    description: 'Optional manual override: enter person slugs separated by commas or new lines, in desired order (example: gad-beck). These people appear first; remaining slots fill automatically with newest biographies. Leave blank for fully automatic.'
   - name: gallery_preview_background
-    label: '05 · EXPLORE PORTRAITS / GALLERY  |  Section background color (hex)'
+    label: '05 · PORTRAIT PREVIEW | Section background color (hex)'
     type: string
     default: '#FCEEF4'
     description: 'Full-width pale pink behind the homepage portraits. Default #FCEEF4. Use #fffdfb for white. Does not affect the main Portrait Gallery page.'
   - name: home_press_heading
-    label: 06 · PRESS / LOWER HOMEPAGE  |  Lower press section heading
+    label: 06 · PRESS PREVIEW | Lower press section heading
     type: string
     description: Controls the separate In the Press section farther down the homepage, not the rotating press spotlight.
   - name: home_press_link_label
-    label: 06 · PRESS / LOWER HOMEPAGE  |  Lower press link text
+    label: 06 · PRESS PREVIEW | Lower press link text
     type: string
     description: Additional Press & Media section farther down the homepage; not the rotating feature above.
+  - name: paint_background
+    label: 07 · BACKGROUNDS | Painted banner background image
+    type: image
+    description: Background of the full-width homepage Exhibitions & Talks banner (not the featured exhibition card).
   - name: intro_background
-    label: 07 · GENERAL / BACKGROUNDS  |  Intro background color
+    label: 07 · BACKGROUNDS | Intro background color
     type: string
     description: 'Background color for the introductory homepage area; use a CSS color such as #fffdfb.'
 - name: settings_gallery
-  label: Portrait Gallery
+  label: 05 · Portrait Gallery
   type: file
   path: content/settings/gallery.yml
   fields:
@@ -645,6 +1805,7 @@ content:
   - name: gallery_hover_color
     label: 02 · PORTRAIT HOVER | Portrait rollover overlay color (hex)
     type: string
+    description: 'Enter a six-digit hex color, for example #E85395. Keep the existing value to preserve the current design.'
   - name: gallery_hover_opacity
     label: 02 · PORTRAIT HOVER | Gallery Hover Opacity (0 to 100)
     type: number
@@ -652,154 +1813,109 @@ content:
   - name: gallery_hover_text
     label: 02 · PORTRAIT HOVER | Portrait rollover name color (hex)
     type: string
+    description: 'Enter a six-digit hex color, for example #E85395. Keep the existing value to preserve the current design.'
 - name: settings_biography
-  label: Biography Pages
+  label: 06 · Biography Pages
   type: file
   path: content/settings/biography.yml
   fields:
   - name: bio_name_font
-    label: 01 · PERSON NAME | Person name | Font
+    label: 01 · PERSON NAME | Font
     type: select
     options:
       values: *id001
+    description: 'Section: Person Name. These controls change this part of the website; leave existing values unchanged unless you want to adjust its appearance.'
   - name: bio_name_size
-    label: 01 · PERSON NAME | Person name | Size (px)
+    label: 01 · PERSON NAME | Size (px)
     type: number
   - name: bio_name_weight
-    label: 01 · PERSON NAME | Person name | Weight
+    label: 01 · PERSON NAME | Weight
     type: number
   - name: bio_name_color
-    label: 01 · PERSON NAME | Person name | Color (hex)
+    label: 01 · PERSON NAME | Color (hex)
     type: string
   - name: bio_name_line_height
-    label: 01 · PERSON NAME | Person name | Line height (e.g. 1.0)
+    label: 01 · PERSON NAME | Line height (e.g. 1.0)
     type: number
   - name: bio_name_letter_spacing
-    label: 01 · PERSON NAME | Person name | Letter spacing (px)
+    label: 01 · PERSON NAME | Letter spacing (px)
     type: number
   - name: bio_name_bottom_gap
-    label: 01 · PERSON NAME | Person name | Space below (px)
+    label: 01 · PERSON NAME | Space below (px)
     type: number
   - name: bio_dates_font
-    label: 02 · LIFE DATES | Life dates | Font
+    label: 02 · LIFE DATES | Font
     type: select
     options:
       values: *id001
+    description: 'Section: Life Dates. These controls change this part of the website; leave existing values unchanged unless you want to adjust its appearance.'
   - name: bio_dates_size
-    label: 02 · LIFE DATES | Life dates | Size (px)
+    label: 02 · LIFE DATES | Size (px)
     type: number
   - name: bio_dates_weight
-    label: 02 · LIFE DATES | Life dates | Weight
+    label: 02 · LIFE DATES | Weight
     type: number
   - name: bio_dates_color
-    label: 02 · LIFE DATES | Life dates | Color (hex)
+    label: 02 · LIFE DATES | Color (hex)
     type: string
   - name: bio_dates_bottom_gap
-    label: 02 · LIFE DATES | Life dates | Space below (px)
+    label: 02 · LIFE DATES | Space below (px)
     type: number
   - name: bio_details_font
-    label: 03 · ARTWORK MATERIALS & SIZE | Materials and size | Font
+    label: 03 · ARTWORK MATERIALS & SIZE | Font
     type: select
     options:
       values: *id001
+    description: 'Section: Artwork Materials & Size. These controls change this part of the website; leave existing values unchanged unless you want to adjust its appearance.'
   - name: bio_details_size
-    label: 03 · ARTWORK MATERIALS & SIZE | Materials and size | Size (px)
+    label: 03 · ARTWORK MATERIALS & SIZE | Size (px)
     type: number
   - name: bio_details_weight
-    label: 03 · ARTWORK MATERIALS & SIZE | Materials and size | Weight
+    label: 03 · ARTWORK MATERIALS & SIZE | Weight
     type: number
   - name: bio_details_color
-    label: 03 · ARTWORK MATERIALS & SIZE | Materials and size | Color (hex)
+    label: 03 · ARTWORK MATERIALS & SIZE | Color (hex)
     type: string
   - name: bio_details_separator_gap
-    label: 03 · ARTWORK MATERIALS & SIZE | Materials and size | Separator spacing (px)
+    label: 03 · ARTWORK MATERIALS & SIZE | Separator spacing (px)
     type: number
-  - name: bio_rule_width
-    label: 04 · BIOGRAPHY DIVIDER | Biography divider | Thickness (px)
-    type: number
-  - name: bio_rule_top_gap
-    label: 04 · BIOGRAPHY DIVIDER | Biography divider | Space above (px)
-    type: number
-  - name: bio_rule_bottom_gap
-    label: 04 · BIOGRAPHY DIVIDER | Biography divider | Space below (px)
-    type: number
-  - name: bio_nav_font
-    label: 07 · PORTRAIT NAV | Previous / Next navigation | Font
-    type: select
-    options:
-      values: *id001
-  - name: bio_nav_size
-    label: 07 · PORTRAIT NAV | Person name | Size (px)
-    type: number
-  - name: bio_nav_name_letter_spacing
-    label: 07 · PORTRAIT NAV | Person name | Letter spacing (px)
-    type: number
-    description: Space between letters in the person names. Default 0.5.
-  - name: bio_nav_label_size
-    label: 07 · PORTRAIT NAV | Previous / Next / All Portraits | Size (px)
-    type: number
-  - name: bio_nav_label_weight
-    label: 07 · PORTRAIT NAV | Previous / Next / All Portraits | Font weight (400–900)
-    type: number
-    description: Medium or semibold recommended (600).
-  - name: bio_nav_name_weight
-    label: 07 · PORTRAIT NAV | Person name | Font weight (400–900)
-    type: number
-    description: Bold or extra bold recommended (800).
-  - name: bio_nav_color
-    label: 07 · PORTRAIT NAV | Previous / Next navigation | Color (hex)
-    type: string
-  - name: bio_nav_rule_color
-    label: 07 · PORTRAIT NAV | Previous / Next navigation | Rule color (hex)
-    type: string
-  - name: bio_nav_rule_width
-    label: 07 · PORTRAIT NAV | Previous / Next navigation | Rule thickness (px)
-    type: number
-  - name: bio_nav_padding
-    label: 07 · PORTRAIT NAV | Previous / Next navigation | Vertical padding (px)
-    type: number
-  - name: bio_nav_hover_color
-    label: 07 · PORTRAIT NAV | Link hover color (hex)
-    type: string
-    description: 'Hover color for previous, next and All Portraits links. Default #ff842d.'
-  - name: bio_nav_triangle_color
-    label: 07 · PORTRAIT NAV | Triangle color (hex)
-    type: string
-    description: 'Solid left and right triangles. Default #E85395.'
-  - name: bio_nav_triangle_hover_color
-    label: 07 · PORTRAIT NAV | Triangle hover color (hex)
-    type: string
-    description: 'Default #ff842d.'
-  - name: bio_nav_gap
-    label: 07 · PORTRAIT NAV | Gap between label and name (px)
-    type: number
-    description: Default 3 for tighter spacing between navigation label and name.
   - name: art_font
-    label: 05 · ARTWORK CAPTION | Artwork information font
+    label: 04 · ARTWORK CAPTION | Artwork information font
     type: select
     options:
       values: *id001
+    description: 'Section: Artwork Caption. These controls change this part of the website; leave existing values unchanged unless you want to adjust its appearance.'
   - name: art_title_size
-    label: 05 · ARTWORK CAPTION | Artwork title size (px)
+    label: 04 · ARTWORK CAPTION | Artwork title size (px)
     type: number
   - name: art_details_size
-    label: 05 · ARTWORK CAPTION | Artwork details size (px)
+    label: 04 · ARTWORK CAPTION | Artwork details size (px)
     type: number
   - name: art_color
-    label: 05 · ARTWORK CAPTION | Artwork information color (hex)
+    label: 04 · ARTWORK CAPTION | Artwork information color (hex)
     type: string
+  - name: bio_rule_width
+    label: 05 · BIOGRAPHY DIVIDER | Thickness (px)
+    type: number
+    description: 'Section: Biography Divider. These controls change this part of the website; leave existing values unchanged unless you want to adjust its appearance.'
+  - name: bio_rule_top_gap
+    label: 05 · BIOGRAPHY DIVIDER | Space above (px)
+    type: number
+  - name: bio_rule_bottom_gap
+    label: 05 · BIOGRAPHY DIVIDER | Space below (px)
+    type: number
   - name: biography_quote_font
-    label: 06 · BIOGRAPHY QUOTES | Biography quote callout | Font family
+    label: 06 · BIOGRAPHY QUOTES | Font family
     type: select
     options:
       values: *id001
     description: Applies to blockquotes inside biographies only.
   - name: biography_quote_size
-    label: 06 · BIOGRAPHY QUOTES | Biography quote | Font size (px)
+    label: 06 · BIOGRAPHY QUOTES | Font size (px)
     type: number
     description: Try 22. Adjusts down automatically on small screens.
   - name: biography_quote_weight
-    label: 06 · BIOGRAPHY QUOTES | Biography quote | Font weight
+    label: 06 · BIOGRAPHY QUOTES | Font weight
     type: select
     options:
       values:
@@ -812,7 +1928,7 @@ content:
       - value: '700'
         label: Bold
   - name: biography_quote_style
-    label: 06 · BIOGRAPHY QUOTES | Biography quote | Text style
+    label: 06 · BIOGRAPHY QUOTES | Text style
     type: select
     options:
       values:
@@ -821,29 +1937,82 @@ content:
       - value: italic
         label: Italic
   - name: biography_quote_color
-    label: 06 · BIOGRAPHY QUOTES | Biography quote | Text color (hex)
+    label: 06 · BIOGRAPHY QUOTES | Text color (hex)
     type: string
   - name: biography_quote_background
-    label: 06 · BIOGRAPHY QUOTES | Biography quote | Background color (hex, optional)
+    label: 06 · BIOGRAPHY QUOTES | Background color (hex, optional)
     type: string
     description: Leave blank for a transparent background. Enter a hex color such as #FFF0F7 to add a background.
   - name: biography_quote_rule_color
-    label: 06 · BIOGRAPHY QUOTES | Biography quote | Left rule color (hex)
+    label: 06 · BIOGRAPHY QUOTES | Left rule color (hex)
     type: string
   - name: biography_quote_rule_width
-    label: 06 · BIOGRAPHY QUOTES | Biography quote | Left rule thickness (px)
+    label: 06 · BIOGRAPHY QUOTES | Left rule thickness (px)
     type: number
   - name: biography_quote_padding
-    label: 06 · BIOGRAPHY QUOTES | Biography quote | Inside padding (px)
+    label: 06 · BIOGRAPHY QUOTES | Inside padding (px)
     type: number
   - name: biography_quote_spacing
-    label: 06 · BIOGRAPHY QUOTES | Biography quote | Space above and below (px)
+    label: 06 · BIOGRAPHY QUOTES | Space above and below (px)
     type: number
+  - name: bio_nav_font
+    label: 07 · PORTRAIT NAVIGATION | Font
+    type: select
+    options:
+      values: *id001
+    description: 'Section: Portrait Navigation. These controls change this part of the website; leave existing values unchanged unless you want to adjust its appearance.'
+  - name: bio_nav_size
+    label: 07 · PORTRAIT NAVIGATION | Size (px)
+    type: number
+  - name: bio_nav_name_letter_spacing
+    label: 07 · PORTRAIT NAVIGATION | Letter spacing (px)
+    type: number
+    description: Space between letters in the person names. Default 0.5.
+  - name: bio_nav_name_weight
+    label: 07 · PORTRAIT NAVIGATION | Font weight (400–900)
+    type: number
+    description: Bold or extra bold recommended (800).
+  - name: bio_nav_label_size
+    label: 07 · PORTRAIT NAVIGATION | Size (px)
+    type: number
+  - name: bio_nav_label_weight
+    label: 07 · PORTRAIT NAVIGATION | Font weight (400–900)
+    type: number
+    description: Medium or semibold recommended (600).
+  - name: bio_nav_color
+    label: 07 · PORTRAIT NAVIGATION | Color (hex)
+    type: string
+  - name: bio_nav_hover_color
+    label: 07 · PORTRAIT NAVIGATION | Link hover color (hex)
+    type: string
+    description: 'Hover color for previous, next and All Portraits links. Default #ff842d.'
+  - name: bio_nav_triangle_color
+    label: 07 · PORTRAIT NAVIGATION | Triangle color (hex)
+    type: string
+    description: 'Solid left and right triangles. Default #E85395.'
+  - name: bio_nav_triangle_hover_color
+    label: 07 · PORTRAIT NAVIGATION | Triangle hover color (hex)
+    type: string
+    description: 'Default #ff842d.'
+  - name: bio_nav_rule_color
+    label: 07 · PORTRAIT NAVIGATION | Rule color (hex)
+    type: string
+  - name: bio_nav_rule_width
+    label: 07 · PORTRAIT NAVIGATION | Rule thickness (px)
+    type: number
+  - name: bio_nav_padding
+    label: 07 · PORTRAIT NAVIGATION | Vertical padding (px)
+    type: number
+  - name: bio_nav_gap
+    label: 07 · PORTRAIT NAVIGATION | Gap between label and name (px)
+    type: number
+    description: Default 3 for tighter spacing between navigation label and name.
   - name: research_font
     label: 08 · SOURCES & ACKNOWLEDGMENTS | Research callout font
     type: select
     options:
       values: *id001
+    description: 'Section: Sources & Acknowledgments. These controls change this part of the website; leave existing values unchanged unless you want to adjust its appearance.'
   - name: research_heading_size
     label: 08 · SOURCES & ACKNOWLEDGMENTS | Further Reading / Special Thanks heading size (px)
     type: number
@@ -859,6 +2028,9 @@ content:
   - name: research_color
     label: 08 · SOURCES & ACKNOWLEDGMENTS | Research box text color (hex)
     type: string
+  - name: research_rule_width
+    label: 08 · SOURCES & ACKNOWLEDGMENTS | Research box left rule thickness (px)
+    type: number
   - name: callout_rule_type
     label: 09 · INFORMATION BOXES | Callout Rule Type
     type: select
@@ -866,6 +2038,7 @@ content:
       values:
       - solid
       - gradient
+    description: 'Section: Information Boxes. These controls change this part of the website; leave existing values unchanged unless you want to adjust its appearance.'
   - name: callout_rule_color
     label: 09 · INFORMATION BOXES | Callout Rule Color
     type: string
@@ -878,14 +2051,11 @@ content:
   - name: callout_gap
     label: 09 · INFORMATION BOXES | Callout inner spacing (px)
     type: number
-  - name: research_rule_width
-    label: 08 · SOURCES & ACKNOWLEDGMENTS | Research box left rule thickness (px)
-    type: number
   - name: panel_rule_width
     label: 09 · INFORMATION BOXES | Information box top rule thickness (px)
     type: number
 - name: settings_rules
-  label: Rules & Dividers
+  label: 07 · Rules & Dividers
   type: file
   path: content/settings/rules.yml
   fields:
@@ -908,1095 +2078,8 @@ content:
   - name: interior_rule_width
     label: 02 · INTERIOR HEADERS | Interior page header rule thickness (px)
     type: number
-- name: settings_footer
-  label: Footer & Social Media
-  type: file
-  path: content/settings/footer.yml
-  fields:
-  - name: footer_rule_width
-    label: 01 · FOOTER STYLE | Footer top rule thickness (px)
-    type: number
-    description: Full-width decorative rule above the footer. Default 10 px.
-  - name: footer_font
-    label: 01 · FOOTER STYLE | Footer font
-    type: select
-    options:
-      values: *id001
-  - name: footer_size
-    label: 01 · FOOTER STYLE | Footer size (px)
-    type: number
-  - name: footer_color
-    label: 01 · FOOTER STYLE | Footer color (hex)
-    type: string
-  - name: social_nav_enabled
-    label: 02 · SOCIAL ICON VISIBILITY | Show social icons in navigation
-    type: boolean
-  - name: social_footer_enabled
-    label: 02 · SOCIAL ICON VISIBILITY | Show social icons in footer
-    type: boolean
-  - name: instagram_url
-    label: 03 · SOCIAL LINKS | Instagram profile URL
-    type: string
-  - name: bluesky_url
-    label: 03 · SOCIAL LINKS | Bluesky profile URL
-    type: string
-  - name: tiktok_url
-    label: 03 · SOCIAL LINKS | TikTok profile URL (optional)
-    type: string
-  - name: shop_url
-    label: 04 · SHOP LINK | Shop Url
-    type: string
-    description: Used for the Shop navigation link, not biography purchase buttons.
-- name: page_the_project
-  label: The Project · Page content & design
-  type: file
-  path: content/pages/the-project.md
-  fields:
-  - name: title
-    label: 01 · PAGE HEADER | Page title
-    type: string
-    required: true
-  - name: subtitle
-    label: 01 · PAGE HEADER | Intro subtitle
-    type: text
-    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
-  - name: hero_image
-    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
-    description: Desktop page banner image. Recommended 1200 × 400 px. This changes only this page.
-    type: image
-  - name: hero_mobile_image
-    label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
-    type: image
-  - name: body
-    label: 02 · MAIN CONTENT | Page text
-    type: rich-text
-    description: Main editable page content. This is the long text shown beneath the page banner.
-  - name: project_sidebar_enabled
-    label: 04 · THE PROJECT PAGE ONLY | Show right-hand content column
-    description: Only affects The Project page. Turn off to return to the original full-width editorial layout and press
-      section below.
-    type: boolean
-    default: true
-  - name: project_sidebar_image
-    label: 04 · THE PROJECT PAGE ONLY | Right column header artwork (optional)
-    type: image
-    description: Optional wide painted image at the top of the right column. Independent of the page header and supporting
-      images.
-  - name: project_sidebar_image_alt
-    label: 04 · THE PROJECT PAGE ONLY | Right column image description
-    type: string
-  - name: project_sidebar_heading
-    label: 04 · THE PROJECT PAGE ONLY | Right column heading (optional)
-    type: string
-  - name: project_sidebar_body
-    label: 04 · THE PROJECT PAGE ONLY | Right column editable text
-    type: rich-text
-    description: Ordinary paragraphs, headings, bold, italics and links. Leave blank to show only the press section.
-  - name: project_sidebar_callout
-    label: 04 · THE PROJECT PAGE ONLY | Right column highlight text (optional)
-    type: rich-text
-    description: Separate highlighted text block above Press & Media. Leave blank to hide.
-  - name: project_sidebar_press_enabled
-    label: 04 · THE PROJECT PAGE ONLY | Show Press & Media in right column
-    type: boolean
-    default: true
-  - name: project_sidebar_press_heading
-    label: 04 · THE PROJECT PAGE ONLY | Press section heading
-    type: string
-    default: Press & Media
-  - name: project_sidebar_press_intro
-    label: 04 · THE PROJECT PAGE ONLY | Press introduction (optional)
-    type: rich-text
-  - name: project_sidebar_press_limit
-    label: 04 · THE PROJECT PAGE ONLY | Number of press items (0 shows all)
-    type: number
-    default: 0
-    description: Shows newest first. Set to 0 to include every published article.
-  - name: project_press_show_images
-    label: 04 · THE PROJECT PAGE ONLY | Show press logos / thumbnails
-    description: Shows one image per article, prioritizing your uploaded logo, then an article thumbnail or automatic
-      image.
-    type: boolean
-    default: true
-  - name: project_press_image_width
-    label: 04 · THE PROJECT PAGE ONLY | Logo / thumbnail width (pixels)
-    type: number
-    default: 95
-  - name: project_press_title_font
-    label: 04 · PROJECT ONLY | Press article headline font (not History)
-    type: string
-    default: DM Sans
-    description: Press article headline font on The Project only. Enter DM Sans, Barlow Condensed, or Georgia.
-  - name: project_press_title_size
-    label: 04 · PROJECT ONLY | Press article headline size (not History)
-    type: number
-    default: 19
-  - name: project_press_title_weight
-    label: 04 · PROJECT ONLY | Press article headline weight (not History)
-    description: 'Press article headline weight on The Project only: 400, 500, 600, or 700.'
-    type: string
-    default: '600'
-  - name: project_press_rule_color
-    label: 04 · THE PROJECT PAGE ONLY | Article divider color (hex)
-    description: Thin horizontal line between press articles. Example color is
-    type: string
-    default: '#d7d7d7'
-  - name: project_press_rule_spacing
-    label: 04 · THE PROJECT PAGE ONLY | Divider spacing (pixels)
-    description: Controls the space above and below each press article divider.
-    type: number
-    default: 18
-  - name: supporting_images
-    label: 05 · PAGE EXTRAS | Supporting images beside sections
-    type: object
-    list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty
-      to show no caption.
-    fields:
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      required: true
-      description: Match a heading in Page content, without the
-    - name: image
-      label: Supporting image
-      type: image
-      required: true
-    - name: caption
-      label: Small caption (optional)
-      type: string
-    - name: alt_text
-      label: Image description for accessibility
-      type: string
-    - name: placement
-      label: Image placement
-      type: select
-      default: right
-      options:
-        values:
-        - label: Right column
-          value: right
-        - label: Left column
-          value: left
-        - label: Full width below section (explicit only)
-          value: full
-  - name: callouts
-    label: 06 · PAGE EXTRAS | Quotes, callouts & featured statements
-    type: object
-    list: true
-    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content,
-      matching their order here. Otherwise choose a section and placement.
-    fields:
-    - name: style
-      label: Style
-      type: select
-      default: quote
-      options:
-        values:
-        - label: Pull Quote (10px left rule)
-          value: quote
-        - label: Highlight / Callout
-          value: highlight
-        - label: Featured Statement (thin horizontal rules)
-          value: statement
-    - name: heading
-      label: Optional heading
-      type: string
-    - name: text
-      label: Quote or callout text
-      type: text
-      description: Use **bold**, *italic*, or ***bold italic***. Blank lines create paragraphs.
-      required: true
-    - name: attribution
-      label: Attribution / source (optional)
-      type: string
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      description: Match a heading in Page content. Not needed when using an inline [callout-N] marker.
-    - name: position
-      label: Position within section
-      type: select
-      default: after-heading
-      options:
-        values:
-        - label: Before section
-          value: before-section
-        - label: After heading
-          value: after-heading
-        - label: After section text
-          value: after-section
-    - name: layout
-      label: Layout
-      type: select
-      default: text
-      options:
-        values:
-        - label: Text column
-          value: text
-        - label: Side image area
-          value: side
-        - label: Full width below section (explicit only)
-          value: full
-    - name: alignment
-      label: Text alignment
-      type: select
-      default: left
-      options:
-        values:
-        - label: Left
-          value: left
-        - label: Center
-          value: center
-        - label: Right
-          value: right
-- name: page_the_history
-  label: The History · Page content & design
-  type: file
-  path: content/pages/the-history.md
-  fields:
-  - name: title
-    label: 01 · PAGE HEADER | Page title
-    type: string
-    required: true
-  - name: subtitle
-    label: 01 · PAGE HEADER | Intro subtitle
-    type: text
-    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
-  - name: hero_image
-    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
-    description: Desktop page banner image. Recommended 1200 × 400 px. This changes only this page.
-    type: image
-  - name: hero_mobile_image
-    label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
-    type: image
-  - name: body
-    label: 02 · MAIN CONTENT | Page text
-    type: rich-text
-    description: Main editable page content. This is the long text shown beneath the page banner.
-  - name: supporting_images
-    label: 05 · PAGE EXTRAS | Supporting images beside sections
-    type: object
-    list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty
-      to show no caption.
-    fields:
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      required: true
-      description: Match a heading in Page content, without the
-    - name: image
-      label: Supporting image
-      type: image
-      required: true
-    - name: caption
-      label: Small caption (optional)
-      type: string
-    - name: alt_text
-      label: Image description for accessibility
-      type: string
-    - name: placement
-      label: Image placement
-      type: select
-      default: right
-      options:
-        values:
-        - label: Right column
-          value: right
-        - label: Left column
-          value: left
-        - label: Full width below section (explicit only)
-          value: full
-  - name: callouts
-    label: 06 · PAGE EXTRAS | Quotes, callouts & featured statements
-    type: object
-    list: true
-    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content,
-      matching their order here. Otherwise choose a section and placement.
-    fields:
-    - name: style
-      label: Style
-      type: select
-      default: quote
-      options:
-        values:
-        - label: Pull Quote (10px left rule)
-          value: quote
-        - label: Highlight / Callout
-          value: highlight
-        - label: Featured Statement (thin horizontal rules)
-          value: statement
-    - name: heading
-      label: Optional heading
-      type: string
-    - name: text
-      label: Quote or callout text
-      type: text
-      description: Use **bold**, *italic*, or ***bold italic***. Blank lines create paragraphs.
-      required: true
-    - name: attribution
-      label: Attribution / source (optional)
-      type: string
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      description: Match a heading in Page content. Not needed when using an inline [callout-N] marker.
-    - name: position
-      label: Position within section
-      type: select
-      default: after-heading
-      options:
-        values:
-        - label: Before section
-          value: before-section
-        - label: After heading
-          value: after-heading
-        - label: After section text
-          value: after-section
-    - name: layout
-      label: Layout
-      type: select
-      default: text
-      options:
-        values:
-        - label: Text column
-          value: text
-        - label: Side image area
-          value: side
-        - label: Full width below section (explicit only)
-          value: full
-    - name: alignment
-      label: Text alignment
-      type: select
-      default: left
-      options:
-        values:
-        - label: Left
-          value: left
-        - label: Center
-          value: center
-        - label: Right
-          value: right
-- name: page_exhibitions
-  label: Exhibitions · Page content & design
-  type: file
-  path: content/pages/exhibitions.md
-  fields:
-  - name: title
-    label: 01 · PAGE HEADER | Page title
-    type: string
-    required: true
-  - name: subtitle
-    label: 01 · PAGE HEADER | Intro subtitle
-    type: text
-    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
-  - name: hero_image
-    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
-    description: Desktop page banner image. Recommended 1200 × 400 px. This changes only this page.
-    type: image
-  - name: hero_mobile_image
-    label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
-    type: image
-  - name: body
-    label: 02 · MAIN CONTENT | Page text
-    type: rich-text
-    description: Main editable page content. This is the long text shown beneath the page banner.
-  - name: exhibitions_featured_enabled
-    label: 03 · EXHIBITIONS PAGE ONLY | Show featured right column
-    type: boolean
-    default: true
-    description: Only affects Exhibitions. Shows featured upcoming event cards in the right column; ignore on History
-      and other pages.
-  - name: exhibitions_featured_heading
-    label: 03 · EXHIBITIONS PAGE ONLY | Right column heading
-    type: string
-    default: Featured & Upcoming
-  - name: exhibitions_featured_empty
-    label: 03 · EXHIBITIONS PAGE ONLY | Message when no featured shows
-    type: string
-    default: New exhibitions will be announced here.
-    description: Shown in the right column until a future event is marked as featured.
-  - name: exhibitions_featured_background
-    label: 03 · FEATURED & UPCOMING | Background color (hex)
-    type: string
-    default: '#fff0f6'
-    description: Very light pink card background. Enter a six-digit hex color, such as
-  - name: exhibitions_follow_enabled
-    label: 04 · FOLLOW THE PROJECT | Show social media card
-    type: boolean
-    default: true
-    description: Shows the dark promotional card beneath Featured & Upcoming in the right column.
-  - name: exhibitions_follow_heading
-    label: 04 · FOLLOW THE PROJECT | Card heading
-    type: string
-    default: Follow the Project
-  - name: exhibitions_follow_text
-    label: 04 · FOLLOW THE PROJECT | Card description
-    type: text
-    default: Follow the project for updates on upcoming shows, new portraits, and the incredible stories of queer history
-      behind them.
-    description: Text below the heading. Social media links automatically use the URLs in Site Settings.
-  - name: exhibitions_follow_background
-    label: 04 · FOLLOW THE PROJECT | Background color (hex)
-    type: string
-    default: '#082d3c'
-    description: Dark navy card background. Enter a six-digit hex color, such as
-  - name: supporting_images
-    label: 05 · PAGE EXTRAS | Supporting images beside sections
-    type: object
-    list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty
-      to show no caption.
-    fields:
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      required: true
-      description: Match a heading in Page content, without the
-    - name: image
-      label: Supporting image
-      type: image
-      required: true
-    - name: caption
-      label: Small caption (optional)
-      type: string
-    - name: alt_text
-      label: Image description for accessibility
-      type: string
-    - name: placement
-      label: Image placement
-      type: select
-      default: right
-      options:
-        values:
-        - label: Right column
-          value: right
-        - label: Left column
-          value: left
-        - label: Full width below section (explicit only)
-          value: full
-  - name: callouts
-    label: 06 · PAGE EXTRAS | Quotes, callouts & featured statements
-    type: object
-    list: true
-    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content,
-      matching their order here. Otherwise choose a section and placement.
-    fields:
-    - name: style
-      label: Style
-      type: select
-      default: quote
-      options:
-        values:
-        - label: Pull Quote (10px left rule)
-          value: quote
-        - label: Highlight / Callout
-          value: highlight
-        - label: Featured Statement (thin horizontal rules)
-          value: statement
-    - name: heading
-      label: Optional heading
-      type: string
-    - name: text
-      label: Quote or callout text
-      type: text
-      description: Use **bold**, *italic*, or ***bold italic***. Blank lines create paragraphs.
-      required: true
-    - name: attribution
-      label: Attribution / source (optional)
-      type: string
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      description: Match a heading in Page content. Not needed when using an inline [callout-N] marker.
-    - name: position
-      label: Position within section
-      type: select
-      default: after-heading
-      options:
-        values:
-        - label: Before section
-          value: before-section
-        - label: After heading
-          value: after-heading
-        - label: After section text
-          value: after-section
-    - name: layout
-      label: Layout
-      type: select
-      default: text
-      options:
-        values:
-        - label: Text column
-          value: text
-        - label: Side image area
-          value: side
-        - label: Full width below section (explicit only)
-          value: full
-    - name: alignment
-      label: Text alignment
-      type: select
-      default: left
-      options:
-        values:
-        - label: Left
-          value: left
-        - label: Center
-          value: center
-        - label: Right
-          value: right
-- name: page_about_the_artist
-  label: The Artist · Page content & design
-  type: file
-  path: content/pages/about-the-artist.md
-  fields:
-  - name: title
-    label: 01 · PAGE HEADER | Page title
-    type: string
-    required: true
-  - name: subtitle
-    label: 01 · PAGE HEADER | Intro subtitle
-    type: text
-    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
-  - name: hero_image
-    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
-    description: Desktop page banner image. Recommended 1200 × 400 px. This changes only this page.
-    type: image
-  - name: hero_mobile_image
-    label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
-    type: image
-  - name: body
-    label: 02 · MAIN CONTENT | Page text
-    type: rich-text
-    description: Main editable page content. This is the long text shown beneath the page banner.
-  - name: supporting_images
-    label: 05 · PAGE EXTRAS | Supporting images beside sections
-    type: object
-    list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty
-      to show no caption.
-    fields:
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      required: true
-      description: Match a heading in Page content, without the
-    - name: image
-      label: Supporting image
-      type: image
-      required: true
-    - name: caption
-      label: Small caption (optional)
-      type: string
-    - name: alt_text
-      label: Image description for accessibility
-      type: string
-    - name: placement
-      label: Image placement
-      type: select
-      default: right
-      options:
-        values:
-        - label: Right column
-          value: right
-        - label: Left column
-          value: left
-        - label: Full width below section (explicit only)
-          value: full
-  - name: callouts
-    label: 06 · PAGE EXTRAS | Quotes, callouts & featured statements
-    type: object
-    list: true
-    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content,
-      matching their order here. Otherwise choose a section and placement.
-    fields:
-    - name: style
-      label: Style
-      type: select
-      default: quote
-      options:
-        values:
-        - label: Pull Quote (10px left rule)
-          value: quote
-        - label: Highlight / Callout
-          value: highlight
-        - label: Featured Statement (thin horizontal rules)
-          value: statement
-    - name: heading
-      label: Optional heading
-      type: string
-    - name: text
-      label: Quote or callout text
-      type: text
-      description: Use **bold**, *italic*, or ***bold italic***. Blank lines create paragraphs.
-      required: true
-    - name: attribution
-      label: Attribution / source (optional)
-      type: string
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      description: Match a heading in Page content. Not needed when using an inline [callout-N] marker.
-    - name: position
-      label: Position within section
-      type: select
-      default: after-heading
-      options:
-        values:
-        - label: Before section
-          value: before-section
-        - label: After heading
-          value: after-heading
-        - label: After section text
-          value: after-section
-    - name: layout
-      label: Layout
-      type: select
-      default: text
-      options:
-        values:
-        - label: Text column
-          value: text
-        - label: Side image area
-          value: side
-        - label: Full width below section (explicit only)
-          value: full
-    - name: alignment
-      label: Text alignment
-      type: select
-      default: left
-      options:
-        values:
-        - label: Left
-          value: left
-        - label: Center
-          value: center
-        - label: Right
-          value: right
-- name: page_portraits
-  label: The Portraits · Page content & design
-  type: file
-  path: content/pages/portraits.md
-  fields:
-  - name: title
-    label: 01 · PAGE HEADER | Page title
-    type: string
-    required: true
-  - name: subtitle
-    label: 01 · PAGE HEADER | Intro subtitle
-    type: text
-    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
-  - name: hero_image
-    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
-    description: Desktop page banner image. Recommended 1200 × 400 px. This changes only this page.
-    type: image
-  - name: hero_mobile_image
-    label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
-    type: image
-  - name: body
-    label: 02 · MAIN CONTENT | Page text
-    type: rich-text
-    description: Main editable page content. This is the long text shown beneath the page banner.
-  - name: supporting_images
-    label: 05 · PAGE EXTRAS | Supporting images beside sections
-    type: object
-    list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty
-      to show no caption.
-    fields:
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      required: true
-      description: Match a heading in Page content, without the
-    - name: image
-      label: Supporting image
-      type: image
-      required: true
-    - name: caption
-      label: Small caption (optional)
-      type: string
-    - name: alt_text
-      label: Image description for accessibility
-      type: string
-    - name: placement
-      label: Image placement
-      type: select
-      default: right
-      options:
-        values:
-        - label: Right column
-          value: right
-        - label: Left column
-          value: left
-        - label: Full width below section (explicit only)
-          value: full
-  - name: callouts
-    label: 06 · PAGE EXTRAS | Quotes, callouts & featured statements
-    type: object
-    list: true
-    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content,
-      matching their order here. Otherwise choose a section and placement.
-    fields:
-    - name: style
-      label: Style
-      type: select
-      default: quote
-      options:
-        values:
-        - label: Pull Quote (10px left rule)
-          value: quote
-        - label: Highlight / Callout
-          value: highlight
-        - label: Featured Statement (thin horizontal rules)
-          value: statement
-    - name: heading
-      label: Optional heading
-      type: string
-    - name: text
-      label: Quote or callout text
-      type: text
-      description: Use **bold**, *italic*, or ***bold italic***. Blank lines create paragraphs.
-      required: true
-    - name: attribution
-      label: Attribution / source (optional)
-      type: string
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      description: Match a heading in Page content. Not needed when using an inline [callout-N] marker.
-    - name: position
-      label: Position within section
-      type: select
-      default: after-heading
-      options:
-        values:
-        - label: Before section
-          value: before-section
-        - label: After heading
-          value: after-heading
-        - label: After section text
-          value: after-section
-    - name: layout
-      label: Layout
-      type: select
-      default: text
-      options:
-        values:
-        - label: Text column
-          value: text
-        - label: Side image area
-          value: side
-        - label: Full width below section (explicit only)
-          value: full
-    - name: alignment
-      label: Text alignment
-      type: select
-      default: left
-      options:
-        values:
-        - label: Left
-          value: left
-        - label: Center
-          value: center
-        - label: Right
-          value: right
-- name: page_shop
-  label: Shop · Page content & design
-  type: file
-  path: content/pages/shop.md
-  fields:
-  - name: title
-    label: 01 · PAGE HEADER | Page title
-    type: string
-    required: true
-  - name: subtitle
-    label: 01 · PAGE HEADER | Intro subtitle
-    type: text
-    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
-  - name: hero_image
-    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
-    description: Desktop page banner image. Recommended 1200 × 400 px. This changes only this page.
-    type: image
-  - name: hero_mobile_image
-    label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
-    type: image
-  - name: body
-    label: 02 · MAIN CONTENT | Page text
-    type: rich-text
-    description: Main editable page content. This is the long text shown beneath the page banner.
-  - name: shop_card
-    label: 03 · SHOP FEATURE | Online store card (right column)
-    type: object
-    description: Image-free pink shop card beside Supporting the Project. All fields are prefilled with the live defaults.
-    fields:
-    - name: enabled
-      label: Show shop card
-      type: boolean
-      default: true
-    - name: heading
-      label: Large heading
-      type: string
-      default: EXPLORE THE ARTWORK
-    - name: description
-      label: Supporting line
-      type: string
-      default: Signed, limited-edition portrait prints
-    - name: button_label
-      label: Button label
-      type: string
-      default: VISIT THE SHOP
-    - name: url
-      label: Square store URL
-      type: string
-      default: https://pinktriangleportraits.square.site/
-    - name: background_color
-      label: Card background color (hex)
-      type: string
-      default: '#E85395'
-  - name: supporting_images
-    label: 05 · PAGE EXTRAS | Supporting images beside sections
-    type: object
-    list: true
-    description: Add an image and match its section heading exactly (for example, Where it began). Leave caption empty
-      to show no caption.
-    fields:
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      required: true
-      description: Match a heading in Page content, without the
-    - name: image
-      label: Supporting image
-      type: image
-      required: true
-    - name: caption
-      label: Small caption (optional)
-      type: string
-    - name: alt_text
-      label: Image description for accessibility
-      type: string
-    - name: placement
-      label: Image placement
-      type: select
-      default: right
-      options:
-        values:
-        - label: Right column
-          value: right
-        - label: Left column
-          value: left
-        - label: Full width below section (explicit only)
-          value: full
-  - name: callouts
-    label: 06 · PAGE EXTRAS | Quotes, callouts & featured statements
-    type: object
-    list: true
-    description: Add blocks in order. For exact inline placement, put [callout-1], [callout-2], etc. in Page content,
-      matching their order here. Otherwise choose a section and placement.
-    fields:
-    - name: style
-      label: Style
-      type: select
-      default: quote
-      options:
-        values:
-        - label: Pull Quote (10px left rule)
-          value: quote
-        - label: Highlight / Callout
-          value: highlight
-        - label: Featured Statement (thin horizontal rules)
-          value: statement
-    - name: heading
-      label: Optional heading
-      type: string
-    - name: text
-      label: Quote or callout text
-      type: text
-      description: Use **bold**, *italic*, or ***bold italic***. Blank lines create paragraphs.
-      required: true
-    - name: attribution
-      label: Attribution / source (optional)
-      type: string
-    - name: section_heading
-      label: Related section heading (exact wording)
-      type: string
-      description: Match a heading in Page content. Not needed when using an inline [callout-N] marker.
-    - name: position
-      label: Position within section
-      type: select
-      default: after-heading
-      options:
-        values:
-        - label: Before section
-          value: before-section
-        - label: After heading
-          value: after-heading
-        - label: After section text
-          value: after-section
-    - name: layout
-      label: Layout
-      type: select
-      default: text
-      options:
-        values:
-        - label: Text column
-          value: text
-        - label: Side image area
-          value: side
-        - label: Full width below section (explicit only)
-          value: full
-    - name: alignment
-      label: Text alignment
-      type: select
-      default: left
-      options:
-        values:
-        - label: Left
-          value: left
-        - label: Center
-          value: center
-        - label: Right
-          value: right
-- name: page_contact
-  label: Contact · Page content & design
-  type: file
-  path: content/pages/contact.md
-  fields:
-  - name: title
-    label: 01 · PAGE HEADER | Page title
-    type: string
-    required: true
-  - name: subtitle
-    label: 01 · PAGE HEADER | Intro subtitle
-    type: text
-    description: Press Enter for a desktop line break. On mobile the text wraps naturally.
-  - name: hero_image
-    label: 01 · PAGE HEADER | Desktop image (1200 × 400 px)
-    description: Desktop page banner image. Recommended 1200 × 400 px. This changes only this page.
-    type: image
-  - name: hero_mobile_image
-    label: 01 · PAGE HEADER | Mobile image (optional)
-    description: Optional artwork-only mobile crop, shown beneath the title. If blank, the desktop header image is used.
-    type: image
-  - name: contact_form_visible
-    label: 02 · CONTACT FORM | Show contact form
-    type: boolean
-    description: Switch the contact form on or off. The form sends submissions through the existing Formspree integration.
-  - name: contact_form_heading
-    label: 02 · CONTACT FORM | Heading
-    type: string
-    description: Heading above the contact form.
-  - name: contact_intro
-    label: 02 · CONTACT FORM | Introductory text
-    type: text
-    description: Paragraph immediately below the heading, above the form.
-  - name: contact_research_visible
-    label: 03 · RESEARCH SIDEBAR | Show research card
-    type: boolean
-  - name: contact_research_heading
-    label: 03 · RESEARCH SIDEBAR | Heading
-    type: string
-  - name: contact_research_text
-    label: 03 · RESEARCH SIDEBAR | Description
-    type: text
-    description: Text in the light pink sidebar card. The Ask About Research link automatically scrolls to the contact
-      form.
-  - name: contact_social_visible
-    label: 04 · FOLLOW SIDEBAR | Show Follow the Project card
-    type: boolean
-  - name: contact_social_heading
-    label: 04 · FOLLOW SIDEBAR | Heading
-    type: string
-  - name: contact_social_text
-    label: 04 · FOLLOW SIDEBAR | Description
-    type: text
-    description: The Instagram, Bluesky, and TikTok links are automatically read from Footer & Social Media settings.
-  - name: contact_card_order
-    label: 05 · SIDEBAR LAYOUT | Card order
-    type: select
-    description: Choose which sidebar card appears first.
-    options:
-      values:
-      - label: Research first
-        value: research_first
-      - label: Follow the Project first
-        value: social_first
-  - name: contact_sidebar_width
-    label: 05 · SIDEBAR LAYOUT | Sidebar width (%)
-    type: number
-    description: 'Percentage of the main content width allocated to the right sidebar. Current value: 35.'
-- name: page_qr
-  label: QR page · Mobile landing page
-  type: file
-  path: content/pages/qr.md
-  fields:
-  - name: title
-    label: 01 · PAGE SETTINGS | Internal page name
-    type: string
-    required: true
-    description: Used for identifying this entry in the CMS. The public QR page shows the heading below.
-  - name: logo_image
-    label: 01 · BRANDING | Logo image (optional)
-    type: image
-    description: If empty, automatically uses the actual website logo from Header & Navigation. Use a light/white logo suitable for the dark teal header.
-  - name: heading
-    label: 02 · MAIN COPY | Main heading
-    type: string
-    description: Large pink heading displayed on the QR page.
-  - name: intro
-    label: 02 · MAIN COPY | Introduction
-    type: text
-    description: Short text under the main heading.
-  - name: show_instagram
-    label: 03 · SOCIAL LINKS | Show Instagram
-    type: boolean
-    default: true
-  - name: instagram_label
-    label: 03 · SOCIAL LINKS | Instagram label
-    type: string
-  - name: show_bluesky
-    label: 03 · SOCIAL LINKS | Show Bluesky
-    type: boolean
-    default: true
-  - name: bluesky_label
-    label: 03 · SOCIAL LINKS | Bluesky label
-    type: string
-  - name: show_tiktok
-    label: 03 · SOCIAL LINKS | Show TikTok
-    type: boolean
-    default: true
-  - name: tiktok_label
-    label: 03 · SOCIAL LINKS | TikTok label
-    type: string
-  - name: show_gallery
-    label: 04 · ADDITIONAL LINKS | Show portrait gallery button
-    type: boolean
-    default: true
-  - name: gallery_label
-    label: 04 · ADDITIONAL LINKS | Gallery button text
-    type: string
-  - name: home_label
-    label: 04 · ADDITIONAL LINKS | Main website button text
-    type: string
-    description: Button links to the homepage automatically.
-  - name: accent_color
-    label: 05 · APPEARANCE | Accent color (hex)
-    type: string
-    description: 'Project pink: #E85395. Controls heading and button color.'
-  - name: background_color
-    label: 05 · APPEARANCE | Page background color (hex)
-    type: string
-    description: 'Default: #ffffff.'
 - name: settings_callouts
-  label: Page Design | Callouts & Quotes
+  label: 08 · Callouts & Quotes
   type: file
   path: content/settings/callouts.yml
   fields:
@@ -2016,6 +2099,7 @@ content:
     label: 02 · HIGHLIGHT BOX | Highlight tint color (hex)
     type: string
     default: '#E85395'
+    description: 'Enter a six-digit hex color, for example #E85395. Keep the existing value to preserve the current design.'
   - name: callout_highlight_opacity
     label: 02 · HIGHLIGHT BOX | Highlight tint opacity (percent)
     type: number
@@ -2040,138 +2124,43 @@ content:
     label: 03 · TYPOGRAPHY & SPACING | Callout vertical spacing (px)
     type: number
     default: 26
-- name: events
-  label: Exhibitions and events
-  type: collection
-  path: content/events
-  filename: '{primary}.md'
-  view:
-    fields: [title, date, published]
-    primary: title
+- name: settings_footer
+  label: 09 · Footer & Social Media
+  type: file
+  path: content/settings/footer.yml
   fields:
-  - name: title
-    label: 01 · EVENT | Title
-    type: string
-    required: true
-  - name: event_type
-    label: Event type
+  - name: footer_rule_width
+    label: 01 · FOOTER STYLE | Footer top rule thickness (px)
+    type: number
+    description: Full-width decorative rule above the footer. Default 10 px.
+  - name: footer_font
+    label: 01 · FOOTER STYLE | Footer font
     type: select
     options:
-      values:
-      - label: Artist Talk
-        value: talk
-      - label: Talk & Presentation
-        value: presentation
-      - label: Gallery Exhibition
-        value: exhibition
-      - label: Gallery Exhibition + Talk/Reception
-        value: exhibition_talk
-      - label: Online / Media Appearance
-        value: online
-    default: talk
-    description: Choose a format. Talk and presentation are one-day events. Gallery shows use an end date. Online appearances use the release date and media links, without a venue or time.
-  - name: body
-    label: Short event description
-    type: rich-text
-    description: A sentence or two describing the event. Also used in the event listing.
-  - name: date
-    label: 02 · SCHEDULE | Event date / exhibition opening
-    type: date
-    description: Required for new events. Historical archive entries can use a year instead.
-  - name: end_date
-    label: Exhibition closing date (ONLY for gallery shows)
-    type: string
-    description: Enter YYYY-MM-DD, or leave blank. Leave BLANK for talks, presentations, and online appearances. Only fill for gallery exhibitions; must be on or after the opening date.
-  - name: event_time
-    label: Talk / presentation start time
-    type: string
-    description: For example 12:00 PM. For a one-day event; leave blank for a gallery-only exhibition.
-  - name: event_end_time
-    label: Talk / presentation end time (optional)
-    type: string
-    description: For example 2:00 PM.
-  - name: venue
-    label: 03 · LOCATION (in-person only) | Venue name
-    type: string
-  - name: address
-    label: Venue street address (in-person only)
-    type: string
-  - name: location
-    label: Location fallback (optional)
-    type: string
-    description: Used only if no street address is supplied. Existing events retain this value.
-  - name: reception_date
-    label: 04 · GALLERY + RECEPTION ONLY | Additional talk/reception date
-    type: string
-    description: Enter YYYY-MM-DD, or leave blank. Only for an additional talk or reception DURING a gallery exhibition. Leave blank otherwise.
-  - name: reception
-    label: Additional talk/reception label (gallery + talk only)
-    type: string
-    description: For example Opening reception, Artist talk, or Artist talk and reception. Leave blank if none.
-  - name: artist_talk_time
-    label: Additional talk/reception start time (gallery + talk only)
-    type: string
-    description: For example 6:00 PM. Only for a gallery with an additional talk/reception.
-  - name: special_end_time
-    label: Additional talk/reception end time (optional)
-    type: string
-  - name: hours
-    label: Gallery visiting hours (gallery shows only)
-    type: string
-  - name: image
-    label: 05 · IMAGE & LINKS | Event flyer / image
-    type: image
-    description: Shown beside upcoming event details. Visitors can click to view the full-size flyer.
-  - name: learn_more_url
-    label: Learn More link (optional)
-    type: string
-  - name: watch_url
-    label: Watch Here link (optional)
-    type: string
-  - name: listen_url
-    label: Listen Here link (optional)
-    type: string
-  - name: link
-    label: Other event link (optional)
-    type: string
-  - name: published
-    label: 06 · PUBLISHING | Published
-    type: boolean
-    default: true
-  - name: homepage_feature
-    label: Show automatically on homepage
-    type: boolean
-    default: true
-    description: Automatically promotes upcoming events, then removes them when finished.
-  - name: archive_only
-    label: 07 · HISTORICAL / ADVANCED (older records only) | Historical year-only entry
-    type: boolean
-    default: false
-    description: Use for older talks and shows when the exact date is unknown.
-  - name: archive_year
-    label: Historical year (year-only entries)
+      values: *id001
+  - name: footer_size
+    label: 01 · FOOTER STYLE | Footer size (px)
     type: number
-  - name: archive_order
-    label: Historical order (lower first)
-    type: number
-  - name: listing_title
-    label: Archive listing title override (optional)
+  - name: footer_color
+    label: 01 · FOOTER STYLE | Footer color (hex)
     type: string
-  - name: listing_description
-    label: Archive listing description override (optional)
-    type: string
-  - name: homepage_description
-    label: Homepage description override (optional)
-    type: string
-  - name: featured
-    label: Legacy featured setting (no longer needed)
+    description: 'Enter a six-digit hex color, for example #E85395. Keep the existing value to preserve the current design.'
+  - name: social_nav_enabled
+    label: 02 · SOCIAL ICON VISIBILITY | Show social icons in navigation
     type: boolean
-    default: false
-  - name: featured_order
-    label: Legacy featured order (no longer needed)
-    type: number
-    default: 10
-  - name: artist_talk_date
-    label: LEGACY ONLY · Old artist talk date (do not use)
+  - name: social_footer_enabled
+    label: 02 · SOCIAL ICON VISIBILITY | Show social icons in footer
+    type: boolean
+  - name: instagram_url
+    label: 03 · SOCIAL LINKS | Instagram profile URL
     type: string
-    description: Enter YYYY-MM-DD, or leave blank. Retained for compatibility. Do not fill this field for new events.
+  - name: bluesky_url
+    label: 03 · SOCIAL LINKS | Bluesky profile URL
+    type: string
+  - name: tiktok_url
+    label: 03 · SOCIAL LINKS | TikTok profile URL (optional)
+    type: string
+  - name: shop_url
+    label: 04 · SHOP LINK | Shop Url
+    type: string
+    description: Used for the Shop navigation link, not biography purchase buttons.
