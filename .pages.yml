@@ -15,60 +15,60 @@ content:
     primary: title
   fields:
   - name: title
-    label: Article headline
+    label: 01 · ARTICLE DETAILS | Article headline
     description: Appears on The Project page and in the automatic homepage press feature.
     type: string
     required: true
   - name: publication
-    label: Publication or outlet
+    label: 01 · ARTICLE DETAILS | Publication or outlet
     description: The publisher name shown above the article headline.
     type: string
   - name: date
-    label: Publication date
+    label: 01 · ARTICLE DETAILS | Publication date
     description: Used to sort articles and determine when they rotate off the homepage.
     type: date
   - name: summary
-    label: Short description
+    label: 01 · ARTICLE DETAILS | Short description
     description: Appears below the headline and in the homepage feature. Keep it brief.
     type: text
   - name: logo
-    label: 01 · BRAND IDENTITY | Logo
+    label: 02 · IMAGES | Publication logo (optional)
     type: image
     description: Preferred over thumbnails and automatic logos. Leave empty to use automatic detection.
   - name: image
-    label: Article thumbnail (optional override)
+    label: 02 · IMAGES | Article thumbnail (optional)
     type: image
     description: Used in the Project page and lower press list if no custom logo is supplied. For a homepage screenshot,
       use the separate Homepage spotlight field below.
   - name: homepage_image
-    label: Homepage spotlight | Article screenshot (optional)
+    label: 02 · IMAGES | Homepage article screenshot (optional)
     type: image
     description: Only the rotating homepage press feature uses this image, inside the browser-style banner. Upload a
       screenshot of the article here. The Project page and lower press list continue using the publication logo or article
       thumbnail. Leave empty to use those existing images automatically.
   - name: url
-    label: Link to article / recording
+    label: 03 · LINKS | Link to article / recording
     description: The external page opened when visitors select this feature.
     type: string
   - name: link_label
-    label: Link text (optional)
+    label: 03 · LINKS | Link text (optional)
     type: string
   - name: hide_image
-    label: Hide image for this article
+    label: 04 · DISPLAY & PUBLISHING | Hide image for this article
     type: boolean
     default: false
     description: Hides the logo/thumbnail for this article even when images are enabled on The Project page.
   - name: press_pin
-    label: Pin this article above newer coverage (optional)
+    label: 04 · DISPLAY & PUBLISHING | Pin this article above newer coverage (optional)
     type: boolean
     default: false
     description: Normally all coverage sorts newest first. Turn on only for a major article you want to keep ahead of newer stories on The Project page and the homepage. A pinned article also stays in the temporary top homepage feature.
   - name: homepage_days
-    label: Top homepage feature duration (days, optional)
+    label: 04 · DISPLAY & PUBLISHING | Top homepage feature duration (days, optional)
     type: number
     description: Leave blank to use the default of 30 days from publication. Applies to the temporary top homepage feature only.
   - name: published
-    label: Publish this press item
+    label: 04 · DISPLAY & PUBLISHING | Publish this press item
     description: Turn off to hide this item from all public press sections.
     type: boolean
     default: true
@@ -84,28 +84,28 @@ content:
     primary: name
   fields:
   - name: name
-    label: Person name
+    label: 01 · PERSON & HOMEPAGE | Person name
     type: string
     required: true
   - name: years
-    label: Life dates
+    label: 01 · PERSON & HOMEPAGE | Life dates
     type: string
   - name: homepage_teaser
-    label: Homepage teaser (100–200 characters)
+    label: 01 · PERSON & HOMEPAGE | Homepage teaser (100–200 characters)
     type: text
     description: Short text shown when this person is the latest portrait. Keep to about 100–200 characters.
   - name: featured_at
-    label: Portrait added date (automatic)
+    label: 01 · PERSON & HOMEPAGE | Portrait added date (automatic)
     description: Set automatically for new biographies. Determines the newest portrait on the homepage; leave existing dates unchanged when editing.
     type: date
   - name: homepage_override
-    label: Manually feature this person on homepage (optional)
+    label: 01 · PERSON & HOMEPAGE | Manually feature this person on homepage (optional)
     type: boolean
     default: false
     description: Normally the most recently added biography appears automatically. Check this to force a person instead;
       uncheck to return to automatic. If multiple are checked, the newest portrait-added date wins.
   - name: artworks
-    label: Paintings (add one or more below)
+    label: 02 · ARTWORK & BIOGRAPHY | Paintings (add one or more below)
     type: object
     list: true
     fields:
@@ -132,13 +132,13 @@ content:
       type: image
       description: Used only in the Portraits gallery. Leave empty to use the artwork image.
   - name: body
-    label: Biography
+    label: 02 · ARTWORK & BIOGRAPHY | Biography
     type: rich-text
   - name: sources
-    label: Further reading & sources
+    label: 02 · ARTWORK & BIOGRAPHY | Further reading & sources
     type: rich-text
   - name: special_thanks
-    label: Special thanks & acknowledgments
+    label: 02 · ARTWORK & BIOGRAPHY | Special thanks & acknowledgments
     type: rich-text
 - name: settings_global
   label: Branding & Global
@@ -658,70 +658,70 @@ content:
   path: content/settings/biography.yml
   fields:
   - name: bio_name_font
-    label: Person name | Font
+    label: 01 · PERSON NAME | Person name | Font
     type: select
     options:
       values: *id001
   - name: bio_name_size
-    label: Person name | Size (px)
+    label: 01 · PERSON NAME | Person name | Size (px)
     type: number
   - name: bio_name_weight
-    label: Person name | Weight
+    label: 01 · PERSON NAME | Person name | Weight
     type: number
   - name: bio_name_color
-    label: Person name | Color (hex)
+    label: 01 · PERSON NAME | Person name | Color (hex)
     type: string
   - name: bio_name_line_height
-    label: Person name | Line height (e.g. 1.0)
+    label: 01 · PERSON NAME | Person name | Line height (e.g. 1.0)
     type: number
   - name: bio_name_letter_spacing
-    label: Person name | Letter spacing (px)
+    label: 01 · PERSON NAME | Person name | Letter spacing (px)
     type: number
   - name: bio_name_bottom_gap
-    label: Person name | Space below (px)
+    label: 01 · PERSON NAME | Person name | Space below (px)
     type: number
   - name: bio_dates_font
-    label: Life dates | Font
+    label: 02 · LIFE DATES | Life dates | Font
     type: select
     options:
       values: *id001
   - name: bio_dates_size
-    label: Life dates | Size (px)
+    label: 02 · LIFE DATES | Life dates | Size (px)
     type: number
   - name: bio_dates_weight
-    label: Life dates | Weight
+    label: 02 · LIFE DATES | Life dates | Weight
     type: number
   - name: bio_dates_color
-    label: Life dates | Color (hex)
+    label: 02 · LIFE DATES | Life dates | Color (hex)
     type: string
   - name: bio_dates_bottom_gap
-    label: Life dates | Space below (px)
+    label: 02 · LIFE DATES | Life dates | Space below (px)
     type: number
   - name: bio_details_font
-    label: Materials and size | Font
+    label: 03 · ARTWORK MATERIALS & SIZE | Materials and size | Font
     type: select
     options:
       values: *id001
   - name: bio_details_size
-    label: Materials and size | Size (px)
+    label: 03 · ARTWORK MATERIALS & SIZE | Materials and size | Size (px)
     type: number
   - name: bio_details_weight
-    label: Materials and size | Weight
+    label: 03 · ARTWORK MATERIALS & SIZE | Materials and size | Weight
     type: number
   - name: bio_details_color
-    label: Materials and size | Color (hex)
+    label: 03 · ARTWORK MATERIALS & SIZE | Materials and size | Color (hex)
     type: string
   - name: bio_details_separator_gap
-    label: Materials and size | Separator spacing (px)
+    label: 03 · ARTWORK MATERIALS & SIZE | Materials and size | Separator spacing (px)
     type: number
   - name: bio_rule_width
-    label: Biography divider | Thickness (px)
+    label: 04 · BIOGRAPHY DIVIDER | Biography divider | Thickness (px)
     type: number
   - name: bio_rule_top_gap
-    label: Biography divider | Space above (px)
+    label: 04 · BIOGRAPHY DIVIDER | Biography divider | Space above (px)
     type: number
   - name: bio_rule_bottom_gap
-    label: Biography divider | Space below (px)
+    label: 04 · BIOGRAPHY DIVIDER | Biography divider | Space below (px)
     type: number
   - name: bio_nav_font
     label: 07 · PORTRAIT NAV | Previous / Next navigation | Font
@@ -775,31 +775,31 @@ content:
     type: number
     description: Default 3 for tighter spacing between navigation label and name.
   - name: art_font
-    label: Artwork information font
+    label: 05 · ARTWORK CAPTION | Artwork information font
     type: select
     options:
       values: *id001
   - name: art_title_size
-    label: Artwork title size (px)
+    label: 05 · ARTWORK CAPTION | Artwork title size (px)
     type: number
   - name: art_details_size
-    label: Artwork details size (px)
+    label: 05 · ARTWORK CAPTION | Artwork details size (px)
     type: number
   - name: art_color
-    label: Artwork information color (hex)
+    label: 05 · ARTWORK CAPTION | Artwork information color (hex)
     type: string
   - name: biography_quote_font
-    label: Biography quote callout | Font family
+    label: 06 · BIOGRAPHY QUOTES | Biography quote callout | Font family
     type: select
     options:
       values: *id001
     description: Applies to blockquotes inside biographies only.
   - name: biography_quote_size
-    label: Biography quote | Font size (px)
+    label: 06 · BIOGRAPHY QUOTES | Biography quote | Font size (px)
     type: number
     description: Try 22. Adjusts down automatically on small screens.
   - name: biography_quote_weight
-    label: Biography quote | Font weight
+    label: 06 · BIOGRAPHY QUOTES | Biography quote | Font weight
     type: select
     options:
       values:
@@ -812,7 +812,7 @@ content:
       - value: '700'
         label: Bold
   - name: biography_quote_style
-    label: Biography quote | Text style
+    label: 06 · BIOGRAPHY QUOTES | Biography quote | Text style
     type: select
     options:
       values:
@@ -821,68 +821,68 @@ content:
       - value: italic
         label: Italic
   - name: biography_quote_color
-    label: Biography quote | Text color (hex)
+    label: 06 · BIOGRAPHY QUOTES | Biography quote | Text color (hex)
     type: string
   - name: biography_quote_background
-    label: Biography quote | Background color (hex, optional)
+    label: 06 · BIOGRAPHY QUOTES | Biography quote | Background color (hex, optional)
     type: string
     description: Leave blank for a transparent background. Enter a hex color such as #FFF0F7 to add a background.
   - name: biography_quote_rule_color
-    label: Biography quote | Left rule color (hex)
+    label: 06 · BIOGRAPHY QUOTES | Biography quote | Left rule color (hex)
     type: string
   - name: biography_quote_rule_width
-    label: Biography quote | Left rule thickness (px)
+    label: 06 · BIOGRAPHY QUOTES | Biography quote | Left rule thickness (px)
     type: number
   - name: biography_quote_padding
-    label: Biography quote | Inside padding (px)
+    label: 06 · BIOGRAPHY QUOTES | Biography quote | Inside padding (px)
     type: number
   - name: biography_quote_spacing
-    label: Biography quote | Space above and below (px)
+    label: 06 · BIOGRAPHY QUOTES | Biography quote | Space above and below (px)
     type: number
   - name: research_font
-    label: Research callout font
+    label: 08 · SOURCES & ACKNOWLEDGMENTS | Research callout font
     type: select
     options:
       values: *id001
   - name: research_heading_size
-    label: Further Reading / Special Thanks heading size (px)
+    label: 08 · SOURCES & ACKNOWLEDGMENTS | Further Reading / Special Thanks heading size (px)
     type: number
     description: Controls only the two headings inside the research box on individual biography pages. Try 18.
   - name: research_body_size
-    label: Further Reading / Special Thanks copy size (px)
+    label: 08 · SOURCES & ACKNOWLEDGMENTS | Further Reading / Special Thanks copy size (px)
     type: number
     description: Controls the text below those headings. Try 16.
   - name: research_background
-    label: Research box SOLID background color (hex)
+    label: 08 · SOURCES & ACKNOWLEDGMENTS | Research box SOLID background color (hex)
     type: string
     description: 'A single solid hex color, such as #fff0f6. No gradient.'
   - name: research_color
-    label: Research box text color (hex)
+    label: 08 · SOURCES & ACKNOWLEDGMENTS | Research box text color (hex)
     type: string
   - name: callout_rule_type
-    label: Callout Rule Type
+    label: 09 · INFORMATION BOXES | Callout Rule Type
     type: select
     options:
       values:
       - solid
       - gradient
   - name: callout_rule_color
-    label: Callout Rule Color
+    label: 09 · INFORMATION BOXES | Callout Rule Color
     type: string
   - name: callout_rule_end
-    label: Callout Rule End
+    label: 09 · INFORMATION BOXES | Callout Rule End
     type: string
   - name: callout_rule_width
-    label: Callout Rule Width
+    label: 09 · INFORMATION BOXES | Callout Rule Width
     type: number
   - name: callout_gap
-    label: Callout inner spacing (px)
+    label: 09 · INFORMATION BOXES | Callout inner spacing (px)
     type: number
   - name: research_rule_width
-    label: Research box left rule thickness (px)
+    label: 08 · SOURCES & ACKNOWLEDGMENTS | Research box left rule thickness (px)
     type: number
   - name: panel_rule_width
-    label: Information box top rule thickness (px)
+    label: 09 · INFORMATION BOXES | Information box top rule thickness (px)
     type: number
 - name: settings_rules
   label: Rules & Dividers
@@ -890,23 +890,23 @@ content:
   path: content/settings/rules.yml
   fields:
   - name: divider_rule_type
-    label: Divider Rule Type
+    label: 01 · DIVIDER RULES | Divider Rule Type
     type: select
     options:
       values:
       - solid
       - gradient
   - name: divider_rule_color
-    label: Divider Rule Color
+    label: 01 · DIVIDER RULES | Divider Rule Color
     type: string
   - name: divider_rule_end
-    label: Divider Rule End
+    label: 01 · DIVIDER RULES | Divider Rule End
     type: string
   - name: divider_rule_width
-    label: Divider Rule Width
+    label: 01 · DIVIDER RULES | Divider Rule Width
     type: number
   - name: interior_rule_width
-    label: Interior page header rule thickness (px)
+    label: 02 · INTERIOR HEADERS | Interior page header rule thickness (px)
     type: number
 - name: settings_footer
   label: Footer & Social Media
