@@ -1289,15 +1289,15 @@ body>footer{
 .event-band-date,.event-band-address{font-weight:700}
 @media(max-width:700px){.exhibitions-history .exhibition-entry.is-upcoming .exhibition-entry-image{max-width:220px}}
 
-/* Match the biography page's top All Portraits link to the bottom portrait navigation. */
+/* Match the top All Portraits link to the condensed navigation at the bottom. */
 .portrait-breadcrumb a{
-  font-family:var(--bio-nav-font),'DM Sans',sans-serif;
-  font-size:var(--bio-nav-label-size,21px);
-  font-weight:var(--bio-nav-label-weight,600);
-  line-height:1.1;
+  font-family:var(--heading-font),'Barlow Condensed',Impact,sans-serif;
+  font-size:var(--bio-nav-label-size,19px);
+  font-weight:800;
+  line-height:1.05;
   letter-spacing:.035em;
   text-transform:uppercase;
 }
 @media(max-width:600px){
-  .portrait-breadcrumb a{font-size:clamp(16px,4.5vw,var(--bio-nav-label-size,21px))}
+  .portrait-breadcrumb a{font-size:clamp(16px,4.5vw,var(--bio-nav-label-size,19px))}
 }
