@@ -1327,17 +1327,17 @@ body>footer{
 .ptp-shop-feature-button{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:2px solid #fff;padding:12px 18px;font-family:'Barlow Condensed',Impact,sans-serif;font-size:19px;font-weight:700;letter-spacing:.04em}
 @media(max-width:700px){.ptp-shop-feature-card{min-height:280px}}
 
-/* Match top All Portraits link to bottom portrait navigation */
+/* Match top All Portraits link to the CMS-controlled bottom navigation. */
 .portrait-breadcrumb a {
-  font-family: 'Barlow Condensed', Impact, sans-serif;
-  font-size: var(--bio-nav-label-size, 19px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: 0;
+  font-family: var(--bio-nav-font), 'Barlow Condensed', sans-serif;
+  font-size: var(--bio-nav-label-size, 21px);
+  font-weight: var(--bio-nav-label-weight, 600);
+  line-height: 1.1;
+  letter-spacing: .035em;
   text-transform: uppercase;
 }
 @media (max-width: 600px) {
   .portrait-breadcrumb a {
-    font-size: clamp(16px, 4.5vw, var(--bio-nav-label-size, 19px));
+    font-size: clamp(16px, 4.5vw, var(--bio-nav-label-size, 21px));
   }
 }
