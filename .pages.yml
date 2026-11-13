@@ -1732,6 +1732,35 @@ content:
     label: 02 · MAIN CONTENT | Page text
     type: rich-text
     description: Main editable page content. This is the long text shown beneath the page banner.
+  - name: shop_card
+    label: 03 · SHOP FEATURE | Online store card (right column)
+    type: object
+    description: Image-free pink shop card beside Supporting the Project. All fields are prefilled with the live defaults.
+    fields:
+    - name: enabled
+      label: Show shop card
+      type: boolean
+      default: true
+    - name: heading
+      label: Large heading
+      type: string
+      default: EXPLORE THE ARTWORK
+    - name: description
+      label: Supporting line
+      type: string
+      default: Signed, limited-edition portrait prints
+    - name: button_label
+      label: Button label
+      type: string
+      default: VISIT THE SHOP
+    - name: url
+      label: Square store URL
+      type: string
+      default: https://pinktriangleportraits.square.site/
+    - name: background_color
+      label: Card background color (hex)
+      type: string
+      default: '#E85395'
   - name: supporting_images
     label: 05 · PAGE EXTRAS | Supporting images beside sections
     type: object
