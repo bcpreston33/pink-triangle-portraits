@@ -43,7 +43,7 @@ def callout_markup(item):
     content=(f'<h3>{escape(title)}</h3>' if title else '')+(f'<div class="ptp-callout-text">{render_md(body)}</div>' if body else '')+(f'<p class="ptp-callout-credit">{escape(credit)}</p>' if credit else '')
     return f'<aside class="ptp-callout ptp-callout--{style} ptp-callout--{alignment}" aria-label="Featured text">{content}</aside>'
 
-def render_section_images(body, assignments, callouts=None):
+def render_section_images(body, assignments, callouts=None, shop_card=None):
     """Section-linked images and callouts; exact inline markers such as [callout-1]."""
     html=render_md(body)
     pieces=re.split(r'(?=<h[23](?:\s[^>]*)?>)',html)
@@ -120,6 +120,13 @@ def render_section_images(body, assignments, callouts=None):
             section_html=section_html[:insert]+''.join(after_heading)+section_html[insert:]
         cls=' editorial-section--'+placement if figures else ''
         media_items=figures+side
+        if shop_card and key == 'supporting the project' and shop_card.get('enabled', True) is not False:
+            card_title=escape(str(shop_card.get('heading') or 'EXPLORE THE ARTWORK'))
+            card_note=escape(str(shop_card.get('description') or 'Signed, limited-edition portrait prints'))
+            card_button=escape(str(shop_card.get('button_label') or 'VISIT THE SHOP'))
+            card_url=attr(str(shop_card.get('url') or 'https://pinktriangleportraits.square.site/'))
+            card_color=attr(str(shop_card.get('background_color') or '#E85395'))
+            media_items.append(f'<a class="ptp-shop-feature-card" href="{card_url}" target="_blank" rel="noopener noreferrer" style="--shop-card-bg:{card_color}" aria-label="{card_button} (opens in a new tab)"><span class="ptp-shop-feature-eyebrow">PINK TRIANGLE PORTRAITS</span><span class="ptp-shop-feature-title">{card_title}</span><span class="ptp-shop-feature-description">{card_note}</span><span class="ptp-shop-feature-button">{card_button} <span aria-hidden="true">▸</span></span></a>')
         media=f'<div class="editorial-section-media">{"".join(media_items)}</div>' if media_items else ''
         before_markup=''.join(f'<div class="ptp-callout-text-column">{c}</div>' for c in before)
         result.append(before_markup+f'<section class="editorial-section{cls}"><div class="editorial-section-copy">{section_html}{"".join(after)}</div>{media}</section>'+''.join(f'<div class="ptp-callout-full">{c}</div>' for c in full))
@@ -784,7 +791,7 @@ for route in ['the-project','the-history','about-the-artist','contact','shop']:
     title=str(data.get('title',route.title()))
     supporting=data.get('supporting_images') or []
     callouts=data.get('callouts') or []
-    body=render_section_images(data.get('body'),supporting,callouts)
+    body=render_section_images(data.get('body'),supporting,callouts, data.get('shop_card', {'enabled': True}) if route == 'shop' else None)
     content=heading('Pink Triangle Portraits',title,data.get('subtitle',''),data.get('hero_image',''),data.get('hero_mobile_image',''))+(f'<div class="container editorial-with-images rich">{body}</div>' if body.strip() else '')
 
     if route == 'the-project':

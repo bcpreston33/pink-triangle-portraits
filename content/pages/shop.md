@@ -3,6 +3,13 @@ title: THE SHOP
 subtitle: Support the project
 hero_image: /assets/uploads/PTP-Page-Headers-Shop-1.jpg
 hero_mobile_image: /assets/uploads/PTP-Site-Home-Mobile-16.jpg
+shop_card:
+  enabled: true
+  heading: EXPLORE THE ARTWORK
+  description: Signed, limited-edition portrait prints
+  button_label: VISIT THE SHOP
+  url: https://pinktriangleportraits.square.site/
+  background_color: '#E85395' 
 ---
 ### Supporting the Project
 
