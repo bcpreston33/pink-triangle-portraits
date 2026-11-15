@@ -1339,3 +1339,17 @@ body>footer{
 @media(max-width:600px){
   .portrait-breadcrumb a{font-size:clamp(16px,4.5vw,var(--bio-nav-label-size,19px))}
 }
+
+/* Mobile biography reading order: identity, artwork, biography, acknowledgments. */
+@media (max-width:700px){
+  .person-detail{display:flex;flex-direction:column;gap:0}
+  .person-detail > .person-artworks,
+  .person-detail > .portrait-bio{display:contents}
+  .person-detail .portrait-bio > h1{order:1}
+  .person-detail .portrait-bio > .years{order:2}
+  .person-detail .portrait-bio > .portrait-artwork-meta{order:3}
+  .person-detail .person-artwork{order:4;margin:18px 0 24px;min-width:0}
+  .person-detail .portrait-bio > .accent-rule{order:5}
+  .person-detail .portrait-bio > .rich{order:6;min-width:0}
+  .person-detail .research-callout{order:7;min-width:0;margin-top:26px}
+}
