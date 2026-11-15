@@ -1353,3 +1353,26 @@ body>footer{
   .person-detail .portrait-bio > .rich{order:6;min-width:0}
   .person-detail .research-callout{order:7;min-width:0;margin-top:26px}
 }
+
+/* Mobile portrait header refinement: preserve the original divider and breathing room. */
+@media (max-width:700px){
+  .person-detail .portrait-bio > h1{
+    font-size:clamp(42px,10vw,var(--bio-name-size,85px));
+    line-height:var(--bio-name-line-height,1);
+  }
+  .person-detail .portrait-bio > .accent-rule{
+    order:4;
+    display:block;
+    width:100%;
+    flex:none;
+    height:var(--bio-rule-width,4px);
+    margin:var(--bio-rule-top-gap,22px) 0 var(--bio-rule-bottom-gap,30px);
+    background:var(--divider-rule,linear-gradient(90deg,var(--pink),var(--orange),transparent));
+  }
+  .person-detail .person-artwork{
+    order:5;
+    margin:0 0 32px;
+  }
+  .person-detail .portrait-bio > .rich{order:6}
+  .person-detail .research-callout{order:7}
+}
