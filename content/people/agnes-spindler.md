@@ -1,7 +1,6 @@
 ---
 name: Agnes Spindler
 years: June 17, 1904 - Unknown
-homepage_override: false
 artworks:
   - image: /assets/images/portraits/agnes-spindler.jpg
     medium: Acrylic on Canvas
@@ -9,12 +8,14 @@ artworks:
     published: true
     display_order: 10
     gallery_thumbnail: /assets/images/gallery-thumbnails/agnes-spindler.jpg
+featured_at: 2026-11-15
+homepage_override: false
 sources: |-
   Bernd Grünheid, "Agnes Spindler" [https://www.rosawinkel.kulturring.berlin/?biografie=agnes-spindler](https://www.rosawinkel.kulturring.berlin/?biografie=agnes-spindler)
 
   Landesarchiv Berlin Ar. Br. Rep. 030-02-05 Nr. 855, Polizeiakte Agnes Spindler
 ---
-Agnes Spindler was born on June 17, 1904 in Berlin. She lived her truth, dressing as she wished and living with her partner. Even as a child, Agnes liked to wear boys’ clothing. She knew she was a lesbian by the time she was a teenager, but sadly her first major relationship ended when he girlfriend died.
+Agnes Spindler was born on June 17, 1904 in Berlin. She lived her truth, dressing as she wished and living with her partner. Even as a child, Agnes liked to wear boys’ clothing. She knew she was a lesbian by the time she was a teenager, but sadly her first major relationship ended when her girlfriend died.
 
 In 1924 she met Margarete Witzig. They were in love, and Margarete moved in with Agnes, where she lived for the next 8 years. Sadly, she also passed away. After this time, Agnes worked as a fruit and vegetable vendor, riding her bike with a trailer hitched to the back. She favored wearing men’s suits and seemed to be living fairly freely. In 1939, she was reported to the Gestapo. The gay hunting homosexuality unit arrested Agnes and interrogated her. She freely admitted being lesbian in the face of the Nazis. She was forced to sign a form stating she would purchase and wear only women’s clothing.
 
