@@ -992,3 +992,30 @@ for p in portraits:
     dest='/people/'+p['_person_slug']+'/'
     write('portraits/'+p['_slug'],f'<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url={attr(dest)}"><link rel="canonical" href="{attr(dest)}"><a href="{attr(dest)}">Read biography</a>')
 print(f'Built {len(portraits)} artworks, {len(person_slugs)} people and {len(events)} events')
+
+# Generate search-engine discovery files from the actual built public pages.
+# This runs on every build, so newly published biographies are included automatically.
+from xml.etree.ElementTree import Element, SubElement, ElementTree
+
+SITE_URL = 'https://www.pinktriangleportraits.com'
+sitemap = Element('urlset', {'xmlns': 'http://www.sitemaps.org/schemas/sitemap/0.9'})
+public_paths = []
+for html_file in sorted(OUT.rglob('index.html')):
+    relative = html_file.relative_to(OUT)
+    route = relative.parent.as_posix()
+    # Skip utility routes, legacy redirect pages, and any example placeholders.
+    if route == 'qr' or route.startswith('portraits/') or route.startswith('people/sample-'):
+        continue
+    html_source = html_file.read_text(encoding='utf-8')
+    if re.search(r'<meta\s+http-equiv=["\']refresh["\']', html_source, re.I):
+        continue
+    public_paths.append('/' if route == '.' else '/' + route + '/')
+for route in sorted(set(public_paths), key=lambda value: (value != '/', value)):
+    entry = SubElement(sitemap, 'url')
+    SubElement(entry, 'loc').text = SITE_URL + route
+ElementTree(sitemap).write(OUT / 'sitemap.xml', encoding='utf-8', xml_declaration=True)
+(OUT / 'robots.txt').write_text(
+    'User-agent: *\nAllow: /\n\nSitemap: ' + SITE_URL + '/sitemap.xml\n',
+    encoding='utf-8'
+)
+print(f'Generated sitemap with {len(public_paths)} public pages and robots.txt')
