@@ -1591,3 +1591,61 @@ body>footer{
   .home-hero .hero-actions .hero-cta{font-size:14px!important;padding:9px 10px!important}
   .home-hero .hero-actions{gap:6px!important}
 }
+
+
+/* Mobile homepage follow-up: navigation, eyebrow, centered cards, redundant banner. */
+@media (max-width:700px){
+  /* Keep the logo at left, social icons centered, and menu at far right. */
+  .site-header .nav-wrap{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;
+    align-items:center!important;
+    gap:8px!important;
+    padding:10px 14px!important;
+  }
+  .site-header .brand{grid-column:1;grid-row:1;justify-self:start;min-width:0}
+  .site-header .brand-logo{max-width:min(145px,100%)!important;height:auto}
+  .site-header .nav-social{
+    grid-column:2!important;grid-row:1!important;
+    justify-self:center!important;
+    display:flex!important;align-items:center!important;
+    margin:0!important;gap:8px!important;
+  }
+  .site-header .menu-toggle{
+    grid-column:3!important;grid-row:1!important;
+    justify-self:end!important;
+    margin:0!important;
+  }
+  .site-header #main-nav{grid-column:1/-1}
+  .home-hero .home-hero-overlay .hero-eyebrow{color:#fff!important}
+  /* Remove the secondary full-width exhibition feature, not the small event card. */
+  .home-hero ~ .event-band{display:none!important}
+  /* Center cards within the full viewport, regardless of the generic container width. */
+  .home-intro.home-spotlights.container{
+    box-sizing:border-box!important;
+    width:100%!important;
+    max-width:none!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    padding:15px 11px 4px!important;
+  }
+  .home-spotlights .spotlight-grid,
+  .home-spotlights .spotlight-grid.spotlights-three,
+  .home-spotlights .spotlight-grid.spotlights-two{
+    box-sizing:border-box!important;
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+    margin:0 auto!important;
+    padding:0!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    justify-items:stretch!important;
+  }
+  .home-spotlights .spotlight-card{
+    box-sizing:border-box!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    justify-self:stretch!important;
+  }
+}
