@@ -2074,3 +2074,43 @@ body>footer{
     margin:32px 23px 0!important;
   }
 }
+
+
+/* Mobile homepage: match the desktop latest-portrait banner composition. */
+@media(max-width:700px){
+  .home-spotlights .spotlight-grid .spotlight-card.spotlight-portrait .spotlight-image{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:100%!important;
+    aspect-ratio:1.75!important;
+    height:auto!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:12px!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+    background-color:#e9478c!important;
+    background-image:var(--spotlight-portrait-background)!important;
+    background-position:center!important;
+    background-size:cover!important;
+    background-repeat:no-repeat!important;
+  }
+  .home-spotlights .spotlight-grid .spotlight-card.spotlight-portrait .spotlight-image img{
+    display:block!important;
+    flex:0 1 auto!important;
+    width:auto!important;
+    height:auto!important;
+    max-width:100%!important;
+    max-height:100%!important;
+    object-fit:contain!important;
+    object-position:center!important;
+    box-sizing:border-box!important;
+    border:var(--spotlight-portrait-border,9px) solid #fff!important;
+    box-shadow:0 3px 8px #0003!important;
+    transform:none!important;
+  }
+  .home-spotlights .spotlight-grid .spotlight-card.spotlight-portrait .spotlight-copy{
+    background:transparent!important;
+  }
+}
