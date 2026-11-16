@@ -2047,3 +2047,30 @@ body>footer{
     margin-top:0!important;
   }
 }
+
+/* Biography info panel: soft project pink, readable teal metadata, adjusted spacing. */
+@media (max-width:700px){
+  .person-detail .portrait-bio>h1,
+  .person-detail .portrait-bio>.years,
+  .person-detail .portrait-bio>.portrait-artwork-meta{
+    background:rgba(232,83,149,.12)!important;
+  }
+  .person-detail .portrait-bio>h1{
+    padding-top:44px!important;
+  }
+  .person-detail .portrait-bio>.portrait-artwork-meta{
+    padding:3px 23px 42px!important;
+    color:#073640!important;
+  }
+  .person-detail .portrait-bio>.portrait-artwork-meta .selected-artwork-details,
+  .person-detail .portrait-bio>.portrait-artwork-meta .selected-artwork-details *,
+  .person-detail .portrait-bio>.portrait-artwork-meta .selected-artwork-details span,
+  .person-detail .portrait-bio>.portrait-artwork-meta .selected-artwork-details strong{
+    color:#073640!important;
+    font-size:16px!important;
+    line-height:1.4!important;
+  }
+  .person-detail .portrait-bio>.accent-rule{
+    margin:32px 23px 0!important;
+  }
+}
