@@ -1868,3 +1868,136 @@ body>footer{
   }
   .bio-editorial-nav .bio-nav-label{font-size:12px!important;white-space:normal!important}
 }
+
+
+/* Mobile biography refinements: solid portrait field, metadata, source heading, nav */
+@media (max-width:700px){
+  .person-detail .person-artwork{
+    background:#073640!important;
+  }
+  .person-detail .portrait-bio>.portrait-artwork-meta,
+  .person-detail .portrait-bio>.portrait-artwork-meta .selected-artwork-details,
+  .person-detail .portrait-bio>.portrait-artwork-meta .selected-artwork-details p,
+  .person-detail .portrait-bio>.portrait-artwork-meta .selected-artwork-details span,
+  .person-detail .portrait-bio>.portrait-artwork-meta .selected-artwork-details strong,
+  .person-detail .portrait-bio>.portrait-artwork-meta .selected-artwork-details div{
+    color:#fff!important;
+  }
+  .person-detail .portrait-bio>.portrait-artwork-meta{
+    padding:3px 22px 23px!important;
+    min-height:0!important;
+  }
+  .person-detail .portrait-bio .selected-artwork-details{
+    display:flex!important;
+    align-items:baseline!important;
+    flex-wrap:wrap!important;
+    gap:5px 15px!important;
+    margin:0!important;
+    padding:0!important;
+    background:transparent!important;
+    font-size:13px!important;
+    line-height:1.35!important;
+  }
+  .person-detail .portrait-bio .selected-artwork-details[hidden]{display:none!important}
+  .person-detail .portrait-bio .selected-artwork-details .selected-artwork-title{
+    color:#fff!important;
+  }
+  .person-detail .research-callout .research-part h2{
+    position:relative!important;
+    padding:25px 0 0!important;
+    margin:0 0 18px!important;
+    color:#073640!important;
+    font-size:30px!important;
+    line-height:1.06!important;
+  }
+  .person-detail .research-callout .research-part h2::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:52px;
+    height:5px;
+    background:#e85395;
+  }
+  .bio-editorial-nav.prev-next.container{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    grid-template-rows:auto!important;
+    align-items:stretch!important;
+    gap:7px!important;
+    padding:16px 13px 20px!important;
+  }
+  .bio-editorial-nav.prev-next.container>a{
+    display:flex!important;
+    grid-column:auto!important;
+    grid-row:1!important;
+    width:auto!important;
+    min-width:0!important;
+    max-width:none!important;
+    min-height:56px!important;
+    padding:9px 4px!important;
+    margin:0!important;
+    border-radius:3px!important;
+    text-align:center!important;
+    white-space:normal!important;
+    font-size:12px!important;
+    font-weight:700!important;
+  }
+  .bio-editorial-nav.prev-next.container>.bio-nav-previous{grid-column:1!important}
+  .bio-editorial-nav.prev-next.container>.bio-nav-all{grid-column:2!important}
+  .bio-editorial-nav.prev-next.container>.bio-nav-next{grid-column:3!important}
+  .bio-editorial-nav .bio-nav-label{
+    display:block!important;
+    font-size:11px!important;
+    line-height:1.25!important;
+  }
+  .bio-editorial-nav .bio-nav-label .ptp-triangle{
+    display:none!important;
+  }
+  .bio-editorial-nav .bio-nav-previous .bio-nav-label::before{
+    content:"←";
+    display:block;
+    font-size:21px;
+    line-height:1;
+    margin-bottom:4px;
+  }
+  .bio-editorial-nav .bio-nav-next .bio-nav-label::before{
+    content:"→";
+    display:block;
+    font-size:21px;
+    line-height:1;
+    margin-bottom:4px;
+  }
+  .bio-editorial-nav .bio-nav-all::before{
+    content:"▦";
+    display:block;
+    font-size:20px;
+    line-height:1;
+    margin-bottom:4px;
+  }
+}
+
+/* Consistent uncropped artwork gutters on every mobile biography. */
+@media (max-width:700px) {
+  .person-detail .person-artwork {
+    padding-left:25px!important;
+    padding-right:25px!important;
+    box-sizing:border-box!important;
+  }
+  .person-detail .main-artwork-image {
+    box-sizing:border-box!important;
+    width:100%!important;
+    max-width:100%!important;
+  }
+  .person-detail .main-artwork-image img,
+  .person-detail img.selected-artwork-image {
+    display:block!important;
+    width:auto!important;
+    max-width:100%!important;
+    height:auto!important;
+    object-fit:contain!important;
+    object-position:center!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+}
