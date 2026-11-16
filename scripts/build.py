@@ -411,7 +411,7 @@ featured=next((p for p in portraits if p['_person_slug']==selected_person),None)
 def portrait_card(p):
     name=escape(str(p.get('name','Untitled')))
     thumb=p.get('gallery_thumbnail') or p.get('image')
-    return f'<a class="portrait-card" href="{artwork_link(p)}"><span class="portrait-image">{img(thumb,name)}<span class="portrait-hover-name" aria-hidden="true">{name}</span></span><span class="portrait-name">{name}<span aria-hidden="true"> ↗</span></span></a>'
+    return f'<a class="portrait-card" href="{artwork_link(p)}"><span class="portrait-image">{img(thumb,name)}<span class="portrait-hover-name" aria-hidden="true">{name}</span></span><span class="portrait-name">{name}<span class="ptp-vector-arrow" aria-hidden="true"></span></span></a>'
 
 gallery_people=list(dict.fromkeys(p['_person_slug'] for p in portraits))
 gallery_art=[min((p for p in portraits if p['_person_slug']==ps),key=lambda p:p.get('_artwork_index',0)) for ps in gallery_people]
@@ -461,7 +461,7 @@ next_event=upcoming[0] if upcoming else None
 def event_card(e,large=False):
     image_markup=img(e.get('image'),e.get('title',''),'event-cover')
     details=f'<div><span class="section-label">{escape(e["_date"])}</span><h2>{escape(str(e.get("title","")))}</h2><p>{escape(str(e.get("location","")))}</p><div class="rich">{render_md(e.get("body"))}</div>'
-    if e.get('link'): details+=f'<p><a class="text-link" href="{attr(e["link"])}">Event details ↗</a></p>'
+    if e.get('link'): details+=f'<p><a class="text-link" href="{attr(e["link"])}">Event details <span class="ptp-vector-arrow" aria-hidden="true"></span></a></p>'
     return f'<article class="event-card{" event-card-featured" if large else ""}">{image_markup}{details}</div></article>'
 
 # The banner is selected in the browser, so it expires and changes without rebuilding.
@@ -550,7 +550,7 @@ def press_compact(item):
     day=escape(str(item.get('_date') or ''))
     url=str(item.get('url') or '').strip()
     label=escape(str(item.get('link_label') or 'View coverage'))
-    link=(f'<a href="{attr(url)}" target="_blank" rel="noopener noreferrer">{label} ↗</a>' if url.startswith(('https://','http://')) else '')
+    link=(f'<a href="{attr(url)}" target="_blank" rel="noopener noreferrer">{label} <span class="ptp-vector-arrow" aria-hidden="true"></span></a>' if url.startswith(('https://','http://')) else '')
     return f'<article class="press-compact"><div><p class="press-meta">{publication}{" · " if publication and day else ""}{day}</p><h3>{title}</h3></div>{link}</article>'
 
 def press_section(items):
@@ -611,7 +611,7 @@ def press_card(item):
     summary=render_md(item.get('summary') or item.get('body') or '')
     url=str(item.get('url') or '').strip()
     link=(f'<a class="text-link" href="{attr(url)}" target="_blank" rel="noopener noreferrer">'
-          +escape(str(item.get('link_label') or 'Read feature'))+' ↗</a>') if url.startswith(('https://','http://')) else ''
+          +escape(str(item.get('link_label') or 'Read feature'))+' <span class="ptp-vector-arrow" aria-hidden="true"></span></a>') if url.startswith(('https://','http://')) else ''
     # Manual logo > manual thumbnail > automatic publication icon > article metadata thumbnail.
     logo=str(item.get('logo') or '').strip()
     thumb=str(item.get('image') or '').strip()
@@ -862,7 +862,7 @@ qr_data=load(qr_file) if qr_file.exists() else {}
 qr_links=[]
 for key,label in [('instagram','Instagram'),('bluesky','Bluesky'),('tiktok','TikTok')]:
     if qr_data.get('show_'+key,True) and setting(key+'_url'):
-        qr_links.append(f'<a class="qr-social-button" href="{attr(setting(key+"_url"))}" target="_blank" rel="noopener noreferrer"><img src="/assets/images/social-{key}-white.png" alt="" aria-hidden="true"><span>{escape(str(qr_data.get(key+"_label") or label))}</span><span class="qr-arrow" aria-hidden="true">↗</span></a>')
+        qr_links.append(f'<a class="qr-social-button" href="{attr(setting(key+"_url"))}" target="_blank" rel="noopener noreferrer"><img src="/assets/images/social-{key}-white.png" alt="" aria-hidden="true"><span>{escape(str(qr_data.get(key+"_label") or label))}</span><span class="qr-arrow ptp-vector-arrow" aria-hidden="true"></span></a>')
 qr_gallery='<a class="qr-gallery-button" href="/portraits/">'+escape(str(qr_data.get('gallery_label') or 'Explore the Portrait Gallery'))+'</a>' if qr_data.get('show_gallery',True) else ''
 qr_logo=qr_data.get('logo_image') or setting('logo','')
 qr_logo_html=img(qr_logo,'Pink Triangle Portraits logo') if qr_logo else '<div class="qr-wordmark">PINK TRIANGLE<br>PORTRAITS</div>'
@@ -910,7 +910,7 @@ for e in events:
          +(f'<p class="event-detail"><strong>Time:</strong> {escape(str(e.get("event_end_time")))}</p>' if e.get('event_end_time') and not e.get('event_time') else '')
          +(f'<p class="event-detail">{escape(str(e.get("location","")))}</p>' if e.get('location') and not e.get('address') and not e.get('venue') else '')
          +f'<div class="rich">{render_md(e.get("body"))}</div>'
-         +(f'<p><a class="text-link" href="{attr(e["link"])}">Event details ↗</a></p>' if e.get('link') else ''))
+         +(f'<p><a class="text-link" href="{attr(e["link"])}">Event details <span class="ptp-vector-arrow" aria-hidden="true"></span></a></p>' if e.get('link') else ''))
     listing_title=str(e.get('listing_title') or e.get('title') or '')
     listing_description=str(e.get('listing_description') or e.get('location') or '')
     listing_links=' • '.join(f'<a href="{attr(e[field])}">{label}</a>' for field,label in [('learn_more_url','Learn More'),('watch_url','Watch Here'),('listen_url','Listen Here')] if e.get(field))

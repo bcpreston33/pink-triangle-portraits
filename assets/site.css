@@ -2114,3 +2114,8 @@ body>footer{
     background:transparent!important;
   }
 }
+
+/* Decorative up-right arrows: consistent SVG rendering on iOS and desktop. */
+.ptp-vector-arrow{display:inline-block;flex:none;width:.8em;height:.8em;margin-left:.2em;vertical-align:-.035em;background:currentColor;-webkit-mask:url('/assets/arrow.svg') center / contain no-repeat;mask:url('/assets/arrow.svg') center / contain no-repeat;}
+.portrait-name .ptp-vector-arrow{margin-left:.3em;}
+.qr-arrow.ptp-vector-arrow{width:1em;height:1em;}
